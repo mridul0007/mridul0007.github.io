@@ -22,12 +22,12 @@
         }
 
         fireChanged() {
-            console.log(this.$dept);
+            console.log(this.dept);
             console.log("OnClick Triggered");     
             
         }    
         test(){
-            console.log(this.$dept);
+            console.log(this.dept);
         }
         
     }

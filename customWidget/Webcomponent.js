@@ -22,6 +22,7 @@
         }
 
         fireChanged() {
+            console.log(this.$dept);
             console.log("OnClick Triggered");     
             
         }    

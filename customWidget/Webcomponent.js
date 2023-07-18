@@ -4,7 +4,8 @@
     `<button type="button" id="myBtn">Helper Button</button>` ;   
    
     class PerformanceHelp extends HTMLElement {
-        constructor() {
+        constructor(height) {
+            console.log(height);
             super();
             this.init();           
         }

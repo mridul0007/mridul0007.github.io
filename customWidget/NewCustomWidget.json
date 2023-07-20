@@ -1,0 +1,51 @@
+{
+	"name": "mycustomwidget",
+	"description": "Hello World",
+	"newInstancePrefix": "mycustomwidget",
+	"eula": "",
+	"vendor": "",
+	"license": "",
+	"id": "mycustomwidget",
+	"version": "1.0.1",
+	"icon": "",
+	"webcomponents": [
+		{
+			"kind": "main",
+			"tag": "custom-button",
+			"url": "https://mridul0007.github.io/customWidget/Webcomponent.js",
+			"integrity": "",
+			"ignoreIntegrity": true
+		}
+	],
+	"properties": {
+		"dept": {
+			"type": "string",
+			"default": "hhh"
+		},
+		"height": {
+			"type": "integer",
+			"default": 32
+		}
+	},
+	"methods": {
+		"clear": {
+			"description": "Clear the resultset"
+		},
+		"setdept": {
+			"description": "id",
+			"parameters": [
+				{
+					"name": "dept",
+					"type": "string",
+					"description": "dsad"
+				}
+			],
+			"body": "this.dept = dept;"
+		}
+	},
+	"events": {
+		"onClick": {
+			"description": "Called when the user clicks the button."
+		}
+	}
+}

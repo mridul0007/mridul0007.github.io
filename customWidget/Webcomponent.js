@@ -1,7 +1,14 @@
 (function () {
     let tmpl = document.createElement('template');
     tmpl.innerHTML = 
-    `<button type="button" id="myBtn">Helper Button</button>` ;   
+    `<button type="button" id="button_modify">MODIFY</button>` ;
+
+    tmpl.innerHTML = 
+    `<button type="button" id="button_delete">DELETE</button>` ;
+
+    tmpl.innerHTML = 
+    `<button type="button" id="button_create">CREATE</button>` ;
+
    
     class PerformanceHelp extends HTMLElement {
         constructor(height) {

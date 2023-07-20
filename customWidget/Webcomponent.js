@@ -47,41 +47,41 @@
 //         </div>
 //       </div>
 //     `;
-  
+
 //     class PerformanceHelp extends HTMLElement {
 //       constructor() {
 //         super();
 //         this.init();
 //       }
-  
+
 //       init() {
 //         let shadowRoot = this.attachShadow({ mode: 'open' });
 //         shadowRoot.appendChild(tmpl.content.cloneNode(true));
-  
+
 //         // Add event listener to the first "MODIFY" button
 //         const buttonModify = shadowRoot.getElementById('button_modify');
 //         buttonModify.addEventListener('click', () => {
 //           this.toggleChildPopup();
 //         });
-  
+
 //         this.addEventListener('click', (event) => {
 //           var event = new Event('onClick');
 //           this.fireChanged();
 //           this.dispatchEvent(event);
 //         });
 //       }
-  
+
 //       // Function to toggle visibility of the second div
 //       toggleChildPopup() {
 //         const childPopup = this.shadowRoot.querySelector('.child_popup');
 //         childPopup.style.display = childPopup.style.display === 'none' ? 'flex' : 'none';
 //       }
-  
+
 //       fireChanged() {
 //         console.log('OnClick Triggered');
 //       }
 //     }
-  
+
 //     customElements.define('custom-button', PerformanceHelp);
 //   })();
 
@@ -133,43 +133,52 @@
         </div>
       </div>
     `;
-  
+
     class PerformanceHelp extends HTMLElement {
-      constructor() {
-        super();
-        this.init();
-      }
-  
-      init() {
-        let shadowRoot = this.attachShadow({ mode: 'open' });
-        shadowRoot.appendChild(tmpl.content.cloneNode(true));
-  
-        // Add event listener to the first "MODIFY" button
-        const buttonModify = shadowRoot.getElementById('button_modify');
-        buttonModify.addEventListener('click', () => {
-          this.toggleChildPopup();
-        });
-  
-        this.addEventListener('click', (event) => {
-          var event = new Event('onClick');
-          this.fireChanged();
-          this.dispatchEvent(event);
-        });
-      }
-  
-      // Function to toggle visibility of the second div
-      toggleChildPopup() {
-        const childPopup = this.shadowRoot.querySelector('.child_popup');
-        const isVisible = childPopup.style.display === 'flex';
-        childPopup.style.display = isVisible ? 'none' : 'flex';
-      }
-  
-      fireChanged() {
-        console.log('OnClick Triggered');
-      }
+        constructor() {
+            super();
+            this.init();
+        }
+
+        init() {
+            let shadowRoot = this.attachShadow({ mode: 'open' });
+            shadowRoot.appendChild(tmpl.content.cloneNode(true));
+
+            // Add event listener to the first "MODIFY" button
+            const buttonModify = shadowRoot.getElementById('button_modify');
+            buttonModify.addEventListener('click', () => {
+                this.toggleChildPopup();
+            });
+
+            const buttonDelete = shadowRoot.getElementById('button_delete');
+            buttonDelete.addEventListener('click', () => {
+                this.toggleChildPopup();
+            });
+
+            const buttonCreate = shadowRoot.getElementById('button_create');
+            buttonCreate.addEventListener('click', () => {
+                this.toggleChildPopup();
+            });
+
+            // this.addEventListener('click', (event) => {
+            //     var event = new Event('onClick');
+            //     this.fireChanged();
+            //     this.dispatchEvent(event);
+            // });
+        }
+
+        // Function to toggle visibility of the second div
+        toggleChildPopup() {
+            const childPopup = this.shadowRoot.querySelector('.child_popup');
+            const isVisible = childPopup.style.display === 'flex';
+            childPopup.style.display = isVisible ? 'none' : 'flex';
+        }
+
+        fireChanged() {
+            console.log('OnClick Triggered');
+        }
     }
-  
+
     customElements.define('custom-button', PerformanceHelp);
-  })();
-  
-  
+})();
+

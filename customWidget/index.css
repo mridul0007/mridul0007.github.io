@@ -1,0 +1,10 @@
+button {
+    padding: 0.75rem;
+    background-color: orange;
+}
+
+.root {
+    display: flex;
+    justify-content: space-between;
+    width: 50%
+}

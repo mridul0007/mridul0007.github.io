@@ -1,4 +1,3 @@
-
 // (function () {
 //     let tmpl = document.createElement('template');
 //     tmpl.innerHTML = `
@@ -49,41 +48,52 @@
 //     `;
 
 //     class PerformanceHelp extends HTMLElement {
-//       constructor() {
-//         super();
-//         this.init();
-//       }
+//         constructor() {
+//             super();
+//             this.init();
+//         }
 
-//       init() {
-//         let shadowRoot = this.attachShadow({ mode: 'open' });
-//         shadowRoot.appendChild(tmpl.content.cloneNode(true));
+//         init() {
+//             let shadowRoot = this.attachShadow({ mode: 'open' });
+//             shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-//         // Add event listener to the first "MODIFY" button
-//         const buttonModify = shadowRoot.getElementById('button_modify');
-//         buttonModify.addEventListener('click', () => {
-//           this.toggleChildPopup();
-//         });
+//             // Add event listener to the first "MODIFY" button
+//             const buttonModify = shadowRoot.getElementById('button_modify');
+//             buttonModify.addEventListener('click', () => {
+//                 this.toggleChildPopup();
+//             });
 
-//         this.addEventListener('click', (event) => {
-//           var event = new Event('onClick');
-//           this.fireChanged();
-//           this.dispatchEvent(event);
-//         });
-//       }
+//             const buttonDelete = shadowRoot.getElementById('button_delete');
+//             buttonDelete.addEventListener('click', () => {
+//                 this.toggleChildPopup();
+//             });
 
-//       // Function to toggle visibility of the second div
-//       toggleChildPopup() {
-//         const childPopup = this.shadowRoot.querySelector('.child_popup');
-//         childPopup.style.display = childPopup.style.display === 'none' ? 'flex' : 'none';
-//       }
+//             const buttonCreate = shadowRoot.getElementById('button_create');
+//             buttonCreate.addEventListener('click', () => {
+//                 this.toggleChildPopup();
+//             });
 
-//       fireChanged() {
-//         console.log('OnClick Triggered');
-//       }
+//             // this.addEventListener('click', (event) => {
+//             //     var event = new Event('onClick');
+//             //     this.fireChanged();
+//             //     this.dispatchEvent(event);
+//             // });
+//         }
+
+//         // Function to toggle visibility of the second div
+//         toggleChildPopup() {
+//             const childPopup = this.shadowRoot.querySelector('.child_popup');
+//             const isVisible = childPopup.style.display === 'flex';
+//             childPopup.style.display = isVisible ? 'none' : 'flex';
+//         }
+
+//         fireChanged() {
+//             console.log('OnClick Triggered');
+//         }
 //     }
 
 //     customElements.define('custom-button', PerformanceHelp);
-//   })();
+// })();
 
 (function () {
     let tmpl = document.createElement('template');
@@ -105,6 +115,14 @@
         }
         .child_popup .input-row input {
           flex: 1;
+        }
+  
+        /* Style for the buttons */
+        .child_popup .button-row {
+          display: grid;
+          grid-template-columns: repeat(2, max-content);
+          gap: 10px;
+          margin-top: 5cm;
         }
       </style>
       <div class="root">
@@ -131,54 +149,61 @@
           <label for="text_box_hierarchy">Hierarchy:</label>
           <input type="text" id="text_box_hierarchy" placeholder="Enter value...">
         </div>
+  
+        <!-- Buttons row -->
+        <div class="button-row">
+          <button type="button" id="button_ok">OK</button>
+          <button type="button" id="button_cancel">CANCEL</button>
+        </div>
       </div>
     `;
-
+  
     class PerformanceHelp extends HTMLElement {
-        constructor() {
-            super();
-            this.init();
-        }
-
-        init() {
-            let shadowRoot = this.attachShadow({ mode: 'open' });
-            shadowRoot.appendChild(tmpl.content.cloneNode(true));
-
-            // Add event listener to the first "MODIFY" button
-            const buttonModify = shadowRoot.getElementById('button_modify');
-            buttonModify.addEventListener('click', () => {
-                this.toggleChildPopup();
-            });
-
-            const buttonDelete = shadowRoot.getElementById('button_delete');
-            buttonDelete.addEventListener('click', () => {
-                this.toggleChildPopup();
-            });
-
-            const buttonCreate = shadowRoot.getElementById('button_create');
-            buttonCreate.addEventListener('click', () => {
-                this.toggleChildPopup();
-            });
-
-            // this.addEventListener('click', (event) => {
-            //     var event = new Event('onClick');
-            //     this.fireChanged();
-            //     this.dispatchEvent(event);
-            // });
-        }
-
-        // Function to toggle visibility of the second div
-        toggleChildPopup() {
-            const childPopup = this.shadowRoot.querySelector('.child_popup');
-            const isVisible = childPopup.style.display === 'flex';
-            childPopup.style.display = isVisible ? 'none' : 'flex';
-        }
-
-        fireChanged() {
-            console.log('OnClick Triggered');
-        }
+      constructor() {
+        super();
+        this.init();
+      }
+  
+      init() {
+        let shadowRoot = this.attachShadow({ mode: 'open' });
+        shadowRoot.appendChild(tmpl.content.cloneNode(true));
+  
+        // Add event listeners to the buttons
+        const buttonModify = shadowRoot.getElementById('button_modify');
+        buttonModify.addEventListener('click', () => {
+          this.toggleChildPopup();
+        });
+  
+        const buttonDelete = shadowRoot.getElementById('button_delete');
+        buttonDelete.addEventListener('click', () => {
+          this.toggleChildPopup();
+        });
+  
+        const buttonCreate = shadowRoot.getElementById('button_create');
+        buttonCreate.addEventListener('click', () => {
+          this.toggleChildPopup();
+        });
+  
+        this.addEventListener('click', (event) => {
+          var event = new Event('onClick');
+          this.fireChanged();
+          this.dispatchEvent(event);
+        });
+      }
+  
+      // Function to toggle visibility of the second div
+      toggleChildPopup() {
+        const childPopup = this.shadowRoot.querySelector('.child_popup');
+        const isVisible = childPopup.style.display === 'flex';
+        childPopup.style.display = isVisible ? 'none' : 'flex';
+      }
+  
+      fireChanged() {
+        console.log('OnClick Triggered');
+      }
     }
-
+  
     customElements.define('custom-button', PerformanceHelp);
-})();
+  })();
+  
 

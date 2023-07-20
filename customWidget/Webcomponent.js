@@ -137,7 +137,7 @@
           display: grid;
           grid-template-columns: repeat(2, max-content);
           gap: 10px;
-          margin-top: 5cm;
+          margin-top: 2cm;
         }
       </style>
       <div class="root">

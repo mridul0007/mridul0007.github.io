@@ -137,7 +137,7 @@
           display: flex; /* Set display to flex to ensure the buttons are visible */
           flex-direction: row; /* Explicitly set the flex direction to row */
           gap: 10px;
-          margin-top: 5cm;
+          margin-top: 2cm;
         }
       </style>
       <div class="root">

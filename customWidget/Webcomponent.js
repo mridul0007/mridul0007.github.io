@@ -1,21 +1,31 @@
 // (function () {
 //     let tmpl = document.createElement('template');
 //     tmpl.innerHTML = `
-//     <div class="root">
+//       <style>
+//         .child_popup {
+//           display: none;
+//         }
+//       </style>
+//       <div class="root">
 //         <input type="text" id="text_box" placeholder="SELECTED INVESTMENTS">
 //         <input type="text" id="input_box" placeholder="Enter value...">
 //         <button type="button" id="button_modify">MODIFY</button>
 //         <button type="button" id="button_delete">DELETE</button>
 //         <button type="button" id="button_create">CREATE</button>
-//     </div>
-//     <div class="child_popup">
-//     <input type="text" id="text_box" placeholder="SELECTED INVESTMENTS">
-//     <input type="text" id="input_box" placeholder="Enter value...">
-//     <button type="button" id="button_modify">MODIFY</button>
-//     <button type="button" id="button_delete">DELETE</button>
-//     <button type="button" id="button_create">CREATE</button>
-// </div>
-//   `;
+//       </div>
+//       <div class="child_popup">
+//         <input type="text" id="text_box_id" placeholder="ID">
+//         <input type="text" id="mem_id" placeholder="Enter value...">
+//         <input type="text" id="text_box_desc" placeholder="Description">
+//         <input type="text" id="desc" placeholder="Enter value...">
+//         <input type="text" id="text_box_department" placeholder="Department">
+//         <input type="text" id="deptmnt" placeholder="Enter value...">
+//         <input type="text" id="text_box_hierarchy" placeholder="hierarchy">
+//         <input type="text" id="hierarchy" placeholder="Enter value...">
+    
+    
+//       </div>
+//     `;
   
 //     class PerformanceHelp extends HTMLElement {
 //       constructor() {
@@ -26,11 +36,24 @@
 //       init() {
 //         let shadowRoot = this.attachShadow({ mode: 'open' });
 //         shadowRoot.appendChild(tmpl.content.cloneNode(true));
+  
+//         // Add event listener to the first "MODIFY" button
+//         const buttonModify = shadowRoot.getElementById('button_modify');
+//         buttonModify.addEventListener('click', () => {
+//           this.toggleChildPopup();
+//         });
+  
 //         this.addEventListener('click', (event) => {
 //           var event = new Event('onClick');
 //           this.fireChanged();
 //           this.dispatchEvent(event);
 //         });
+//       }
+  
+//       // Function to toggle visibility of the second div
+//       toggleChildPopup() {
+//         const childPopup = this.shadowRoot.querySelector('.child_popup');
+//         childPopup.style.display = childPopup.style.display === 'none' ? 'block' : 'none';
 //       }
   
 //       fireChanged() {
@@ -46,6 +69,20 @@
       <style>
         .child_popup {
           display: none;
+          flex-direction: column;
+        }
+        /* Add some spacing between the elements in the second div */
+        .child_popup .input-row {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px;
+        }
+        .child_popup .input-row label {
+          width: 120px; /* Adjust the width as needed for the labels */
+          margin-right: 10px;
+        }
+        .child_popup .input-row input {
+          flex: 1;
         }
       </style>
       <div class="root">
@@ -56,11 +93,22 @@
         <button type="button" id="button_create">CREATE</button>
       </div>
       <div class="child_popup">
-        <input type="text" id="text_box_2" placeholder="SELECTED INVESTMENTS">
-        <input type="text" id="input_box_2" placeholder="Enter value...">
-        <button type="button" id="button_modify_2">MODIFY</button>
-        <button type="button" id="button_delete_2">DELETE</button>
-        <button type="button" id="button_create_2">CREATE</button>
+        <div class="input-row">
+          <label for="text_box_id">ID:</label>
+          <input type="text" id="text_box_id" placeholder="Enter value...">
+        </div>
+        <div class="input-row">
+          <label for="text_box_desc">Description:</label>
+          <input type="text" id="text_box_desc" placeholder="Enter value...">
+        </div>
+        <div class="input-row">
+          <label for="text_box_department">Department:</label>
+          <input type="text" id="text_box_department" placeholder="Enter value...">
+        </div>
+        <div class="input-row">
+          <label for="text_box_hierarchy">Hierarchy:</label>
+          <input type="text" id="text_box_hierarchy" placeholder="Enter value...">
+        </div>
       </div>
     `;
   
@@ -90,7 +138,7 @@
       // Function to toggle visibility of the second div
       toggleChildPopup() {
         const childPopup = this.shadowRoot.querySelector('.child_popup');
-        childPopup.style.display = childPopup.style.display === 'none' ? 'block' : 'none';
+        childPopup.style.display = childPopup.style.display === 'none' ? 'flex' : 'none';
       }
   
       fireChanged() {

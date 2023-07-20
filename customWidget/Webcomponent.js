@@ -110,7 +110,7 @@
 //   })();
 
 
-  (function () {
+(function () {
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
       <style>
@@ -134,10 +134,10 @@
   
         /* Style for the buttons */
         .child_popup .button-row {
-          display: grid;
-          grid-template-columns: repeat(2, max-content);
+          display: flex; /* Set display to flex to ensure the buttons are visible */
+          flex-direction: row; /* Explicitly set the flex direction to row */
           gap: 10px;
-          margin-top: 2cm;
+          margin-top: 5cm;
         }
       </style>
       <div class="root">
@@ -231,5 +231,3 @@
     customElements.define('custom-button', PerformanceHelp);
   })();
   
-  
-

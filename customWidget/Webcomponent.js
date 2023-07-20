@@ -191,12 +191,12 @@
   
         const buttonDelete = shadowRoot.getElementById('button_delete');
         buttonDelete.addEventListener('click', () => {
-          this.toggleChildPopup();
+          this.showChildPopup();
         });
   
         const buttonCreate = shadowRoot.getElementById('button_create');
         buttonCreate.addEventListener('click', () => {
-          this.toggleChildPopup();
+          this.showChildPopup();
         });
   
         // Add event listeners to the "OK" and "CANCEL" buttons in the child popup

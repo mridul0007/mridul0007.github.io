@@ -1,9 +1,24 @@
+
 // (function () {
 //     let tmpl = document.createElement('template');
 //     tmpl.innerHTML = `
 //       <style>
 //         .child_popup {
 //           display: none;
+//           flex-direction: column;
+//         }
+//         /* Add some spacing between the elements in the second div */
+//         .child_popup .input-row {
+//           display: flex;
+//           align-items: center;
+//           margin-bottom: 5px;
+//         }
+//         .child_popup .input-row label {
+//           width: 120px; /* Adjust the width as needed for the labels */
+//           margin-right: 10px;
+//         }
+//         .child_popup .input-row input {
+//           flex: 1;
 //         }
 //       </style>
 //       <div class="root">
@@ -14,16 +29,22 @@
 //         <button type="button" id="button_create">CREATE</button>
 //       </div>
 //       <div class="child_popup">
-//         <input type="text" id="text_box_id" placeholder="ID">
-//         <input type="text" id="mem_id" placeholder="Enter value...">
-//         <input type="text" id="text_box_desc" placeholder="Description">
-//         <input type="text" id="desc" placeholder="Enter value...">
-//         <input type="text" id="text_box_department" placeholder="Department">
-//         <input type="text" id="deptmnt" placeholder="Enter value...">
-//         <input type="text" id="text_box_hierarchy" placeholder="hierarchy">
-//         <input type="text" id="hierarchy" placeholder="Enter value...">
-    
-    
+//         <div class="input-row">
+//           <label for="text_box_id">ID:</label>
+//           <input type="text" id="text_box_id" placeholder="Enter value...">
+//         </div>
+//         <div class="input-row">
+//           <label for="text_box_desc">Description:</label>
+//           <input type="text" id="text_box_desc" placeholder="Enter value...">
+//         </div>
+//         <div class="input-row">
+//           <label for="text_box_department">Department:</label>
+//           <input type="text" id="text_box_department" placeholder="Enter value...">
+//         </div>
+//         <div class="input-row">
+//           <label for="text_box_hierarchy">Hierarchy:</label>
+//           <input type="text" id="text_box_hierarchy" placeholder="Enter value...">
+//         </div>
 //       </div>
 //     `;
   
@@ -53,7 +74,7 @@
 //       // Function to toggle visibility of the second div
 //       toggleChildPopup() {
 //         const childPopup = this.shadowRoot.querySelector('.child_popup');
-//         childPopup.style.display = childPopup.style.display === 'none' ? 'block' : 'none';
+//         childPopup.style.display = childPopup.style.display === 'none' ? 'flex' : 'none';
 //       }
   
 //       fireChanged() {
@@ -63,6 +84,7 @@
   
 //     customElements.define('custom-button', PerformanceHelp);
 //   })();
+
 (function () {
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
@@ -138,7 +160,8 @@
       // Function to toggle visibility of the second div
       toggleChildPopup() {
         const childPopup = this.shadowRoot.querySelector('.child_popup');
-        childPopup.style.display = childPopup.style.display === 'none' ? 'flex' : 'none';
+        const isVisible = childPopup.style.display === 'flex';
+        childPopup.style.display = isVisible ? 'none' : 'flex';
       }
   
       fireChanged() {
@@ -148,4 +171,5 @@
   
     customElements.define('custom-button', PerformanceHelp);
   })();
+  
   

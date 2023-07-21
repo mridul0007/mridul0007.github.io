@@ -210,7 +210,7 @@
                 this.hideChildPopup();
             });
 
-            
+
 
             // Get the input element with the ID "input_box"
             const inputBox = shadowRoot.getElementById('input_box');
@@ -231,13 +231,23 @@
             childPopup.style.display = 'none';
         }
 
-        OnCustomWidgetBeforeUpdate(changedProperties){
-            this._props= {...this._props,...changedProperties}
+        OnCustomWidgetBeforeUpdate(changedProperties) {
+            this._props = { ...this._props, ...changedProperties }
             const inputBox = shadowRoot.getElementById('input_box');
 
             // Set the value of the input field
             inputBox.value = this.dept;
+            input.inputBox = setdept
         }
+
+        onCustomWidgetAfterUpdate(changedProperties) {
+            if ("dept" in changedProperties) {
+                console.log('value changed');
+                this.style["background-color"] = changedProperties["color"];
+            }
+
+        }
+
 
         fireChanged() {
             console.log('OnClick Triggered');
@@ -246,7 +256,7 @@
 
             // // Set the value of the input field
             // inputBox.value = this.dept;
-        
+
         }
     }
 

@@ -142,7 +142,6 @@
       </style>
       <div class="root">
         <label for="input_box">SELECTED INVESTMENTS:</label>
-        // <input type="text" id="text_box" placeholder="SELECTED INVESTMENTS">
         <input type="text" id="input_box" placeholder="Enter value...">
         <button type="button" id="button_modify">MODIFY</button>
         <button type="button" id="button_delete">DELETE</button>

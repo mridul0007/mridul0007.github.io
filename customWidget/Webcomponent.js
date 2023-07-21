@@ -233,6 +233,7 @@
 
         OnCustomWidgetBeforeUpdate(changedProperties) {
             this._props = { ...this._props, ...changedProperties }
+            console.log('changedProperties',changedProperties);
             const inputBox = shadowRoot.getElementById('input_box');
 
             // Set the value of the input field
@@ -243,6 +244,7 @@
         onCustomWidgetAfterUpdate(changedProperties) {
             if ("dept" in changedProperties) {
                 console.log('value changed');
+                console.log('changedProperties after update',changedProperties);
             }
 
         }

@@ -245,7 +245,7 @@
             if ("dept" in changedProperties) {
                 console.log('value changed',this.dept);
                 const inputBox = shadowRoot.getElementById('input_box');
-                inputBox.value = this.dept;
+                // inputBox. = this.dept;
                 console.log('changedProperties after update',changedProperties);
                 // trial
             }

@@ -246,7 +246,7 @@
 
             // Set the value of the input field
             inputBox.value = this.dept;
-        }
+        
         }
     }
 

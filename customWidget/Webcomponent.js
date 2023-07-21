@@ -228,6 +228,6 @@
       }
     }
   
-    // customElements.define('custom-button', MasterData_Maintain);
+    customElements.define('custom-button', MasterData_Maintain);
   })();
   

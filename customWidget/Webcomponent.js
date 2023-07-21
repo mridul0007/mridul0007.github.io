@@ -243,7 +243,7 @@
 
         onCustomWidgetAfterUpdate(changedProperties) {
             if ("dept" in changedProperties) {
-                console.log('value changed');
+                console.log('value changed',this.dept);
                 console.log('changedProperties after update',changedProperties);
             }
 

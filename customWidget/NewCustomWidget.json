@@ -46,6 +46,9 @@
 	"events": {
 		"onClick": {
 			"description": "Called when the user clicks the button."
+		},
+		"onSave": {
+			"description": "Called when the user clicks the button."
 		}
 	}
 }

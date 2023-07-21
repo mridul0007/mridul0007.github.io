@@ -241,11 +241,11 @@
 
         fireChanged() {
             console.log('OnClick Triggered');
-            this._props= {...this._props,...changedProperties}
-            const inputBox = shadowRoot.getElementById('input_box');
+            // this._props= {...this._props,...changedProperties}
+            // const inputBox = shadowRoot.getElementById('input_box');
 
-            // Set the value of the input field
-            inputBox.value = this.dept;
+            // // Set the value of the input field
+            // inputBox.value = this.dept;
         
         }
     }

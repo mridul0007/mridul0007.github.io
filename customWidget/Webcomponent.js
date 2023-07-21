@@ -173,7 +173,7 @@
       </div>
     `;
   
-    class PerformanceHelp extends HTMLElement {
+    class MasterData_Maintain extends HTMLElement {
       constructor() {
         super();
         this.init();
@@ -228,6 +228,6 @@
       }
     }
   
-    customElements.define('custom-button', PerformanceHelp);
+    // customElements.define('custom-button', MasterData_Maintain);
   })();
   

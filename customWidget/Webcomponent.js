@@ -19,7 +19,7 @@
 //         .child_popup .input-row input {
 //           flex: 1;
 //         }
-  
+
 //         /* Style for the buttons */
 //         .child_popup .button-row {
 //           display: grid;
@@ -52,7 +52,7 @@
 //           <label for="text_box_hierarchy">Hierarchy:</label>
 //           <input type="text" id="text_box_hierarchy" placeholder="Enter value...">
 //         </div>
-  
+
 //         <!-- Buttons row -->
 //         <div class="button-row">
 //           <button type="button" id="button_ok">OK</button>
@@ -60,52 +60,52 @@
 //         </div>
 //       </div>
 //     `;
-  
+
 //     class PerformanceHelp extends HTMLElement {
 //       constructor() {
 //         super();
 //         this.init();
 //       }
-  
+
 //       init() {
 //         let shadowRoot = this.attachShadow({ mode: 'open' });
 //         shadowRoot.appendChild(tmpl.content.cloneNode(true));
-  
+
 //         // Add event listeners to the buttons
 //         const buttonModify = shadowRoot.getElementById('button_modify');
 //         buttonModify.addEventListener('click', () => {
 //           this.toggleChildPopup();
 //         });
-  
+
 //         const buttonDelete = shadowRoot.getElementById('button_delete');
 //         buttonDelete.addEventListener('click', () => {
 //           this.toggleChildPopup();
 //         });
-  
+
 //         const buttonCreate = shadowRoot.getElementById('button_create');
 //         buttonCreate.addEventListener('click', () => {
 //           this.toggleChildPopup();
 //         });
-  
+
 //         this.addEventListener('click', (event) => {
 //           var event = new Event('onClick');
 //           this.fireChanged();
 //           this.dispatchEvent(event);
 //         });
 //       }
-  
+
 //       // Function to toggle visibility of the second div
 //       toggleChildPopup() {
 //         const childPopup = this.shadowRoot.querySelector('.child_popup');
 //         const isVisible = childPopup.style.display === 'flex';
 //         childPopup.style.display = isVisible ? 'none' : 'flex';
 //       }
-  
+
 //       fireChanged() {
 //         console.log('OnClick Triggered');
 //       }
 //     }
-  
+
 //     customElements.define('custom-button', PerformanceHelp);
 //   })();
 
@@ -172,62 +172,70 @@
         </div>
       </div>
     `;
-  
+
     class MasterData_Maintain extends HTMLElement {
-      constructor() {
-        super();
-        this.init();
-      }
-  
-      init() {
-        let shadowRoot = this.attachShadow({ mode: 'open' });
-        shadowRoot.appendChild(tmpl.content.cloneNode(true));
-  
-        // Add event listeners to the buttons
-        const buttonModify = shadowRoot.getElementById('button_modify');
-        buttonModify.addEventListener('click', () => {
-          this.showChildPopup();
-        });
-  
-        const buttonDelete = shadowRoot.getElementById('button_delete');
-        buttonDelete.addEventListener('click', () => {
-          this.showChildPopup();
-        });
-  
-        const buttonCreate = shadowRoot.getElementById('button_create');
-        buttonCreate.addEventListener('click', () => {
-          this.showChildPopup();
-        });
-  
-        // Add event listeners to the "OK" and "CANCEL" buttons in the child popup
-        const buttonOk = shadowRoot.getElementById('button_ok');
-        buttonOk.addEventListener('click', () => {
-          this.hideChildPopup();
-        });
-  
-        const buttonCancel = shadowRoot.getElementById('button_cancel');
-        buttonCancel.addEventListener('click', () => {
-          this.hideChildPopup();
-        });
-      }
-  
-      // Function to show the second div
-      showChildPopup() {
-        const childPopup = this.shadowRoot.querySelector('.child_popup');
-        childPopup.style.display = 'flex';
-      }
-  
-      // Function to hide the second div
-      hideChildPopup() {
-        const childPopup = this.shadowRoot.querySelector('.child_popup');
-        childPopup.style.display = 'none';
-      }
-  
-      fireChanged() {
-        console.log('OnClick Triggered');
-      }
+        constructor() {
+            super();
+            this.init();
+        }
+
+        init() {
+            let shadowRoot = this.attachShadow({ mode: 'open' });
+            shadowRoot.appendChild(tmpl.content.cloneNode(true));
+
+            // Add event listeners to the buttons
+            const buttonModify = shadowRoot.getElementById('button_modify');
+            buttonModify.addEventListener('click', () => {
+                this.showChildPopup();
+            });
+
+            const buttonDelete = shadowRoot.getElementById('button_delete');
+            buttonDelete.addEventListener('click', () => {
+                this.showChildPopup();
+            });
+
+            const buttonCreate = shadowRoot.getElementById('button_create');
+            buttonCreate.addEventListener('click', () => {
+                this.showChildPopup();
+            });
+
+            // Add event listeners to the "OK" and "CANCEL" buttons in the child popup
+            const buttonOk = shadowRoot.getElementById('button_ok');
+            buttonOk.addEventListener('click', () => {
+                this.hideChildPopup();
+            })
+
+            const buttonCancel = shadowRoot.getElementById('button_cancel');
+            buttonCancel.addEventListener('click', () => {
+                this.hideChildPopup();
+            });
+
+            
+
+            // Get the input element with the ID "input_box"
+            const inputBox = shadowRoot.getElementById('input_box');
+
+            // Set the value of the input field
+            inputBox.value = 'this.dept';
+        }
+
+        // Function to show the second div
+        showChildPopup() {
+            const childPopup = this.shadowRoot.querySelector('.child_popup');
+            childPopup.style.display = 'flex';
+        }
+
+        // Function to hide the second div
+        hideChildPopup() {
+            const childPopup = this.shadowRoot.querySelector('.child_popup');
+            childPopup.style.display = 'none';
+        }
+
+        fireChanged() {
+            console.log('OnClick Triggered');
+        }
     }
-  
+
     customElements.define('custom-button', MasterData_Maintain);
-  })();
-  
+})();
+

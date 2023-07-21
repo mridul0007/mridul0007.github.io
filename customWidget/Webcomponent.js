@@ -246,6 +246,7 @@
                 console.log('value changed',this.dept);
                 inputBox.value = this.dept;
                 console.log('changedProperties after update',changedProperties);
+                // trial
             }
 
         }

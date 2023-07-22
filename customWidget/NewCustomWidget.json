@@ -50,5 +50,21 @@
 		"onSave": {
 			"description": "Called when the user clicks the button."
 		}
-	}
+	},
+	"dataBindings": {
+		"myDataBinding": {
+		  "feeds": [
+			{
+			  "id": "dimensions",
+			  "description": "Dimensions",
+			  "type": "dimension"
+			},
+			{
+			  "id": "measures",
+			  "description": "Measures",
+			  "type": "mainStructureMember"
+			}
+		  ]
+		}
+	  }
 }

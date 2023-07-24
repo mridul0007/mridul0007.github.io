@@ -275,13 +275,14 @@
             // var y = da.getMember("MK_INVESTMENT",'INV_00001').description;
             // console.log(y);
 
+            var ds= this.exportDataSource;
+            
 
 
 
 
-
-            let datasource = this.getDataBinding('exportDataSource');
-            console.log(datasource);
+            // let datasource = this.getDataBinding('exportDataSource');
+            // console.log(datasource);
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
             let x = dataBinding.getDimensions("dimensions");
             console.log(x);

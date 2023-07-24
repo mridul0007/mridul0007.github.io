@@ -234,7 +234,7 @@
 
         OnCustomWidgetBeforeUpdate(changedProperties) {
             this._props = { ...this._props, ...changedProperties }
-            console.log('changedProperties',changedProperties);
+            console.log('changedProperties', changedProperties);
             const inputBox = this.shadowRoot.getElementById('input_box');
 
             // Set the value of the input field
@@ -244,34 +244,40 @@
 
         onCustomWidgetAfterUpdate(changedProperties) {
             if ("dept" in changedProperties) {
-                console.log('value changed',this.dept);
+                console.log('value changed', this.dept);
                 const inputBox = this.shadowRoot.getElementById('input_box');
-                 inputBox.value = this.dept;
-                console.log('changedProperties after update',changedProperties);
+                inputBox.value = this.dept;
+                console.log('changedProperties after update', changedProperties);
                 // trial
             }
 
         }
-        fillData(){
-            let data_table = this.dataBindings.getDataBinding().getDimensions("dimensions");
-            console.log(data_table);
-            let data_table1 = this.dataBindings.getDataBinding().getDataSource();
-            console.log(data_table1);
-            const inputBox = this.shadowRoot.getElementById('input_box');
-            let data_table2 = this.dataBindings.getDataBinding().getMembers("MK_INVESTMENT",inputBox.value);
-            console.log(data_table2);
+        fillData() {
+            // let data_table = this.dataBindings.getDataBinding().getDimensions("dimensions");
+            // console.log(data_table);
+            // let data_table1 = this.dataBindings.getDataBinding().getDataSource();
+            // console.log(data_table1);
+            // const inputBox = this.shadowRoot.getElementById('input_box');
+            // let data_table2 = this.dataBindings.getDataBinding().getMembers("MK_INVESTMENT",inputBox.value);
+            // console.log(data_table2);
+
+            // let datasource = this.exportDataSource;
+            // let data = datasource.data.;
+            // console.log(data)
+            // let metadata = datasource.metadata;
+            // console.log(metadata)
+            // let feeds = metadata.feeds;
+
+            // let feedDimensions = feeds.dimensions.values;
+            // console.log(feedDimensions);
 
             let datasource = this.exportDataSource;
-            let data = datasource.data;
-            console.log(data)
-            let metadata = datasource.metadata;
-            console.log(metadata)
-            let feeds = metadata.feeds;
+            const dataBinding = this.dataBindings.getDataBinding('exportDataSource')
+            let x = dataBinding.getMembers('MK_INVESTMENT')
 
-            let feedDimensions = feeds.dimensions.values;
-            console.log(feedDimensions);
 
-            
+
+
         }
 
 

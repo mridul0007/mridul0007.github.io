@@ -254,8 +254,11 @@
         }
         fillData(){
             let data_table = this.dataBindings.getDataBinding().getDimensions("dimensions");
-            // let data_table = this.dataBindings.getDataBinding('MK_INVESTEMENT').getDataSource();
+             
             console.log(data_table);
+            let data_table1 = this.dataBindings.getDataBinding().getDataSource();
+            console.log(data_table1);
+            
         }
 
 

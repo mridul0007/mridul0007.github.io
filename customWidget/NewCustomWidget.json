@@ -6,7 +6,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "mycustomwidget",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -20,13 +20,29 @@
 	"properties": {
 		"dept": {
 			"type": "string",
-			"default": "hhh"
+			"default": ""
 		},
 		"height": {
 			"type": "integer",
 			"default": 32
 		}
 	},
+	"dataBindings": {
+		"exportDataSource": {
+		  "feeds": [
+			{
+			  "id": "dimensions",
+			  "description": "The dimensions feed",
+			  "type": "dimension"
+			},
+			{
+			  "id": "measures",
+			  "description": "The measures feed",
+			  "type": "mainStructureMember"
+			}
+		  ]
+		}
+	  },
 	"methods": {
 		"clear": {
 			"description": "Clear the resultset"
@@ -50,21 +66,6 @@
 		"onSave": {
 			"description": "Called when the user clicks the button."
 		}
-	},
-	"dataBindings": {
-		"myDataBinding": {
-		  "feeds": [
-			{
-			  "id": "dimensions",
-			  "description": "Dimensions",
-			  "type": "dimension"
-			},
-			{
-			  "id": "measures",
-			  "description": "Measures",
-			  "type": "mainStructureMember"
-			}
-		  ]
-		}
-	  }
+	}
+	
 }

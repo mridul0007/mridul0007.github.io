@@ -186,7 +186,8 @@
             // Add event listeners to the buttons
             const buttonModify = shadowRoot.getElementById('button_modify');
             buttonModify.addEventListener('click', () => {
-                this.showChildPopup();
+                this.showChildPopup()
+                this.fillData();
             });
 
             const buttonDelete = shadowRoot.getElementById('button_delete');
@@ -250,6 +251,9 @@
                 // trial
             }
 
+        }
+        fillData(){
+            let data_table = this.dataBindings.getDataBinding().getDataSource();
         }
 
 

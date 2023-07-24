@@ -271,7 +271,7 @@
             // let feedDimensions = feeds.dimensions.values;
             // console.log(feedDimensions);
 
-            var da = this.dataBindings.getDataBinding().getDataSource();
+            var da = this.dataBindings.getDataBinding('exportDataSource').getDataSource();
             var y = da.getMember("MK_INVESTMENT",'INV_00001').description;
             console.log(y);
 

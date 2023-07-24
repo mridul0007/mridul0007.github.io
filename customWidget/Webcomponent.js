@@ -339,6 +339,16 @@
             var ds2 = this.dataBindings.getDataBinding().getDataSource();
             console.log(ds2);
 
+
+            try {
+                // Call the addDimensionToFeed method and wait for it to complete
+                var ds3 = ds2.getResultSetData()
+                console.log(ds3)
+                
+            } catch (error) {
+                // If there's an error, it will be caught here
+                console.error('Error adding dimension to feed:', error);
+            }
             var ds3 = ds2.getResultSetData()
             console.log(ds3);
 

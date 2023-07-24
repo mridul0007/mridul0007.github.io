@@ -342,12 +342,12 @@
 
             try {
                 // Call the addDimensionToFeed method and wait for it to complete
-                var ds3 = ds2.getResultSetData()
+                var ds3 = await ds2.getResultSetData()
                 console.log(ds3)
-                
+
             } catch (error) {
                 // If there's an error, it will be caught here
-                console.error('Error adding dimension to feed:', error);
+                console.error('Error ', error);
             }
             var ds3 = ds2.getResultSetData()
             console.log(ds3);

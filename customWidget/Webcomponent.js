@@ -254,6 +254,7 @@
         }
         fillData(){
             let data_table = this.dataBindings.getDataBinding('MK_INVESTEMENT').getDataSource();
+            console.log(data_table);
         }
 
 

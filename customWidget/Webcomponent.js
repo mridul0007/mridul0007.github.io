@@ -262,9 +262,9 @@
             console.log(data_table2);
 
             let datasource = this._export_settings.export_datasource;
-            let data = datasource.data;
+            let data = data_table1.data;
             console.log(data)
-            let metadata = datasource.metadata;
+            let metadata = data_table1.metadata;
             console.log(metadata)
             let feeds = metadata.feeds;
 

@@ -336,11 +336,8 @@
             var ds = this.exportDataSource.data;
             console.log(ds);
 
-            this.myDataBinding.data.forEach(row => {
-                console.log(row);
-                // Parse row
-            })
-
+            var ds2 = this.dataBindings.getDataBinding().getDataSource();
+            console.log(ds2);
 
 
 

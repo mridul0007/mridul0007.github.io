@@ -271,23 +271,24 @@
             // let feedDimensions = feeds.dimensions.values;
             // console.log(feedDimensions);
 
-            var da = this.dataBindings.getDataBinding('exportDataSource').getDataSource();
-            var y = da.getMember("MK_INVESTMENT",'INV_00001').description;
-            console.log(y);
+            // var da = this.dataBindings.getDataBinding('exportDataSource').getDataSource();
+            // var y = da.getMember("MK_INVESTMENT",'INV_00001').description;
+            // console.log(y);
 
 
 
 
 
 
-            let datasource = this.exportDataSource;
+            let datasource = this.getDataBinding('exportDataSource');
+            console.log(datasource);
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
             let x = dataBinding.getDimensions("dimensions");
             console.log(x);
 
-            datasource.data.forEach(row => {
-                console.log('nothing',row);
-            })
+            // datasource.data.forEach(row => {
+            //     console.log('nothing',row);
+            // })
 
             let data = datasource.data;
             let metadata = datasource.metadata;

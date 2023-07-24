@@ -300,7 +300,7 @@
             console.log('feedDimensions',feedDimensions);
             let feedMeasures = feeds.measures.values;
             console.log('feedMeasures',feedMeasures);
-
+            let rows = [];
             {
                 let row = [];
                 for (let j = 0; j < feedDimensions.length; j++) {

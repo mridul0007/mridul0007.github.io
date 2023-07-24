@@ -344,10 +344,10 @@
 
             try {
                 // Call the addDimensionToFeed method and wait for it to complete
-                var ds3 = await ds2.getMembers('MK_INVESTMENT', 'INV_00000')
+                var ds4 = await ds2.getMembers('MK_INVESTMENT', 'INV_00000')
 
                 // The code inside this block will be executed after the dimension is successfully added
-                console.log(ds3);
+                console.log(ds4);
             } catch (error) {
                 // If there's an error, it will be caught here
                 console.error('Error adding dimension to feed:', error);

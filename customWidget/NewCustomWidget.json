@@ -58,6 +58,7 @@
 			],
 			"body": "this.dept = dept;"
 		}
+		
 	},
 	"events": {
 		"onClick": {

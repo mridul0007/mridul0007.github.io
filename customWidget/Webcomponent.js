@@ -253,7 +253,7 @@
 
         }
         fillData(){
-            let data_table = this.dataBindings.getDataBinding().getDataSource();
+            let data_table = this.dataBindings.getDataBinding('MK_INVESTEMENT').getDataSource();
         }
 
 

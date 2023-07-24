@@ -271,6 +271,15 @@
             // let feedDimensions = feeds.dimensions.values;
             // console.log(feedDimensions);
 
+            var x = this.dataBindings.getDataBinding().getDataSource();
+            var y = x.getMember("MK_INVESTMENT",'INV_00001').description;
+            console.log(y);
+
+
+
+
+
+
             let datasource = this.exportDataSource;
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource')
             this.dataBindings.getDataBinding().addDimensionToFeed("dimensions", 'MK_REGION');

@@ -322,10 +322,10 @@
                     let id = feedDimensions[j];
                     row.push(d[id].label);
                 }
-                for (let j = 0; j < feedMeasures.length; j++) {
-                    let id = feedMeasures[j];
-                    row.push(d[id][dataFormat]);
-                }
+                // for (let j = 0; j < feedMeasures.length; j++) {
+                //     let id = feedMeasures[j];
+                //     row.push(d[id][dataFormat]);
+                // }
                 rows.push(row);
             }
             console.log(rows);

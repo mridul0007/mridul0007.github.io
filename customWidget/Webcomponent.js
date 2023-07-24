@@ -344,7 +344,7 @@
 
             try {
                 // Call the addDimensionToFeed method and wait for it to complete
-                var ds4 = await ds2.getMember('MK_INVESTMENT', 'INV_00000')
+                var ds4 = await ds2.getResultMember('MK_INVESTMENT', 'INV_00000')
 
                 // The code inside this block will be executed after the dimension is successfully added
                 console.log(ds4);

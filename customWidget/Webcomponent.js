@@ -281,6 +281,27 @@
                 console.log(row);
             })
 
+            let data = datasource.data;
+            let metadata = datasource.metadata;
+
+            if (!data || !data.length) {
+                console.error("[biExportClient] No data:", datasource);
+                return;
+            }
+
+            let dimensions = metadata.dimensions;
+            console.log('dimensions',dimensions);
+            let measures = metadata.mainStructureMembers;
+            console.log('measures',measures);
+            let feeds = metadata.feeds;
+            console.log('feeds',feeds);
+
+            let feedDimensions = feeds.dimensions.values;
+            console.log('feedDimensions',feedDimensions);
+            let feedMeasures = feeds.measures.values;
+            console.log('feedDimensions',feedDimensions);
+
+
 
 
 

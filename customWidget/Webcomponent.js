@@ -257,7 +257,7 @@
             console.log(data_table);
             let data_table1 = this.dataBindings.getDataBinding().getDataSource();
             console.log(data_table1);
-            let data_table2 = this.dataBindings.getDataBinding().getMembers("MK_INVESTMENT");
+            let data_table2 = this.dataBindings.getDataBinding().getMembers("MK_INVESTMENT",inputBox.value);
             console.log(data_table2);
             
         }

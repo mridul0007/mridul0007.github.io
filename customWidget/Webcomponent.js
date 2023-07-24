@@ -342,6 +342,9 @@
             var ds3 = ds2.getResultSetData()
             console.log(ds3);
 
+            var ds3 = ds2.getMembers('MK_INVESTMENT','INV_00000')
+            console.log(ds3);
+
 
 
 

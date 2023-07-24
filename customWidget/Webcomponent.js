@@ -313,7 +313,7 @@
                 }
                 rows.push(row);
             }
-            console.log(row);
+            console.log(rows);
 
             for (let i = 0; i < data.length; i++) {
                 let d = data[i];
@@ -328,7 +328,7 @@
                 }
                 rows.push(row);
             }
-            console.log(row);
+            console.log(rows);
 
 
 

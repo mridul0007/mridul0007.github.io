@@ -299,7 +299,39 @@
             let feedDimensions = feeds.dimensions.values;
             console.log('feedDimensions',feedDimensions);
             let feedMeasures = feeds.measures.values;
-            console.log('feedDimensions',feedDimensions);
+            console.log('feedMeasures',feedMeasures);
+
+            if (this.includeHeader) {
+                let row = [];
+                for (let j = 0; j < feedDimensions.length; j++) {
+                    let id = feedDimensions[j];
+                    row.push(dimensions[id].description);
+                }
+                for (let j = 0; j < feedMeasures.length; j++) {
+                    let id = feedMeasures[j];
+                    row.push(measures[id].label);
+                }
+                rows.push(row);
+            }
+            console.log(row);
+
+            for (let i = 0; i < data.length; i++) {
+                let d = data[i];
+                let row = [];
+                for (let j = 0; j < feedDimensions.length; j++) {
+                    let id = feedDimensions[j];
+                    row.push(d[id].label);
+                }
+                for (let j = 0; j < feedMeasures.length; j++) {
+                    let id = feedMeasures[j];
+                    row.push(d[id][dataFormat]);
+                }
+                rows.push(row);
+            }
+            console.log(row);
+
+
+
 
 
 

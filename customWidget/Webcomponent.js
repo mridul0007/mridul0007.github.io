@@ -274,6 +274,8 @@
             let datasource = this.exportDataSource;
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource')
             dataBinding.addMemberToFeed("dimensions", 'MK_REGION');
+            let x = dataBinding.getDimensions("dimensions");
+            console.log(x);
 
 
 

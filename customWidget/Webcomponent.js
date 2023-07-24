@@ -301,7 +301,7 @@
             let feedMeasures = feeds.measures.values;
             console.log('feedMeasures',feedMeasures);
 
-            if (this.includeHeader) {
+            {
                 let row = [];
                 for (let j = 0; j < feedDimensions.length; j++) {
                     let id = feedDimensions[j];

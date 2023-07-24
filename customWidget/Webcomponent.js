@@ -277,7 +277,7 @@
             let x = dataBinding.getDimensions("dimensions");
             console.log(x);
 
-            this.myDataBinding.data.forEach(row => {
+            datasource.data.forEach(row => {
                 console.log(row);
             })
 

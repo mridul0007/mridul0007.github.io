@@ -258,6 +258,8 @@
             console.log(data_table);
             let data_table1 = this.dataBindings.getDataBinding().getDataSource();
             console.log(data_table1);
+            let data_table2 = this.dataBindings.getDataBinding().getMembers("dimensions");
+            console.log(data_table2);
             
         }
 

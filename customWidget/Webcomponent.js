@@ -281,7 +281,7 @@
 
 
 
-        // new trials
+            // new trials
             // let data = datasource.data;
             // let metadata = datasource.metadata;
 
@@ -333,8 +333,13 @@
 
 
 
-            var ds= this.exportDataSource.data;
+            var ds = this.exportDataSource.data;
             console.log(ds);
+
+            this.myDataBinding.data.forEach(row => {
+                console.log(row);
+                // Parse row
+            })
 
 
 

@@ -257,6 +257,7 @@
             console.log(data_table);
             let data_table1 = this.dataBindings.getDataBinding().getDataSource();
             console.log(data_table1);
+            const inputBox = this.shadowRoot.getElementById('input_box');
             let data_table2 = this.dataBindings.getDataBinding().getMembers("MK_INVESTMENT",inputBox.value);
             console.log(data_table2);
             

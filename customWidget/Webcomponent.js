@@ -273,7 +273,7 @@
 
             let datasource = this.exportDataSource;
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource')
-            let x = dataBinding.getMembers('MK_INVESTMENT')
+            dataBinding.addMemberToFeed("dimensions", 'MK_REGION');
 
 
 

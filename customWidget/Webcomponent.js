@@ -338,6 +338,10 @@
 
             var ds2 = this.dataBindings.getDataBinding().getDataSource();
             console.log(ds2);
+             
+            var ds3 = ds2.getResultSetData()
+            console.log(ds3);
+
 
 
 

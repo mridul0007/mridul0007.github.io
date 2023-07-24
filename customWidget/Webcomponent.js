@@ -261,10 +261,10 @@
             let data_table2 = this.dataBindings.getDataBinding().getMembers("MK_INVESTMENT",inputBox.value);
             console.log(data_table2);
 
-            let datasource = this._export_settings.export_datasource;
-            let data = data_table1.data;
+            let datasource = this.exportDataSource;
+            let data = datasource.data;
             console.log(data)
-            let metadata = data_table1.metadata;
+            let metadata = datasource.metadata;
             console.log(metadata)
             let feeds = metadata.feeds;
 

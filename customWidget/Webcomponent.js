@@ -182,7 +182,7 @@
         init() {
             let shadowRoot = this.attachShadow({ mode: 'open' });
             shadowRoot.appendChild(tmpl.content.cloneNode(true));
-
+            this._export_settings = {};
             // Add event listeners to the buttons
             const buttonModify = shadowRoot.getElementById('button_modify');
             buttonModify.addEventListener('click', () => {
@@ -260,6 +260,17 @@
             const inputBox = this.shadowRoot.getElementById('input_box');
             let data_table2 = this.dataBindings.getDataBinding().getMembers("MK_INVESTMENT",inputBox.value);
             console.log(data_table2);
+
+            let datasource = this._export_settings.export_datasource;
+            let data = datasource.data;
+            console.log(data)
+            let metadata = datasource.metadata;
+            console.log(metadata)
+            let feeds = metadata.feeds;
+
+            let feedDimensions = feeds.dimensions.values;
+            console.log(feedDimensions);
+
             
         }
 

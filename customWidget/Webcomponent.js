@@ -278,7 +278,7 @@
             console.log(x);
 
             datasource.data.forEach(row => {
-                console.log(row);
+                console.log('nothing',row);
             })
 
             let data = datasource.data;

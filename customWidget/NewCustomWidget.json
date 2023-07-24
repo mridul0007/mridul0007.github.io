@@ -47,7 +47,7 @@
 		"clear": {
 			"description": "Clear the resultset"
 		},
-		"setdept": {
+		"setId": {
 			"description": "id",
 			"parameters": [
 				{

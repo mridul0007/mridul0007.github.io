@@ -255,11 +255,11 @@
 
         }
 
-        setp_ppm(newp_ppm) {
-          this._p_pmm = newp_ppm;
+        set_p_ppm(p_ppm) {
+          this._p_pmm = p_ppm;
         }
       
-        getp_ppm() {
+        get_p_ppm() {
           return this._p_ppm;
         }        
 

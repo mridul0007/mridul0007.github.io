@@ -25,6 +25,9 @@
 		},
 		"p_planningmodel": {
 			"type": "PlanningModelMember"
+		},
+		"p_pmm": {
+			"type": "PlanningModelMember"
 		}
 	},
 	"dataBindings": {
@@ -74,6 +77,20 @@
 			"description": "planningmodel object",
 			
 			"body":  "return this.p_planningmodel;"
+		},
+		"set_p_pmm": {
+			"description": "set p_pmm",
+			"parameters": [
+				{
+					"name": "p_pmm",
+					"type": "PlanningModelMember",
+					"description": "PMM"
+				}
+			]
+		},
+		"get_p_pmm": {
+			"returnType": "PlanningModelMember",
+			"description": "pmm"
 		}
 	},
 	"events": {

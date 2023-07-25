@@ -1,12 +1,13 @@
 {
 	"name": "mycustomwidget",
+	"imports": ["planning-model"],
 	"description": "Hello World",
 	"newInstancePrefix": "mycustomwidget",
 	"eula": "",
 	"vendor": "",
 	"license": "",
 	"id": "mycustomwidget",
-	"version": "1.0.3",
+	"version": "1.0.9",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -22,9 +23,8 @@
 			"type": "string",
 			"default": ""
 		},
-		"planningmodel": {
-			"type": "planning-model",
-			"default": null
+		"p_planningmodel": {
+			"type": "PlanningModelMember"
 		}
 	},
 	"dataBindings": {
@@ -59,15 +59,22 @@
 			"body": "this.dept = dept;"
 		},
 		"set_plan": {
-			"description": "id",
+			"description": "planningmodel object",
 			"parameters": [
 				{
-					"name": "dept",
-					"type": "planning-model",
+					"name": "p_planningmodel",
+					"type": "PlanningModelMember",
 					"description": "dsad"
 				}
 			],
-			"body": "this.dept = dept;"
+			"body": "this.p_planningmodel = p_planningmodel;"
+		},
+		"get_plan": {
+			"returnType": "PlanningModelMember",
+			"description": "planningmodel object",
+			"parameters": [],
+			
+			"body":  "return this.p_planningmodel;"
 		}
 	},
 	"events": {
@@ -80,3 +87,5 @@
 	}
 	
 }
+
+

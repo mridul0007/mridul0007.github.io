@@ -253,102 +253,10 @@
 
         }
         async fillData() {
-            // let data_table = this.dataBindings.getDataBinding().getDimensions("dimensions");
-            // console.log(data_table);
-            // let data_table1 = this.dataBindings.getDataBinding().getDataSource();
-            // console.log(data_table1);
-            // const inputBox = this.shadowRoot.getElementById('input_box');
-            // let data_table2 = this.dataBindings.getDataBinding().getMembers("MK_INVESTMENT",inputBox.value);
-            // console.log(data_table2);
-
-            // let datasource = this.exportDataSource;
-            // let data = datasource.data.;
-            // console.log(data)
-            // let metadata = datasource.metadata;
-            // console.log(metadata)
-            // let feeds = metadata.feeds;
-
-            // let feedDimensions = feeds.dimensions.values;
-            // console.log(feedDimensions);
-
-            // var da = this.dataBindings.getDataBinding('exportDataSource').getDataSource();
-            // var y = da.getMember("MK_INVESTMENT",'INV_00001').description;
-            // console.log(y);
-
-            // var ds= this.exportDataSource;
-
-
-
-
-
-            // new trials
-            // let data = datasource.data;
-            // let metadata = datasource.metadata;
-
-            // if (!data || !data.length) {
-            //     console.error("[biExportClient] No data:", datasource);
-            //     return;
-            // }
-
-            // let dimensions = metadata.dimensions;
-            // console.log('dimensions',dimensions);
-            // let measures = metadata.mainStructureMembers;
-            // console.log('measures',measures);
-            // let feeds = metadata.feeds;
-            // console.log('feeds',feeds);
-
-            // let feedDimensions = feeds.dimensions.values;
-            // console.log('feedDimensions',feedDimensions);
-            // let feedMeasures = feeds.measures.values;
-            // console.log('feedMeasures',feedMeasures);
-            // let rows = [];
-            // {
-            //     let row = [];
-            //     for (let j = 0; j < feedDimensions.length; j++) {
-            //         let id = feedDimensions[j];
-            //         row.push(dimensions[id].description);
-            //     }
-            //     for (let j = 0; j < feedMeasures.length; j++) {
-            //         let id = feedMeasures[j];
-            //         row.push(measures[id].label);
-            //     }
-            //     rows.push(row);
-            // }
-            // console.log(rows);
-
-            // for (let i = 0; i < data.length; i++) {
-            //     let d = data[i];
-            //     let row = [];
-            //     for (let j = 0; j < feedDimensions.length; j++) {
-            //         let id = feedDimensions[j];
-            //         row.push(d[id].label);
-            //     }
-            //     // for (let j = 0; j < feedMeasures.length; j++) {
-            //     //     let id = feedMeasures[j];
-            //     //     row.push(d[id][dataFormat]);
-            //     // }
-            //     rows.push(row);
-            // }
-            // console.log(rows);
-
-
-
-            var ds = this.exportDataSource.data;
+           
+            const inputBox = shadowRoot.getElementById('input_box');
+            var ds = this.dataBindings.getDataBinding().getDataSource();
             console.log(ds);
-
-            var ds2 = this.dataBindings.getDataBinding().getDataSource();
-            console.log(ds2);
-
-
-            try {
-                // Call the addDimensionToFeed method and wait for it to complete
-                var ds3 = await ds2.getResultSetData()
-                console.log(ds3)
-
-            } catch (error) {
-                // If there's an error, it will be caught here
-                console.error('Error ', error);
-            }
 
             try {
                 // Call the addDimensionToFeed method and wait for it to complete
@@ -358,23 +266,13 @@
                 console.log(ds6);
             } catch (error) {
                 // If there's an error, it will be caught here
-                console.error('Error adding dimension to feed:', error);
+                console.error('fail to set hierarchy flat', error);
             }
+
 
             try {
                 // Call the addDimensionToFeed method and wait for it to complete
-                var ds5 = await ds2.getMembers('MK_INVESTMENT', '[MK_INVESTMENT].[DEPARTMENT].&[INV_00004]')
-
-                // The code inside this block will be executed after the dimension is successfully added
-                console.log(ds4);
-            } catch (error) {
-                // If there's an error, it will be caught here
-                console.error('Error adding dimension to feed:', error);
-            }
-
-            try {
-                // Call the addDimensionToFeed method and wait for it to complete
-                var ds4 = await ds2.getMember('MK_INVESTMENT', '[MK_INVESTMENT].[DEPARTMENT].&[INV_00004]')
+                var ds4 = await ds2.getMember('MK_INVESTMENT', inputBox.value)
 
                 // The code inside this block will be executed after the dimension is successfully added
                 console.log(ds4);
@@ -386,7 +284,7 @@
 
 
         fireChanged() {
-            console.log('OnClick Triggered');
+            // console.log('OnClick Triggered');
             // this._props= {...this._props,...changedProperties}
             // const inputBox = shadowRoot.getElementById('input_box');
 

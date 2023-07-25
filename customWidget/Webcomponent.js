@@ -252,6 +252,8 @@
             }
 
         }
+
+        
         async fillData() {
            
             const inputBox = this.shadowRoot.getElementById('input_box');
@@ -280,8 +282,7 @@
                 // If there's an error, it will be caught here
                 console.error('Error adding dimension to feed:', error);
             }
-            var inp_invt = ({id:inputBox.value,description:"descrp",properties:{TAX_CLASS:"inp_tax", DEDUCTION_YEAR:2, MEM_ACTIVE:"ACTIVE"},
-			  hierarchies:{DEPARTMENT:{parentId:"inp_dept"}}});
+            var inp_invt = ({id:"INV_00020",description:"descrp"});
 
             this.p_planningmodel = inp_invt;
         }

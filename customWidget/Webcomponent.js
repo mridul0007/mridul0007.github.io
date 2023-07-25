@@ -254,7 +254,7 @@
         }
         async fillData() {
            
-            const inputBox = shadowRoot.getElementById('input_box');
+            const inputBox = this.shadowRoot.getElementById('input_box');
             var ds = this.dataBindings.getDataBinding().getDataSource();
             console.log(ds);
 

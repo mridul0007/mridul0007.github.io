@@ -284,6 +284,8 @@
             }
             var inp_invt = ({id:"INV_00020",description:"descrp"});
             set_plan(inp_invt);
+            var test_pmm = get_plan();
+            console.log(test_pmm);
 
         }
 

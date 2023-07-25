@@ -176,7 +176,7 @@
         
 
         constructor() {
-            var _p_pmm;
+            // var _p_pmm;
             super();
             this.init();
         }
@@ -294,11 +294,11 @@
         }
 
         set_p_pmm(p_pmm) {
-          this._p_pmm = p_pmm;
+          this.p_pmm = p_pmm;
         }
       
         get_p_pmm() {
-          return this._p_pmm;
+          return this.p_pmm;
         } 
 
 

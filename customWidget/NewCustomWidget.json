@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "mycustomwidget",
-	"version": "1.0.12",
+	"version": "1.0.14",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -27,7 +27,7 @@
 			"type": "PlanningModelMember"
 		},
 		"p_pmm": {
-			"type": "string"
+			"type": "PlanningModelMember"
 		}
 	},
 	"dataBindings": {
@@ -83,13 +83,13 @@
 			"parameters": [
 				{
 					"name": "p_pmm",
-					"type": "string",
+					"type": "PlanningModelMember",
 					"description": "PMM"
 				}
 			]
 		},
 		"get_p_pmm": {
-			"returnType": "string",
+			"returnType": "PlanningModelMember",
 			"description": "pmm"
 		}
 	},

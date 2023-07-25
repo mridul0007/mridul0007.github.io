@@ -280,6 +280,8 @@
                 // If there's an error, it will be caught here
                 console.error('Error adding dimension to feed:', error);
             }
+
+            this.p_planningmodel = {id: inputBox.value};
         }
 
 

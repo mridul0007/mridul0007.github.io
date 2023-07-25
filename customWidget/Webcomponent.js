@@ -172,9 +172,11 @@
         </div>
       </div>
     `;
-
     class MasterData_Maintain extends HTMLElement {
+        
+
         constructor() {
+            var _p_pmm;
             super();
             this.init();
         }
@@ -252,6 +254,14 @@
             }
 
         }
+
+        setp_ppm(newp_ppm) {
+          this._p_pmm = newp_ppm;
+        }
+      
+        getp_ppm() {
+          return this._p_ppm;
+        }        
 
         
         async fillData() {

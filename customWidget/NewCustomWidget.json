@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "mycustomwidget",
-	"version": "1.0.9",
+	"version": "1.0.10",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -72,7 +72,6 @@
 		"get_plan": {
 			"returnType": "PlanningModelMember",
 			"description": "planningmodel object",
-			"parameters": [],
 			
 			"body":  "return this.p_planningmodel;"
 		}

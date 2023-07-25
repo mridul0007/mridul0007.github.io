@@ -280,8 +280,13 @@
                 // If there's an error, it will be caught here
                 console.error('Error adding dimension to feed:', error);
             }
+            var formObject =  {"formObject": [
+              {"id": inputBox.value}, 
+              {"description" : "hhh"}
+              
+              ]}
 
-            this.p_planningmodel = {id: inputBox.value};
+            this.p_planningmodel = formObject;
         }
 
 

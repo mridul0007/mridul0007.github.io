@@ -349,8 +349,28 @@
                 // If there's an error, it will be caught here
                 console.error('Error ', error);
             }
-            var ds3 = ds2.getResultSetData()
-            console.log(ds3);
+
+            try {
+                // Call the addDimensionToFeed method and wait for it to complete
+                var ds6 = await ds2.setHierarchy("MK_INVESTMENT","__FLAT__")
+
+                // The code inside this block will be executed after the dimension is successfully added
+                console.log(ds6);
+            } catch (error) {
+                // If there's an error, it will be caught here
+                console.error('Error adding dimension to feed:', error);
+            }
+
+            try {
+                // Call the addDimensionToFeed method and wait for it to complete
+                var ds5 = await ds2.getMembers('MK_INVESTMENT', '[MK_INVESTMENT].[DEPARTMENT].&[INV_00004]')
+
+                // The code inside this block will be executed after the dimension is successfully added
+                console.log(ds4);
+            } catch (error) {
+                // If there's an error, it will be caught here
+                console.error('Error adding dimension to feed:', error);
+            }
 
             try {
                 // Call the addDimensionToFeed method and wait for it to complete

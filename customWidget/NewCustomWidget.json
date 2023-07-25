@@ -22,8 +22,8 @@
 			"type": "string",
 			"default": ""
 		},
-		"height": {
-			"type": "integer",
+		"planningmodel": {
+			"type": "string",
 			"default": 32
 		}
 	},
@@ -57,8 +57,18 @@
 				}
 			],
 			"body": "this.dept = dept;"
+		},
+		"set_plan": {
+			"description": "id",
+			"parameters": [
+				{
+					"name": "dept",
+					"type": "string",
+					"description": "dsad"
+				}
+			],
+			"body": "this.dept = dept;"
 		}
-		
 	},
 	"events": {
 		"onClick": {

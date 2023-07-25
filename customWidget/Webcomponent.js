@@ -205,6 +205,7 @@
             // Add event listeners to the "OK" and "CANCEL" buttons in the child popup
             const buttonOk = shadowRoot.getElementById('button_ok');
             buttonOk.addEventListener('click', () => {
+                this.dispatchEvent(new CustomEvent("onSave"));
                 this.hideChildPopup();
             })
 

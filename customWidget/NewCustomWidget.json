@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "mycustomwidget",
-	"version": "1.0.14",
+	"version": "1.0.15",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -98,7 +98,14 @@
 			"description": "Called when the user clicks the button."
 		},
 		"onSave": {
-			"description": "Called when the user clicks the button."
+			"description": "Called when the user clicks the button.",
+			"parameters" : [
+				{
+					"name": "p_var",
+					"type": "string",
+					"description": "test"
+				}
+			]
 		}
 	}
 	

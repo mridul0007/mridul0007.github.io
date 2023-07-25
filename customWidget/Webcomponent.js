@@ -280,13 +280,10 @@
                 // If there's an error, it will be caught here
                 console.error('Error adding dimension to feed:', error);
             }
-            var formObject =  {"formObject": [
-              {"id": inputBox.value}, 
-              {"description" : "hhh"}
-              
-              ]}
+            var inp_invt = ({id:inputBox.value,description:"descrp",properties:{TAX_CLASS:"inp_tax", DEDUCTION_YEAR:2, MEM_ACTIVE:"ACTIVE"},
+			  hierarchies:{DEPARTMENT:{parentId:"inp_dept"}}});
 
-            this.p_planningmodel = formObject;
+            this.p_planningmodel = inp_invt;
         }
 
 

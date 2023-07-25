@@ -255,13 +255,7 @@
 
         }
 
-        async set_p_ppm(p_ppm) {
-          this._p_pmm = await p_ppm;
-        }
-      
-        async get_p_ppm() {
-          return await this._p_ppm;
-        }        
+               
 
         
         async fillData() {
@@ -298,6 +292,14 @@
             console.log(test_pmm);
 
         }
+
+        async set_p_ppm(p_ppm) {
+          this._p_pmm = await p_ppm;
+        }
+      
+        async get_p_ppm() {
+          return await this._p_ppm;
+        } 
 
 
         fireChanged() {

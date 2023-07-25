@@ -283,6 +283,7 @@
                 console.error('Error adding dimension to feed:', error);
             }
             var inp_invt = ({id:"INV_00020",description:"descrp"});
+            this.set_plan(inp_invt);
 
             this.p_planningmodel = inp_invt;
         }

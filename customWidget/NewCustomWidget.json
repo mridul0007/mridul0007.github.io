@@ -23,8 +23,8 @@
 			"default": ""
 		},
 		"planningmodel": {
-			"type": "string",
-			"default": 32
+			"type": "planning-model",
+			"default": null
 		}
 	},
 	"dataBindings": {
@@ -63,7 +63,7 @@
 			"parameters": [
 				{
 					"name": "dept",
-					"type": "string",
+					"type": "planning-model",
 					"description": "dsad"
 				}
 			],

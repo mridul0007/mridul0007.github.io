@@ -99,11 +99,11 @@
 		},
 		"onSave": {
 			"description": "Called when the user clicks the button.",
-			"parameters" : [
+			"arguments" : [
 				{
 					"name": "p_var",
-					"type": "string",
-					"description": "test"
+					"type": "PlanningModelMember",
+					"description": "PMM"
 				}
 			]
 		}

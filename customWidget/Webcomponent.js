@@ -255,12 +255,12 @@
 
         }
 
-        set_p_ppm(p_ppm) {
-          this._p_pmm = p_ppm;
+        async set_p_ppm(p_ppm) {
+          this._p_pmm = await p_ppm;
         }
       
-        get_p_ppm() {
-          return this._p_ppm;
+        async get_p_ppm() {
+          return await this._p_ppm;
         }        
 
         

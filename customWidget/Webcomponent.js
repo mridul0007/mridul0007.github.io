@@ -293,12 +293,12 @@
 
         }
 
-        set_p_ppm(p_ppm) {
-          this._p_pmm = p_ppm;
+        set_p_ppm(p_pmm) {
+          this._p_pmm = p_pmm;
         }
       
         get_p_ppm() {
-          return this._p_ppm;
+          return this._p_pmm;
         } 
 
 

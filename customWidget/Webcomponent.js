@@ -260,10 +260,10 @@
 
             try {
                 // Call the addDimensionToFeed method and wait for it to complete
-                var ds6 = await ds2.setHierarchy("MK_INVESTMENT","__FLAT__")
+                var set_hier = await ds.setHierarchy("MK_INVESTMENT","__FLAT__")
 
                 // The code inside this block will be executed after the dimension is successfully added
-                console.log(ds6);
+                console.log(set_hier);
             } catch (error) {
                 // If there's an error, it will be caught here
                 console.error('fail to set hierarchy flat', error);
@@ -272,10 +272,10 @@
 
             try {
                 // Call the addDimensionToFeed method and wait for it to complete
-                var ds4 = await ds2.getMember('MK_INVESTMENT', inputBox.value)
+                var ds_mem = await ds.getMember('MK_INVESTMENT', inputBox.value)
 
                 // The code inside this block will be executed after the dimension is successfully added
-                console.log(ds4);
+                console.log(ds_mem);
             } catch (error) {
                 // If there's an error, it will be caught here
                 console.error('Error adding dimension to feed:', error);

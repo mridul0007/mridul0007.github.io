@@ -301,11 +301,11 @@
         } 
 
         set_p_try(plm_operation){
-          this.p_try.properties["plm_operation"] = plm_operation;
+          this.p_try.plm_operation = plm_operation;
         }
 
         get_p_try(){
-          return this.p_try.properties["plm_operation"] ;
+          return this.p_try.plm_operation ;
         }
 
 

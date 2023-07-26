@@ -239,13 +239,13 @@
         }
 
         OnCustomWidgetBeforeUpdate(changedProperties) {
-            this._props = { ...this._props, ...changedProperties }
-            console.log('changedProperties', changedProperties);
-            const inputBox = this.shadowRoot.getElementById('input_box');
+            // this._props = { ...this._props, ...changedProperties }
+            // console.log('changedProperties', changedProperties);
+            // const inputBox = this.shadowRoot.getElementById('input_box');
 
-            // Set the value of the input field
-            inputBox.value = this.dept;
-            input.inputBox = setdept
+            // // Set the value of the input field
+            // inputBox.value = this.dept;
+            // input.inputBox = setdept
         }
 
         onCustomWidgetAfterUpdate(changedProperties) {

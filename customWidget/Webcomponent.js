@@ -301,11 +301,11 @@
           return this.p_pmm;
         } 
 
-        set_p_try(plm_operation){
+        set_p_operation(plm_operation){
           this.p_try.plm_operation = plm_operation;
         }
 
-        get_p_try(){
+        get_p_operation(){
           return this.p_try.plm_operation ;
         }
 

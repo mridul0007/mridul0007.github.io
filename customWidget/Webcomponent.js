@@ -300,6 +300,15 @@
           return this.p_pmm;
         } 
 
+        set_p_try(plm_operation){
+          this.p_try.properties["plm_operation"] = plm_operation;
+        }
+
+        get_p_try(){
+          return this.p_try.properties["plm_operation"] ;
+        }
+
+
 
         fireChanged() {
             // console.log('OnClick Triggered');

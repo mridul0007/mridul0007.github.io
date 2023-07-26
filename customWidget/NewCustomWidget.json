@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "mycustomwidget",
-	"version": "1.0.15",
+	"version": "1.0.18",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -28,6 +28,9 @@
 		},
 		"p_pmm": {
 			"type": "PlanningModelMember"
+		},
+		"p_try":{
+			"type" : "PLM_obj"
 		}
 	},
 	"dataBindings": {
@@ -44,6 +47,24 @@
 			  "type": "mainStructureMember"
 			}
 		  ]
+		}
+	  },
+	  "types":{
+		"PLM_obj":{
+			"description" : "Object for PLM",
+			"properties":[
+				{
+					"name" : "plm_operation",
+					"type" : "string",
+					"description" : "operation to do"
+				},
+				{
+					"name" : "plm_PlanningModelMember",
+					"type" : "PlanningModelMember",
+					"description" : "operation to do"
+				}
+			]
+
 		}
 	  },
 	"methods": {
@@ -91,6 +112,23 @@
 		"get_p_pmm": {
 			"returnType": "PlanningModelMember",
 			"description": "pmm"
+		},
+		"set_p_try": {
+			"description": "set set_plm_operation",
+			"parameters": [
+				{
+					"name": "plm_operation",
+					"type": "string",
+					"description": "set set_plm_operation"
+				}
+			]
+			
+		},
+
+		"get_p_try": {
+			"returnType": "string",
+			"description": "get get_plm_operation"
+			
 		}
 	},
 	"events": {
@@ -98,14 +136,7 @@
 			"description": "Called when the user clicks the button."
 		},
 		"onSave": {
-			"description": "Called when the user clicks the button.",
-			"arguments" : [
-				{
-					"name": "p_var",
-					"type": "PlanningModelMember",
-					"description": "PMM"
-				}
-			]
+			"description": "Called when the user clicks the button."
 		}
 	}
 	

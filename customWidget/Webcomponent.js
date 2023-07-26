@@ -264,32 +264,6 @@
         
         async fillData() {
            
-            const inputBox = this.shadowRoot.getElementById('input_box');
-            var ds = this.dataBindings.getDataBinding().getDataSource();
-            console.log(ds);
-
-            try {
-                // Call the addDimensionToFeed method and wait for it to complete
-                var set_hier = await ds.setHierarchy("MK_INVESTMENT","__FLAT__")
-
-                // The code inside this block will be executed after the dimension is successfully added
-                console.log(set_hier);
-            } catch (error) {
-                // If there's an error, it will be caught here
-                console.error('fail to set hierarchy flat', error);
-            }
-
-
-            try {
-                // Call the addDimensionToFeed method and wait for it to complete
-                var ds_mem = await ds.getMember('MK_INVESTMENT', inputBox.value)
-
-                // The code inside this block will be executed after the dimension is successfully added
-                console.log(ds_mem);
-            } catch (error) {
-                // If there's an error, it will be caught here
-                console.error('Error adding dimension to feed:', error);
-            }
 
 
         }
@@ -311,11 +285,11 @@
         }
 
         set_mem_ID(mem_ID){
-          this.p_try.mem_ID = mem_ID;
+          this.p_ID = mem_ID;
         }
 
         get_mem_ID(){
-          return this.p_try.mem_ID ;
+          return this.p_ID ;
         }
 
 

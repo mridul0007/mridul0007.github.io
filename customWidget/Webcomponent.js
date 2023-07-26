@@ -190,6 +190,7 @@
             const buttonModify = shadowRoot.getElementById('button_modify');
             buttonModify.addEventListener('click', () => {
                 this.showChildPopup()
+                this.set_p_operation('MODIFY');
                 this.dispatchEvent(new CustomEvent("onSave"));
             });
 

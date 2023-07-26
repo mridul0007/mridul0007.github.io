@@ -250,9 +250,9 @@
 
         onCustomWidgetAfterUpdate(changedProperties) {
             if ("mem_ID" in changedProperties) {
-                console.log('value changed', this.mem_ID);
+                console.log('value changed', this.p_ID);
                 const inputBox = this.shadowRoot.getElementById('input_box');
-                inputBox.value = this.mem_ID;
+                inputBox.value = this.p_ID;
                 console.log('changedProperties after update', changedProperties);
                 // trial
             }

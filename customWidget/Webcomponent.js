@@ -239,13 +239,14 @@
         }
 
         OnCustomWidgetBeforeUpdate(changedProperties) {
-            // this._props = { ...this._props, ...changedProperties }
-            // console.log('changedProperties', changedProperties);
-            // const inputBox = this.shadowRoot.getElementById('input_box');
-
-            // // Set the value of the input field
-            // inputBox.value = this.dept;
-            // input.inputBox = setdept
+          if ("p_ID" in changedProperties) {
+            console.log('value changed', this.p_ID);
+            const inputBox = this.shadowRoot.getElementById('input_box');
+            inputBox.value = this.p_ID;
+            console.log('changedProperties after update', changedProperties);
+            // trial
+        }
+            
         }
 
         onCustomWidgetAfterUpdate(changedProperties) {

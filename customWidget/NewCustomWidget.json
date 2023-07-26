@@ -62,6 +62,11 @@
 					"name" : "plm_PlanningModelMember",
 					"type" : "PlanningModelMember",
 					"description" : "operation to do"
+				},
+				{
+					"name" : "plm_ID",
+					"type" : "string",
+					"description" : "selected ID"
 				}
 			]
 
@@ -113,7 +118,7 @@
 			"returnType": "PlanningModelMember",
 			"description": "pmm"
 		},
-		"set_p_try": {
+		"set_p_operation": {
 			"description": "set set_plm_operation",
 			"parameters": [
 				{
@@ -124,9 +129,25 @@
 			]
 			
 		},
-
-		"get_p_try": {
+		"get_p_operation": {
 			"returnType": "string",
+			"description": "get get_plm_operation"
+			
+		},
+		"set_plm_PlanningModelMember": {
+			"description": "set set_plm_operation",
+			"parameters": [
+				{
+					"name": "plm_PlanningModelMember",
+					"type": "PlanningModelMember",
+					"description": "set set_plm_operation"
+				}
+			]
+			
+		},
+
+		"get_plm_PlanningModelMember": {
+			"returnType": "PlanningModelMember",
 			"description": "get get_plm_operation"
 			
 		}

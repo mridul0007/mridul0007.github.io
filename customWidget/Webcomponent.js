@@ -284,8 +284,8 @@
           return this.p_try.plm_operation ;
         }
 
-        set_mem_ID(mem_ID){
-          this.p_ID = mem_ID;
+        set_mem_ID(p_ID){
+          this.p_ID = p_ID;
         }
 
         get_mem_ID(){

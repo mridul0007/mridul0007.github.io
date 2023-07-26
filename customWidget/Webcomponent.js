@@ -310,6 +310,21 @@
           return this.p_try.plm_operation ;
         }
 
+        set_mem_ID(mem_ID){
+          this.p_try.mem_ID = mem_ID;
+        }
+
+        get_mem_ID(){
+          return this.p_try.mem_ID ;
+        }
+
+
+        get_p_try(){
+          this.p_try.plm_operation = "Test";
+          return this.p_try ;
+        }
+
+
 
 
         fireChanged() {

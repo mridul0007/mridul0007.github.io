@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "mycustomwidget",
-	"version": "1.0.19",
+	"version": "1.0.20",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -19,16 +19,6 @@
 		}
 	],
 	"properties": {
-		"dept": {
-			"type": "string",
-			"default": ""
-		},
-		"p_planningmodel": {
-			"type": "PlanningModelMember"
-		},
-		"p_pmm": {
-			"type": "PlanningModelMember"
-		},
 		"p_try":{
 			"type" : "PLM_obj"
 		}
@@ -61,12 +51,17 @@
 				{
 					"name" : "plm_PlanningModelMember",
 					"type" : "PlanningModelMember",
-					"description" : "operation to do"
+					"description" : "Planning model member"
 				},
 				{
-					"name" : "plm_ID",
+					"name" : "mem_ID",
 					"type" : "string",
 					"description" : "selected ID"
+				},
+				{
+					"name" : "status",
+					"type" : "integer",
+					"description" : "status"
 				}
 			]
 
@@ -75,34 +70,6 @@
 	"methods": {
 		"clear": {
 			"description": "Clear the resultset"
-		},
-		"setId": {
-			"description": "id",
-			"parameters": [
-				{
-					"name": "dept",
-					"type": "string",
-					"description": "dsad"
-				}
-			],
-			"body": "this.dept = dept;"
-		},
-		"set_plan": {
-			"description": "planningmodel object",
-			"parameters": [
-				{
-					"name": "p_planningmodel",
-					"type": "PlanningModelMember",
-					"description": "dsad"
-				}
-			],
-			"body": "this.p_planningmodel = p_planningmodel;"
-		},
-		"get_plan": {
-			"returnType": "PlanningModelMember",
-			"description": "planningmodel object",
-			
-			"body":  "return this.p_planningmodel;"
 		},
 		"set_p_pmm": {
 			"description": "set p_pmm",
@@ -150,7 +117,32 @@
 			"returnType": "PlanningModelMember",
 			"description": "get get_plm_operation"
 			
+		},
+		"set_mem_ID": {
+			"description": "set set_plm_operation",
+			"parameters": [
+				{
+					"name": "mem_ID",
+					"type": "string",
+					"description": "set member ID"
+				}
+			]
+			
+		},
+
+		"get_mem_ID": {
+			"returnType": "string",
+			"description": "get member ID"
+			
+		},
+		"get_p_try": {
+			"returnType": "PLM_obj",
+			"description": "get p_try"
+			
 		}
+
+
+
 	},
 	"events": {
 		"onClick": {

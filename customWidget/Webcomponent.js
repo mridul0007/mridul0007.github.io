@@ -177,6 +177,7 @@
 
         constructor() {
             // var _p_pmm;
+            this.p_try = {}; 
             super();
             this.init();
         }

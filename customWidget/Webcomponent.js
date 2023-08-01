@@ -196,22 +196,32 @@
 
       // Add event listeners to the buttons
       const buttonModify = shadowRoot.getElementById('button_modify');
-buttonModify.addEventListener('click', async () => {
-    this.p_plm_obj.plm_operation = 'fill_data';
-    this.p_plm_obj.status = 1;
-
-    // Create a Promise to wait for the onSave event to finish
-    const onSavePromise = new Promise(resolve => {
-        this.addEventListener("onSave", resolve, { once: true });
-        this.dispatchEvent(new CustomEvent("onSave"));
-    });
-
-    // Wait for the onSave event to finish before proceeding to fillData()
-    await onSavePromise;
-    await this.fillData();
-
-    this.showChildPopup();
-});
+      buttonModify.addEventListener('click', async () => {
+          console.log('Button Modify clicked');
+          this.p_plm_obj.plm_operation = 'fill_data';
+          this.p_plm_obj.status = 1;
+      
+          // Show the loading text while waiting for the onSave event to complete
+          const childPopup = this.shadowRoot.querySelector('.child_popup');
+          const loadingText = document.createElement('p');
+          loadingText.textContent = 'Loading...';
+          childPopup.appendChild(loadingText);
+      
+          console.log('Dispatching onSave event');
+          this.dispatchEvent(new CustomEvent("onSave"));
+      
+          // Wait for a minimal delay (e.g., 10 milliseconds) to let the event handler complete
+          await new Promise(resolve => setTimeout(resolve, 10));
+      
+          // Remove the loading text
+          childPopup.removeChild(loadingText);
+      
+          console.log('Calling fillData()');
+          await this.fillData();
+      
+          console.log('Showing the child popup');
+          this.showChildPopup();
+      });
 
 
 

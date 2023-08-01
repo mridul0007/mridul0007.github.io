@@ -205,21 +205,24 @@
       }
 
       const buttonModify = shadowRoot.getElementById('button_modify');
-      buttonModify.addEventListener('click', async () => {
+      buttonModify.addEventListener('click', () => {
         console.log('Button Modify clicked');
         this.p_plm_obj.plm_operation = 'fill_data';
         this.p_plm_obj.status = 1;
 
-        // Wait for the onSave event to complete using the custom function
-        await dispatchCustomEventAsync(this, 'onSave');
+        // Create a function to handle the "onSave" event completion
+        const onSaveCompleted = async () => {
+          console.log('Calling fillData()');
+          await this.fillData();
 
-        console.log('Calling fillData()');
-        await this.fillData();
+          console.log('Showing the child popup');
+          this.showChildPopup();
+        };
 
-        console.log('Showing the child popup');
-        this.showChildPopup();
+        // Dispatch the onSave event and pass the callback function as a detail
+        const onSaveEvent = new CustomEvent("onSave", { detail: onSaveCompleted });
+        this.dispatchEvent(onSaveEvent);
       });
-
 
 
 
@@ -289,17 +292,25 @@
 
     }
 
+    // Inside the parent component
+// ... (Rest of the code remains the same)
+
     onCustomWidgetAfterUpdate(ochangedProperties) {
       if ("id" in ochangedProperties) {
-        console.log('value changed', this.id);
-        const inputBox = this.shadowRoot.getElementById('input_box');
-        inputBox.value = this.id;
-        console.log('changedProperties after update', ochangedProperties);
+          console.log('value changed', this.id);
+          const inputBox = this.shadowRoot.getElementById('input_box');
+          inputBox.value = this.id;
+          console.log('changedProperties after update', ochangedProperties);
 
-        // trial
+          // Call the callback function received from the onSave event
+          const onSaveCompleted = ochangedProperties.detail;
+          if (typeof onSaveCompleted === 'function') {
+              onSaveCompleted();
+          }
       }
-
     }
+
+// ... (Rest of the code remains the same)
 
 
 

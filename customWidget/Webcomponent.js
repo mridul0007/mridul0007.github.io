@@ -200,7 +200,7 @@
         this.p_plm_obj.plm_operation = 'fill_data';
          // Wait for the asynchronous function to complete
         this.p_plm_obj.status = 1;
-        this.dispatchEvent(new CustomEvent("onSave"));
+        await this.dispatchEvent(new CustomEvent("onSave"));
         await this.fillData();
         this.showChildPopup();
       });

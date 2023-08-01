@@ -79,12 +79,13 @@
 					"type": "PLM_obj",
 					"description": "set PLM_obj"
 				}
-			]
-			
+			],
+			"body": "this.p_plm_obj = plm_object ;"
 		},
 		"get_p_plm_obj": {
 			"returnType": "PLM_obj",
-			"description": "get PLM_obj"
+			"description": "get PLM_obj",
+			"body": "return this.p_plm_obj;"
 			
 		},
 		"set_id": {

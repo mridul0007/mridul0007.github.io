@@ -299,16 +299,16 @@
         // }
 
 
-        get_p_plm_obj(){
+        // get_p_plm_obj(){
       
-          return this.p_plm_obj ;
-        }
+        //   return this.p_plm_obj ;
+        // }
 
 
-        get_empty_plm_obj() {
-          p_local = {};
-          return p_local ;
-        }
+        // get_empty_plm_obj() {
+        //   p_local = {};
+        //   return p_local ;
+        // }
 
 
 

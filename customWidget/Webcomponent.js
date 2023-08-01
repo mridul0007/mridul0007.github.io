@@ -284,13 +284,12 @@
           return this.p_try.plm_operation ;
         }
 
-        set_mem_ID(p_ID){
-          this.p_ID = p_ID;
-          this.onCustomWidgetAfterUpdate(ochangedProperties);
+        set_id(id){
+          this.id = id;
         }
 
-        get_mem_ID(){
-          return this.p_ID ;
+        get_id(){
+          return this.id ;
         }
 
 

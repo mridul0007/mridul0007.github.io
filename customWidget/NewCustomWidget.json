@@ -19,7 +19,7 @@
 		}
 	],
 	"properties": {
-		"p_try":{
+		"id":{
 			"type" : "PLM_obj"
 		},
 		"p_ID":{
@@ -116,11 +116,11 @@
 			"description": "get get_plm_operation"
 			
 		},
-		"set_mem_ID": {
+		"set_id": {
 			"description": "set set_plm_operation",
 			"parameters": [
 				{
-					"name": "p_ID",
+					"name": "id",
 					"type": "string",
 					"description": "set member ID"
 				}
@@ -128,7 +128,7 @@
 			
 		},
 
-		"get_mem_ID": {
+		"get_id": {
 			"returnType": "string",
 			"description": "get member ID"
 			

@@ -196,24 +196,23 @@
 
       // Add event listeners to the buttons
       const buttonModify = shadowRoot.getElementById('button_modify');
-      buttonModify.addEventListener('click', () => {
+      buttonModify.addEventListener('click', async () => {
         console.log('Button Modify clicked');
         this.p_plm_obj.plm_operation = 'fill_data';
         this.p_plm_obj.status = 1;
 
-        // Create a function to handle the "onSave" event completion
-        const onSaveCompleted = async () => {
-          console.log('Calling fillData()');
-          await this.fillData();
+        console.log('Dispatching onSave event');
+        this.dispatchEvent(new CustomEvent("onSave"));
 
-          console.log('Showing the child popup');
-          this.showChildPopup();
-        };
+        // Wait for a minimal delay (e.g., 10 milliseconds) to ensure event handlers complete
+        await new Promise(resolve => setTimeout(resolve, 10000));
 
-        // Dispatch the onSave event and pass the callback function
-        this.dispatchEvent(new CustomEvent("onSave", { detail: onSaveCompleted }));
+        console.log('Calling fillData()');
+        await this.fillData();
+
+        console.log('Showing the child popup');
+        this.showChildPopup();
       });
-
 
 
 
@@ -259,12 +258,12 @@
     showChildPopup(callback) {
       const childPopup = this.shadowRoot.querySelector('.child_popup');
       childPopup.style.display = 'flex';
-  
+
       // Execute the callback function if provided
       if (typeof callback === 'function') {
-          callback();
+        callback();
       }
-  }
+    }
 
     // Function to hide the second div
     hideChildPopup() {

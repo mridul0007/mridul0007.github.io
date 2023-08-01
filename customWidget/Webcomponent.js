@@ -205,14 +205,31 @@
       }
 
       const buttonModify = shadowRoot.getElementById('button_modify');
-            buttonModify.addEventListener('click', () => {
-                
-                this.p_plm_obj.plm_operation= 'fill_data';
-                this.fillData();
-                this.p_plm_obj.status = 1;
-                this.dispatchEvent(new CustomEvent("onSave"));
-                this.showChildPopup()
-            });
+      buttonModify.addEventListener('click', () => {
+          this.p_plm_obj.plm_operation = 'fill_data';
+      
+          // Create a function to handle the "onSave" event completion
+          const onSaveCompleted = () => {
+              this.fillData();
+              this.showChildPopup();
+          };
+      
+          // Add an event listener for the "onSave" event
+          const onSaveHandler = () => {
+              this.removeEventListener('onSave', onSaveHandler);
+              onSaveCompleted();
+          };
+      
+          // Dispatch the "onSave" event
+          const onSaveEvent = new CustomEvent('onSave');
+      
+          // Listen for the "onSave" event before dispatching it
+          this.addEventListener('onSave', onSaveHandler, { once: true });
+      
+          // Dispatch the "onSave" event (it will be handled synchronously)
+          this.dispatchEvent(onSaveEvent);
+      });
+      
       
 
 

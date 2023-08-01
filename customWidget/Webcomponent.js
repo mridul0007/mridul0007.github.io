@@ -139,7 +139,7 @@
           gap: 10px;
           margin-top: 2cm;
         }
-        .overlay {
+        overlay {
           display: none;
           position: fixed;
           top: 0;

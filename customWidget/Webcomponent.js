@@ -264,7 +264,7 @@
             if ("p_plm_obj" in ochangedProperties) {
               console.log('value changed', this.p_plm_obj);
               const text_box_id = this.shadowRoot.getElementById('text_box_id');
-              inputBox.value = this.p_plm_obj.plm_PlanningModelMember.id;
+              text_box_id.value = this.p_plm_obj.plm_PlanningModelMember.id;
               const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
               inputBox.value = this.id;
               const text_box_department = this.shadowRoot.getElementById('text_box_department');

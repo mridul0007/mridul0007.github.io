@@ -286,6 +286,7 @@
 
         set_mem_ID(p_ID){
           this.p_ID = p_ID;
+          this.onCustomWidgetAfterUpdate(ochangedProperties);
         }
 
         get_mem_ID(){

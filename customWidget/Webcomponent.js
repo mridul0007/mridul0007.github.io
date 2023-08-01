@@ -281,8 +281,8 @@
 
 
         get_p_try(){
-          this.p_try.plm_operation = "Test";
-          return this.p_try ;
+      
+          return this.p_plm_obj ;
         }
 
 

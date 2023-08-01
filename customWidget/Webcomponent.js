@@ -199,6 +199,7 @@
             buttonModify.addEventListener('click', () => {
                 
                 this.p_plm_obj.plm_operation= 'fill_data';
+                this.fillData();
                 this.p_plm_obj.status = 1;
                 this.dispatchEvent(new CustomEvent("onSave"));
                 this.showChildPopup()
@@ -285,6 +286,8 @@
         
         async fillData() {
            
+          const text_box_id = this.shadowRoot.getElementById('text_box_id');
+          text_box_id.value = this.p_plm_obj.plm_PlanningModelMember.id;
 
 
         }

@@ -222,7 +222,7 @@
             const inputBox = shadowRoot.getElementById('input_box');
 
             // Set the value of the input field
-            inputBox.value = this.p_ID;
+            inputBox.value = this.id;
         }
 
         // Function to show the second div
@@ -268,21 +268,8 @@
 
         }
 
-        set_p_pmm(p_pmm) {
-          this.p_pmm = p_pmm;
-        }
-      
-        get_p_pmm() {
-          return this.p_pmm;
-        } 
 
-        set_p_operation(plm_operation){
-          this.p_try.plm_operation = plm_operation;
-        }
-
-        get_p_operation(){
-          return this.p_try.plm_operation ;
-        }
+        
 
         // set_id(id){
         //   this.id = id;

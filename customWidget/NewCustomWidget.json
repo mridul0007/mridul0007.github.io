@@ -19,10 +19,10 @@
 		}
 	],
 	"properties": {
-		"id":{
+		"p_plm_obj":{
 			"type" : "PLM_obj"
 		},
-		"p_ID":{
+		"id":{
 			"type" : "string"
 		}
 	},
@@ -69,51 +69,22 @@
 		"clear": {
 			"description": "Clear the resultset"
 		},
-		"set_p_pmm": {
-			"description": "set p_pmm",
-			"parameters": [
-				{
-					"name": "p_pmm",
-					"type": "PlanningModelMember",
-					"description": "PMM"
-				}
-			]
-		},
-		"get_p_pmm": {
-			"returnType": "PlanningModelMember",
-			"description": "pmm"
-		},
-		"set_p_operation": {
+		
+		
+		"set_p_plm_obj": {
 			"description": "set set_plm_operation",
 			"parameters": [
 				{
-					"name": "plm_operation",
-					"type": "string",
-					"description": "set set_plm_operation"
+					"name": "plm_object",
+					"type": "PLM_obj",
+					"description": "set PLM_obj"
 				}
 			]
 			
 		},
-		"get_p_operation": {
-			"returnType": "string",
-			"description": "get get_plm_operation"
-			
-		},
-		"set_plm_PlanningModelMember": {
-			"description": "set set_plm_operation",
-			"parameters": [
-				{
-					"name": "plm_PlanningModelMember",
-					"type": "PlanningModelMember",
-					"description": "set set_plm_operation"
-				}
-			]
-			
-		},
-
-		"get_plm_PlanningModelMember": {
-			"returnType": "PlanningModelMember",
-			"description": "get get_plm_operation"
+		"get_p_plm_obj": {
+			"returnType": "PLM_obj",
+			"description": "get PLM_obj"
 			
 		},
 		"set_id": {
@@ -132,18 +103,7 @@
 		"get_id": {
 			"returnType": "string",
 			"description": "get member ID",
-			"body" : "return this.id"
-		},
-		"get_p_try": {
-			"returnType": "PLM_obj",
-			"description": "get p_try"
-			
-		},
-
-		"get_empty_plm_obj": {
-			"returnType": "PLM_obj",
-			"description": "get empty p_try"
-			
+			"body" : "return this.id;"
 		}
 
 

@@ -189,7 +189,7 @@
             const buttonModify = shadowRoot.getElementById('button_modify');
             buttonModify.addEventListener('click', () => {
                 
-                this.p_plm_obj.plm_operation= 'MODIFY';
+                this.p_plm_obj.plm_operation= 'fill_data';
                 this.p_plm_obj.status = 1;
                 this.dispatchEvent(new CustomEvent("onSave"));
                 this.showChildPopup()

@@ -185,6 +185,15 @@
             let shadowRoot = this.attachShadow({ mode: 'open' });
             shadowRoot.appendChild(tmpl.content.cloneNode(true));
             this._export_settings = {};
+
+
+
+
+
+
+
+
+
             // Add event listeners to the buttons
             const buttonModify = shadowRoot.getElementById('button_modify');
             buttonModify.addEventListener('click', () => {
@@ -194,6 +203,14 @@
                 this.dispatchEvent(new CustomEvent("onSave"));
                 this.showChildPopup()
             });
+
+
+
+
+
+
+
+
 
             const buttonDelete = shadowRoot.getElementById('button_delete');
             buttonDelete.addEventListener('click', () => {
@@ -282,6 +299,10 @@
         // get_id(){
         //   return this.id ;
         // }
+
+        set_p_plm_obj(p_plm_obj){
+          this.p_plm_obj = p_plm_obj;
+        }
 
 
         get_p_plm_obj(){

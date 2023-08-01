@@ -190,6 +190,7 @@
             buttonModify.addEventListener('click', () => {
                 
                 this.p_plm_obj.plm_operation= 'fill_data';
+                this.set_p_plm_obj(this.p_plm_obj);
                 this.p_plm_obj.status = 1;
                 this.dispatchEvent(new CustomEvent("onSave"));
                 this.showChildPopup()

@@ -111,8 +111,8 @@
 
 
 (function () {
-  let tmpl = document.createElement('template');
-  tmpl.innerHTML = `
+    let tmpl = document.createElement('template');
+    tmpl.innerHTML = `
       <style>
         .child_popup {
           display: none;
@@ -139,28 +139,6 @@
           gap: 10px;
           margin-top: 2cm;
         }
-        overlay {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.6);
-          z-index: 9999;
-          justify-content: center;
-          align-items: center;
-        }
-      
-        /* Center the child popup within the overlay */
-        .overlay .child_popup {
-          display: flex;
-          flex-direction: column;
-          background-color: #fff;
-          padding: 20px;
-          border-radius: 5px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
       </style>
       <div class="root">
         <label for="input_box">SELECTED INVESTMENT:</label>
@@ -169,199 +147,164 @@
         <button type="button" id="button_delete">DELETE</button>
         <button type="button" id="button_create">CREATE</button>
       </div>
-      <div class="overlay">
-        <div class="child_popup">
-          <div class="input-row">
-            <label for="text_box_id">ID:</label>
-            <input type="text" id="text_box_id" placeholder="Enter value...">
-          </div>
-          <div class="input-row">
-            <label for="text_box_desc">Description:</label>
-            <input type="text" id="text_box_desc" placeholder="Enter value...">
-          </div>
-          <div class="input-row">
-            <label for="text_box_department">Department:</label>
-            <input type="text" id="text_box_department" placeholder="Enter value...">
-          </div>
-          <div class="input-row">
-            <label for="text_box_hierarchy">Hierarchy:</label>
-            <input type="text" id="text_box_hierarchy" placeholder="Enter value...">
-          </div>
-
-          <!-- Buttons row -->
-          <div class="button-row">
-            <button type="button" id="button_ok">OK</button>
-            <button type="button" id="button_cancel">CANCEL</button>
-          </div>
+      <div class="child_popup">
+        <div class="input-row">
+          <label for="text_box_id">ID:</label>
+          <input type="text" id="text_box_id" placeholder="Enter value...">
+        </div>
+        <div class="input-row">
+          <label for="text_box_desc">Description:</label>
+          <input type="text" id="text_box_desc" placeholder="Enter value...">
+        </div>
+        <div class="input-row">
+          <label for="text_box_department">Department:</label>
+          <input type="text" id="text_box_department" placeholder="Enter value...">
+        </div>
+        <div class="input-row">
+          <label for="text_box_hierarchy">Hierarchy:</label>
+          <input type="text" id="text_box_hierarchy" placeholder="Enter value...">
+        </div>
+  
+        <!-- Buttons row -->
+        <div class="button-row">
+          <button type="button" id="button_ok">OK</button>
+          <button type="button" id="button_cancel">CANCEL</button>
         </div>
       </div>
     `;
-  class MasterData_Maintain extends HTMLElement {
+    class MasterData_Maintain extends HTMLElement {
+        
+
+        constructor() {
+            super();
+            this.p_plm_obj = {}; 
+            this.init();
+        }
+
+        init() {
+            let shadowRoot = this.attachShadow({ mode: 'open' });
+            shadowRoot.appendChild(tmpl.content.cloneNode(true));
+            this._export_settings = {};
+            // Add event listeners to the buttons
+            const buttonModify = shadowRoot.getElementById('button_modify');
+            buttonModify.addEventListener('click', () => {
+                this.showChildPopup()
+                this.p_plm_obj.plm_operation= 'MODIFY';
+                this.dispatchEvent(new CustomEvent("onSave"));
+            });
+
+            const buttonDelete = shadowRoot.getElementById('button_delete');
+            buttonDelete.addEventListener('click', () => {
+                this.showChildPopup();
+            });
+
+            const buttonCreate = shadowRoot.getElementById('button_create');
+            buttonCreate.addEventListener('click', () => {
+                this.showChildPopup();
+            });
+
+            // Add event listeners to the "OK" and "CANCEL" buttons in the child popup
+            const buttonOk = shadowRoot.getElementById('button_ok');
+            
+            buttonOk.addEventListener('click', () => {
+                this.dispatchEvent(new CustomEvent("onSave"));
+                this.hideChildPopup();
+            })
+
+            const buttonCancel = shadowRoot.getElementById('button_cancel');
+            buttonCancel.addEventListener('click', () => {
+                this.hideChildPopup();
+            });
 
 
-    constructor() {
-      super();
-      this.p_plm_obj = {};
-      this.init();
+
+            // Get the input element with the ID "input_box"
+            const inputBox = shadowRoot.getElementById('input_box');
+
+            // Set the value of the input field
+            inputBox.value = this.id;
+        }
+
+        // Function to show the second div
+        showChildPopup() {
+            const childPopup = this.shadowRoot.querySelector('.child_popup');
+            childPopup.style.display = 'flex';
+        }
+
+        // Function to hide the second div
+        hideChildPopup() {
+            const childPopup = this.shadowRoot.querySelector('.child_popup');
+            childPopup.style.display = 'none';
+        }
+
+        OnCustomWidgetBeforeUpdate(ochangedProperties) {
+        //   if ("p_ID" in ochangedProperties) {
+        //     console.log('value changed', this.p_ID);
+        //     const inputBox = this.shadowRoot.getElementById('input_box');
+        //     inputBox.value = this.p_ID;
+        //     console.log('changedProperties after update', ochangedProperties);
+        //     // trial
+        // }
+            
+        }
+
+        onCustomWidgetAfterUpdate(ochangedProperties) {
+            if ("id" in ochangedProperties) {
+                console.log('value changed', this.id);
+                const inputBox = this.shadowRoot.getElementById('input_box');
+                inputBox.value = this.id;
+                console.log('changedProperties after update', ochangedProperties);
+                // trial
+            }
+
+        }
+
+               
+
+        
+        async fillData() {
+           
+
+
+        }
+
+
+        
+
+        // set_id(id){
+        //   this.id = id;
+        // }
+
+        // get_id(){
+        //   return this.id ;
+        // }
+
+
+        get_p_plm_obj(){
+      
+          return this.p_plm_obj ;
+        }
+
+
+        get_empty_plm_obj() {
+          p_local = {};
+          return p_local ;
+        }
+
+
+
+
+        fireChanged() {
+            // console.log('OnClick Triggered');
+            // this._props= {...this._props,...changedProperties}
+            // const inputBox = shadowRoot.getElementById('input_box');
+
+            // // Set the value of the input field
+            // inputBox.value = this.dept;
+
+        }
     }
 
-    init() {
-      let shadowRoot = this.attachShadow({ mode: 'open' });
-      shadowRoot.innerHTML = `
-        <!-- Include the styles here or link to an external stylesheet -->
-        <style>
-          /* ... (styles from above) ... */
-        </style>
-        <!-- Include the template here or link to an external HTML file -->
-        <div class="root">
-          <label for="input_box">SELECTED INVESTMENT:</label>
-          <input type="text" id="input_box" placeholder="Enter value...">
-          <button type="button" id="button_modify">MODIFY</button>
-          <button type="button" id="button_delete">DELETE</button>
-          <button type="button" id="button_create">CREATE</button>
-        </div>
-        <!-- Add the overlay element -->
-        <div class="overlay">
-          <div class="child_popup">
-            <div class="input-row">
-              <label for="text_box_id">ID:</label>
-              <input type="text" id="text_box_id" placeholder="Enter value...">
-            </div>
-            <div class="input-row">
-              <label for="text_box_desc">Description:</label>
-              <input type="text" id="text_box_desc" placeholder="Enter value...">
-            </div>
-            <div class="input-row">
-              <label for="text_box_department">Department:</label>
-              <input type="text" id="text_box_department" placeholder="Enter value...">
-            </div>
-            <div class="input-row">
-              <label for="text_box_hierarchy">Hierarchy:</label>
-              <input type="text" id="text_box_hierarchy" placeholder="Enter value...">
-            </div>
-            <!-- Buttons row -->
-            <div class="button-row">
-              <button type="button" id="button_ok">OK</button>
-              <button type="button" id="button_cancel">CANCEL</button>
-            </div>
-          </div>
-        </div>
-      `;
-
-      this._export_settings = {};
-      const buttonModify = shadowRoot.getElementById('button_modify');
-      buttonModify.addEventListener('click', () => {
-        this.showChildPopup();
-        this.p_plm_obj.plm_operation = 'MODIFY';
-        this.dispatchEvent(new CustomEvent("onSave"));
-      });
-
-      const buttonDelete = shadowRoot.getElementById('button_delete');
-      buttonDelete.addEventListener('click', () => {
-        this.showChildPopup();
-      });
-
-      const buttonCreate = shadowRoot.getElementById('button_create');
-      buttonCreate.addEventListener('click', () => {
-        this.showChildPopup();
-      });
-
-      const buttonOk = shadowRoot.getElementById('button_ok');
-      buttonOk.addEventListener('click', () => {
-        this.dispatchEvent(new CustomEvent("onSave"));
-        this.hideChildPopup();
-      });
-
-      const buttonCancel = shadowRoot.getElementById('button_cancel');
-      buttonCancel.addEventListener('click', () => {
-        this.hideChildPopup();
-      });
-
-      const inputBox = shadowRoot.getElementById('input_box');
-      inputBox.value = this.id;
-    }
-
-    // Function to show the popup with overlay
-    showChildPopup() {
-      const overlay = this.shadowRoot.querySelector('.overlay');
-      overlay.style.display = 'flex';
-    }
-
-    // Function to hide the popup with overlay
-    hideChildPopup() {
-      const overlay = this.shadowRoot.querySelector('.overlay');
-      overlay.style.display = 'none';
-    }
-    
-
-    OnCustomWidgetBeforeUpdate(ochangedProperties) {
-      //   if ("p_ID" in ochangedProperties) {
-      //     console.log('value changed', this.p_ID);
-      //     const inputBox = this.shadowRoot.getElementById('input_box');
-      //     inputBox.value = this.p_ID;
-      //     console.log('changedProperties after update', ochangedProperties);
-      //     // trial
-      // }
-
-    }
-
-    onCustomWidgetAfterUpdate(ochangedProperties) {
-      if ("id" in ochangedProperties) {
-        console.log('value changed', this.id);
-        const inputBox = this.shadowRoot.getElementById('input_box');
-        inputBox.value = this.id;
-        console.log('changedProperties after update', ochangedProperties);
-        // trial
-      }
-
-    }
-
-
-
-
-    async fillData() {
-
-
-
-    }
-
-
-
-
-    // set_id(id){
-    //   this.id = id;
-    // }
-
-    // get_id(){
-    //   return this.id ;
-    // }
-
-
-    get_p_plm_obj() {
-
-      return this.p_plm_obj;
-    }
-
-
-    get_empty_plm_obj() {
-      p_local = {};
-      return p_local;
-    }
-
-
-
-
-    fireChanged() {
-      // console.log('OnClick Triggered');
-      // this._props= {...this._props,...changedProperties}
-      // const inputBox = shadowRoot.getElementById('input_box');
-
-      // // Set the value of the input field
-      // inputBox.value = this.dept;
-
-    }
-  }
-
-  customElements.define('custom-button', MasterData_Maintain);
+    customElements.define('custom-button', MasterData_Maintain);
 })();
 

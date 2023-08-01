@@ -257,7 +257,7 @@
                 const inputBox = this.shadowRoot.getElementById('input_box');
                 inputBox.value = this.id;
                 console.log('changedProperties after update', ochangedProperties);
-                this.p_plm_obj.plm_PlanningModelMember.id = this.id;
+                
                 // trial
             }
 

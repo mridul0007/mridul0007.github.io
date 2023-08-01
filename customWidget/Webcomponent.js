@@ -176,7 +176,6 @@
         
 
         constructor() {
-            // var _p_pmm;
             super();
             this.p_try = {}; 
             this.init();
@@ -239,13 +238,13 @@
         }
 
         OnCustomWidgetBeforeUpdate(ochangedProperties) {
-          if ("p_ID" in ochangedProperties) {
-            console.log('value changed', this.p_ID);
-            const inputBox = this.shadowRoot.getElementById('input_box');
-            inputBox.value = this.p_ID;
-            console.log('changedProperties after update', ochangedProperties);
-            // trial
-        }
+        //   if ("p_ID" in ochangedProperties) {
+        //     console.log('value changed', this.p_ID);
+        //     const inputBox = this.shadowRoot.getElementById('input_box');
+        //     inputBox.value = this.p_ID;
+        //     console.log('changedProperties after update', ochangedProperties);
+        //     // trial
+        // }
             
         }
 

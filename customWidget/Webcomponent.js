@@ -111,8 +111,8 @@
 
 
 (function () {
-    let tmpl = document.createElement('template');
-    tmpl.innerHTML = `
+  let tmpl = document.createElement('template');
+  tmpl.innerHTML = `
       <style>
         .child_popup {
           display: none;
@@ -172,167 +172,167 @@
         </div>
       </div>
     `;
-    class MasterData_Maintain extends HTMLElement {
-        
-
-        constructor() {
-            super();
-            this.p_plm_obj = {}; 
-            this.init();
-        }
-
-        init() {
-            let shadowRoot = this.attachShadow({ mode: 'open' });
-            shadowRoot.appendChild(tmpl.content.cloneNode(true));
-            this._export_settings = {};
+  class MasterData_Maintain extends HTMLElement {
 
 
-
-
-
-
-
-
-
-            // Add event listeners to the buttons
-            const buttonModify = shadowRoot.getElementById('button_modify');
-            buttonModify.addEventListener('click', () => {
-                
-                this.p_plm_obj.plm_operation= 'fill_data';
-                this.fillData();
-                this.p_plm_obj.status = 1;
-                this.dispatchEvent(new CustomEvent("onSave"));
-                this.showChildPopup()
-            });
-
-
-
-
-
-
-
-
-
-            const buttonDelete = shadowRoot.getElementById('button_delete');
-            buttonDelete.addEventListener('click', () => {
-                this.showChildPopup();
-            });
-
-            const buttonCreate = shadowRoot.getElementById('button_create');
-            buttonCreate.addEventListener('click', () => {
-                this.showChildPopup();
-            });
-
-            // Add event listeners to the "OK" and "CANCEL" buttons in the child popup
-            const buttonOk = shadowRoot.getElementById('button_ok');
-            
-            buttonOk.addEventListener('click', () => {
-                this.dispatchEvent(new CustomEvent("onSave"));
-                this.hideChildPopup();
-            })
-
-            const buttonCancel = shadowRoot.getElementById('button_cancel');
-            buttonCancel.addEventListener('click', () => {
-                this.p_plm_obj.status = 0;
-                this.hideChildPopup();
-            });
-
-
-
-            // Get the input element with the ID "input_box"
-            const inputBox = shadowRoot.getElementById('input_box');
-
-            // Set the value of the input field
-            inputBox.value = this.id;
-        }
-
-        // Function to show the second div
-        showChildPopup() {
-            const childPopup = this.shadowRoot.querySelector('.child_popup');
-            childPopup.style.display = 'flex';
-        }
-
-        // Function to hide the second div
-        hideChildPopup() {
-            const childPopup = this.shadowRoot.querySelector('.child_popup');
-            childPopup.style.display = 'none';
-        }
-
-        OnCustomWidgetBeforeUpdate(ochangedProperties) {
-        //   if ("p_ID" in ochangedProperties) {
-        //     console.log('value changed', this.p_ID);
-        //     const inputBox = this.shadowRoot.getElementById('input_box');
-        //     inputBox.value = this.p_ID;
-        //     console.log('changedProperties after update', ochangedProperties);
-        //     // trial
-        // }
-            
-        }
-
-        onCustomWidgetAfterUpdate(ochangedProperties) {
-            if ("id" in ochangedProperties) {
-                console.log('value changed', this.id);
-                const inputBox = this.shadowRoot.getElementById('input_box');
-                inputBox.value = this.id;
-                console.log('changedProperties after update', ochangedProperties);
-                
-                // trial
-            }
-
-        }
-
-               
-
-        
-        async fillData() {
-           
-          const text_box_id = this.shadowRoot.getElementById('text_box_id');
-          text_box_id.value = this.p_plm_obj.plm_PlanningModelMember.id;
-
-
-        }
-
-
-        
-
-        // set_id(id){
-        //   this.id = id;
-        // }
-
-        // get_id(){
-        //   return this.id ;
-        // }
-
-        set_p_plm_obj(p_plm_obj){
-          this.p_plm_obj = p_plm_obj;
-        }
-
-
-        get_p_plm_obj(){
-      
-          return this.p_plm_obj ;
-        }
-
-
-        get_empty_plm_obj() {
-          p_local = {};
-          return p_local ;
-        }
-
-
-
-
-        fireChanged() {
-            // console.log('OnClick Triggered');
-            // this._props= {...this._props,...changedProperties}
-            // const inputBox = shadowRoot.getElementById('input_box');
-
-            // // Set the value of the input field
-            // inputBox.value = this.dept;
-
-        }
+    constructor() {
+      super();
+      this.p_plm_obj = {};
+      this.init();
     }
 
-    customElements.define('custom-button', MasterData_Maintain);
+    init() {
+      let shadowRoot = this.attachShadow({ mode: 'open' });
+      shadowRoot.appendChild(tmpl.content.cloneNode(true));
+      this._export_settings = {};
+
+
+
+
+
+
+
+
+
+      // Add event listeners to the buttons
+      const buttonModify = shadowRoot.getElementById('button_modify');
+      buttonModify.addEventListener('click', async () => {
+        this.p_plm_obj.plm_operation = 'fill_data';
+         // Wait for the asynchronous function to complete
+        this.p_plm_obj.status = 1;
+        this.dispatchEvent(new CustomEvent("onSave"));
+        await this.fillData();
+        this.showChildPopup();
+      });
+
+
+
+
+
+
+
+
+
+      const buttonDelete = shadowRoot.getElementById('button_delete');
+      buttonDelete.addEventListener('click', () => {
+        this.showChildPopup();
+      });
+
+      const buttonCreate = shadowRoot.getElementById('button_create');
+      buttonCreate.addEventListener('click', () => {
+        this.showChildPopup();
+      });
+
+      // Add event listeners to the "OK" and "CANCEL" buttons in the child popup
+      const buttonOk = shadowRoot.getElementById('button_ok');
+
+      buttonOk.addEventListener('click', () => {
+        this.dispatchEvent(new CustomEvent("onSave"));
+        this.hideChildPopup();
+      })
+
+      const buttonCancel = shadowRoot.getElementById('button_cancel');
+      buttonCancel.addEventListener('click', () => {
+        this.p_plm_obj.status = 0;
+        this.hideChildPopup();
+      });
+
+
+
+      // Get the input element with the ID "input_box"
+      const inputBox = shadowRoot.getElementById('input_box');
+
+      // Set the value of the input field
+      inputBox.value = this.id;
+    }
+
+    // Function to show the second div
+    showChildPopup() {
+      const childPopup = this.shadowRoot.querySelector('.child_popup');
+      childPopup.style.display = 'flex';
+    }
+
+    // Function to hide the second div
+    hideChildPopup() {
+      const childPopup = this.shadowRoot.querySelector('.child_popup');
+      childPopup.style.display = 'none';
+    }
+
+    OnCustomWidgetBeforeUpdate(ochangedProperties) {
+      //   if ("p_ID" in ochangedProperties) {
+      //     console.log('value changed', this.p_ID);
+      //     const inputBox = this.shadowRoot.getElementById('input_box');
+      //     inputBox.value = this.p_ID;
+      //     console.log('changedProperties after update', ochangedProperties);
+      //     // trial
+      // }
+
+    }
+
+    onCustomWidgetAfterUpdate(ochangedProperties) {
+      if ("id" in ochangedProperties) {
+        console.log('value changed', this.id);
+        const inputBox = this.shadowRoot.getElementById('input_box');
+        inputBox.value = this.id;
+        console.log('changedProperties after update', ochangedProperties);
+
+        // trial
+      }
+
+    }
+
+
+
+
+    async fillData() {
+
+      const text_box_id = this.shadowRoot.getElementById('text_box_id');
+      text_box_id.value = this.p_plm_obj.plm_PlanningModelMember.id;
+
+
+    }
+
+
+
+
+    // set_id(id){
+    //   this.id = id;
+    // }
+
+    // get_id(){
+    //   return this.id ;
+    // }
+
+    set_p_plm_obj(p_plm_obj) {
+      this.p_plm_obj = p_plm_obj;
+    }
+
+
+    get_p_plm_obj() {
+
+      return this.p_plm_obj;
+    }
+
+
+    get_empty_plm_obj() {
+      p_local = {};
+      return p_local;
+    }
+
+
+
+
+    fireChanged() {
+      // console.log('OnClick Triggered');
+      // this._props= {...this._props,...changedProperties}
+      // const inputBox = shadowRoot.getElementById('input_box');
+
+      // // Set the value of the input field
+      // inputBox.value = this.dept;
+
+    }
+  }
+
+  customElements.define('custom-button', MasterData_Maintain);
 })();
 

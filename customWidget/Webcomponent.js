@@ -249,10 +249,10 @@
         }
 
         onCustomWidgetAfterUpdate(ochangedProperties) {
-            if ("p_ID" in ochangedProperties) {
-                console.log('value changed', this.p_ID);
+            if ("id" in ochangedProperties) {
+                console.log('value changed', this.id);
                 const inputBox = this.shadowRoot.getElementById('input_box');
-                inputBox.value = this.p_ID;
+                inputBox.value = this.id;
                 console.log('changedProperties after update', ochangedProperties);
                 // trial
             }

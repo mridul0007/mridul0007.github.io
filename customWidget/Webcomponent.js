@@ -210,7 +210,10 @@ buttonModify.addEventListener('click', () => {
 
     // Create a function to handle the "onSave" event completion
     const onSaveCompleted = async () => {
-        await this.removeEventListener('onSave', onSaveCompleted);
+        this.removeEventListener('onSave', onSaveCompleted);
+        setTimeout(function(){
+          console.log("Hello World");
+      }, 2000);
         await this.fillData();
         this.showChildPopup();
     };

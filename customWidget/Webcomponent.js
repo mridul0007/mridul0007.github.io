@@ -190,7 +190,6 @@
             buttonModify.addEventListener('click', () => {
                 
                 this.p_plm_obj.plm_operation= 'fill_data';
-                this.set_p_plm_obj(this.p_plm_obj);
                 this.p_plm_obj.status = 1;
                 this.dispatchEvent(new CustomEvent("onSave"));
                 this.showChildPopup()
@@ -285,16 +284,16 @@
         // }
 
 
-        // get_p_plm_obj(){
+        get_p_plm_obj(){
       
-        //   return this.p_plm_obj ;
-        // }
+          return this.p_plm_obj ;
+        }
 
 
-        // get_empty_plm_obj() {
-        //   p_local = {};
-        //   return p_local ;
-        // }
+        get_empty_plm_obj() {
+          p_local = {};
+          return p_local ;
+        }
 
 
 

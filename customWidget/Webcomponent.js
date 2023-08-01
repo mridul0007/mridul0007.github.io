@@ -222,7 +222,7 @@
             const inputBox = shadowRoot.getElementById('input_box');
 
             // Set the value of the input field
-            inputBox.value = this.dept;
+            inputBox.value = this.p_ID;
         }
 
         // Function to show the second div

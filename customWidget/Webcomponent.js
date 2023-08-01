@@ -196,31 +196,29 @@
 
       // Add event listeners to the buttons
       const buttonModify = shadowRoot.getElementById('button_modify');
-      buttonModify.addEventListener('click', async () => {
+      buttonModify.addEventListener('click', () => {
           console.log('Button Modify clicked');
           this.p_plm_obj.plm_operation = 'fill_data';
           this.p_plm_obj.status = 1;
       
-          // Show the loading text while waiting for the onSave event to complete
-          const childPopup = this.shadowRoot.querySelector('.child_popup');
-          const loadingText = document.createElement('p');
-          loadingText.textContent = 'Loading...';
-          childPopup.appendChild(loadingText);
+          // Create a Promise to wait for the onSave event to finish
+          const onSavePromise = new Promise(resolve => {
+              const handleOnSave = () => {
+                  resolve(); // Resolve the Promise when the event is triggered
+                  this.removeEventListener("onSave", handleOnSave);
+              };
+              this.addEventListener("onSave", handleOnSave, { once: true });
+              this.dispatchEvent(new CustomEvent("onSave"));
+          });
       
-          console.log('Dispatching onSave event');
-          this.dispatchEvent(new CustomEvent("onSave"));
+          // Wait for the onSave event to complete before proceeding to fillData()
+          onSavePromise.then(async () => {
+              console.log('Calling fillData()');
+              await this.fillData();
       
-          // Wait for a minimal delay (e.g., 10 milliseconds) to let the event handler complete
-          await new Promise(resolve => setTimeout(resolve, 10));
-      
-          // Remove the loading text
-          childPopup.removeChild(loadingText);
-      
-          console.log('Calling fillData()');
-          await this.fillData();
-      
-          console.log('Showing the child popup');
-          this.showChildPopup();
+              console.log('Showing the child popup');
+              this.showChildPopup();
+          });
       });
 
 

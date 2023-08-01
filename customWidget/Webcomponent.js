@@ -194,19 +194,11 @@
 
 
 
-      // Add event listeners to the buttons
-      // Helper function to dispatch a custom event and return a Promise that resolves when the event completes
-      function dispatchCustomEventAsync(element, eventName, eventDetails) {
-        return new Promise((resolve) => {
-          const event = new CustomEvent(eventName, { detail: eventDetails });
-          element.dispatchEvent(event);
-          resolve();
-        });
-      }
 
       const buttonModify = shadowRoot.getElementById('button_modify');
       buttonModify.addEventListener('click', () => {
           this.p_plm_obj.plm_operation = 'fill_data';
+          this.dispatchEvent(new CustomEvent('onSave'));
       
           // Create a Promise to wait for the onSave event to complete
           const onSavePromise = new Promise(resolve => {

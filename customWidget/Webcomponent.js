@@ -177,7 +177,7 @@
 
         constructor() {
             super();
-            this.p_plm_obj = {}; 
+            // this.p_plm_obj = {}; 
             this.init();
         }
 

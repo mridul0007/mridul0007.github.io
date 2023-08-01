@@ -197,28 +197,21 @@
       // Add event listeners to the buttons
       const buttonModify = shadowRoot.getElementById('button_modify');
       buttonModify.addEventListener('click', () => {
-          console.log('Button Modify clicked');
-          this.p_plm_obj.plm_operation = 'fill_data';
-          this.p_plm_obj.status = 1;
-      
-          // Create a Promise to wait for the onSave event to finish
-          const onSavePromise = new Promise(resolve => {
-              const handleOnSave = () => {
-                  resolve(); // Resolve the Promise when the event is triggered
-                  this.removeEventListener("onSave", handleOnSave);
-              };
-              this.addEventListener("onSave", handleOnSave, { once: true });
-              this.dispatchEvent(new CustomEvent("onSave"));
-          });
-      
-          // Wait for the onSave event to complete before proceeding to fillData()
-          onSavePromise.then(async () => {
-              console.log('Calling fillData()');
-              await this.fillData();
-      
-              console.log('Showing the child popup');
-              this.showChildPopup();
-          });
+        console.log('Button Modify clicked');
+        this.p_plm_obj.plm_operation = 'fill_data';
+        this.p_plm_obj.status = 1;
+
+        // Create a function to handle the "onSave" event completion
+        const onSaveCompleted = async () => {
+          console.log('Calling fillData()');
+          await this.fillData();
+
+          console.log('Showing the child popup');
+          this.showChildPopup();
+        };
+
+        // Dispatch the onSave event and pass the callback function
+        this.dispatchEvent(new CustomEvent("onSave", { detail: onSaveCompleted }));
       });
 
 
@@ -263,10 +256,15 @@
     }
 
     // Function to show the second div
-    showChildPopup() {
+    showChildPopup(callback) {
       const childPopup = this.shadowRoot.querySelector('.child_popup');
       childPopup.style.display = 'flex';
-    }
+  
+      // Execute the callback function if provided
+      if (typeof callback === 'function') {
+          callback();
+      }
+  }
 
     // Function to hide the second div
     hideChildPopup() {

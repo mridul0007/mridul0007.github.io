@@ -284,13 +284,13 @@
           return this.p_try.plm_operation ;
         }
 
-        set_id(id){
-          this.id = id;
-        }
+        // set_id(id){
+        //   this.id = id;
+        // }
 
-        get_id(){
-          return this.id ;
-        }
+        // get_id(){
+        //   return this.id ;
+        // }
 
 
         get_p_try(){

@@ -124,14 +124,15 @@
 					"type": "string",
 					"description": "set member ID"
 				}
-			]
+			],
+			"body": "this.id = id;"
 			
 		},
 
 		"get_id": {
 			"returnType": "string",
-			"description": "get member ID"
-			
+			"description": "get member ID",
+			"body" : "return this.id"
 		},
 		"get_p_try": {
 			"returnType": "PLM_obj",

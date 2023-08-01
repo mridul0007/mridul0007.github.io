@@ -205,7 +205,7 @@
         this.dispatchEvent(new CustomEvent("onSave"));
 
         // Wait for a minimal delay (e.g., 10 milliseconds) to ensure event handlers complete
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 100));
 
         console.log('Calling fillData()');
         await this.fillData();

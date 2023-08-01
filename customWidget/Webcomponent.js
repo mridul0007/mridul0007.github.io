@@ -196,14 +196,22 @@
 
       // Add event listeners to the buttons
       const buttonModify = shadowRoot.getElementById('button_modify');
-      buttonModify.addEventListener('click', async () => {
-        this.p_plm_obj.plm_operation = 'fill_data';
-         // Wait for the asynchronous function to complete
-        this.p_plm_obj.status = 1;
-        await this.dispatchEvent(new CustomEvent("onSave"));
-        await this.fillData();
-        this.showChildPopup();
-      });
+buttonModify.addEventListener('click', async () => {
+    this.p_plm_obj.plm_operation = 'fill_data';
+    this.p_plm_obj.status = 1;
+
+    // Create a Promise to wait for the onSave event to finish
+    const onSavePromise = new Promise(resolve => {
+        this.addEventListener("onSave", resolve, { once: true });
+        this.dispatchEvent(new CustomEvent("onSave"));
+    });
+
+    // Wait for the onSave event to finish before proceeding to fillData()
+    await onSavePromise;
+    await this.fillData();
+
+    this.showChildPopup();
+});
 
 
 

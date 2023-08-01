@@ -205,25 +205,28 @@
       }
 
       const buttonModify = shadowRoot.getElementById('button_modify');
-buttonModify.addEventListener('click', () => {
-    this.p_plm_obj.plm_operation = 'fill_data';
-
-    // Create a function to handle the "onSave" event completion
-    const onSaveCompleted = async () => {
-        this.removeEventListener('onSave', onSaveCompleted);
-        setTimeout(function(){
-          console.log("Hello World");
-      }, 2000);
-        await this.fillData();
-        this.showChildPopup();
-    };
-
-    // Add an event listener for the "onSave" event
-    this.addEventListener('onSave', onSaveCompleted, { once: true });
-
-    // Dispatch the "onSave" event (it will be handled synchronously)
-    this.dispatchEvent(new CustomEvent('onSave'));
-});
+      buttonModify.addEventListener('click', () => {
+          this.p_plm_obj.plm_operation = 'fill_data';
+      
+          // Create a Promise to wait for the onSave event to complete
+          const onSavePromise = new Promise(resolve => {
+              const onSaveHandler = () => {
+                  this.removeEventListener('onSave', onSaveHandler);
+                  resolve();
+              };
+              this.addEventListener('onSave', onSaveHandler, { once: true });
+          });
+      
+          // Dispatch the "onSave" event (it will be handled synchronously)
+          this.dispatchEvent(new CustomEvent('onSave'));
+      
+          // Wait for the onSave event to finish before proceeding to fillData()
+          onSavePromise.then(async () => {
+              await this.fillData();
+              this.showChildPopup();
+          });
+      });
+      
 
       
       

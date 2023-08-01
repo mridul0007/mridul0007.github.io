@@ -238,23 +238,23 @@
             childPopup.style.display = 'none';
         }
 
-        OnCustomWidgetBeforeUpdate(changedProperties) {
-          if ("p_ID" in changedProperties) {
+        OnCustomWidgetBeforeUpdate(ochangedProperties) {
+          if ("p_ID" in ochangedProperties) {
             console.log('value changed', this.p_ID);
             const inputBox = this.shadowRoot.getElementById('input_box');
             inputBox.value = this.p_ID;
-            console.log('changedProperties after update', changedProperties);
+            console.log('changedProperties after update', ochangedProperties);
             // trial
         }
             
         }
 
-        onCustomWidgetAfterUpdate(changedProperties) {
-            if ("p_ID" in changedProperties) {
+        onCustomWidgetAfterUpdate(ochangedProperties) {
+            if ("p_ID" in ochangedProperties) {
                 console.log('value changed', this.p_ID);
                 const inputBox = this.shadowRoot.getElementById('input_box');
                 inputBox.value = this.p_ID;
-                console.log('changedProperties after update', changedProperties);
+                console.log('changedProperties after update', ochangedProperties);
                 // trial
             }
 

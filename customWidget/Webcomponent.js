@@ -280,7 +280,7 @@
         // }
 
 
-        get_p_try(){
+        get_p_plm_obj(){
       
           return this.p_plm_obj ;
         }

@@ -205,24 +205,15 @@
       }
 
       const buttonModify = shadowRoot.getElementById('button_modify');
-      buttonModify.addEventListener('click', () => {
-        console.log('Button Modify clicked');
-        this.p_plm_obj.plm_operation = 'fill_data';
-        this.p_plm_obj.status = 1;
-
-        // Create a function to handle the "onSave" event completion
-        const onSaveCompleted = async () => {
-          console.log('Calling fillData()');
-          await this.fillData();
-
-          console.log('Showing the child popup');
-          this.showChildPopup();
-        };
-
-        // Dispatch the onSave event and pass the callback function as a detail
-        const onSaveEvent = new CustomEvent("onSave", { detail: onSaveCompleted });
-        this.dispatchEvent(onSaveEvent);
-      });
+            buttonModify.addEventListener('click', () => {
+                
+                this.p_plm_obj.plm_operation= 'fill_data';
+                this.fillData();
+                this.p_plm_obj.status = 1;
+                this.dispatchEvent(new CustomEvent("onSave"));
+                this.showChildPopup()
+            });
+      
 
 
 
@@ -301,12 +292,6 @@
           const inputBox = this.shadowRoot.getElementById('input_box');
           inputBox.value = this.id;
           console.log('changedProperties after update', ochangedProperties);
-
-          // Call the callback function received from the onSave event
-          const onSaveCompleted = ochangedProperties.detail;
-          if (typeof onSaveCompleted === 'function') {
-              onSaveCompleted();
-          }
       }
     }
 

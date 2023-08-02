@@ -340,7 +340,6 @@ class MasterData_Maintain extends HTMLElement {
       const checkChange = () => {
         if (this.p_plm_obj.status !== 0) {
           resolve();
-          this.p_plm_obj.status = 0;
         } else {
           // Keep checking the variable's value until it changes
           requestAnimationFrame(checkChange);
@@ -363,6 +362,7 @@ class MasterData_Maintain extends HTMLElement {
   }
   
   async fillData() {
+    this.p_plm_obj.status = 0;
     const text_box_id = this.shadowRoot.getElementById('text_box_id');
     text_box_id.value = this.p_plm_obj.plm_PlanningModelMember.id;
   }

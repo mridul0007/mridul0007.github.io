@@ -190,21 +190,21 @@
 
 
 
+      // Get the "Modify" button element
+    const buttonModify = shadowRoot.getElementById('button_modify');
+    buttonModify.addEventListener('click', () => {
+      this.p_plm_obj.plm_operation = 'fill_data';
+
+      // Dispatch the "onSave" event
+      this.dispatchEvent(new CustomEvent('onSave'));
+
+      // Show the child popup and pass the fillData function as a callback
+      this.showChildPopup(this.fillData.bind(this));
+    });
 
 
 
 
-
-      const buttonModify = shadowRoot.getElementById('button_modify');
-            buttonModify.addEventListener('click', () => {
-                
-                this.p_plm_obj.plm_operation= 'fill_data';
-                this.dispatchEvent(new CustomEvent('onSave')).then(this.fillData());
-                // this.fillData();
-                this.p_plm_obj.status = 1;
-                
-                this.showChildPopup()
-            });
       
 
       
@@ -341,6 +341,10 @@
       // // Set the value of the input field
       // inputBox.value = this.dept;
 
+
+
+
+      
     }
   }
 

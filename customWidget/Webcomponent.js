@@ -190,16 +190,26 @@
 
 
 
-      // Get the "Modify" button element
-    const buttonModify = shadowRoot.getElementById('button_modify');
-    buttonModify.addEventListener('click', () => {
+      const buttonModify = shadowRoot.getElementById('button_modify');
+    buttonModify.addEventListener('click', async () => {
       this.p_plm_obj.plm_operation = 'fill_data';
 
-      // Dispatch the "onSave" event
+      // Create a Promise to wait for the "onSave" event to complete
+      const onSavePromise = new Promise(resolve => {
+        const onSaveHandler = () => {
+          this.removeEventListener('onSave', onSaveHandler);
+          resolve();
+        };
+        this.addEventListener('onSave', onSaveHandler, { once: true });
+      });
+
+      // Dispatch the "onSave" event (it will be handled synchronously)
       this.dispatchEvent(new CustomEvent('onSave'));
 
-      // Show the child popup and pass the fillData function as a callback
-      this.showChildPopup(this.fillData.bind(this));
+      // Wait for the onSave event to finish before proceeding to fillData()
+      await onSavePromise;
+      await this.fillData();
+      this.showChildPopup();
     });
 
 

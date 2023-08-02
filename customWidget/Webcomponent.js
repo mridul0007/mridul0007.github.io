@@ -354,7 +354,9 @@ class MasterData_Maintain extends HTMLElement {
       this.onSaveTriggered = true;
       await this.waitForVariableChange();
       await this.fillData();
-      this.showChildPopup();
+      this.showChildPopup(() => {
+        this.onSaveTriggered = false; // Reset the flag after showing the popup
+      });
     }
   }
 

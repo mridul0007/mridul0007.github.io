@@ -339,16 +339,16 @@ class MasterData_Maintain extends HTMLElement {
     return new Promise(resolve => {
       const onChange = () => {
         if (this.p_plm_obj.status !== 0) {
-          removeEventListener('variableChange', onChange);
           resolve();
           this.p_plm_obj.status = 0;
         }
       };
-
-      addEventListener('variableChange', onChange);
+  
+      // Use { once: true } to automatically remove the event listener after one trigger
+      addEventListener('variableChange', onChange, { once: true });
     });
   }
-
+  
   async fillDataAfterVariableChange() {
     if (!this.onSaveTriggered) {
       this.onSaveTriggered = true;
@@ -359,7 +359,7 @@ class MasterData_Maintain extends HTMLElement {
       });
     }
   }
-
+  
   async fillData() {
     const text_box_id = this.shadowRoot.getElementById('text_box_id');
     text_box_id.value = this.p_plm_obj.plm_PlanningModelMember.id;

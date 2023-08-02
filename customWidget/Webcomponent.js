@@ -192,35 +192,31 @@
 
 
       const buttonModify = shadowRoot.getElementById('button_modify');
-    buttonModify.addEventListener('click', async () => {
-      this.p_plm_obj.plm_operation = 'fill_data';
+      buttonModify.addEventListener('click', async () => {
+        this.p_plm_obj.plm_operation = 'fill_data';
+        this.p_plm_obj.status = 0;
 
-      // Create a Promise to wait for the "onSave" event to complete
-      const onSavePromise = new Promise(resolve => {
-        const onSaveHandler = () => {
-          this.removeEventListener('onSave', onSaveHandler);
-          resolve();
-        };
-        this.addEventListener('onSave', onSaveHandler, { once: true });
+        await this.dispatchEvent(new CustomEvent("onSave"));
+        fillDataAfterVariableChange() {
+          // Wait for the variable's value to change
+          await waitForVariableChange();
+        
+          // Call the fillData function once the variable's value changes
+          await fillData();
+          this.showChildPopup();
+        }
+
+        
       });
 
-      // Dispatch the "onSave" event (it will be handled synchronously)
-      this.dispatchEvent(new CustomEvent('onSave'));
-
-      // Wait for the onSave event to finish before proceeding to fillData()
-      await onSavePromise;
-      await this.fillData();
-      this.showChildPopup();
-    });
 
 
 
 
 
-      
 
-      
-      
+
+
 
 
 
@@ -291,21 +287,37 @@
     }
 
     // Inside the parent component
-// ... (Rest of the code remains the same)
+    // ... (Rest of the code remains the same)
 
     onCustomWidgetAfterUpdate(ochangedProperties) {
       if ("id" in ochangedProperties) {
-          console.log('value changed', this.id);
-          const inputBox = this.shadowRoot.getElementById('input_box');
-          inputBox.value = this.id;
-          console.log('changedProperties after update', ochangedProperties);
+        console.log('value changed', this.id);
+        const inputBox = this.shadowRoot.getElementById('input_box');
+        inputBox.value = this.id;
+        console.log('changedProperties after update', ochangedProperties);
       }
     }
 
-// ... (Rest of the code remains the same)
+    // ... (Rest of the code remains the same)
 
 
+    waitForVariableChange() {
+      return new Promise(resolve => {
+        const onChange = () => {
+          if (this.p_plm_obj.status !== 0) {
+            // Remove the event listener once the variable's value changes
+            removeEventListener('variableChange', onChange);
+            resolve();
+            this.p_plm_obj.status = 0;
+          }
+        };
+    
+        // Attach the event listener to the variable
+        addEventListener('variableChange', onChange);
+      });
+    }
 
+    
 
     async fillData() {
 
@@ -356,7 +368,7 @@
 
 
 
-      
+
     }
   }
 

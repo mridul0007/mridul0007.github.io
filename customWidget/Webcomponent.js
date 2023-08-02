@@ -178,6 +178,7 @@
     constructor() {
       super();
       this.p_plm_obj = {};
+      this.onSaveTriggered = false;
       this.init();
     }
 
@@ -198,6 +199,7 @@
       const onSavePromise = new Promise(resolve => {
         const onSaveHandler = () => {
           this.removeEventListener('onSave', onSaveHandler);
+          this.onSaveTriggered = true; // Set the flag to true after onSave is triggered
           resolve();
         };
         this.addEventListener('onSave', onSaveHandler, { once: true });
@@ -206,8 +208,14 @@
       // Dispatch the "onSave" event (it will be handled synchronously)
       this.dispatchEvent(new CustomEvent('onSave'));
 
-      // Wait for the onSave event to finish before proceeding to fillData()
-      await onSavePromise;
+      // Wait for the onSave event to finish (if not already triggered) before proceeding to fillData()
+      if (!this.onSaveTriggered) {
+        await onSavePromise;
+      }
+      
+      // Reset the flag for the next click
+      this.onSaveTriggered = false;
+
       await this.fillData();
       this.showChildPopup();
     });

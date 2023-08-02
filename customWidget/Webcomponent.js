@@ -197,17 +197,12 @@
         this.p_plm_obj.status = 0;
 
         await this.dispatchEvent(new CustomEvent("onSave"));
-        fillDataAfterVariableChange() {
-          // Wait for the variable's value to change
-          await waitForVariableChange();
-        
-          // Call the fillData function once the variable's value changes
-          await fillData();
-          this.showChildPopup();
-        }
+        await this.dispatchEvent(new CustomEvent("onSave"));
+        await this.fillDataAfterVariableChange();
 
         
       });
+    }
 
 
 
@@ -317,6 +312,14 @@
       });
     }
 
+    async fillDataAfterVariableChange() {
+      // Wait for the variable's value to change
+      await waitForVariableChange();
+    
+      // Call the fillData function once the variable's value changes
+      await this.fillData();
+      this.showChildPopup();
+    }
     
 
     async fillData() {

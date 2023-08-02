@@ -381,4 +381,6 @@ class MasterData_Maintain extends HTMLElement {
 
 customElements.define('custom-button', MasterData_Maintain);
 
+})();
+
 

@@ -365,6 +365,8 @@ class MasterData_Maintain extends HTMLElement {
     this.p_plm_obj.status = 0;
     const text_box_id = this.shadowRoot.getElementById('text_box_id');
     text_box_id.value = this.p_plm_obj.plm_PlanningModelMember.id;
+    const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
+    text_box_desc.value = this.p_plm_obj.plm_PlanningModelMember.description;
   }
 
   set_p_plm_obj(p_plm_obj) {

@@ -296,6 +296,7 @@
 
 
     async waitForVariableChange() {
+      this.p_plm_obj = this.get_p_plm_obj;
       return new Promise(resolve => {
         const onChange = () => {
           if (this.p_plm_obj.status !== 0) {

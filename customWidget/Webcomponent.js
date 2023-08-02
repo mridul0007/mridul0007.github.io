@@ -295,7 +295,7 @@
     // ... (Rest of the code remains the same)
 
 
-    waitForVariableChange() {
+    async waitForVariableChange() {
       return new Promise(resolve => {
         const onChange = () => {
           if (this.p_plm_obj.status !== 0) {
@@ -313,7 +313,7 @@
 
     async fillDataAfterVariableChange() {
       // Wait for the variable's value to change
-      await waitForVariableChange();
+       await waitForVariableChange();
     
       // Call the fillData function once the variable's value changes
       await this.fillData();

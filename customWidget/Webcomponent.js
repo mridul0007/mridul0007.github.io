@@ -337,15 +337,17 @@ class MasterData_Maintain extends HTMLElement {
   async waitForVariableChange() {
     this.p_plm_obj = this.get_p_plm_obj();
     return new Promise(resolve => {
-      const onChange = () => {
+      const checkChange = () => {
         if (this.p_plm_obj.status !== 0) {
           resolve();
           this.p_plm_obj.status = 0;
+        } else {
+          // Keep checking the variable's value until it changes
+          requestAnimationFrame(checkChange);
         }
       };
   
-      // Use { once: true } to automatically remove the event listener after one trigger
-      addEventListener('variableChange', onChange, { once: true });
+      checkChange(); // Start the initial check
     });
   }
   

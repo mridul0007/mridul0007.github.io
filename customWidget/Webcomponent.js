@@ -192,19 +192,25 @@
 
 
       const buttonModify = shadowRoot.getElementById('button_modify');
-    buttonModify.addEventListener('click', () => {
+    buttonModify.addEventListener('click', async () => {
       this.p_plm_obj.plm_operation = 'fill_data';
 
-      // Attach an event listener to the "onSave" event, which will be executed only once
-      const onSaveHandler = () => {
-        this.fillData(); // Call the fillData function only when the "onSave" event is triggered
-        this.showChildPopup();
-        this.removeEventListener('onSave', onSaveHandler); // Remove the event listener after execution
-      };
-      this.addEventListener('onSave', onSaveHandler);
+      // Create a Promise to wait for the "onSave" event to complete
+      const onSavePromise = new Promise(resolve => {
+        const onSaveHandler = () => {
+          this.removeEventListener('onSave', onSaveHandler);
+          resolve();
+        };
+        this.addEventListener('onSave', onSaveHandler, { once: true });
+      });
 
       // Dispatch the "onSave" event (it will be handled synchronously)
       this.dispatchEvent(new CustomEvent('onSave'));
+
+      // Wait for the onSave event to finish before proceeding to fillData()
+      await onSavePromise;
+      await this.fillData();
+      this.showChildPopup();
     });
 
 

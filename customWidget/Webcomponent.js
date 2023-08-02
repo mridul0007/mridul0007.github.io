@@ -197,12 +197,11 @@
         this.p_plm_obj.status = 0;
 
         await this.dispatchEvent(new CustomEvent("onSave"));
-        await this.dispatchEvent(new CustomEvent("onSave"));
         await this.fillDataAfterVariableChange();
 
         
       });
-    }
+    
 
 
 

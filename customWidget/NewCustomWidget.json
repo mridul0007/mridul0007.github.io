@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "mycustomwidget",
-	"version": "1.0.28",
+	"version": "1.0.30",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -65,8 +65,13 @@
 					"description" : "status"
 				},
 				{
+					"name" : "internal_status",
+					"type" : "integer",
+					"description" : "internal status"
+				},
+				{
 					"name" : "dimesnion",
-					"type" : "sting",
+					"type" : "string",
 					"description" : "dimension ID"
 				},
 				{
@@ -76,18 +81,12 @@
 				},
 				{
 					"name": "member_ids",
-					"type": "array",
-					"items": {
-					  "type": "string"
-					},
+					"type": "string[]",
 					"description": "array of member IDs"
 				},
 				{
 					"name": "plm_PlanningModelMembers",
-					"type": "array",
-					"items": {
-					  "type": "PlanningModelMember"
-					},
+					"type": "PlanningModelMember[]",
 					"description": "array of PLMs"
 				}
 		  
@@ -102,20 +101,22 @@
 		},
 		
 		
-		"set_p_plm_obj": {
+		"set_try_plm_obj": {
 			"description": "set set_plm_object",
 			"parameters": [
 				{
-					"name": "plm_object",
+					"name": "try_plm_obj",
 					"type": "PLM_obj",
 					"description": "set PLM_obj"
 				}
-			]
+			],
+			"body": "this.try_plm_obj = try_plm_obj;"
 			
 		},
-		"get_p_plm_obj": {
+		"get_try_plm_obj": {
 			"returnType": "PLM_obj",
-			"description": "get PLM_obj"
+			"description": "get PLM_obj",
+			"body": "return this.try_plm_obj;"
 			
 			
 		},
@@ -136,7 +137,24 @@
 			"returnType": "string",
 			"description": "get member ID",
 			"body" : "return this.id;"
-		}
+		},
+		"set_p_plm_obj": {
+			"description": "set set_plm_object",
+			"parameters": [
+				{
+					"name": "plm_object",
+					"type": "PLM_obj",
+					"description": "set PLM_obj"
+				}
+			]
+			
+		},
+		"get_p_plm_obj": {
+			"returnType": "PLM_obj",
+			"description": "get PLM_obj"
+			
+			
+		},
 
 
 

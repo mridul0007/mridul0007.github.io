@@ -64,6 +64,7 @@ class MasterData_Maintain extends HTMLElement {
   constructor() {
     super();
     this.p_plm_obj = {};
+    this.try_plm_obj = {};
     this.onSaveTriggered = false;
     this.init();
   }

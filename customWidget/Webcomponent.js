@@ -75,6 +75,7 @@ class MasterData_Maintain extends HTMLElement {
 
     const buttonModify = shadowRoot.getElementById('button_modify');
     buttonModify.addEventListener('click', async () => {
+      this.try_plm_obj;
       this.p_plm_obj.plm_operation = 'fill_data';
       this.p_plm_obj.status = 0;
 

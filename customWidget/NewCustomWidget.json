@@ -24,6 +24,9 @@
 		},
 		"id":{
 			"type" : "string"
+		},
+		"try_plm_obj":{
+			"type" : "PLM_obj"
 		}
 	},
 	"dataBindings": {
@@ -60,7 +63,35 @@
 					"name" : "status",
 					"type" : "integer",
 					"description" : "status"
+				},
+				{
+					"name" : "dimesnion",
+					"type" : "sting",
+					"description" : "dimension ID"
+				},
+				{
+					"name" : "member_id",
+					"type" : "string",
+					"description" : "status"
+				},
+				{
+					"name": "member_ids",
+					"type": "array",
+					"items": {
+					  "type": "string"
+					},
+					"description": "array of member IDs"
+				},
+				{
+					"name": "plm_PlanningModelMembers",
+					"type": "array",
+					"items": {
+					  "type": "PlanningModelMember"
+					},
+					"description": "array of PLMs"
 				}
+		  
+		  
 			]
 
 		}
@@ -72,7 +103,7 @@
 		
 		
 		"set_p_plm_obj": {
-			"description": "set set_plm_operation",
+			"description": "set set_plm_object",
 			"parameters": [
 				{
 					"name": "plm_object",
@@ -89,7 +120,7 @@
 			
 		},
 		"set_id": {
-			"description": "set set_plm_operation",
+			"description": "set id",
 			"parameters": [
 				{
 					"name": "id",

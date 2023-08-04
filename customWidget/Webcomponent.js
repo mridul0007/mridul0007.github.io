@@ -159,7 +159,7 @@
               alert("Connection error: refresh page");
               return;
             }
-            checkChange();
+            requestAnimationFrame(checkChange);
             x = x + 1;
           }
         };

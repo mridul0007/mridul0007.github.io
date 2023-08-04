@@ -132,16 +132,21 @@ class MasterData_Maintain extends HTMLElement {
 
   async waitForVariableChange() {
     // this.p_plm_obj = this.get_p_plm_obj();
+    var x = 0;
     return new Promise(resolve => {
       const checkChange = () => {
         if (this.p_plm_obj.status !== 0) {
+          console.log('resolved')
           resolve();
         } else {
           // Keep checking the variable's value until it changes
+          console.log(x)
           requestAnimationFrame(checkChange);
+          
+          x = x + 1;
         }
       };
-  
+      console.log('entered waitforvariable change')
       checkChange(); // Start the initial check
     });
   }

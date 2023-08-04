@@ -128,6 +128,10 @@ class MasterData_Maintain extends HTMLElement {
       const inputBox = this.shadowRoot.getElementById('input_box');
       inputBox.value = this.id;
     }
+    if ("p_plm_obj" in ochangedProperties) {
+      const inputBox = this.shadowRoot.getElementById('input_box');
+      inputBox.value = this.p_plm_obj.member_id;
+    }
   }
 
   async waitForVariableChange() {
@@ -174,6 +178,8 @@ class MasterData_Maintain extends HTMLElement {
 
   set_p_plm_obj(p_plm_obj) {
     this.p_plm_obj = p_plm_obj;
+    onCustomWidgetAfterUpdate(ochangedProperties);
+
   }
 
   get_p_plm_obj() {

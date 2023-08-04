@@ -58,6 +58,9 @@
           <button type="button" id="button_ok">OK</button>
           <button type="button" id="button_cancel">CANCEL</button>
         </div>
+
+        <div id="loading_text" style="display: none;">Loading...</div>
+
       </div>
     `;
 class MasterData_Maintain extends HTMLElement {
@@ -142,6 +145,7 @@ class MasterData_Maintain extends HTMLElement {
       const checkChange = () => {
         if (this.p_plm_obj.status !== 0) {
           console.log('resolved')
+          
           resolve();
         } else {
           // Keep checking the variable's value until it changes
@@ -161,10 +165,13 @@ class MasterData_Maintain extends HTMLElement {
   }
   
   async fillDataAfterVariableChange() {
+    const loadingText = this.shadowRoot.getElementById('loading_text');
+    loadingText.style.display = 'block';
     if (this.p_plm_obj.internal_status = 1) {
       
       await this.waitForVariableChange();
       await this.fillData();
+      loadingText.style.display = 'none';
       this.showChildPopup(() => {
       
       });

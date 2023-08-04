@@ -26,7 +26,7 @@
 			"type" : "string"
 		},
 		"try_plm_obj":{
-			"type" : "PLM_obj",
+			"type" : "PLM_obj[]",
 			"default" : {}
 		}
 	},
@@ -107,7 +107,7 @@
 			"parameters": [
 				{
 					"name": "try_plm_obj",
-					"type": "PLM_obj",
+					"type": "PLM_obj[]",
 					"description": "set PLM_obj"
 				}
 			],
@@ -115,7 +115,7 @@
 			
 		},
 		"get_try_plm_obj": {
-			"returnType": "PLM_obj",
+			"returnType": "PLM_obj[]",
 			"description": "get PLM_obj",
 			"body": "return this.try_plm_obj;"
 			

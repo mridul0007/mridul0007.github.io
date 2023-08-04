@@ -148,7 +148,7 @@ class MasterData_Maintain extends HTMLElement {
           console.log(x)
           
           if(x > 300){
-            alert("Connection error");
+            alert("Connection error: refresh page");
             return;
           }
           requestAnimationFrame(checkChange);

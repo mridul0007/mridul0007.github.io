@@ -131,7 +131,7 @@ class MasterData_Maintain extends HTMLElement {
   }
 
   async waitForVariableChange() {
-    this.p_plm_obj = this.get_p_plm_obj();
+    // this.p_plm_obj = this.get_p_plm_obj();
     return new Promise(resolve => {
       const checkChange = () => {
         if (this.p_plm_obj.status !== 0) {

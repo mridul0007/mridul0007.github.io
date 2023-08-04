@@ -79,6 +79,7 @@ class MasterData_Maintain extends HTMLElement {
       this.try_plm_obj;
       this.p_plm_obj.plm_operation = 'fill_data';
       this.p_plm_obj.status = 0;
+      this.p_plm_obj.internal_status = 1;
 
       await this.dispatchEvent(new CustomEvent("onSave"));
       await this.fillDataAfterVariableChange();
@@ -156,12 +157,12 @@ class MasterData_Maintain extends HTMLElement {
   }
   
   async fillDataAfterVariableChange() {
-    if (!this.onSaveTriggered) {
-      this.onSaveTriggered = true;
+    if (this.p_plm_obj.internal_status = 1) {
+      
       await this.waitForVariableChange();
       await this.fillData();
       this.showChildPopup(() => {
-        this.onSaveTriggered = false; // Reset the flag after showing the popup
+      
       });
     }
   }

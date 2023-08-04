@@ -178,7 +178,7 @@ class MasterData_Maintain extends HTMLElement {
 
   set_p_plm_obj(p_plm_obj) {
     this.p_plm_obj = p_plm_obj;
-    onCustomWidgetAfterUpdate(ochangedProperties);
+    updateValues();
 
   }
 
@@ -192,6 +192,12 @@ class MasterData_Maintain extends HTMLElement {
   }
 
   fireChanged() {}
+
+  updateValues()
+  {
+    const inputBox = this.shadowRoot.getElementById('input_box');
+    inputBox.value = this.p_plm_obj.member_id;
+  }
 }
 
 customElements.define('custom-button', MasterData_Maintain);

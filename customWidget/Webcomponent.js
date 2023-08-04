@@ -142,7 +142,7 @@ class MasterData_Maintain extends HTMLElement {
         }
       };
   
-      // checkChange(); // Start the initial check
+      checkChange(); // Start the initial check
     });
   }
   

@@ -138,7 +138,7 @@ class MasterData_Maintain extends HTMLElement {
           resolve();
         } else {
           // Keep checking the variable's value until it changes
-          requestAnimationFrame(checkChange);
+          // requestAnimationFrame(checkChange);
         }
       };
   

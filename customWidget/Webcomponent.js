@@ -178,7 +178,7 @@ class MasterData_Maintain extends HTMLElement {
 
   set_p_plm_obj(p_plm_obj) {
     this.p_plm_obj = p_plm_obj;
-    updateValues();
+    this.updateValues();
 
   }
 

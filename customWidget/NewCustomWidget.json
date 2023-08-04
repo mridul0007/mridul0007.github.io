@@ -26,7 +26,8 @@
 			"type" : "string"
 		},
 		"try_plm_obj":{
-			"type" : "PLM_obj"
+			"type" : "PLM_obj",
+			"default" : {}
 		}
 	},
 	"dataBindings": {

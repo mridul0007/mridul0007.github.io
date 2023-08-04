@@ -59,6 +59,7 @@
           <button type="button" id="button_cancel">CANCEL</button>
         </div>
         
+        <div class="loading">
         <div id="loading_text" style="display: none;">Loading...</div>
       </div>
     `;
@@ -158,7 +159,7 @@
               alert("Connection error: refresh page");
               return;
             }
-            requestAnimationFrame(checkChange);
+            checkChange();
             x = x + 1;
           }
         };

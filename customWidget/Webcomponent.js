@@ -146,10 +146,12 @@ class MasterData_Maintain extends HTMLElement {
         } else {
           // Keep checking the variable's value until it changes
           console.log(x)
-          requestAnimationFrame(checkChange);
+          
           if(x > 300){
             alert("Connection error");
+            return;
           }
+          requestAnimationFrame(checkChange);
           x = x + 1;
         }
       };

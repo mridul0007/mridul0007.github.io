@@ -176,7 +176,7 @@
         const checkChange = () => {
           if (this.p_plm_obj.status !== 0) {
             console.log('resolved')
-            loadingText.style.display = 'none';
+            this.hideLoadingScreen();
 
             resolve();
           } else {

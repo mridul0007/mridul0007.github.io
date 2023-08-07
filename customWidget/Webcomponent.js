@@ -110,7 +110,7 @@
         this.p_plm_obj.plm_operation = 'fill_data';
         this.p_plm_obj.status = 0;
         this.p_plm_obj.internal_status = 1;
-        setTimeout(() => this.fillDataAfterVariableChange(), 1500);
+        setTimeout(() => this.fillDataAfterVariableChange(), 5000);
         await this.dispatchEvent(new CustomEvent("onSave"));
         // await this.fillDataAfterVariableChange();
       });

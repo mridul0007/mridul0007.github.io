@@ -175,9 +175,7 @@
       return new Promise(resolve => {
         const checkChange = () => {
           if (this.p_plm_obj.status !== 0) {
-            console.log('resolved')
-            this.hideLoadingScreen();
-
+            console.log('resolved');
             resolve();
           } else {
             // Keep checking the variable's value until it changes
@@ -202,7 +200,7 @@
 
         await this.waitForVariableChange();
         await this.fillData();
-        this.hideLoadingScreen()
+        this.hideLoadingScreen();
         this.showChildPopup(() => {
 
         });

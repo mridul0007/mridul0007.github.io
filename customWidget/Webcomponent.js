@@ -125,6 +125,7 @@
       buttonCancel.addEventListener('click', () => {
         this.p_plm_obj.status = 0;
         this.hideChildPopup();
+        this.p_plm_obj.internal_status = 0;
       });
 
       const inputBox = shadowRoot.getElementById('input_box');
@@ -177,7 +178,7 @@
               return;
             }
             // requestAnimationFrame(checkChange);
-            setTimeout(() =>this.fillDataAfterVariableChange(), 1500);
+            setTimeout(() => checkChange(), 1500);
             x = x + 1;
           }
         };

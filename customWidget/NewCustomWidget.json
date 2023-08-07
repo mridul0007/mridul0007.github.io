@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "mycustomwidget",
-	"version": "1.0.32",
+	"version": "1.0.33",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -26,8 +26,8 @@
 			"type" : "string"
 		},
 		"try_plm_obj":{
-			"type" : "PLM_obj[]",
-			"default" : {}
+			"type" : "PLM_obj[]"
+			
 		}
 	},
 	"dataBindings": {

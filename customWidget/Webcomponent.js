@@ -77,16 +77,33 @@
       shadowRoot.appendChild(tmpl.content.cloneNode(true));
       this._export_settings = {};
 
+      // const buttonModify = shadowRoot.getElementById('button_modify');
+      // buttonModify.addEventListener('click', async () => {
+      //   this.try_plm_obj;
+      //   this.p_plm_obj.plm_operation = 'fill_data';
+      //   this.p_plm_obj.status = 0;
+      //   this.p_plm_obj.internal_status = 1;
+
+      //   await this.dispatchEvent(new CustomEvent("onSave"));
+      //   await this.fillDataAfterVariableChange();
+      // });
+
+
+      // trial
+
       const buttonModify = shadowRoot.getElementById('button_modify');
       buttonModify.addEventListener('click', async () => {
         this.try_plm_obj;
         this.p_plm_obj.plm_operation = 'fill_data';
         this.p_plm_obj.status = 0;
         this.p_plm_obj.internal_status = 1;
-
+        setTimeout(this.fillDataAfterVariableChange(), 1500);
         await this.dispatchEvent(new CustomEvent("onSave"));
-        await this.fillDataAfterVariableChange();
+        // await this.fillDataAfterVariableChange();
       });
+
+
+
 
       const buttonDelete = shadowRoot.getElementById('button_delete');
       buttonDelete.addEventListener('click', () => {
@@ -159,7 +176,8 @@
               alert("Connection error: refresh page");
               return;
             }
-            requestAnimationFrame(checkChange);
+            // requestAnimationFrame(checkChange);
+            setTimeout(this.fillDataAfterVariableChange(), 1500);
             x = x + 1;
           }
         };

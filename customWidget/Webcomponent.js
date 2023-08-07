@@ -39,6 +39,12 @@
           justify-content: center;
           align-items: center;
           z-index: 9999;
+
+          .loading-screen span {
+            font-size: 24px; /* Adjust the font size as needed */
+            color: white; /* Text color */
+            font-weight: bold; /* Bold font */
+          }
       </style>
       <div class="root">
         <label for="input_box">SELECTED INVESTMENT:</label>

@@ -59,9 +59,9 @@
           <button type="button" id="button_cancel">CANCEL</button>
         </div>
         
-        <div class="loading">
-        <div id="loading_text" style="display: none;">Loading...</div>
-      </div>
+        <div class="loading-screen" style="display: none;">
+           <span>Loading...</span>
+        </div>
     `;
   class MasterData_Maintain extends HTMLElement {
     constructor() {
@@ -93,6 +93,7 @@
 
       const buttonModify = shadowRoot.getElementById('button_modify');
       buttonModify.addEventListener('click', async () => {
+        this.showLoadingScreen();
         this.try_plm_obj;
         this.p_plm_obj.plm_operation = 'fill_data';
         this.p_plm_obj.status = 0;
@@ -145,6 +146,18 @@
       childPopup.style.display = 'none';
     }
 
+
+    showLoadingScreen() {
+      const loadingScreen = this.shadowRoot.querySelector('.loading-screen');
+      loadingScreen.style.display = 'flex';
+    }
+    
+    // Hide the loading screen
+    hideLoadingScreen() {
+      const loadingScreen = this.shadowRoot.querySelector('.loading-screen');
+      loadingScreen.style.display = 'none';
+    }
+
     onCustomWidgetAfterUpdate(ochangedProperties) {
       if ("id" in ochangedProperties) {
         const inputBox = this.shadowRoot.getElementById('input_box');
@@ -159,9 +172,6 @@
     async waitForVariableChange() {
       // this.p_plm_obj = this.get_p_plm_obj();
       var x = 0;
-      const loadingText = this.shadowRoot.getElementById('loading_text');
-      loadingText.style.display = 'block';
-
       return new Promise(resolve => {
         const checkChange = () => {
           if (this.p_plm_obj.status !== 0) {
@@ -192,6 +202,7 @@
 
         await this.waitForVariableChange();
         await this.fillData();
+        this.hideLoadingScreen()
         this.showChildPopup(() => {
 
         });

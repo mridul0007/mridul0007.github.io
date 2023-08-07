@@ -42,7 +42,7 @@
         }
       
         /* Style the loading text */
-        .loading-screen span {
+        .loading-screen span code {
           font-size: 32px; /* Adjust the font size as needed */
           color: white; /* Text color */
           font-weight: bold; /* Bold font */

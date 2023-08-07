@@ -205,7 +205,7 @@
             // Keep checking the variable's value until it changes
             console.log(x)
 
-            if (x > 300) {
+            if (x > 5) {
               alert("Connection error: refresh page");
               return;
             }

@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "mycustomwidget",
-	"version": "1.0.33",
+	"version": "1.0.34",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -71,7 +71,7 @@
 					"description" : "internal status"
 				},
 				{
-					"name" : "dimesnion",
+					"name" : "dimension",
 					"type" : "string",
 					"description" : "dimension ID"
 				},

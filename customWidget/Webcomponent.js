@@ -39,12 +39,15 @@
           justify-content: center;
           align-items: center;
           z-index: 9999;
-
-          .loading-screen span {
-            font-size: 24px; /* Adjust the font size as needed */
-            color: white; /* Text color */
-            font-weight: bold; /* Bold font */
-          }
+        }
+      
+        /* Style the loading text */
+        .loading-screen span {
+          font-size: 32px; /* Adjust the font size as needed */
+          color: white; /* Text color */
+          font-weight: bold; /* Bold font */
+        }
+          
       </style>
       <div class="root">
         <label for="input_box">SELECTED INVESTMENT:</label>
@@ -119,7 +122,7 @@
         this.p_plm_obj.plm_operation = 'fill_data';
         this.p_plm_obj.status = 0;
         this.p_plm_obj.internal_status = 1;
-        setTimeout(() => this.fillDataAfterVariableChange(), 5000);
+        setTimeout(() => this.fillDataAfterVariableChange(), 1500);
         await this.dispatchEvent(new CustomEvent("onSave"));
         // await this.fillDataAfterVariableChange();
       });
@@ -172,7 +175,7 @@
       const loadingScreen = this.shadowRoot.querySelector('.loading-screen');
       loadingScreen.style.display = 'flex';
     }
-    
+
     // Hide the loading screen
     hideLoadingScreen() {
       const loadingScreen = this.shadowRoot.querySelector('.loading-screen');

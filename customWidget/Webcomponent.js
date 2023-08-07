@@ -70,10 +70,13 @@
           <button type="button" id="button_ok">OK</button>
           <button type="button" id="button_cancel">CANCEL</button>
         </div>
+      </div> 
+      
         
-        <div class="loading-screen" style="display: none;">
-           <span>Loading...</span>
-        </div>
+      <div class="loading-screen" style="display: none;">
+        <span>Loading...</span>
+     </div>  
+        
     `;
   class MasterData_Maintain extends HTMLElement {
     constructor() {

@@ -91,7 +91,8 @@
     constructor() {
       super();
       this.p_plm_obj = {};
-      this.try_plm_obj = {};
+      this.internal_operation = '';
+      this.p_plm_obj.internal_status = 0;
       this.onSaveTriggered = false;
       this.init();
     }
@@ -118,13 +119,13 @@
       const buttonModify = shadowRoot.getElementById('button_modify');
       buttonModify.addEventListener('click', async () => {
         this.showLoadingScreen();
+        this.internal_operation = 'modify';
         this.try_plm_obj;
         this.p_plm_obj.plm_operation = 'fill_data';
         this.p_plm_obj.status = 0;
         this.p_plm_obj.internal_status = 1;
         setTimeout(() => this.fillDataAfterVariableChange(), 1500);
         await this.dispatchEvent(new CustomEvent("onSave"));
-        // await this.fillDataAfterVariableChange();
       });
 
 

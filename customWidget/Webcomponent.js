@@ -68,7 +68,8 @@
           
         <div class="input-row">
             <label for="select_box_department">Department:</label>
-            
+            <select id="select_box_department">
+            </select>
         </div>
         <div class="input-row">
             <label for="select_box_hierarchy">Hierarchy:</label>

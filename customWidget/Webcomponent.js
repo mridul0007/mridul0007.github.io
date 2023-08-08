@@ -251,6 +251,7 @@
         //  if query.query_id == p_query.query_id
         //    r_query = p_query
         //    PLM_STATUS = 0
+        // new
         this.plm_status = 0;
         this.plm_counter = 0;
         this.fillData();

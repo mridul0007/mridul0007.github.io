@@ -274,6 +274,7 @@
         }
         else {
           alert("Connection error: refresh page adn try again");
+          this.hideLoadingScreen();
         }
       }
     }

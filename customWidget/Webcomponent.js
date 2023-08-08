@@ -243,7 +243,7 @@
         //  query_id++
         //  query.query_id = query_id
         //  p_query = query (direct assignment not setter!)
-        setTimeout(() => plm_query_execute(plm_counter++), 1500);
+        setTimeout(() => this.plm_query_execute(plm_counter++), 1500);
         console.log(plm_counter);
         this.dispatchEvent(new CustomEvent("onSave"));
         

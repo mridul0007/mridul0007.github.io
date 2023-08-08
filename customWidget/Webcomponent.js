@@ -261,7 +261,7 @@
       else{
         if (plm_counter < 5){
           console.log(plm_counter);
-          setTimeout(() => this.plm_query_execute(plm_counter++), 1500);
+          setTimeout(() => this.plm_query_execute(plm_counter++), 500);
         }
         else{
           alert("Connection error: refresh page adn try again");

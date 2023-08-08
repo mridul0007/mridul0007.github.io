@@ -276,6 +276,8 @@
       text_box_desc.value = this.p_plm_obj.plm_PlanningModelMember.description;
       console.log(Object.keys(this.p_plm_obj.plm_PlanningModelMember));
       console.log(Object.values(this.p_plm_obj.plm_PlanningModelMember));
+      this.hideLoadingScreen();
+      this.showChildPopup();
     }
 
     set_p_plm_obj(p_plm_obj) {

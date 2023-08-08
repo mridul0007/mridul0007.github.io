@@ -75,7 +75,7 @@
           <select id="select_box_hierarchy">
           </select>
         </div>
-  </div>
+  
   
         <!-- Buttons row -->
         <div class="button-row">

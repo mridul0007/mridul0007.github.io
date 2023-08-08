@@ -132,6 +132,9 @@
 
         this.plm_query_execute(this.plm_counter);
         }
+        else{
+          alert("Select an ID");
+        }
         // setTimeout(() => this.fillDataAfterVariableChange(), 1500);
         // await this.dispatchEvent(new CustomEvent("onSave"));
       });

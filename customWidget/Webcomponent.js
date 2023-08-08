@@ -65,29 +65,29 @@
           <label for="text_box_desc">Description:</label>
           <input type="text" id="text_box_desc" placeholder="Enter value...">
         </div>
+          
         <div class="input-row">
-          <label for="select_box_department">Department:</label>
-          <select id="select_box_department">
-          </select>
-         </div>
-        <div class="input-row">
-          <label for="select_box_hierarchy">Hierarchy:</label>
-          <select id="select_box_hierarchy">
-          </select>
+            <label for="select_box_department">Department:</label>
+            <select id="select_box_department">
+            </select>
         </div>
-  
-  
-        <!-- Buttons row -->
+        <div class="input-row">
+            <label for="select_box_hierarchy">Hierarchy:</label>
+            <select id="select_box_hierarchy">
+            </select>
+        </div>
+
+          <!-- Buttons row -->
         <div class="button-row">
-          <button type="button" id="button_ok">OK</button>
-          <button type="button" id="button_cancel">CANCEL</button>
+            <button type="button" id="button_ok">OK</button>
+            <button type="button" id="button_cancel">CANCEL</button>
         </div>
-      </div> 
+      </div>
       
         
       <div class="loading-screen" style="display: none;">
         <span>Loading...</span>
-     </div>  
+      </div>  
         
     `;
   class MasterData_Maintain extends HTMLElement {

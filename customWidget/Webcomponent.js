@@ -243,7 +243,7 @@
         //  query_id++
         //  query.query_id = query_id
         //  p_query = query (direct assignment not setter!)
-        settimeout( plm_query_execute(plm_counter++),1500);
+        settimeout(plm_query_execute(plm_counter++),1500);
         this.dispatchEvent(new CustomEvent("onSave"));
         
       }
@@ -257,7 +257,7 @@
       }
       else{
         if (plm_counter < 5){
-          settimeout( plm_query_execute(plm_counter++),1500);
+          settimeout(() => plm_query_execute(plm_counter++),1500);
         }
         else{
           alert("Connection error: refresh page adn try again");

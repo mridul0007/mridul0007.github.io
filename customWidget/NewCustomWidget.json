@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "mycustomwidget",
-	"version": "1.0.35",
+	"version": "1.0.36",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -24,6 +24,9 @@
 		},
 		"mem_id":{
 			"type" : "string"
+		},
+		"plm_status":{
+			"type" : "integer"
 		}
 	},
 	"dataBindings": {
@@ -117,6 +120,17 @@
 			"returnType": "PLM_obj",
 			"description": "get PLM_obj"
 			
+			
+		},
+		"set_plm_status": {
+			"description": "set plm_status",
+			"parameters": [
+				{
+					"name": "plm_status",
+					"type": "integer",
+					"description": "set plm_status"
+				}
+			]
 			
 		}
 

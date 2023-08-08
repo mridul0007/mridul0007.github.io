@@ -243,7 +243,8 @@
         //  query_id++
         //  query.query_id = query_id
         //  p_query = query (direct assignment not setter!)
-        setTimeout(() => this.plm_query_execute(plm_counter++), 1500);
+        plm_counter = plm_counter + 1;
+        setTimeout(() => this.plm_query_execute(plm_counter), 1500);
         console.log(plm_counter);
         this.dispatchEvent(new CustomEvent("onSave"));
         
@@ -261,6 +262,7 @@
       else{
         if (plm_counter < 5){
           console.log(plm_counter);
+          plm_counter = plm_counter + 1;
           setTimeout(() => this.plm_query_execute(plm_counter++), 500);
         }
         else{

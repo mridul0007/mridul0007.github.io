@@ -119,11 +119,12 @@
       const buttonModify = shadowRoot.getElementById('button_modify');
       buttonModify.addEventListener('click', async () => {
         this.showLoadingScreen();
-        this.p_plm_obj.member_id = this.id;
-        this.internal_operation = 'modify';
-        this.p_plm_obj.plm_operation = 'fill_data';
         this.plm_status = 0;
         this.widget_status = 1;
+        this.p_plm_obj.member_id = this.mem_id;
+        this.internal_operation = 'modify';
+        this.p_plm_obj.plm_operation = 'fill_data';
+        
         // setTimeout(() => this.fillDataAfterVariableChange(), 1500);
         // await this.dispatchEvent(new CustomEvent("onSave"));
       });
@@ -253,6 +254,7 @@
     set_mem_id(mem_id) {
       if(this.widget_status == 0){
         this.mem_id = mem_id;
+        this.updateValues();
       }
       else{
         alert("ID already selected");
@@ -263,7 +265,8 @@
 
     updateValues() {
       const inputBox = this.shadowRoot.getElementById('input_box');
-      inputBox.value = this.p_plm_obj.member_id;
+      inputBox.value = this.mem_id;
+      
     }
   }
 

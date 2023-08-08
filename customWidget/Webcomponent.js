@@ -122,6 +122,7 @@
 
       const buttonModify = shadowRoot.getElementById('button_modify');
       buttonModify.addEventListener('click', async () => {
+        if(this.mem_id != null){
         this.showLoadingScreen();
         this.plm_status = 0;
         this.widget_status = 1;
@@ -130,7 +131,7 @@
         this.p_plm_obj.plm_operation = 'fill_data';
 
         this.plm_query_execute(this.plm_counter);
-
+        }
         // setTimeout(() => this.fillDataAfterVariableChange(), 1500);
         // await this.dispatchEvent(new CustomEvent("onSave"));
       });

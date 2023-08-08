@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "mycustomwidget",
-	"version": "1.0.34",
+	"version": "1.0.35",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -24,10 +24,6 @@
 		},
 		"id":{
 			"type" : "string"
-		},
-		"try_plm_obj":{
-			"type" : "PLM_obj[]"
-			
 		}
 	},
 	"dataBindings": {
@@ -61,14 +57,9 @@
 					"description" : "Planning model member"
 				},
 				{
-					"name" : "status",
+					"name" : "query_status",
 					"type" : "integer",
 					"description" : "status"
-				},
-				{
-					"name" : "internal_status",
-					"type" : "integer",
-					"description" : "internal status"
 				},
 				{
 					"name" : "dimension",
@@ -98,28 +89,7 @@
 	  },
 	"methods": {
 		"clear": {
-			"description": "Clear the resultset"
-		},
-		
-		
-		"set_try_plm_obj": {
-			"description": "set set_plm_object",
-			"parameters": [
-				{
-					"name": "try_plm_obj",
-					"type": "PLM_obj[]",
-					"description": "set PLM_obj"
-				}
-			],
-			"body": "this.try_plm_obj = try_plm_obj;"
-			
-		},
-		"get_try_plm_obj": {
-			"returnType": "PLM_obj[]",
-			"description": "get PLM_obj",
-			"body": "return this.try_plm_obj;"
-			
-			
+			"description": "Clear plm"
 		},
 		"set_id": {
 			"description": "set id",
@@ -129,15 +99,8 @@
 					"type": "string",
 					"description": "set member ID"
 				}
-			],
-			"body": "this.id = id;"
+			]
 			
-		},
-
-		"get_id": {
-			"returnType": "string",
-			"description": "get member ID",
-			"body" : "return this.id;"
 		},
 		"set_p_plm_obj": {
 			"description": "set set_plm_object",

@@ -92,7 +92,7 @@
       super();
       this.p_plm_obj = {};
       this.internal_operation = '';
-      this.p_plm_obj.internal_status = 0;
+      this.widget_status = 0;
       this.onSaveTriggered = false;
       this.init();
     }
@@ -106,8 +106,8 @@
       // buttonModify.addEventListener('click', async () => {
       //   this.try_plm_obj;
       //   this.p_plm_obj.plm_operation = 'fill_data';
-      //   this.p_plm_obj.status = 0;
-      //   this.p_plm_obj.internal_status = 1;
+      //   this.plm_status = 0;
+      //   this.widget_status = 1;
 
       //   await this.dispatchEvent(new CustomEvent("onSave"));
       //   await this.fillDataAfterVariableChange();
@@ -119,13 +119,13 @@
       const buttonModify = shadowRoot.getElementById('button_modify');
       buttonModify.addEventListener('click', async () => {
         this.showLoadingScreen();
+        this.p_plm_obj.member_id = this.id;
         this.internal_operation = 'modify';
-        this.try_plm_obj;
         this.p_plm_obj.plm_operation = 'fill_data';
-        this.p_plm_obj.status = 0;
-        this.p_plm_obj.internal_status = 1;
-        setTimeout(() => this.fillDataAfterVariableChange(), 1500);
-        await this.dispatchEvent(new CustomEvent("onSave"));
+        this.plm_status = 0;
+        this.widget_status = 1;
+        // setTimeout(() => this.fillDataAfterVariableChange(), 1500);
+        // await this.dispatchEvent(new CustomEvent("onSave"));
       });
 
 
@@ -149,9 +149,9 @@
 
       const buttonCancel = shadowRoot.getElementById('button_cancel');
       buttonCancel.addEventListener('click', () => {
-        this.p_plm_obj.status = 0;
+        this.plm_status = 0;
         this.hideChildPopup();
-        this.p_plm_obj.internal_status = 0;
+        this.widget_status = 0;
       });
 
       const inputBox = shadowRoot.getElementById('input_box');
@@ -199,7 +199,7 @@
       var x = 0;
       return new Promise(resolve => {
         const checkChange = () => {
-          if (this.p_plm_obj.status !== 0) {
+          if (this.plm_status !== 0) {
             console.log('resolved');
             resolve();
           } else {
@@ -221,7 +221,7 @@
     }
 
     async fillDataAfterVariableChange() {
-      if (this.p_plm_obj.internal_status = 1) {
+      if (this.widget_status = 1) {
 
         await this.waitForVariableChange();
         await this.fillData();
@@ -233,7 +233,7 @@
     }
 
     async fillData() {
-      this.p_plm_obj.status = 0;
+      this.plm_status = 0;
       const text_box_id = this.shadowRoot.getElementById('text_box_id');
       text_box_id.value = this.p_plm_obj.plm_PlanningModelMember.id;
       const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
@@ -244,17 +244,19 @@
 
     set_p_plm_obj(p_plm_obj) {
       this.p_plm_obj = p_plm_obj;
-      this.updateValues();
-
     }
 
     get_p_plm_obj() {
       return this.p_plm_obj;
     }
 
-    get_empty_plm_obj() {
-      p_local = {};
-      return p_local;
+    set_id(id) {
+      if(this.widget_status == 0){
+        this.id = id;
+      }
+      else{
+        alert("ID already selected");
+      }
     }
 
     fireChanged() { }

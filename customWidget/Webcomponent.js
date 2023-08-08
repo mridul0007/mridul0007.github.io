@@ -67,9 +67,10 @@
         </div>
           
         <div class="input-row">
-            <label for="select_box_department">Department:</label>
-            <select id="select_box_department">
-            </select>
+          <label for="select_box_department">Department:</label>
+          <select id="select_box_department">
+            ${departmentOptions.map(option => `<option>${option}</option>`).join('')}
+          </select>
         </div>
         <div class="input-row">
             <label for="select_box_hierarchy">Hierarchy:</label>
@@ -119,6 +120,19 @@
 
 
       // trial
+
+      const departmentOptions = ["Department 1", "Department 2", "Department 3"];
+       // Get the select element for the department dropdown
+      const selectDepartment = this.shadowRoot.getElementById('select_box_department');
+
+      // Populate the department options
+      departmentOptions.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.textContent = option;
+        selectDepartment.appendChild(optionElement);
+      });
+
+
 
       const buttonModify = shadowRoot.getElementById('button_modify');
       buttonModify.addEventListener('click', async () => {

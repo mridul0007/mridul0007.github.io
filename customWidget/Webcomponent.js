@@ -73,7 +73,8 @@
         </div>
         <div class="input-row">
             <label for="select_box_hierarchy">Hierarchy:</label>
-            
+            <select id="select_box_hierarchy">
+            </select>
         </div>
 
           <!-- Buttons row -->

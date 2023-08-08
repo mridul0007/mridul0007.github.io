@@ -263,7 +263,7 @@
         if (plm_counter < 5){
           console.log(plm_counter);
           plm_counter = plm_counter + 1;
-          setTimeout(() => this.plm_query_execute(plm_counter++), 500);
+          setTimeout(() => this.plm_query_execute(plm_counter), 500);
         }
         else{
           alert("Connection error: refresh page adn try again");

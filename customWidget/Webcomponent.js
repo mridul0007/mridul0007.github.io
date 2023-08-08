@@ -143,13 +143,13 @@
         this.internal_operation = 'modify';
         this.p_plm_obj.plm_operation = 'fill_data';
 
-        this.plm_query_execute(this.plm_counter);
+        await this.plm_query_execute(this.plm_counter);
+        this.fillData();
         }
         else{
           alert("Select an ID");
         }
-        // setTimeout(() => this.fillDataAfterVariableChange(), 1500);
-        // await this.dispatchEvent(new CustomEvent("onSave"));
+        // setTimeout(() => this.fillDataAfterVariableChange(), 1
       });
 
 
@@ -218,46 +218,46 @@
       }
     }
 
-    async waitForVariableChange() {
-      // this.p_plm_obj = this.get_p_plm_obj();
-      var x = 0;
-      return new Promise(resolve => {
-        const checkChange = () => {
-          if (this.plm_status !== 0) {
-            console.log('resolved');
-            resolve();
-          } else {
-            // Keep checking the variable's value until it changes
-            console.log(x)
+    // async waitForVariableChange() {
+    //   // this.p_plm_obj = this.get_p_plm_obj();
+    //   var x = 0;
+    //   return new Promise(resolve => {
+    //     const checkChange = () => {
+    //       if (this.plm_status !== 0) {
+    //         console.log('resolved');
+    //         resolve();
+    //       } else {
+    //         // Keep checking the variable's value until it changes
+    //         console.log(x)
 
-            if (x > 5) {
-              alert("Connection error: refresh page");
-              return;
-            }
-            // requestAnimationFrame(checkChange);
-            setTimeout(() => checkChange(), 1500);
-            x = x + 1;
-          }
-        };
-        console.log('entered waitforvariable change')
-        checkChange(); // Start the initial check
-      });
-    }
+    //         if (x > 5) {
+    //           alert("Connection error: refresh page");
+    //           return;
+    //         }
+    //         // requestAnimationFrame(checkChange);
+    //         setTimeout(() => checkChange(), 1500);
+    //         x = x + 1;
+    //       }
+    //     };
+    //     console.log('entered waitforvariable change')
+    //     checkChange(); // Start the initial check
+    //   });
+    // }
 
-    async fillDataAfterVariableChange() {
-      if (this.widget_status = 1) {
+    // async fillDataAfterVariableChange() {
+    //   if (this.widget_status = 1) {
 
-        await this.waitForVariableChange();
-        await this.fillData();
-        this.hideLoadingScreen();
-        this.showChildPopup(() => {
+    //     await this.waitForVariableChange();
+    //     await this.fillData();
+    //     this.hideLoadingScreen();
+    //     this.showChildPopup(() => {
 
-        });
-      }
-    }
+    //     });
+    //   }
+    // }
 
 
-    plm_query_execute(plm_counter) {
+    async plm_query_execute(plm_counter) {
       if (this.plm_status == 0) {
         this.plm_status = 1
         //  query_id++
@@ -277,7 +277,7 @@
         console.log(plm_counter);
         this.plm_status = 0;
         this.plm_counter = 0;
-        this.fillData();
+        // this.fillData();
       }
       else {
         if (plm_counter < 5) {
@@ -286,7 +286,7 @@
           setTimeout(() => this.plm_query_execute(plm_counter), 500);
         }
         else {
-          alert("Connection error: refresh page adn try again");
+          alert("Connection error: refresh page and try again");
           this.hideLoadingScreen();
         }
       }

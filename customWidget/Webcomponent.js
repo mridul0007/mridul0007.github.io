@@ -66,13 +66,16 @@
           <input type="text" id="text_box_desc" placeholder="Enter value...">
         </div>
         <div class="input-row">
-          <label for="text_box_department">Department:</label>
-          <input type="text" id="text_box_department" placeholder="Enter value...">
-        </div>
+          <label for="select_box_department">Department:</label>
+          <select id="select_box_department">
+          </select>
+         </div>
         <div class="input-row">
-          <label for="text_box_hierarchy">Hierarchy:</label>
-          <input type="text" id="text_box_hierarchy" placeholder="Enter value...">
+          <label for="select_box_hierarchy">Hierarchy:</label>
+          <select id="select_box_hierarchy">
+          </select>
         </div>
+  </div>
   
         <!-- Buttons row -->
         <div class="button-row">
@@ -125,9 +128,9 @@
         this.p_plm_obj.member_id = this.mem_id;
         this.internal_operation = 'modify';
         this.p_plm_obj.plm_operation = 'fill_data';
-        
+
         this.plm_query_execute(this.plm_counter);
-        
+
         // setTimeout(() => this.fillDataAfterVariableChange(), 1500);
         // await this.dispatchEvent(new CustomEvent("onSave"));
       });
@@ -239,7 +242,7 @@
 
     plm_query_execute(plm_counter) {
       if (this.plm_status == 0) {
-         this.plm_status = 1
+        this.plm_status = 1
         //  query_id++
         //  query.query_id = query_id
         //  p_query = query (direct assignment not setter!)
@@ -247,7 +250,7 @@
         setTimeout(() => this.plm_query_execute(plm_counter), 1500);
         console.log(plm_counter);
         this.dispatchEvent(new CustomEvent("onSave"));
-        
+
       }
       else if (this.plm_status == 2) {
         //  if query.query_id == p_query.query_id
@@ -259,18 +262,18 @@
         this.plm_counter = 0;
         this.fillData();
       }
-      else{
-        if (plm_counter < 5){
+      else {
+        if (plm_counter < 5) {
           console.log(plm_counter);
           plm_counter = plm_counter + 1;
           setTimeout(() => this.plm_query_execute(plm_counter), 500);
         }
-        else{
+        else {
           alert("Connection error: refresh page adn try again");
         }
       }
     }
-    
+
 
 
 
@@ -299,11 +302,11 @@
     }
 
     set_mem_id(mem_id) {
-      if(this.widget_status == 0){
+      if (this.widget_status == 0) {
         this.mem_id = mem_id;
         this.updateValues();
       }
-      else{
+      else {
         alert("ID already selected");
       }
     }
@@ -313,7 +316,7 @@
     updateValues() {
       const inputBox = this.shadowRoot.getElementById('input_box');
       inputBox.value = this.mem_id;
-      
+
     }
   }
 

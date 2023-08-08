@@ -69,7 +69,6 @@
         <div class="input-row">
           <label for="select_box_department">Department:</label>
           <select id="select_box_department">
-            ${departmentOptions.map(option => `<option>${option}</option>`).join('')}
           </select>
         </div>
         <div class="input-row">

@@ -22,7 +22,7 @@
 		"p_plm_obj":{
 			"type" : "PLM_obj"
 		},
-		"id":{
+		"mem_id":{
 			"type" : "string"
 		}
 	},
@@ -91,11 +91,11 @@
 		"clear": {
 			"description": "Clear plm"
 		},
-		"set_id": {
+		"set_mem_id": {
 			"description": "set id",
 			"parameters": [
 				{
-					"name": "id",
+					"name": "mem_id",
 					"type": "string",
 					"description": "set member ID"
 				}

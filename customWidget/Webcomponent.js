@@ -250,9 +250,9 @@
       return this.p_plm_obj;
     }
 
-    set_id(id) {
+    set_mem_id(mem_id) {
       if(this.widget_status == 0){
-        this.id = id;
+        this.mem_id = mem_id;
       }
       else{
         alert("ID already selected");

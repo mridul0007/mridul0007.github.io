@@ -184,9 +184,9 @@
     }
 
     onCustomWidgetAfterUpdate(ochangedProperties) {
-      if ("id" in ochangedProperties) {
+      if ("mem_id" in ochangedProperties) {
         const inputBox = this.shadowRoot.getElementById('input_box');
-        inputBox.value = this.id;
+        inputBox.value = this.mem_id;
       }
       if ("p_plm_obj" in ochangedProperties) {
         const inputBox = this.shadowRoot.getElementById('input_box');

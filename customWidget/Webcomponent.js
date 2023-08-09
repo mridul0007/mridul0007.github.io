@@ -292,7 +292,7 @@
     //   }
     // }
 
-    sleep(ms) {
+    async sleep_now(ms) {
       return new Promise(function(resolve) {
         setTimeout(resolve, ms);
       });
@@ -308,7 +308,7 @@
           iteration = iteration + 1;
           // p_query = query; 
           this.dispatchEvent(new CustomEvent("onSave"));
-          await sleep(200);
+          await sleep_now(200);
           break; // Exit the loop
         } else {
           await sleep(1500);

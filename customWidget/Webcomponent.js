@@ -137,13 +137,14 @@
       buttonModify.addEventListener('click', async () => {
         if (this.mem_id != null) {
           this.showLoadingScreen();
-          this.plm_status = 0;
-          this.widget_status = 1;
-          this.p_plm_obj.member_id = this.mem_id;
+          // this.plm_status = 0;
           this.internal_operation = 'modify';
-          this.p_plm_obj.plm_operation = 'fill_data';
+          this.widget_status = 1;
+          let p_qury = {};
+          p_qury.member_id = this.mem_id;
+          p_qury.plm_operation = 'fill_data';
           // await this.plm_query_execute(this.plm_counter);
-          await this.plm_query_execute();
+          let r_query = await this.plm_query_execute(p_qury);
           this.fillData();
         }
         else {
@@ -303,7 +304,7 @@
       });
     }
     
-    async plm_query_execute() {
+    async plm_query_execute(p_query) {
       let iteration = 0;
       
       const iteration_max = 10;
@@ -312,7 +313,7 @@
         if (this.plm_status == 0) {
           this.plm_status = 1;
           iteration = iteration + 1;
-          // p_query = query; 
+          this.p_plm_obj =  p_query; 
           this.dispatchEvent(new CustomEvent("onSave"));
           await this.sleep(200);
           break; // Exit the loop
@@ -328,9 +329,9 @@
         iteration = 0;
         while (iteration < iteration_max) {
           if (this.plm_status == 2) {
-            // r_query = p_query;
+            let r_query = this.p_plm_obj;
             this.plm_status = 0;
-            // return r_query;
+            return r_query;
             break; // Exit the loop
           } else {
             await this.sleep(1500);
@@ -373,10 +374,7 @@
 
   set_p_plm_obj(p_plm_obj) {
     this.p_plm_obj = p_plm_obj;
-  }
-
-  set_plm_status(plm_status) {
-    this.plm_status = plm_status;
+    this.plm_status = 2;
   }
 
   get_p_plm_obj() {

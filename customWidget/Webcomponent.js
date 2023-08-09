@@ -177,6 +177,7 @@
 
       const buttonCancel = shadowRoot.getElementById('button_cancel');
       buttonCancel.addEventListener('click', () => {
+        this.showLoadingScreen();
         this.plm_status = 0;
         this.hideChildPopup();
         this.widget_status = 0;

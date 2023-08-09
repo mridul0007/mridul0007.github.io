@@ -166,8 +166,12 @@
       });
 
       const buttonOk = shadowRoot.getElementById('button_ok');
-      buttonOk.addEventListener('click', () => {
+      buttonOk.addEventListener('click', async () => {
+        this.plm_status = 0;
+        this.readData()
+        this.p_plm_obj.plm_operation = 'write_data';
         this.dispatchEvent(new CustomEvent("onSave"));
+        await this.plm_query_execute();
         this.hideChildPopup();
       })
 
@@ -352,6 +356,16 @@
     text_box_desc.value = this.p_plm_obj.plm_PlanningModelMember.description;
     console.log(Object.keys(this.p_plm_obj.plm_PlanningModelMember));
     console.log(Object.values(this.p_plm_obj.plm_PlanningModelMember));
+    this.hideLoadingScreen();
+    this.showChildPopup();
+  }
+
+
+  async readData() {
+    const text_box_id = this.shadowRoot.getElementById('text_box_id');
+     this.p_plm_obj.plm_PlanningModelMember.id = text_box_id.value;
+    const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
+    this.p_plm_obj.plm_PlanningModelMember.description = text_box_desc.value ;
     this.hideLoadingScreen();
     this.showChildPopup();
   }

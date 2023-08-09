@@ -308,10 +308,10 @@
           iteration = iteration + 1;
           // p_query = query; 
           this.dispatchEvent(new CustomEvent("onSave"));
-          await sleep_now(200);
+          await this.sleep_now(200);
           break; // Exit the loop
         } else {
-          await sleep(1500);
+          await this.sleep(1500);
         }
       }
     
@@ -326,7 +326,7 @@
             // return r_query;
             break; // Exit the loop
           } else {
-            await sleep(1500);
+            await this.sleep(1500);
           }
           iteration = iteration + 1;
         }

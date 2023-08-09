@@ -300,6 +300,7 @@
     
     async plm_query_execute() {
       let iteration = 0;
+      
       const iteration_max = 10;
     
       while (iteration < iteration_max) {
@@ -313,6 +314,7 @@
         } else {
           await this.sleep(1500);
         }
+        console.log(iteration);
       }
     
       if (iteration === iteration_max) {
@@ -335,6 +337,7 @@
           alert("connection error");
         }
       }
+      console.log(iteration);
     }
     
     

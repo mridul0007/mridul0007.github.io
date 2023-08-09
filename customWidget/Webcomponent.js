@@ -96,6 +96,7 @@
       this.p_plm_obj = {};
       this.internal_operation = '';
       this.widget_status = 0;
+      this.plm_status = 0;
       this.onSaveTriggered = false;
       this.plm_counter = 0;
       this.init();
@@ -168,7 +169,7 @@
 
       const buttonOk = shadowRoot.getElementById('button_ok');
       buttonOk.addEventListener('click', async () => {
-        this.plm_status = 0;
+        
         this.readData()
         this.p_plm_obj.plm_operation = 'write_data';
         this.dispatchEvent(new CustomEvent("onSave"));

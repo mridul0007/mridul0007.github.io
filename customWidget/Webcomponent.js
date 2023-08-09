@@ -121,7 +121,7 @@
       // trial
 
       const departmentOptions = ["Department 1", "Department 2", "Department 3"];
-       // Get the select element for the department dropdown
+      // Get the select element for the department dropdown
       const selectDepartment = this.shadowRoot.getElementById('select_box_department');
 
       // Populate the department options
@@ -135,18 +135,18 @@
 
       const buttonModify = shadowRoot.getElementById('button_modify');
       buttonModify.addEventListener('click', async () => {
-        if(this.mem_id != null){
-        this.showLoadingScreen();
-        this.plm_status = 0;
-        this.widget_status = 1;
-        this.p_plm_obj.member_id = this.mem_id;
-        this.internal_operation = 'modify';
-        this.p_plm_obj.plm_operation = 'fill_data';
-          // 
-        await this.plm_query_execute(this.plm_counter);
-        this.fillData();
+        if (this.mem_id != null) {
+          this.showLoadingScreen();
+          this.plm_status = 0;
+          this.widget_status = 1;
+          this.p_plm_obj.member_id = this.mem_id;
+          this.internal_operation = 'modify';
+          this.p_plm_obj.plm_operation = 'fill_data';
+          // await this.plm_query_execute(this.plm_counter);
+          await this.plm_query_execute();
+          this.fillData();
         }
-        else{
+        else {
           alert("Select an ID");
         }
         // setTimeout(() => this.fillDataAfterVariableChange(), 1
@@ -257,89 +257,135 @@
     // }
 
 
-    async plm_query_execute(plm_counter) {
-      if (this.plm_status == 0) {
-        this.plm_status = 1
-        //  query_id++
-        //  query.query_id = query_id
-        //  p_query = query (direct assignment not setter!)
-        plm_counter = plm_counter + 1;
-        setTimeout(() => this.plm_query_execute(plm_counter), 1500);
-        console.log(plm_counter);
-        this.dispatchEvent(new CustomEvent("onSave"));
+    // async plm_query_execute(plm_counter) {
+    //   if (this.plm_status == 0) {
+    //     this.plm_status = 1
+    //     //  query_id++
+    //     //  query.query_id = query_id
+    //     //  p_query = query (direct assignment not setter!)
+    //     plm_counter = plm_counter + 1;
+    //     setTimeout(() => this.plm_query_execute(plm_counter), 1500);
+    //     console.log(plm_counter);
+    //     this.dispatchEvent(new CustomEvent("onSave"));
 
-      }
-      else if (this.plm_status == 2) {
-        //  if query.query_id == p_query.query_id
-        //    r_query = p_query
-        //    PLM_STATUS = 0
-        // new
-        console.log(plm_counter);
-        this.plm_status = 0;
-        this.plm_counter = 0;
-        // this.fillData();
-      }
-      else {
-        if (plm_counter < 5) {
-          console.log(plm_counter);
-          plm_counter = plm_counter + 1;
-          setTimeout(() => this.plm_query_execute(plm_counter), 500);
+    //   }
+    //   else if (this.plm_status == 2) {
+    //     //  if query.query_id == p_query.query_id
+    //     //    r_query = p_query
+    //     //    PLM_STATUS = 0
+    //     // new
+    //     console.log(plm_counter);
+    //     this.plm_status = 0;
+    //     this.plm_counter = 0;
+    //     // this.fillData();
+    //   }
+    //   else {
+    //     if (plm_counter < 5) {
+    //       console.log(plm_counter);
+    //       plm_counter = plm_counter + 1;
+    //       setTimeout(() => this.plm_query_execute(plm_counter), 500);
+    //     }
+    //     else {
+    //       alert("Connection error: refresh page and try again");
+    //       this.hideLoadingScreen();
+    //     }
+    //   }
+    // }
+
+    sleep = function(ms) {
+      return new Promise(function(resolve) {
+        setTimeout(resolve, ms);
+      });
+    };
+    
+    async plm_query_execute() {
+      let iteration = 0;
+      const iteration_max = 10;
+    
+      while (iteration < iteration_max) {
+        if (this.plm_status == 0) {
+          this.plm_status = 1;
+          iteration = iteration + 1;
+          // p_query = query; 
+          this.dispatchEvent(new CustomEvent("onSave"));
+          await sleep(200);
+          break; // Exit the loop
+        } else {
+          await sleep(1500);
         }
-        else {
-          alert("Connection error: refresh page and try again");
-          this.hideLoadingScreen();
+      }
+    
+      if (iteration === iteration_max) {
+        alert("connection error");
+      } else {
+        iteration = 0;
+        while (iteration < iteration_max) {
+          if (this.plm_status == 2) {
+            // r_query = p_query;
+            this.plm_status = 0;
+            // return r_query;
+            break; // Exit the loop
+          } else {
+            await sleep(1500);
+          }
+          iteration = iteration + 1;
+        }
+    
+        if (iteration === iteration_max) {
+          alert("connection error");
         }
       }
     }
-
+    
+    
 
 
 
     async fillData() {
-      this.plm_status = 0;
-      const text_box_id = this.shadowRoot.getElementById('text_box_id');
-      text_box_id.value = this.p_plm_obj.plm_PlanningModelMember.id;
-      const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
-      text_box_desc.value = this.p_plm_obj.plm_PlanningModelMember.description;
-      console.log(Object.keys(this.p_plm_obj.plm_PlanningModelMember));
-      console.log(Object.values(this.p_plm_obj.plm_PlanningModelMember));
-      this.hideLoadingScreen();
-      this.showChildPopup();
+    this.plm_status = 0;
+    const text_box_id = this.shadowRoot.getElementById('text_box_id');
+    text_box_id.value = this.p_plm_obj.plm_PlanningModelMember.id;
+    const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
+    text_box_desc.value = this.p_plm_obj.plm_PlanningModelMember.description;
+    console.log(Object.keys(this.p_plm_obj.plm_PlanningModelMember));
+    console.log(Object.values(this.p_plm_obj.plm_PlanningModelMember));
+    this.hideLoadingScreen();
+    this.showChildPopup();
+  }
+
+  set_p_plm_obj(p_plm_obj) {
+    this.p_plm_obj = p_plm_obj;
+  }
+
+  set_plm_status(plm_status) {
+    this.plm_status = plm_status;
+  }
+
+  get_p_plm_obj() {
+    return this.p_plm_obj;
+  }
+
+  set_mem_id(mem_id) {
+    if (this.widget_status == 0) {
+      this.mem_id = mem_id;
+      this.updateValues();
     }
-
-    set_p_plm_obj(p_plm_obj) {
-      this.p_plm_obj = p_plm_obj;
-    }
-
-    set_plm_status(plm_status) {
-      this.plm_status = plm_status;
-    }
-
-    get_p_plm_obj() {
-      return this.p_plm_obj;
-    }
-
-    set_mem_id(mem_id) {
-      if (this.widget_status == 0) {
-        this.mem_id = mem_id;
-        this.updateValues();
-      }
-      else {
-        alert("ID already selected");
-      }
-    }
-
-    fireChanged() { }
-
-    updateValues() {
-      const inputBox = this.shadowRoot.getElementById('input_box');
-      inputBox.value = this.mem_id;
-
+    else {
+      alert("ID already selected");
     }
   }
 
+  fireChanged() { }
+
+  updateValues() {
+    const inputBox = this.shadowRoot.getElementById('input_box');
+    inputBox.value = this.mem_id;
+
+  }
+}
+
   customElements.define('custom-button', MasterData_Maintain);
 
-})();
+}) ();
 
 

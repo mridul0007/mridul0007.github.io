@@ -292,11 +292,11 @@
     //   }
     // }
 
-    sleep = function(ms) {
+    sleep(ms) {
       return new Promise(function(resolve) {
         setTimeout(resolve, ms);
       });
-    };
+    }
     
     async plm_query_execute() {
       let iteration = 0;

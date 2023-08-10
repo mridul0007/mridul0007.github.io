@@ -293,7 +293,7 @@
       }
     }
 
-    // updating member id to inputbox.
+    // updating member id to inputbox .
     updateValues() {
       const inputBox = this.shadowRoot.getElementById('input_box');
       inputBox.value = this.p_mem_id_selection; //set memid selection

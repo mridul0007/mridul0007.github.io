@@ -117,7 +117,7 @@
         });
   
   
-        // button modify_logic code
+        // button modify-logic code
         const buttonModify = shadowRoot.getElementById('button_modify');
         buttonModify.addEventListener('click', async () => {
           if (this.p_mem_id_selection != null) {

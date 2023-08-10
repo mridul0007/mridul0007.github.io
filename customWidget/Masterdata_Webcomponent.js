@@ -152,7 +152,7 @@
           
           this.readData()
           this.p_plm_query.plm_method = 'write_data';
-          this.dispatchEvent(new CustomEvent("onSave"));
+          this.dispatchEvent(new CustomEvent("onClick"));
           await this.plm_query_execute();
           this.hideChildPopup();
           this.internal_operation = '';
@@ -229,7 +229,7 @@
             this.plm_status = 1;
             iteration = iteration + 1;
             this.p_plm_query =  p_query; 
-            this.dispatchEvent(new CustomEvent("onSave"));
+            this.dispatchEvent(new CustomEvent("onClick"));
             await this.sleep(200);
             break; // Exit the loop
           } else {
@@ -247,7 +247,6 @@
               let r_query = this.p_plm_query;
               this.plm_status = 0;
               return r_query;
-              break; // Exit the loop
             } else {
               await this.sleep(1500);
             }

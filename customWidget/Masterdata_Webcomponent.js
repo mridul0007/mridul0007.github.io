@@ -120,7 +120,7 @@
   
         const buttonModify = shadowRoot.getElementById('button_modify');
         buttonModify.addEventListener('click', async () => {
-          if (this.p_mem_id != null) {
+          if (this.p_mem_id_selection != null) {
             this.showLoadingScreen();
             this.internal_operation = 'MODIFY';
             let p_qury = {};

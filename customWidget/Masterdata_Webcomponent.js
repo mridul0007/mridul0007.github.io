@@ -122,7 +122,7 @@
         buttonModify.addEventListener('click', async () => {
           if (this.p_mem_id != null) {
             this.showLoadingScreen();
-            this.internal_operation = 'modify';
+            this.internal_operation = 'MODIFY';
             let p_qury = {};
             p_qury.plm_mp_member_id = this.p_mem_id;
             p_qury.plm_method = 'fill_data';
@@ -151,11 +151,10 @@
         buttonOk.addEventListener('click', async () => {
           
           let p_query = await this.readData();
-          p_query.plm_method = 'write_data';
+          p_query.plm_method = this.internal_operation;
           let r_query = await this.plm_query_execute(p_query);
           this.clear_plmquery();
           this.hideChildPopup();
-          Application.refreshData();
         })
 
   

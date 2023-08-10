@@ -94,7 +94,7 @@
       constructor() {
         super();
         this.p_plm_query = {};
-        this.internal_operation = '';
+        this.widget_operation = '';  // 
         this.plm_status = 0;
         this.plm_counter = 0;
         this.init();
@@ -122,7 +122,7 @@
         buttonModify.addEventListener('click', async () => {
           if (this.p_mem_id_selection != null) {
             this.showLoadingScreen();
-            this.internal_operation = 'MODIFY';
+            this.widget_operation = 'MODIFY';
             let p_qury = {};
             p_qury.plm_mp_member_id = this.p_mem_id_selection;
             p_qury.plm_method = 'fill_data';
@@ -151,7 +151,7 @@
         buttonOk.addEventListener('click', async () => {
           
           let p_query = await this.readData();
-          p_query.plm_method = this.internal_operation;
+          p_query.plm_method = this.widget_operation;
           let r_query = await this.plm_query_execute(p_query);
           this.clear_plmquery();
           this.hideChildPopup();
@@ -284,7 +284,7 @@
     }
   
     set_p_mem_id_selection(p_mem_id_selection) {
-      if (this.internal_operation == '') {
+      if (this.widget_operation == '') {
         this.p_mem_id_selection = p_mem_id_selection;
         this.updateValues();
       }
@@ -302,7 +302,7 @@
 
     clear_plmquery() {
         this.plm_status = 0;
-        this.internal_operation = '';
+        this.widget_operation = '';
         this.p_plm_query ={};
       }
 

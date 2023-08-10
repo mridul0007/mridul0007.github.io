@@ -282,9 +282,9 @@
       return this.p_plm_query;
     }
   
-    set_p_mem_id(p_mem_id) {
+    set_p_mem_id_selection(p_mem_id_selection) {
       if (this.internal_operation == '') {
-        this.p_mem_id = p_mem_id;
+        this.p_mem_id_selection = p_mem_id_selection;
         this.updateValues();
       }
       else {

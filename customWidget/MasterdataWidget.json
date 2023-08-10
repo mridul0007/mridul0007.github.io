@@ -20,9 +20,9 @@
 	],
 	"properties": {
 		"p_plm_query":{
-			"type" : "ty_PLM_query"
+			"type" : "ty_plm_query"
 		},
-		"p_mem_id":{
+		"p_mem_id_selection":{
 			"type" : "string"
 		}
 		
@@ -44,7 +44,7 @@
 		}
 	  },
 	  "types":{
-		"ty_PLM_query":{
+		"ty_plm_query":{
 			"description" : "Object for PLM query",
 			"properties":[
 				{
@@ -53,19 +53,19 @@
 					"description" : "operation to do"
 				},
 				{
-					"name" : "plm_mp_PlanningModelMember",
+					"name" : "plm_mp_planningmodelmember",
 					"type" : "PlanningModelMember",
 					"description" : "Planning model member"
 				},
 				{
-					"name" : "plm_mp_dimension",
+					"name" : "plm_mp_dimension_id",
 					"type" : "string",
 					"description" : "dimension ID"
 				},
 				{
 					"name" : "plm_mp_member_id",
 					"type" : "string",
-					"description" : "status"
+					"description" : "member id"
 				},
 				{
 					"name": "plm_mp_member_ids",
@@ -73,7 +73,7 @@
 					"description": "array of member IDs"
 				},
 				{
-					"name": "plm_mp_PlanningModelMembers",
+					"name": "plm_mp_planningmodelmembers",
 					"type": "PlanningModelMember[]",
 					"description": "array of PLMs"
 				}
@@ -84,30 +84,36 @@
 		}
 	  },
 	"methods": {
-		"set_p_mem_id": {
+		"set_p_mem_id_selection": {
 			"description": "set id",
 			"parameters": [
 				{
-					"name": "p_mem_id",
+					"name": "p_mem_id_selection",
 					"type": "string",
-					"description": "set member ID"
+					"description": "set selection member ID"
 				}
 			]
 			
 		},
+        "get_p_mem_id_selection": {
+			"returnType": "string",
+			"description": "return selected member ID"
+			
+			
+		},
 		"set_p_plm_query": {
-			"description": "set set_p_PLM_query",
+			"description": "set set_p_plm_query",
 			"parameters": [
 				{
 					"name": "p_plm_query",
-					"type": "ty_PLM_query",
+					"type": "ty_plm_query",
 					"description": "set p_plm_query"
 				}
 			]
 			
 		},
 		"get_p_plm_query": {
-			"returnType": "ty_PLM_query",
+			"returnType": "ty_plm_query",
 			"description": "get p_plm_query"
 			
 			

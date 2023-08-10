@@ -294,7 +294,7 @@
     }
   
     set_p_mem_id(p_mem_id) {
-      if (this.plm_method != '') {
+      if (this.internal_operation != '') {
         this.p_mem_id = p_mem_id;
         this.updateValues();
       }
@@ -314,6 +314,7 @@
   }
   clear_plmquery(){
     this.p_plm_query ={};
+    this.internal_operation = '';
   }
   
     customElements.define('custom-widget', MasterData_Maintain);

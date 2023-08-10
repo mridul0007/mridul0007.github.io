@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "Masterdata_Widget",
-	"version": "1.0.01",
+	"version": "1.0.02",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -95,7 +95,7 @@
 			]
 			
 		},
-		"set_p_PLM_query": {
+		"set_p_plm_query": {
 			"description": "set set_p_PLM_query",
 			"parameters": [
 				{
@@ -106,7 +106,7 @@
 			]
 			
 		},
-		"get_p_PLM_query": {
+		"get_p_plm_query": {
 			"returnType": "ty_PLM_query",
 			"description": "get p_plm_query"
 			

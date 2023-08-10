@@ -155,16 +155,13 @@
           let r_query = await this.plm_query_execute(p_query);
           this.clear_plmquery();
           this.hideChildPopup();
-          this.internal_operation = '';
         })
 
   
         const buttonCancel = shadowRoot.getElementById('button_cancel');
         buttonCancel.addEventListener('click', () => {
-          this.showLoadingScreen();
-          this.plm_status = 0;
+          this.clear_plmquery();
           this.hideChildPopup();
-          this.internal_operation = '';
         });
 
   
@@ -313,8 +310,9 @@
     }
 
     clear_plmquery() {
-        this.p_plm_query ={};
+        this.plm_status = 0;
         this.internal_operation = '';
+        this.p_plm_query ={};
       }
   }
 

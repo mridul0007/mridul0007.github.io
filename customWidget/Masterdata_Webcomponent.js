@@ -155,6 +155,7 @@
           let r_query = await this.plm_query_execute(p_query);
           this.clear_plmquery();
           this.hideChildPopup();
+          Application.refreshData();
         })
 
   

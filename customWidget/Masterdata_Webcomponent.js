@@ -217,7 +217,7 @@
             this.plm_status = 1;
             iteration = iteration + 1;
             this.p_plm_query =  p_query; 
-            this.dispatchEvent(new CustomEvent("onClick"));
+            this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
             await this.sleep(200);
             break; // Exit the loop
           } else {
@@ -256,20 +256,20 @@
       this.plm_status = 0;
       this.p_plm_query =plm_query;
       const text_box_id = this.shadowRoot.getElementById('text_box_id');
-      text_box_id.value = this.p_plm_query.plm_mp_PlanningModelMember.id;
+      text_box_id.value = this.p_plm_query.plm_mp_planningmodelmember.id;
       const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
-      text_box_desc.value = this.p_plm_query.plm_mp_PlanningModelMember.description;
-      console.log(Object.keys(this.p_plm_query.plm_mp_PlanningModelMember));
-      console.log(Object.values(this.p_plm_query.plm_mp_PlanningModelMember));
+      text_box_desc.value = this.p_plm_query.plm_mp_planningmodelmember.description;
+      console.log(Object.keys(this.p_plm_query.plm_mp_planningmodelmember));
+      console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
       this.showChildPopup();
     }
   
     //   reading inputed data from respective HTML fields
     async readData() {
       const text_box_id = this.shadowRoot.getElementById('text_box_id');
-       this.p_plm_query.plm_mp_PlanningModelMember.id = text_box_id.value;
+       this.p_plm_query.plm_mp_planningmodelmember.id = text_box_id.value;
       const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
-      this.p_plm_query.plm_mp_PlanningModelMember.description = text_box_desc.value ;
+      this.p_plm_query.plm_mp_planningmodelmember.description = text_box_desc.value ;
       return this.p_plm_query;
     }
   

@@ -220,6 +220,7 @@
 
     //   plm query execute function
       async plm_query_execute(p_query) {
+        this.showLoadingScreen();
         let iteration = 0;
         
         const iteration_max = 10;
@@ -258,6 +259,7 @@
           }
         }
         console.log(iteration);
+        this.hideLoadingScreen();
       }
       
     //   assigning data to respective HTML fields
@@ -270,7 +272,6 @@
       text_box_desc.value = this.p_plm_query.plm_mp_PlanningModelMember.description;
       console.log(Object.keys(this.p_plm_query.plm_mp_PlanningModelMember));
       console.log(Object.values(this.p_plm_query.plm_mp_PlanningModelMember));
-      this.hideLoadingScreen();
       this.showChildPopup();
     }
   
@@ -280,8 +281,6 @@
        this.p_plm_query.plm_mp_PlanningModelMember.id = text_box_id.value;
       const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
       this.p_plm_query.plm_mp_PlanningModelMember.description = text_box_desc.value ;
-      this.hideLoadingScreen();
-      this.showChildPopup();
       return this.p_plm_query;
     }
   
@@ -295,7 +294,7 @@
     }
   
     set_p_mem_id(p_mem_id) {
-      if (this.plm_method == '') {
+      if (this.internal_operation == '') {
         this.p_mem_id = p_mem_id;
         this.updateValues();
       }
@@ -312,10 +311,13 @@
       inputBox.value = this.p_mem_id;
   
     }
+
+    clear_plmquery() {
+        this.p_plm_query ={};
+        this.internal_operation = '';
+      }
   }
-  clear_plmquery(){
-    this.p_plm_query ={};
-  }
+
   
     customElements.define('custom-widget', MasterData_Maintain);
   

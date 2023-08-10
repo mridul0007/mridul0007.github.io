@@ -7,12 +7,12 @@
 	"vendor": "",
 	"license": "",
 	"id": "Masterdata_Widget",
-	"version": "1.0.00",
+	"version": "1.0.01",
 	"icon": "",
 	"webcomponents": [
 		{
 			"kind": "main",
-			"tag": "custom-button",
+			"tag": "custom-widget",
 			"url": "https://mridul0007.github.io/customWidget/Masterdata_Webcomponent.js",
 			"integrity": "",
 			"ignoreIntegrity": true
@@ -84,9 +84,6 @@
 		}
 	  },
 	"methods": {
-		"clear": {
-			"description": "Clear plm"
-		},
 		"set_p_mem_id": {
 			"description": "set id",
 			"parameters": [

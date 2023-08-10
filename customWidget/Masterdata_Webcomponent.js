@@ -197,16 +197,6 @@
         loadingScreen.style.display = 'none';
       }
   
-      onCustomWidgetAfterUpdate(ochangedProperties) {
-        // if ("p_mem_id" in ochangedProperties) {
-        //   const inputBox = this.shadowRoot.getElementById('input_box');
-        //   inputBox.value = this.p_mem_id;
-        // }
-        // if ("p_plm_query" in ochangedProperties) {
-        //   const inputBox = this.shadowRoot.getElementById('input_box');
-        //   inputBox.value = this.p_plm_query.plm_mp_plm_mp_member_id;
-        // }
-      }
   
     //   sleep function for synchronization
       async sleep(ms) {
@@ -253,7 +243,8 @@
           }
       
           if (iteration === iteration_max) {
-            alert("connection error");
+            alert("connection error: please reload");
+            this.plm_status = 0;
             this.hideLoadingScreen();
           }
         }
@@ -300,9 +291,7 @@
         alert("ID already selected");
       }
     }
-  
-    fireChanged() { }
-    
+
     // updating member id to inputbox.
     updateValues() {
       const inputBox = this.shadowRoot.getElementById('input_box');
@@ -315,6 +304,10 @@
         this.internal_operation = '';
         this.p_plm_query ={};
       }
+
+    onCustomWidgetAfterUpdate(ochangedProperties) { }
+
+    fireChanged() { }
   }
 
   

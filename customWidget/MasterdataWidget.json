@@ -1,0 +1,129 @@
+{
+	"name": "Masterdata_Widget",
+	"imports": ["planning-model"],
+	"description": "Master Data Custom Widget",
+	"newInstancePrefix": "Masterdata_Widget",
+	"eula": "",
+	"vendor": "",
+	"license": "",
+	"id": "Masterdata_Widget",
+	"version": "1.0.00",
+	"icon": "",
+	"webcomponents": [
+		{
+			"kind": "main",
+			"tag": "custom-button",
+			"url": "https://mridul0007.github.io/customWidget/Masterdata_Webcomponent.js",
+			"integrity": "",
+			"ignoreIntegrity": true
+		}
+	],
+	"properties": {
+		"p_plm_query":{
+			"type" : "ty_PLM_query"
+		},
+		"p_mem_id":{
+			"type" : "string"
+		}
+		
+	},
+	"dataBindings": {
+		"exportDataSource": {
+		  "feeds": [
+			{
+			  "id": "dimensions",
+			  "description": "The dimensions feed",
+			  "type": "dimension"
+			},
+			{
+			  "id": "measures",
+			  "description": "The measures feed",
+			  "type": "mainStructureMember"
+			}
+		  ]
+		}
+	  },
+	  "types":{
+		"ty_PLM_query":{
+			"description" : "Object for PLM query",
+			"properties":[
+				{
+					"name" : "plm_method",
+					"type" : "string",
+					"description" : "operation to do"
+				},
+				{
+					"name" : "plm_mp_PlanningModelMember",
+					"type" : "PlanningModelMember",
+					"description" : "Planning model member"
+				},
+				{
+					"name" : "plm_mp_dimension",
+					"type" : "string",
+					"description" : "dimension ID"
+				},
+				{
+					"name" : "plm_mp_member_id",
+					"type" : "string",
+					"description" : "status"
+				},
+				{
+					"name": "plm_mp_member_ids",
+					"type": "string[]",
+					"description": "array of member IDs"
+				},
+				{
+					"name": "plm_mp_PlanningModelMembers",
+					"type": "PlanningModelMember[]",
+					"description": "array of PLMs"
+				}
+		  
+		  
+			]
+
+		}
+	  },
+	"methods": {
+		"clear": {
+			"description": "Clear plm"
+		},
+		"set_p_mem_id": {
+			"description": "set id",
+			"parameters": [
+				{
+					"name": "p_mem_id",
+					"type": "string",
+					"description": "set member ID"
+				}
+			]
+			
+		},
+		"set_p_PLM_query": {
+			"description": "set set_p_PLM_query",
+			"parameters": [
+				{
+					"name": "p_plm_query",
+					"type": "ty_PLM_query",
+					"description": "set p_plm_query"
+				}
+			]
+			
+		},
+		"get_p_PLM_query": {
+			"returnType": "ty_PLM_query",
+			"description": "get p_plm_query"
+			
+			
+		}
+
+
+	},
+	"events": {
+		"onClick": {
+			"description": "Called when the user clicks the button."
+		}
+	}
+	
+}
+
+

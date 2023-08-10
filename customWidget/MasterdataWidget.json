@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "Masterdata_Widget",
-	"version": "1.0.02",
+	"version": "1.0.03",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -122,8 +122,8 @@
 
 	},
 	"events": {
-		"onClick": {
-			"description": "Called when the user clicks the button."
+		"onPlmQueryExecution": {
+			"description": "Called when widget has a PLM query to execute."
 		}
 	}
 	

@@ -254,6 +254,7 @@
       
           if (iteration === iteration_max) {
             alert("connection error");
+            this.hideLoadingScreen();
           }
         }
         console.log(iteration);

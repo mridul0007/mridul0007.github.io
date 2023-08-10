@@ -244,6 +244,7 @@
             if (this.plm_status == 2) {
               let r_query = this.p_plm_query;
               this.plm_status = 0;
+              this.hideLoadingScreen();
               return r_query;
             } else {
               await this.sleep(1500);
@@ -256,7 +257,6 @@
           }
         }
         console.log(iteration);
-        this.hideLoadingScreen();
       }
       
     //   assigning data to respective HTML fields

@@ -294,7 +294,7 @@
     }
   
     set_p_mem_id(p_mem_id) {
-      if (this.plm_method == '') {
+      if (this.plm_method != '') {
         this.p_mem_id = p_mem_id;
         this.updateValues();
       }

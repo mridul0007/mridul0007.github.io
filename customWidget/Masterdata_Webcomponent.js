@@ -121,7 +121,7 @@
         const buttonModify = shadowRoot.getElementById('button_modify');
         buttonModify.addEventListener('click', async () => {
           if (this.p_mem_id != null) {
-            
+            this.showLoadingScreen();
             this.internal_operation = 'modify';
             let p_qury = {};
             p_qury.plm_mp_member_id = this.p_mem_id;
@@ -161,10 +161,10 @@
   
         const buttonCancel = shadowRoot.getElementById('button_cancel');
         buttonCancel.addEventListener('click', () => {
+          this.showLoadingScreen();
           this.plm_status = 0;
+          this.hideChildPopup();
           this.internal_operation = '';
-          this.hideLoadingScreen();
-          this.hideChildPopup(); 
         });
 
   
@@ -220,8 +220,8 @@
 
     //   plm query execute function
       async plm_query_execute(p_query) {
-        this.showLoadingScreen();
         let iteration = 0;
+        
         const iteration_max = 10;
       
         while (iteration < iteration_max) {
@@ -258,7 +258,6 @@
           }
         }
         console.log(iteration);
-        this.hideLoadingScreen();
       }
       
     //   assigning data to respective HTML fields
@@ -271,6 +270,7 @@
       text_box_desc.value = this.p_plm_query.plm_mp_PlanningModelMember.description;
       console.log(Object.keys(this.p_plm_query.plm_mp_PlanningModelMember));
       console.log(Object.values(this.p_plm_query.plm_mp_PlanningModelMember));
+      this.hideLoadingScreen();
       this.showChildPopup();
     }
   
@@ -281,6 +281,7 @@
       const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
       this.p_plm_query.plm_mp_PlanningModelMember.description = text_box_desc.value ;
       this.hideLoadingScreen();
+      this.showChildPopup();
       return this.p_plm_query;
     }
   
@@ -294,7 +295,7 @@
     }
   
     set_p_mem_id(p_mem_id) {
-      if (this.internal_operation != '') {
+      if (this.plm_method == '') {
         this.p_mem_id = p_mem_id;
         this.updateValues();
       }
@@ -314,7 +315,6 @@
   }
   clear_plmquery(){
     this.p_plm_query ={};
-    this.internal_operation = '';
   }
   
     customElements.define('custom-widget', MasterData_Maintain);

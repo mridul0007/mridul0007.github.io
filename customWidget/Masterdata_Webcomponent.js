@@ -94,9 +94,8 @@
       constructor() {
         super();
         this.p_plm_query = {};
-        this.widget_operation = '';  // 
-        this.plm_status = 0;
-        this.plm_counter = 0;
+        this.widget_operation = '';  // Widget operation 'MODIFY' 'DELETE' 'INSERT'
+        this.plm_status = 0; //'0: pl free' '1: plm start execution query' '2: plm finished execution query'
         this.init();
       }
   

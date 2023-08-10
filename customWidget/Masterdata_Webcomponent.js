@@ -150,7 +150,7 @@
         const buttonOk = shadowRoot.getElementById('button_ok');
         buttonOk.addEventListener('click', async () => {
           
-          let p_query = this.readData();
+          let p_query = await this.readData();
           this.p_query.plm_method = 'write_data';
           let r_query = await this.plm_query_execute(p_query);
           this.clear_plmquery();

@@ -271,7 +271,7 @@
         p_query.plm_mp_planningmodelmember.id = text_box_id.value;
         const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
         p_query.plm_mp_planningmodelmember.description = text_box_desc.value ;
-        return p_plm_query;
+        return p_query;
     }
   
     set_p_plm_query(p_plm_query) {

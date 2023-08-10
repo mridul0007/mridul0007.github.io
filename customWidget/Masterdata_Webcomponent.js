@@ -266,11 +266,12 @@
   
     //   reading inputed data from respective HTML fields
     async readData() {
-      const text_box_id = this.shadowRoot.getElementById('text_box_id');
-       this.p_plm_query.plm_mp_planningmodelmember.id = text_box_id.value;
-      const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
-      this.p_plm_query.plm_mp_planningmodelmember.description = text_box_desc.value ;
-      return this.p_plm_query;
+        let p_query = this.p_plm_query;
+        const text_box_id = this.shadowRoot.getElementById('text_box_id');
+        p_query.plm_mp_planningmodelmember.id = text_box_id.value;
+        const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
+        p_query.plm_mp_planningmodelmember.description = text_box_desc.value ;
+        return p_plm_query;
     }
   
     set_p_plm_query(p_plm_query) {

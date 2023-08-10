@@ -124,7 +124,7 @@
             this.showLoadingScreen();
             this.internal_operation = 'MODIFY';
             let p_qury = {};
-            p_qury.plm_mp_member_id = this.p_mem_id;
+            p_qury.plm_mp_member_id = this.p_mem_id_selection;
             p_qury.plm_method = 'fill_data';
             let r_query = await this.plm_query_execute(p_qury);
             this.fillData(r_query);

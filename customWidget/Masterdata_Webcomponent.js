@@ -205,24 +205,6 @@
         });
 
   
-        // const buttonOk = shadowRoot.getElementById('button_ok');
-        // buttonOk.addEventListener('click', async () => {
-          
-        //   let p_query = await this.readData();
-        //   p_query.plm_method = this.widget_operation;
-        //   let r_query = await this.plm_query_execute(p_query);
-        //   this.clear_plmquery();
-        //   this.hideChildPopup();
-        // })
-
-  
-        // const buttonCancel = shadowRoot.getElementById('button_cancel');
-        // buttonCancel.addEventListener('click', () => {
-        //   this.clear_plmquery();
-        //   this.hideChildPopup();
-        // });
-
-  
         const inputBox = shadowRoot.getElementById('input_box');
         inputBox.value = this.id;
 
@@ -260,6 +242,27 @@
         buttonRow.appendChild(buttonOk);
         buttonRow.appendChild(buttonCancel);
         childPopup.appendChild(buttonRow);
+
+
+      // event listners for ok and canel button
+      buttonOk.addEventListener('click', async () => {
+        
+        let p_query = await this.readData();
+        p_query.plm_method = this.widget_operation;
+        let r_query = await this.plm_query_execute(p_query);
+        this.clear_plmquery();
+        this.hideChildPopup();
+      })
+
+
+      buttonCancel.addEventListener('click', () => {
+        this.clear_plmquery();
+        this.hideChildPopup();
+      });
+        
+
+        
+
       }
 
       // show the pop up screen

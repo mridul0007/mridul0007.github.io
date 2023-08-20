@@ -166,6 +166,27 @@
   
         const inputBox = shadowRoot.getElementById('input_box');
         inputBox.value = this.id;
+
+
+
+        const identity = ['id', 'description'];
+        const properties = ['TAX_CLASS', 'DEDUCTION_YEAR', 'MEM_ACTIVE'];
+        const hierarchies = ['DEPARTMENT', 'LEVEL'];
+
+        const childPopup = this.shadowRoot.querySelector('.child_popup');
+
+        // Clear existing content
+        childPopup.innerHTML = '';
+
+        // Generate and append elements for identity, properties, and hierarchies
+        const identityFields = generateFields(identity, 'Identity');
+        const propertiesFields = generateFields(properties, 'Properties');
+        const hierarchiesFields = generateFields(hierarchies, 'Hierarchies');
+
+        // Append the generated fields to the child_popup div
+        childPopup.appendChild(identityFields);
+        childPopup.appendChild(propertiesFields);
+        childPopup.appendChild(hierarchiesFields);
       }
 
       // show the pop up screen

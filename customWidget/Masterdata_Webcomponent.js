@@ -119,6 +119,7 @@
           if ((array_des === 'Properties' || array_des === 'Hierarchies') && p_flag == 0) {
             const headerLabel = document.createElement('label');
             headerLabel.textContent = array_des;
+            headerLabel.classList.add('header-label'); // Add the 'header-label' class
             fieldsContainer.appendChild(headerLabel);
             p_flag = 1;
           }

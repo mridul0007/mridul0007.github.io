@@ -205,22 +205,22 @@
         });
 
   
-        const buttonOk = shadowRoot.getElementById('button_ok');
-        buttonOk.addEventListener('click', async () => {
+        // const buttonOk = shadowRoot.getElementById('button_ok');
+        // buttonOk.addEventListener('click', async () => {
           
-          let p_query = await this.readData();
-          p_query.plm_method = this.widget_operation;
-          let r_query = await this.plm_query_execute(p_query);
-          this.clear_plmquery();
-          this.hideChildPopup();
-        })
+        //   let p_query = await this.readData();
+        //   p_query.plm_method = this.widget_operation;
+        //   let r_query = await this.plm_query_execute(p_query);
+        //   this.clear_plmquery();
+        //   this.hideChildPopup();
+        // })
 
   
-        const buttonCancel = shadowRoot.getElementById('button_cancel');
-        buttonCancel.addEventListener('click', () => {
-          this.clear_plmquery();
-          this.hideChildPopup();
-        });
+        // const buttonCancel = shadowRoot.getElementById('button_cancel');
+        // buttonCancel.addEventListener('click', () => {
+        //   this.clear_plmquery();
+        //   this.hideChildPopup();
+        // });
 
   
         const inputBox = shadowRoot.getElementById('input_box');
@@ -246,6 +246,20 @@
         childPopup.appendChild(identityFields);
         childPopup.appendChild(propertiesFields);
         childPopup.appendChild(hierarchiesFields);
+
+        const buttonRow = document.createElement('div');
+        buttonRow.classList.add('button-row');
+        const buttonOk = document.createElement('button');
+        buttonOk.type = 'button';
+        buttonOk.id = 'button_ok';
+        buttonOk.textContent = 'OK';
+        const buttonCancel = document.createElement('button');
+        buttonCancel.type = 'button';
+        buttonCancel.id = 'button_cancel';
+        buttonCancel.textContent = 'CANCEL';
+        buttonRow.appendChild(buttonOk);
+        buttonRow.appendChild(buttonCancel);
+        childPopup.appendChild(buttonRow);
       }
 
       // show the pop up screen

@@ -71,23 +71,27 @@
           
       `;
 
-      function generateFields(fieldsArray, label) {
+      function generateFields(fieldsArray) {
         const fieldsContainer = document.createElement('div');
         fieldsContainer.classList.add('input-row');
       
         fieldsArray.forEach(fieldName => {
+          const fieldWrapper = document.createElement('div'); // Create a wrapper div for each label and input pair
+          fieldWrapper.classList.add('field-wrapper');
+      
           const labelElement = document.createElement('label');
           labelElement.setAttribute('for', fieldName); // Use the field name as the "for" attribute
           labelElement.textContent = fieldName + ':';
-          fieldsContainer.appendChild(labelElement);
+          fieldWrapper.appendChild(labelElement);
       
           const inputElement = document.createElement('input');
           inputElement.type = 'text'; // You can change the input type as needed
           inputElement.id = fieldName; // Use the field name as the input's "id"
           inputElement.placeholder = 'Enter ' + fieldName + '...';
-          fieldsContainer.appendChild(inputElement);
-        });
+          fieldWrapper.appendChild(inputElement);
       
+          fieldsContainer.appendChild(fieldWrapper); // Append the wrapper div to the main container
+        });
       
         return fieldsContainer;
       }

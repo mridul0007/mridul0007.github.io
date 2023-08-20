@@ -93,6 +93,13 @@
         fieldsContainer.classList.add('input-row');
       
         fieldsArray.forEach(fieldName => {
+          if (fieldName === 'property' || fieldName === 'hierarchies') {
+            const headerLabel = document.createElement('label');
+            headerLabel.textContent = fieldName === 'property' ? 'Properties:' : 'Hierarchies:';
+            fieldsContainer.appendChild(headerLabel);
+            return; // Skip adding an input element for "property" or "hierarchies"
+          }
+      
           const labelElement = document.createElement('label');
           labelElement.setAttribute('for', fieldName); // Use the field name as the "for" attribute
           labelElement.textContent = fieldName + ':';
@@ -112,6 +119,7 @@
       
         return fieldsContainer;
       }
+      
       
       
       

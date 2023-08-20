@@ -262,12 +262,11 @@
       console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
       this.showChildPopup();
 
-      const jsonObject = JSON.parse(this.p_plm_query.plm_mp_planningmodelmember);
-      const { keys, properties, hierarchies } = getAllKeys(jsonObject);
-      
-      console.log('All Keys:', keys);
-      console.log('Properties:', properties);
-      console.log('Hierarchies:', hierarchies);
+      const { keys, properties, hierarchies } = this.getAllKeys(this.p_plm_query.plm_mp_planningmodelmember);
+  
+  console.log('All Keys:', keys);
+  console.log('Properties:', properties);
+  console.log('Hierarchies:', hierarchies);
 
       
     }

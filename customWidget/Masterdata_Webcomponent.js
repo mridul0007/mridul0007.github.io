@@ -72,12 +72,17 @@
           
           .label-input-wrapper label {
             width: 120px;
-            margin-right: 10px;
+            margin-right: 12px;
           }
           
           .label-input-wrapper input {
             flex: 1;
             margin-left: 10px; /* Add a left margin to the input fields */
+          }
+
+          .header-label {
+            font-style: italic; /* Add italic font style to the header label */
+            text-decoration: underline; /* Add underlined text decoration to the header label */
           }
           
 

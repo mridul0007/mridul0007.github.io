@@ -72,12 +72,12 @@
           
           .label-input-wrapper label {
             width: 120px;
-            margin-right: 12px;
+            margin-right: 10px;
           }
           
           .label-input-wrapper input {
             flex: 1;
-            margin-left: 10px; /* Add a left margin to the input fields */
+            margin-left: 14px; /* Add a left margin to the input fields */
           }
 
           .header-label {

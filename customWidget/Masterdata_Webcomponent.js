@@ -76,21 +76,21 @@
         fieldsContainer.classList.add('input-row');
       
         fieldsArray.forEach(fieldName => {
-          const fieldWrapper = document.createElement('div'); // Create a wrapper div for each label and input pair
-          fieldWrapper.classList.add('field-wrapper');
+          const labelInputWrapper = document.createElement('div'); // Create a wrapper for label and input
+          labelInputWrapper.classList.add('label-input-wrapper');
       
           const labelElement = document.createElement('label');
           labelElement.setAttribute('for', fieldName); // Use the field name as the "for" attribute
           labelElement.textContent = fieldName + ':';
-          fieldWrapper.appendChild(labelElement);
+          labelInputWrapper.appendChild(labelElement);
       
           const inputElement = document.createElement('input');
           inputElement.type = 'text'; // You can change the input type as needed
           inputElement.id = fieldName; // Use the field name as the input's "id"
           inputElement.placeholder = 'Enter ' + fieldName + '...';
-          fieldWrapper.appendChild(inputElement);
+          labelInputWrapper.appendChild(inputElement);
       
-          fieldsContainer.appendChild(fieldWrapper); // Append the wrapper div to the main container
+          fieldsContainer.appendChild(labelInputWrapper); // Append the label and input wrapper
       
           // Add a line break after each label and input pair
           fieldsContainer.appendChild(document.createElement('br'));
@@ -98,6 +98,7 @@
       
         return fieldsContainer;
       }
+      
       
       
 

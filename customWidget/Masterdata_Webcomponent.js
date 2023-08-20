@@ -88,14 +88,14 @@
           
       `;
 
-      function generateFields(fieldsArray) {
+      function generateFields(fieldsArray,array_des) {
         const fieldsContainer = document.createElement('div');
         fieldsContainer.classList.add('input-row');
       
         fieldsArray.forEach(fieldName => {
-          if (fieldName === 'property' || fieldName === 'hierarchies') {
+          if (array_des === 'Properties' || array_des === 'Hierarchies') {
             const headerLabel = document.createElement('label');
-            headerLabel.textContent = fieldName === 'property' ? 'Properties:' : 'Hierarchies:';
+            headerLabel.textContent = array_des;
             fieldsContainer.appendChild(headerLabel);
             
           }

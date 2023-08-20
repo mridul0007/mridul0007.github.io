@@ -262,9 +262,9 @@
       console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
       this.showChildPopup();
 
-      const { keys, properties, hierarchies } = this.getAllKeys(this.p_plm_query.plm_mp_planningmodelmember);
+      const { identity, properties, hierarchies } = this.getAllKeys(this.p_plm_query.plm_mp_planningmodelmember);
   
-      console.log('All Keys:', keys);
+      console.log('All Keys:', identity);
       console.log('Properties:', properties);
       console.log('Hierarchies:', hierarchies);
 
@@ -274,29 +274,36 @@
 
 
     getAllKeys(jsonObj) {
-        const keys = [];
-        const properties = [];
-        const hierarchies = [];
-      
-        function traverse(obj) {
-          for (const key in obj) {
-            if (typeof obj[key] === 'object' && obj[key] !== null) {
-              if (key === 'properties') {
-                properties.push(...Object.keys(obj[key]));
-              } else if (key === 'hierarchies') {
-                hierarchies.push(...Object.keys(obj[key]));
-              }
-              traverse(obj[key]);
+      const properties = [];
+      const hierarchies = [];
+      const identity = [];
+    
+      function traverse(obj) {
+        for (const key in obj) {
+          if (typeof obj[key] === 'object' && obj[key] !== null) {
+            if (key === 'properties') {
+              properties.push(...Object.keys(obj[key]));
+            } else if (key === 'hierarchies') {
+              hierarchies.push(...Object.keys(obj[key]));
             } else {
-              keys.push(key);
+              traverse(obj[key]);
+            }
+          } else {
+            if (key === 'property') {
+              properties.push(key);
+            } else if (key === 'hierarchies') {
+              hierarchies.push(key);
+            } else {
+              identity.push(key);
             }
           }
         }
-      
-        traverse(jsonObj);
-      
-        return { keys, properties, hierarchies };
       }
+    
+      traverse(jsonObj);
+    
+      return { identity,properties, hierarchies};
+    }
       
       
       

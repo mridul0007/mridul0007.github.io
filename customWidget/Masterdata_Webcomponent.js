@@ -107,16 +107,16 @@
         shadowRoot.appendChild(tmpl.content.cloneNode(true));
         this._export_settings = {};
   
-        const departmentOptions = ["Department 1", "Department 2", "Department 3"];
-        // Get the select element for the department dropdown
-        const selectDepartment = this.shadowRoot.getElementById('select_box_department');
+        // const departmentOptions = ["Department 1", "Department 2", "Department 3"];
+        // // Get the select element for the department dropdown
+        // const selectDepartment = this.shadowRoot.getElementById('select_box_department');
   
-        // Populate the department options
-        departmentOptions.forEach(option => {
-          const optionElement = document.createElement('option');
-          optionElement.textContent = option;
-          selectDepartment.appendChild(optionElement);
-        });
+        // // Populate the department options
+        // departmentOptions.forEach(option => {
+        //   const optionElement = document.createElement('option');
+        //   optionElement.textContent = option;
+        //   selectDepartment.appendChild(optionElement);
+        // });
   
   
         // button modify logic code

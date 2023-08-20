@@ -47,6 +47,14 @@
             color: white; /* Text color */
             font-weight: bold; /* Bold font */
           }
+
+          /* Add some spacing between the elements in the second div */
+          .child_popup .input-row {
+            display: flex;
+            flex-direction: column; /* Change to column layout */
+            align-items: flex-start; /* Align labels and inputs to the left */
+            margin-bottom: 5px;
+          }
             
         </style>
         <div class="root">
@@ -76,28 +84,26 @@
         fieldsContainer.classList.add('input-row');
       
         fieldsArray.forEach(fieldName => {
-          const labelInputWrapper = document.createElement('div'); // Create a wrapper for label and input
-          labelInputWrapper.classList.add('label-input-wrapper');
-      
           const labelElement = document.createElement('label');
           labelElement.setAttribute('for', fieldName); // Use the field name as the "for" attribute
           labelElement.textContent = fieldName + ':';
-          labelInputWrapper.appendChild(labelElement);
       
           const inputElement = document.createElement('input');
           inputElement.type = 'text'; // You can change the input type as needed
           inputElement.id = fieldName; // Use the field name as the input's "id"
           inputElement.placeholder = 'Enter ' + fieldName + '...';
+      
+          const labelInputWrapper = document.createElement('div'); // Create a wrapper for label and input
+          labelInputWrapper.classList.add('label-input-wrapper');
+          labelInputWrapper.appendChild(labelElement);
           labelInputWrapper.appendChild(inputElement);
       
           fieldsContainer.appendChild(labelInputWrapper); // Append the label and input wrapper
-      
-          // Add a line break after each label and input pair
-          fieldsContainer.appendChild(document.createElement('br'));
         });
       
         return fieldsContainer;
       }
+      
       
       
       

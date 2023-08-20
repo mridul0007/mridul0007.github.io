@@ -57,27 +57,7 @@
           <button type="button" id="button_create">CREATE</button>
         </div>
         <div class="child_popup">
-          <div class="input-row">
-            <label for="text_box_id">ID:</label>
-            <input type="text" id="text_box_id" placeholder="Enter value...">
-          </div>
-          <div class="input-row">
-            <label for="text_box_desc">Description:</label>
-            <input type="text" id="text_box_desc" placeholder="Enter value...">
-          </div>
-            
-          <div class="input-row">
-            <label for="select_box_department">Department:</label>
-            <select id="select_box_department">
-            </select>
-          </div>
-          <div class="input-row">
-              <label for="select_box_hierarchy">Hierarchy:</label>
-              <select id="select_box_hierarchy">
-              </select>
-          </div>
-  
-            <!-- Buttons row -->
+          <!-- Buttons row -->
           <div class="button-row">
               <button type="button" id="button_ok">OK</button>
               <button type="button" id="button_cancel">CANCEL</button>
@@ -98,7 +78,7 @@
         fieldsArray.forEach(fieldName => {
           const labelElement = document.createElement('label');
           labelElement.setAttribute('for', fieldName); // Use the field name as the "for" attribute
-          labelElement.textContent = label + ':';
+          labelElement.textContent = fieldName + ':';
           fieldsContainer.appendChild(labelElement);
       
           const inputElement = document.createElement('input');
@@ -107,6 +87,7 @@
           inputElement.placeholder = 'Enter ' + fieldName + '...';
           fieldsContainer.appendChild(inputElement);
         });
+      
       
         return fieldsContainer;
       }

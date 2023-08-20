@@ -64,6 +64,23 @@
             margin-bottom: 0.2cm;
           }
 
+          .label-input-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+          }
+          
+          .label-input-wrapper label {
+            width: 120px;
+            margin-right: 10px;
+          }
+          
+          .label-input-wrapper input {
+            flex: 1;
+            margin-left: 10px; /* Add a left margin to the input fields */
+          }
+          
+
             
         </style>
         <div class="root">

@@ -5,8 +5,8 @@
         .child_popup {
           display: none;
           flex-direction: column;
-          margin: 2cm; /* Add a 2cm margin to all sides */
-          padding: 2cm; /* Add a 2cm padding to all sides */
+          margin: 0.2cm; /* Add a 2cm margin to all sides */
+          padding: 0.2cm; /* Add a 2cm padding to all sides */
         }
         
           /* Add some spacing between the elements in the second div */
@@ -61,7 +61,7 @@
 
           /* Add some spacing between the label and input pairs */
           .label-input-wrapper {
-            margin-bottom: 2cm;
+            margin-bottom: 0.2cm;
           }
 
             

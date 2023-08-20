@@ -97,7 +97,7 @@
             const headerLabel = document.createElement('label');
             headerLabel.textContent = fieldName === 'property' ? 'Properties:' : 'Hierarchies:';
             fieldsContainer.appendChild(headerLabel);
-            return; // Skip adding an input element for "property" or "hierarchies"
+            
           }
       
           const labelElement = document.createElement('label');

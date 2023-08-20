@@ -264,9 +264,9 @@
 
       const { keys, properties, hierarchies } = this.getAllKeys(this.p_plm_query.plm_mp_planningmodelmember);
   
-  console.log('All Keys:', keys);
-  console.log('Properties:', properties);
-  console.log('Hierarchies:', hierarchies);
+      console.log('All Keys:', keys);
+      console.log('Properties:', properties);
+      console.log('Hierarchies:', hierarchies);
 
       
     }

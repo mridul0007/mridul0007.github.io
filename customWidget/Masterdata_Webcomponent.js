@@ -2,10 +2,13 @@
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
         <style>
-          .child_popup {
-            display: none;
-            flex-direction: column;
-          }
+        .child_popup {
+          display: none;
+          flex-direction: column;
+          margin: 2cm; /* Add a 2cm margin to all sides */
+          padding: 2cm; /* Add a 2cm padding to all sides */
+        }
+        
           /* Add some spacing between the elements in the second div */
           .child_popup .input-row {
             display: flex;
@@ -55,6 +58,12 @@
             align-items: flex-start; /* Align labels and inputs to the left */
             margin-bottom: 5px;
           }
+
+          /* Add some spacing between the label and input pairs */
+          .label-input-wrapper {
+            margin-bottom: 2cm;
+          }
+
             
         </style>
         <div class="root">

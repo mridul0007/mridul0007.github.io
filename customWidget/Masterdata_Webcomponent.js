@@ -90,6 +90,26 @@
         </div>  
           
       `;
+
+      function generateFields(fieldsArray, label) {
+        const fieldsContainer = document.createElement('div');
+        fieldsContainer.classList.add('input-row');
+      
+        const labelElement = document.createElement('label');
+        labelElement.textContent = label + ':';
+        fieldsContainer.appendChild(labelElement);
+      
+        fieldsArray.forEach(fieldName => {
+          const inputElement = document.createElement('input');
+          inputElement.type = 'text'; // You can change the input type as needed
+          inputElement.placeholder = 'Enter ' + fieldName + '...';
+          fieldsContainer.appendChild(inputElement);
+        });
+      
+        return fieldsContainer;
+      }
+      
+
     class MasterData_Maintain extends HTMLElement {
       constructor() {
         super();

@@ -95,13 +95,15 @@
         const fieldsContainer = document.createElement('div');
         fieldsContainer.classList.add('input-row');
       
-        const labelElement = document.createElement('label');
-        labelElement.textContent = label + ':';
-        fieldsContainer.appendChild(labelElement);
-      
         fieldsArray.forEach(fieldName => {
+          const labelElement = document.createElement('label');
+          labelElement.setAttribute('for', fieldName); // Use the field name as the "for" attribute
+          labelElement.textContent = label + ':';
+          fieldsContainer.appendChild(labelElement);
+      
           const inputElement = document.createElement('input');
           inputElement.type = 'text'; // You can change the input type as needed
+          inputElement.id = fieldName; // Use the field name as the input's "id"
           inputElement.placeholder = 'Enter ' + fieldName + '...';
           fieldsContainer.appendChild(inputElement);
         });

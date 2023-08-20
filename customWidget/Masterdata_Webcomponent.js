@@ -91,13 +91,14 @@
       function generateFields(fieldsArray,array_des) {
         const fieldsContainer = document.createElement('div');
         fieldsContainer.classList.add('input-row');
+        let p_flag = 0;
       
         fieldsArray.forEach(fieldName => {
-          if (array_des === 'Properties' || array_des === 'Hierarchies') {
+          if ((array_des === 'Properties' || array_des === 'Hierarchies') && p_flag == 0) {
             const headerLabel = document.createElement('label');
             headerLabel.textContent = array_des;
             fieldsContainer.appendChild(headerLabel);
-            
+            p_flag = 1;
           }
       
           const labelElement = document.createElement('label');
@@ -116,7 +117,7 @@
       
           fieldsContainer.appendChild(labelInputWrapper); // Append the label and input wrapper
         });
-      
+        p_flag = 0;
         return fieldsContainer;
       }
       

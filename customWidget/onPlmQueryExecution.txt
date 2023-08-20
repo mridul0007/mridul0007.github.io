@@ -1,0 +1,32 @@
+debugger;
+var plm_query = Masterdata_Widget_1.get_p_plm_query();
+if(plm_query.plm_method === 'INSERT'){
+	console.log('INSERT');
+}
+if(plm_query.plm_method === 'MODIFY'){
+	debugger;
+	PlanningModel_1.updateMembers('MK_INVESTMENT',plm_query.plm_mp_planningmodelmember);
+	Masterdata_Widget_1.set_p_plm_query(plm_query);
+	Application.refreshData();
+	console.log('MODIFY');
+}
+if(plm_query.plm_method === 'DELETE'){
+	console.log('DELETE');
+}
+if(plm_query.plm_method === 'fill_data'){
+	debugger;
+	var x = PlanningModel_1.getMember('MK_INVESTMENT',plm_query.plm_mp_member_id);
+	plm_query.plm_mp_planningmodelmember = x;
+	Masterdata_Widget_1.set_p_plm_query(plm_query);
+//		mycustomwidget_1.set_plm_status(2);
+	
+	
+}
+
+if(plm_query.plm_method === 'write_data'){
+	
+}
+
+if(plm_query.plm_method === 'DELETE'){
+	console.log('DELETE');
+}

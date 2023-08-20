@@ -1,0 +1,4 @@
+//get table selection
+var sel =Table_1.getSelections()[0];
+console.log(Table_1.getSelections());
+Masterdata_Widget_1.set_p_mem_id_selection(sel["MK_INVESTMENT"]);

@@ -261,7 +261,58 @@
       console.log(Object.keys(this.p_plm_query.plm_mp_planningmodelmember));
       console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
       this.showChildPopup();
+
+      const jsonObject = JSON.parse(this.p_plm_query.plm_mp_planningmodelmember);
+      const { keys, properties, hierarchies } = getAllKeys(jsonObject);
+      
+      console.log('All Keys:', keys);
+      console.log('Properties:', properties);
+      console.log('Hierarchies:', hierarchies);
+
+      
     }
+
+
+
+    getAllKeys(jsonObj) {
+        const keys = [];
+        const properties = [];
+        const hierarchies = [];
+      
+        function traverse(obj) {
+          for (const key in obj) {
+            if (typeof obj[key] === 'object' && obj[key] !== null) {
+              if (key === 'properties') {
+                properties.push(...Object.keys(obj[key]));
+              } else if (key === 'hierarchies') {
+                hierarchies.push(...Object.keys(obj[key]));
+              }
+              traverse(obj[key]);
+            } else {
+              keys.push(key);
+            }
+          }
+        }
+      
+        traverse(jsonObj);
+      
+        return { keys, properties, hierarchies };
+      }
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
   
     //   reading inputed data from respective HTML fields
     async readData() {

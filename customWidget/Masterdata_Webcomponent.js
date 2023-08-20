@@ -91,10 +91,14 @@
           fieldWrapper.appendChild(inputElement);
       
           fieldsContainer.appendChild(fieldWrapper); // Append the wrapper div to the main container
+      
+          // Add a line break after each label and input pair
+          fieldsContainer.appendChild(document.createElement('br'));
         });
       
         return fieldsContainer;
       }
+      
       
 
     class MasterData_Maintain extends HTMLElement {

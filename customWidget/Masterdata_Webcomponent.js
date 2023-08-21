@@ -365,6 +365,16 @@
         let inp_box = this.shadowRoot.getElementById("inp_box_"+this.identity[i]);
         inp_box.value = this.p_plm_query.plm_mp_planningmodelmember[this.identity[i]];
       }
+      for( let i=0; i<this.properties.length ; i++)
+      {
+        let inp_box = this.shadowRoot.getElementById("inp_box_"+this.properties[i]);
+        inp_box.value = this.p_plm_query.plm_mp_planningmodelmember.properties[this.properties[i]];
+      }
+      for( let i=0; i<this.hierarchies.length ; i++)
+      {
+        let inp_box = this.shadowRoot.getElementById("inp_box_"+this.properties[i]);
+        inp_box.value = this.p_plm_query.plm_mp_planningmodelmember.hierarchies[this.hierarchies[i]];
+      }
 
       this.showChildPopup();
 

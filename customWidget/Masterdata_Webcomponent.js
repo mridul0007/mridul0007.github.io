@@ -492,7 +492,9 @@
         this.updateValues();
       }
       else {
-        setTimeout(this.hideError,3000);
+        setTimeout(() => {
+          this.hideError();
+        },3000);
         this.showError('ID already selected');
       }
     }

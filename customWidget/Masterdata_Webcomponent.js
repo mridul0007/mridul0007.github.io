@@ -86,7 +86,7 @@
           }
           
           .error-message {
-            display: flex;
+            display: none;
             color: black;
             padding: 10px;
             text-align: center;

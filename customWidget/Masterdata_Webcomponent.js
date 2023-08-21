@@ -114,8 +114,9 @@
           <span>Loading...</span>
         </div>  
 
-        <div class="error-message" id="errorDiv">Error: Need to Refresh</div>
-          
+        <div class="error-message"> 
+        <input type="text" id="errorDiv" placeholder="">
+        </div>  
       `;
 
       function generateFields(fieldsArray,array_des) {
@@ -307,7 +308,7 @@
 
       showError(display_text) {
         const errorDiv = document.getElementById('errorDiv');
-        errorDiv.textContent  = display_text;
+        errorDiv.value  = display_text;
         errorDiv.style.display = 'block';
     }
 

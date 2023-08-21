@@ -203,8 +203,8 @@
             this.fillData(r_query);
           }
           else {
-            setTimeout(this.showError('Select an ID'),3000);
-            this.hideError();
+            setTimeout(this.hideError(),3000);
+            this.showError('Select an ID');
           }
         });
 
@@ -446,19 +446,6 @@
       return { identity,properties, hierarchies};
     }
       
-      
-      
-      
-
-
-
-
-
-
-
-
-
-
 
   
     //   reading inputed data from respective HTML fields
@@ -505,8 +492,8 @@
         this.updateValues();
       }
       else {
-        setTimeout(this.showError('ID already selected . Cancel operation to reselect.'),3000);
-        this.hideError();
+        setTimeout(this.hideError(),3000);
+        this.showError('ID already selected . Cancel operation to reselect.');
       }
     }
 

@@ -204,7 +204,7 @@
           }
           else {
             setTimeout(this.hideError(),3000);
-            this.showError('ID already selected');
+            this.showError('Select an ID');
           }
         });
 
@@ -312,7 +312,7 @@
       showError(display_text) {
         const errorDiv = this.shadowRoot.getElementById('error_Div');
         errorDiv.value  = display_text;
-        errorDiv.isContentEditable = false;
+        errorDiv.setAttribute('contenteditable', 'false');
         errorDiv.style.display = 'flex';
     }
 
@@ -520,6 +520,7 @@
         this.plm_status = 0;
         this.widget_operation = '';
         this.p_plm_query ={};
+        this.hideError();
       }
 
     onCustomWidgetAfterUpdate(ochangedProperties) { }

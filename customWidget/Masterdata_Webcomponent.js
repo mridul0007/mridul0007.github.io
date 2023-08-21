@@ -373,7 +373,7 @@
       for( let i=0; i<this.hierarchies.length ; i++)
       {
         let inp_box = this.shadowRoot.getElementById("inp_box_"+this.properties[i]);
-        inp_box.value = this.p_plm_query.plm_mp_planningmodelmember.hierarchies[this.hierarchies[i]];
+        inp_box.value = this.p_plm_query.plm_mp_planningmodelmember.hierarchies[this.hierarchies[i].parentId];
       }
 
       this.showChildPopup();

@@ -362,7 +362,7 @@
       // console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
       for( let i=0; i<this.identity.length ; i++)
       {
-        let inp_box = this.shadowRoot.getElementById(this.identity[i]);
+        let inp_box = this.shadowRoot.getElementById("inp_box_"+this.identity[i]);
         inp_box.value = this.p_plm_query.plm_mp_planningmodelmember[this.identity[i]];
       }
 

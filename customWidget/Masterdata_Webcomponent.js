@@ -439,10 +439,29 @@
     //   reading inputed data from respective HTML fields
     async readData() {
         let p_query = this.p_plm_query;
-        const text_box_id = this.shadowRoot.getElementById('text_box_id');
-        p_query.plm_mp_planningmodelmember.id = text_box_id.value;
-        const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
-        p_query.plm_mp_planningmodelmember.description = text_box_desc.value ;
+
+        // const text_box_id = this.shadowRoot.getElementById('text_box_id');
+        // p_query.plm_mp_planningmodelmember.id = text_box_id.value;
+        // const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
+        // p_query.plm_mp_planningmodelmember.description = text_box_desc.value ;
+
+
+
+        for( let i=0; i<this.identity.length ; i++)
+      {
+        let inp_box = this.shadowRoot.getElementById("inp_box_"+this.identity[i]);
+        this.p_plm_query.plm_mp_planningmodelmember[this.identity[i]] = inp_box.value  ;
+      }
+      for( let i=0; i<this.properties.length ; i++)
+      {
+        let inp_box = this.shadowRoot.getElementById("inp_box_"+this.properties[i]);
+        this.p_plm_query.plm_mp_planningmodelmember.properties[this.properties[i]] = inp_box.value;
+      }
+      for( let i=0; i<this.hierarchies.length ; i++)
+      {
+        let inp_box = this.shadowRoot.getElementById("inp_box_"+this.hierarchies[i]);
+        this.p_plm_query.plm_mp_planningmodelmember.hierarchies[this.hierarchies[i]].parentId =  inp_box.value;
+      }
         return p_query;
     }
   

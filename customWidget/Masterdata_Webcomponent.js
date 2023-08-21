@@ -312,6 +312,7 @@
       showError(display_text) {
         const errorDiv = this.shadowRoot.getElementById('error_Div');
         errorDiv.value  = display_text;
+        errorDiv.isContentEditable = false;
         errorDiv.style.display = 'flex';
     }
 

@@ -86,7 +86,7 @@
           }
           
           .error-message {
-            display: none;
+            display: flex;
             background-color: red;
             color: black;
             padding: 10px;
@@ -103,7 +103,7 @@
         </div>
 
         <div class="error-message"> 
-        <input type="text" id="error_Div" placeholder="">
+        <input type="text" id="error_Div" placeholder="" style="display: none;">
         </div> 
 
 
@@ -313,7 +313,7 @@
       showError(display_text) {
         const errorDiv = this.shadowRoot.getElementById('error_Div');
         errorDiv.value  = display_text;
-        errorDiv.style.display = 'flex';
+        errorDiv.style.display = 'block';
     }
 
     hideError() {

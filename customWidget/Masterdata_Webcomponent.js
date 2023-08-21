@@ -307,13 +307,13 @@
       }
 
       showError(display_text) {
-        const errorDiv = document.getElementById('error_Div');
+        const errorDiv = this.shadowRoot.getElementById('error_Div');
         errorDiv.value  = display_text;
         errorDiv.style.display = 'block';
     }
 
     hideError() {
-      const errorDiv = document.getElementById('error_Div');
+      const errorDiv = this.shadowRoot.getElementById('error_Div');
       errorDiv.style.display = 'none';
   }
   

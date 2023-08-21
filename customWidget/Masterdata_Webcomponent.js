@@ -493,7 +493,7 @@
       }
       else {
         setTimeout(this.hideError(),3000);
-        this.showError('ID already selected . Cancel operation to reselect.');
+        this.showError('ID already selected');
       }
     }
 

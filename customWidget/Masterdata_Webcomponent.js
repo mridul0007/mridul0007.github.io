@@ -130,7 +130,7 @@
       
           const inputElement = document.createElement('input');
           inputElement.type = 'text'; // You can change the input type as needed
-          inputElement.id = fieldName; // Use the field name as the input's "id"
+          inputElement.id = "inp_box_" + fieldName; // Use the field name as the input's "id"
           inputElement.placeholder = 'Enter ' + fieldName + '...';
       
           const labelInputWrapper = document.createElement('div'); // Create a wrapper for label and input
@@ -351,12 +351,13 @@
       async fillData(plm_query) {
       this.plm_status = 0;
       this.p_plm_query =plm_query;
-      const text_box_id = this.shadowRoot.getElementById('text_box_id');
-      text_box_id.value = this.p_plm_query.plm_mp_planningmodelmember.id;
-      const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
-      text_box_desc.value = this.p_plm_query.plm_mp_planningmodelmember.description;
-      console.log(Object.keys(this.p_plm_query.plm_mp_planningmodelmember));
-      console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
+      // const text_box_id = this.shadowRoot.getElementById('text_box_id');
+      // text_box_id.value = this.p_plm_query.plm_mp_planningmodelmember.id;
+      // const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
+      // text_box_desc.value = this.p_plm_query.plm_mp_planningmodelmember.description;
+      // console.log(Object.keys(this.p_plm_query.plm_mp_planningmodelmember));
+      // console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
+      
       this.showChildPopup();
 
       const { identity, properties, hierarchies } = this.getAllKeys(this.p_plm_query.plm_mp_planningmodelmember);

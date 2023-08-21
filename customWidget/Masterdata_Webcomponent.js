@@ -155,6 +155,9 @@
         this.p_plm_query = {};
         this.widget_operation = '';  // Widget operation 'MODIFY' 'DELETE' 'INSERT'
         this.plm_status = 0; //'0: pl free' '1: plm start execution query' '2: plm finished execution query'
+        this.identity = ['id', 'description'];
+        this.properties = ['TAX_CLASS', 'DEDUCTION_YEAR', 'MEM_ACTIVE'];
+        this.hierarchies = ['DEPARTMENT', 'LEVEL'];
         this.init();
       }
   
@@ -210,9 +213,9 @@
 
 
 
-        const identity = ['id', 'description'];
-        const properties = ['TAX_CLASS', 'DEDUCTION_YEAR', 'MEM_ACTIVE'];
-        const hierarchies = ['DEPARTMENT', 'LEVEL'];
+        // const identity = ['id', 'description'];
+        // const properties = ['TAX_CLASS', 'DEDUCTION_YEAR', 'MEM_ACTIVE'];
+        // const hierarchies = ['DEPARTMENT', 'LEVEL'];
 
         const childPopup = this.shadowRoot.querySelector('.child_popup');
 
@@ -220,9 +223,9 @@
         childPopup.innerHTML = '';
 
         // Generate and append elements for identity, properties, and hierarchies
-        const identityFields = generateFields(identity, 'Identity');
-        const propertiesFields = generateFields(properties, 'Properties');
-        const hierarchiesFields = generateFields(hierarchies, 'Hierarchies');
+        const identityFields = generateFields(this.identity, 'Identity');
+        const propertiesFields = generateFields(this.properties, 'Properties');
+        const hierarchiesFields = generateFields(this.hierarchies, 'Hierarchies');
 
         // Append the generated fields to the child_popup div
         childPopup.appendChild(identityFields);
@@ -357,14 +360,19 @@
       // text_box_desc.value = this.p_plm_query.plm_mp_planningmodelmember.description;
       // console.log(Object.keys(this.p_plm_query.plm_mp_planningmodelmember));
       // console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
-      
+      for(i=0; i<this.identity.length ; i++)
+      {
+        const inp_box = this.shadowRoot.getElementById(i);
+        inp_box.value = this.p_plm_query.plm_mp_planningmodelmember[i];
+      }
+
       this.showChildPopup();
 
-      const { identity, properties, hierarchies } = this.getAllKeys(this.p_plm_query.plm_mp_planningmodelmember);
+      // const { identity, properties, hierarchies } = this.getAllKeys(this.p_plm_query.plm_mp_planningmodelmember);
   
-      console.log('All Keys:', identity);
-      console.log('Properties:', properties);
-      console.log('Hierarchies:', hierarchies);
+      // console.log('All Keys:', identity);
+      // console.log('Properties:', properties);
+      // console.log('Hierarchies:', hierarchies);
 
       
     }

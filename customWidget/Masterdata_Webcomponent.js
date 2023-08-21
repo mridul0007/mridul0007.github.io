@@ -88,7 +88,7 @@
           .error-message {
             display: none;
             background-color: red;
-            color: white;
+            color: black;
             padding: 10px;
             text-align: center;
         }
@@ -313,7 +313,7 @@
       showError(display_text) {
         const errorDiv = this.shadowRoot.getElementById('error_Div');
         errorDiv.value  = display_text;
-        errorDiv.style.display = 'block';
+        errorDiv.style.display = 'flex';
     }
 
     hideError() {

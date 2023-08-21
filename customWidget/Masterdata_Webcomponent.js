@@ -85,7 +85,13 @@
             text-decoration: underline; /* Add underlined text decoration to the header label */
           }
           
-
+          .error-message {
+            display: none;
+            background-color: red;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
             
         </style>
         <div class="root">
@@ -107,6 +113,8 @@
         <div class="loading-screen" style="display: none;">
           <span>Loading...</span>
         </div>  
+
+        <div class="error-message" id="errorDiv">Error: Need to Refresh</div>
           
       `;
 
@@ -191,7 +199,8 @@
             this.fillData(r_query);
           }
           else {
-            alert("Select an ID");
+            setTimeout(this.hideError(),3000);
+            this.showError('ID already selected');
           }
         });
 
@@ -295,6 +304,17 @@
         const loadingScreen = this.shadowRoot.querySelector('.loading-screen');
         loadingScreen.style.display = 'none';
       }
+
+      showError(display_text) {
+        const errorDiv = document.getElementById('errorDiv');
+        errorDiv.textContent  = display_text;
+        errorDiv.style.display = 'block';
+    }
+
+    hideError() {
+      const errorDiv = document.getElementById('errorDiv');
+      errorDiv.style.display = 'none';
+  }
   
   
     //   sleep function for synchronization
@@ -326,7 +346,7 @@
         }
       
         if (iteration === iteration_max) {
-          alert("connection error");
+          this.showError('Error: Refresh Page');
         } else {
           iteration = 0;
           while (iteration < iteration_max) {
@@ -342,7 +362,7 @@
           }
       
           if (iteration === iteration_max) {
-            alert("connection error: please reload");
+            this.showError('Error: Refresh Page');
             this.plm_status = 0;
             this.hideLoadingScreen();
           }
@@ -480,7 +500,7 @@
         this.updateValues();
       }
       else {
-        alert("ID already selected");
+        this.showError("ID already selected");
       }
     }
 

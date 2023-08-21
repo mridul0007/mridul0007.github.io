@@ -115,7 +115,7 @@
         </div>  
 
         <div class="error-message"> 
-        <input type="text" id="errorDiv" placeholder="">
+        <input type="text" id="error_Div" placeholder="">
         </div>  
       `;
 
@@ -307,13 +307,13 @@
       }
 
       showError(display_text) {
-        const errorDiv = document.getElementById('errorDiv');
+        const errorDiv = document.getElementById('error_Div');
         errorDiv.value  = display_text;
         errorDiv.style.display = 'block';
     }
 
     hideError() {
-      const errorDiv = document.getElementById('errorDiv');
+      const errorDiv = document.getElementById('error_Div');
       errorDiv.style.display = 'none';
   }
   

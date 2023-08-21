@@ -101,6 +101,12 @@
           <button type="button" id="button_delete">DELETE</button>
           <button type="button" id="button_create">CREATE</button>
         </div>
+
+        <div class="error-message"> 
+        <input type="text" id="error_Div" placeholder="">
+        </div> 
+
+
         <div class="child_popup">
           <!-- Buttons row -->
           <div class="button-row">
@@ -114,9 +120,7 @@
           <span>Loading...</span>
         </div>  
 
-        <div class="error-message"> 
-        <input type="text" id="error_Div" placeholder="">
-        </div>  
+        
       `;
 
       function generateFields(fieldsArray,array_des) {

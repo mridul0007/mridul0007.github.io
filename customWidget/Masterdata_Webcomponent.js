@@ -505,7 +505,8 @@
         this.updateValues();
       }
       else {
-        this.showError("ID already selected");
+        setTimeout(this.showError('ID already selected . Cancel operation to reselect.'),3000);
+        this.hideError();
       }
     }
 

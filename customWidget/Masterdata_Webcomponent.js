@@ -102,7 +102,7 @@
         </div>
 
         <div class="error-message"> 
-        <input type="text" id="error_Div" placeholder="" style="display: none;">
+        <input type="text" id="error_Div" contenteditable="false" placeholder="" style="display: none;">
         </div> 
 
 
@@ -476,7 +476,7 @@
       }
         return p_query;
     }
-  
+  alreadcancel
     set_p_plm_query(p_plm_query) {
       this.p_plm_query = p_plm_query;
       this.plm_status = 2;

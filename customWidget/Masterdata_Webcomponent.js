@@ -203,8 +203,8 @@
             this.fillData(r_query);
           }
           else {
-            setTimeout(this.hideError(),3000);
-            this.showError('Select an ID');
+            setTimeout(this.showError('Select an ID'),3000);
+            this.hideError();
           }
         });
 
@@ -513,6 +513,7 @@
     updateValues() {
       const inputBox = this.shadowRoot.getElementById('input_box');
       inputBox.value = this.p_mem_id_selection; //set memid selection
+      this.hideError();
   
     }
 

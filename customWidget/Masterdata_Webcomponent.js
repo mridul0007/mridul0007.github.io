@@ -360,10 +360,10 @@
       // text_box_desc.value = this.p_plm_query.plm_mp_planningmodelmember.description;
       // console.log(Object.keys(this.p_plm_query.plm_mp_planningmodelmember));
       // console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
-      for(i=0; i<this.identity.length ; i++)
+      for( let i=0; i<this.identity.length ; i++)
       {
-        const inp_box = this.shadowRoot.getElementById(i);
-        inp_box.value = this.p_plm_query.plm_mp_planningmodelmember[i];
+        let inp_box = this.shadowRoot.getElementById(this.identity[i]);
+        inp_box.value = this.p_plm_query.plm_mp_planningmodelmember[this.identity[i]];
       }
 
       this.showChildPopup();

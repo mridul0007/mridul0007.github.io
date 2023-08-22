@@ -47,6 +47,13 @@
           color: white; /* Text color */
           font-weight: bold; /* Bold font */
         }
+
+        .error-message {
+          display: flex;
+          color: black;
+          padding: 10px;
+          text-align: center;
+      }
           
       </style>
       <div class="root">
@@ -56,6 +63,11 @@
         <button type="button" id="button_delete">DELETE</button>
         <button type="button" id="button_create">CREATE</button>
       </div>
+
+      <div class="error-message"> 
+        <input type="text" id="error_Div" contenteditable="false" placeholder="" style="display: none;">
+        </div> 
+
       <div class="child_popup">
         <div class="input-row">
           <label for="text_box_id">ID:</label>
@@ -129,7 +141,10 @@
           this.fillData(r_query);
         }
         else {
-          alert("Select an ID");
+          setTimeout(() => {
+            this.hideError();
+          }, 3000);
+          this.showError('ID already selected');
         }
       });
 
@@ -196,6 +211,17 @@
       loadingScreen.style.display = 'none';
     }
 
+    showError(display_text) {
+      const errorDiv = document.getElementById('errorDiv');
+      errorDiv.textContent  = display_text;
+      errorDiv.style.display = 'block';
+  }
+
+  hideError() {
+    const errorDiv = document.getElementById('errorDiv');
+    errorDiv.style.display = 'none';
+}
+
 
   //   sleep function for synchronization
     async sleep(ms) {
@@ -226,7 +252,7 @@
       }
     
       if (iteration === iteration_max) {
-        alert("connection error");
+        this.showError('Connection Error, reload page');
       } else {
         iteration = 0;
         while (iteration < iteration_max) {
@@ -242,7 +268,8 @@
         }
     
         if (iteration === iteration_max) {
-          alert("connection error: please reload");
+          
+          this.showError('Connection Error, reload page');
           this.plm_status = 0;
           this.hideLoadingScreen();
         }
@@ -288,7 +315,11 @@
       this.updateValues();
     }
     else {
-      alert("ID already selected");
+      setTimeout(() => {
+        this.hideError();
+      }, 3000);
+      
+      this.showError("ID already selected");
     }
   }
 
@@ -296,13 +327,14 @@
   updateValues() {
     const inputBox = this.shadowRoot.getElementById('input_box');
     inputBox.value = this.p_mem_id_selection; //set memid selection
-
+    this.hideError();
   }
 
   clear_plmquery() {
       this.plm_status = 0;
       this.widget_operation = '';
       this.p_plm_query ={};
+      this.hideError();
     }
 
   onCustomWidgetAfterUpdate(ochangedProperties) { }

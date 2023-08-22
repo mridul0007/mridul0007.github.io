@@ -136,8 +136,8 @@
           this.widget_operation = 'MODIFY';
           let p_qury = {};
           p_qury.plm_mp_member_id = this.p_mem_id_selection;
-          p_qury.plm_method = 'fill_data_member';
-          let r_query = await this.plm_query_execute(p_qury);
+          // p_qury.plm_method = 'fill_data_member';
+          // let r_query = await this.plm_query_execute(p_qury);
           p_qury.plm_method = 'fill_data_members';
           r_query = await this.plm_query_execute(p_qury);
           this.fillData(r_query);

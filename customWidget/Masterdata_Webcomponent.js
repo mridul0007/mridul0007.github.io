@@ -116,16 +116,16 @@
       shadowRoot.appendChild(tmpl.content.cloneNode(true));
       this._export_settings = {};
 
-      const departmentOptions = ["Department 1", "Department 2", "Department 3"];
-      // Get the select element for the department dropdown
-      const selectDepartment = this.shadowRoot.getElementById('select_box_department');
+      // const departmentOptions = ["Department 1", "Department 2", "Department 3"];
+      // // Get the select element for the department dropdown
+      // const selectDepartment = this.shadowRoot.getElementById('select_box_department');
 
-      // Populate the department options
-      departmentOptions.forEach(option => {
-        const optionElement = document.createElement('option');
-        optionElement.textContent = option;
-        selectDepartment.appendChild(optionElement);
-      });
+      // // Populate the department options
+      // departmentOptions.forEach(option => {
+      //   const optionElement = document.createElement('option');
+      //   optionElement.textContent = option;
+      //   selectDepartment.appendChild(optionElement);
+      // });
 
 
       // button modify logic code
@@ -136,8 +136,10 @@
           this.widget_operation = 'MODIFY';
           let p_qury = {};
           p_qury.plm_mp_member_id = this.p_mem_id_selection;
-          p_qury.plm_method = 'fill_data';
+          p_qury.plm_method = 'fill_data_member';
           let r_query = await this.plm_query_execute(p_qury);
+          p_qury.plm_method = 'fill_data_members';
+          r_query = await this.plm_query_execute(p_qury);
           this.fillData(r_query);
         }
         else {
@@ -285,8 +287,19 @@
     text_box_id.value = this.p_plm_query.plm_mp_planningmodelmember.id;
     const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
     text_box_desc.value = this.p_plm_query.plm_mp_planningmodelmember.description;
-    console.log(Object.keys(this.p_plm_query.plm_mp_planningmodelmember));
-    console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
+
+    const selectDepartment = this.shadowRoot.getElementById('select_box_department');
+
+      // Populate the department options
+      this.p_query.plm_mp_planningmodelmembers.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.textContent = option;
+        selectDepartment.appendChild(optionElement);
+      });
+
+      selectDepartment.value = this.p_plm_query.plm_mp_planningmodelmember.hierarchies['DEPARTMENT'].parentId;
+    // console.log(Object.keys(this.p_plm_query.plm_mp_planningmodelmember));
+    // console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
     this.showChildPopup();
   }
 
@@ -297,6 +310,7 @@
       p_query.plm_mp_planningmodelmember.id = text_box_id.value;
       const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
       p_query.plm_mp_planningmodelmember.description = text_box_desc.value ;
+
       return p_query;
   }
 

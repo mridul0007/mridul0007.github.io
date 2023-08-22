@@ -213,7 +213,7 @@
 
     showError(display_text) {
       const errorDiv = this.shadowRoot.getElementById('error_Div');
-      errorDiv.textContent  = display_text;
+      errorDiv.value  = display_text;
       errorDiv.style.display = 'flex';
   }
 

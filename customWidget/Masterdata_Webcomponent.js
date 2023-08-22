@@ -212,13 +212,13 @@
     }
 
     showError(display_text) {
-      const errorDiv = document.getElementById('errorDiv');
+      const errorDiv = this.shadowRoot.getElementById('errorDiv');
       errorDiv.textContent  = display_text;
       errorDiv.style.display = 'block';
   }
 
   hideError() {
-    const errorDiv = document.getElementById('errorDiv');
+    const errorDiv = this.shadowRoot.getElementById('errorDiv');
     errorDiv.style.display = 'none';
 }
 

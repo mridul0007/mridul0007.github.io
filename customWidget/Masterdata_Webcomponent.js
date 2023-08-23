@@ -84,8 +84,8 @@
           </select>
         </div>
         <div class="input-row">
-            <label for="select_box_hierarchy">Hierarchy:</label>
-            <select id="select_box_hierarchy">
+            <label for="select_box_level">Level:</label>
+            <select id="select_box_level">
             </select>
         </div>
 
@@ -190,10 +190,6 @@
       const selectDepartment = this.shadowRoot.getElementById('select_box_department');
       selectDepartment.addEventListener('change', async (event) => {
         const selectedValue = event.target.value;
-        this.p_plm_query.plm_method = 'fill_data_members';
-        this.p_plm_query.plm_mp_dimension_id= 'MK_LEVEL';
-        let r_query = await this.plm_query_execute(this.p_plm_query);
-        console.log(r_query);
         console.log('Selected value:', selectedValue);
         // You can perform further actions based on the selected value
       });
@@ -305,6 +301,11 @@
     const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
     text_box_desc.value = this.p_plm_query.plm_mp_planningmodelmember.description;
 
+
+    this.p_plm_query.plm_method = 'fill_data_members';
+     this.p_plm_query.plm_mp_dimension_id= 'MK_DEPARTMENT';
+    let r_query = await this.plm_query_execute(this.p_plm_query);
+
     const selectDepartment = this.shadowRoot.getElementById('select_box_department');
 
     // Populate the department options
@@ -314,9 +315,24 @@
       optionElement.textContent = member.id; // Display the member's id as the option text
       selectDepartment.appendChild(optionElement);
     });
+
+    this.p_plm_query.plm_method = 'fill_data_members';
+     this.p_plm_query.plm_mp_dimension_id= 'MK_LEVEL';
+     r_query = await this.plm_query_execute(this.p_plm_query);
+
+    const selectLevel = this.shadowRoot.getElementById('select_box_level');
+
+    // Populate the department options
+    this.p_plm_query.plm_mp_planningmodelmembers.forEach(member => {
+      const optionElement = document.createElement('option');
+      optionElement.value = member.id; // Set the value to the member's id
+      optionElement.textContent = member.id; // Display the member's id as the option text
+      selectLevel.appendChild(optionElement);
+    });
     
 
-      selectDepartment.value = this.p_plm_query.plm_mp_planningmodelmember.hierarchies['DEPARTMENT'].parentId;
+    selectDepartment.value = this.p_plm_query.plm_mp_planningmodelmember.hierarchies['DEPARTMENT'].parentId;
+    selectLevel.value = this.p_plm_query.plm_mp_planningmodelmember.hierarchies['LEVEL'].parentId;
     console.log(Object.keys(this.p_plm_query.plm_mp_planningmodelmember));
     console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
     console.log(plm_query);

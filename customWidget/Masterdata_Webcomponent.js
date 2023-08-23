@@ -292,7 +292,7 @@
     const selectDepartment = this.shadowRoot.getElementById('select_box_department');
 
     // Populate the department options
-    this.p_query.plm_mp_planningmodelmembers.forEach(member => {
+    this.p_plm_query.plm_mp_planningmodelmembers.forEach(member => {
       const optionElement = document.createElement('option');
       optionElement.value = member.id; // Set the value to the member's id
       optionElement.textContent = member.id; // Display the member's id as the option text

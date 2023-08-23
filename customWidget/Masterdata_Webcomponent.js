@@ -289,18 +289,20 @@
     const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
     text_box_desc.value = this.p_plm_query.plm_mp_planningmodelmember.description;
 
-    // const selectDepartment = this.shadowRoot.getElementById('select_box_department');
+    const selectDepartment = this.shadowRoot.getElementById('select_box_department');
 
-    //   // Populate the department options
-    //   this.p_query.plm_mp_planningmodelmembers.forEach(option => {
-    //     const optionElement = document.createElement('option');
-    //     optionElement.textContent = option;
-    //     selectDepartment.appendChild(optionElement);
-    //   });
+    // Populate the department options
+    this.p_query.plm_mp_planningmodelmembers.forEach(member => {
+      const optionElement = document.createElement('option');
+      optionElement.value = member.id; // Set the value to the member's id
+      optionElement.textContent = member.id; // Display the member's id as the option text
+      selectDepartment.appendChild(optionElement);
+    });
+    
 
-    //   selectDepartment.value = this.p_plm_query.plm_mp_planningmodelmember.hierarchies['DEPARTMENT'].parentId;
-    // console.log(Object.keys(this.p_plm_query.plm_mp_planningmodelmember));
-    // console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
+      selectDepartment.value = this.p_plm_query.plm_mp_planningmodelmember.hierarchies['DEPARTMENT'].parentId;
+    console.log(Object.keys(this.p_plm_query.plm_mp_planningmodelmember));
+    console.log(Object.values(this.p_plm_query.plm_mp_planningmodelmember));
     console.log(plm_query);
     this.showChildPopup();
   }

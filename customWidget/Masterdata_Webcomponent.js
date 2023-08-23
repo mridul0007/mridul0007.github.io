@@ -140,6 +140,7 @@
           let r_query = await this.plm_query_execute(p_qury);
           p_qury = r_query;
           p_qury.plm_method = 'fill_data_members';
+          p_qury.plm_mp_dimension_id = 'MK_DEPARTMENT';
           r_query = await this.plm_query_execute(p_qury);
           this.fillData(r_query);
         }
@@ -184,7 +185,22 @@
 
       const inputBox = shadowRoot.getElementById('input_box');
       inputBox.value = this.id;
+
+
+      const selectDepartment = this.shadowRoot.getElementById('select_box_department');
+      selectDepartment.addEventListener('change', async (event) => {
+        const selectedValue = event.target.value;
+        this.p_plm_query.plm_method = 'fill_data_members';
+        this.p_plm_query.plm_mp_dimension_id= 'MK_LEVEL';
+        r_query = await this.plm_query_execute(p_qury);
+        console.log(r_query);
+        console.log('Selected value:', selectedValue);
+        // You can perform further actions based on the selected value
+      });
     }
+
+    
+
 
     // show the pop up screen
     showChildPopup(callback) {

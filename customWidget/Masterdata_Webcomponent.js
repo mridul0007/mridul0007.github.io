@@ -192,7 +192,7 @@
         const selectedValue = event.target.value;
         this.p_plm_query.plm_method = 'fill_data_members';
         this.p_plm_query.plm_mp_dimension_id= 'MK_LEVEL';
-        r_query = await this.plm_query_execute(p_qury);
+        r_query = await this.plm_query_execute(this.p_plm_query);
         console.log(r_query);
         console.log('Selected value:', selectedValue);
         // You can perform further actions based on the selected value

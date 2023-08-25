@@ -248,41 +248,43 @@
   //   plm query execute function
     async plm_query_execute(p_query) {
       this.showLoadingScreen();
-      let iteration = 0;
-      
-      const iteration_max = 10;
+      // let iteration = 0;
+      // const iteration_max = 10;
+      let iteration_time = 0;
+      const max_time = 5000;
     
-      while (iteration < iteration_max) {
+      while (iteration_time <= max_time) {
         if (this.plm_status == 0) {
           this.plm_status = 1;
-          iteration = iteration + 1;
+          // iteration = iteration + 1;
+          iteration_time = iteration_time + 50;
           this.p_plm_query =  p_query; 
           this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
-          await this.sleep(200);
+          await this.sleep(50);
           break; // Exit the loop
         } else {
-          await this.sleep(1500);
+          await this.sleep(50);
         }
-        console.log(iteration);
+        console.log(iteration_time);
       }
     
-      if (iteration === iteration_max) {
+      if (iteration_time === max_time) {
         this.showError('Connection Error, reload page');
       } else {
-        iteration = 0;
-        while (iteration < iteration_max) {
+        iteration_time = 0;
+        while (iteration_time <= max_time) {
           if (this.plm_status == 2) {
             let r_query = this.p_plm_query;
             this.plm_status = 0;
             this.hideLoadingScreen();
             return r_query;
           } else {
-            await this.sleep(1500);
+            await this.sleep(50);
           }
-          iteration = iteration + 1;
+          iteration_time = iteration_time + 50;
         }
     
-        if (iteration === iteration_max) {
+        if (iteration_time === max_time) {
           
           this.showError('Connection Error, reload page');
           this.plm_status = 0;

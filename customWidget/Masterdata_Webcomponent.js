@@ -107,10 +107,10 @@
   class MasterData_Maintain extends HTMLElement {
     constructor() {
       super();
-      const myInvestment = new investment();
-      myInvestment.id = '';
-      myInvestment.desc = '';
-      myInvestment.tax_class = '';
+      this.myInvestment = new investment();
+      this.myInvestment.id = '';
+      this.myInvestment.desc = '';
+      this.myInvestment.tax_class = '';
       this.p_plm_query = {};
       this.widget_operation = '';  // Widget operation 'MODIFY' 'DELETE' 'INSERT'
       this.plm_status = 0; //'0: pl free' '1: plm start execution query' '2: plm finished execution query'

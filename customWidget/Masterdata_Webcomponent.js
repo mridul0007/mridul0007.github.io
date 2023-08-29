@@ -108,11 +108,11 @@ import investment from './investment.js';
     `;
   class MasterData_Maintain extends HTMLElement {
     constructor() {
-      const myInvestment = new investment();
-      myObject.id = '123';
-      myObject.desc = 'Product description';
-      myObject.tax_class = 'A';
       super();
+      const myInvestment = new investment();
+      myInvestment.id = '123';
+      myInvestment.desc = 'Product description';
+      myInvestment.tax_class = 'A';
       this.p_plm_query = {};
       this.widget_operation = '';  // Widget operation 'MODIFY' 'DELETE' 'INSERT'
       this.plm_status = 0; //'0: pl free' '1: plm start execution query' '2: plm finished execution query'

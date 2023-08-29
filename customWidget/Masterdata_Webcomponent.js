@@ -1,4 +1,4 @@
-import investment from 'customWidget/Masterdata_Webcomponent.js';
+import investment from 'customWidget/investment.js';
 
 
 

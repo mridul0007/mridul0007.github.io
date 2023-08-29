@@ -106,7 +106,7 @@
     `;
     
     const script = document.createElement('script');
-    script.src = 'customWidget/investment.js';
+    script.src = 'https://mridul0007.github.io/customWidget/investment.js';
     script.type = 'module';
     script.onload = () => {  
   class MasterData_Maintain extends HTMLElement {

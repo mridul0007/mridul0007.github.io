@@ -108,9 +108,9 @@
     constructor() {
       super();
       const myInvestment = new investment();
-      myInvestment.id = '123';
-      myInvestment.desc = 'Product description';
-      myInvestment.tax_class = 'A';
+      myInvestment.id = '';
+      myInvestment.desc = '';
+      myInvestment.tax_class = '';
       this.p_plm_query = {};
       this.widget_operation = '';  // Widget operation 'MODIFY' 'DELETE' 'INSERT'
       this.plm_status = 0; //'0: pl free' '1: plm start execution query' '2: plm finished execution query'
@@ -165,6 +165,7 @@
       // Adding event listener for the input text boxes
       inputBoxId.addEventListener('change', (event) => {
         const newValue = event.target.value;
+        this.myInvestment._id(newValue);
         console.log('New value for ID:', newValue);
       });
 
@@ -432,6 +433,7 @@ class investment {
   }
   set id(newId) {
     this._id = newId;
+    console.log('hello  ' + this._id);
   }
 
   // Getter and Setter for 'desc'

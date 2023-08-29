@@ -104,11 +104,6 @@
       </div>  
         
     `;
-    
-    const script = document.createElement('script');
-    script.src = 'https://mridul0007.github.io/customWidget/investment.js';
-    script.type = 'module';
-    script.onload = async () => {  
   class MasterData_Maintain extends HTMLElement {
     constructor() {
       super();
@@ -424,10 +419,39 @@
   fireChanged() { }
 }
 
+class investment {
+  constructor() {
+    this._id = '';
+    this._desc = '';
+    this._tax_class = '';
+  }
+
+  // Getter and Setter for 'id'
+  get id() {
+    return this._id;
+  }
+  set id(newId) {
+    this._id = newId;
+  }
+
+  // Getter and Setter for 'desc'
+  get desc() {
+    return this._desc;
+  }
+  set desc(newDesc) {
+    this._desc = newDesc;
+  }
+
+  // Getter and Setter for 'tax_class'
+  get tax_class() {
+    return this._tax_class;
+  }
+  set tax_class(newTaxClass) {
+    this._tax_class = newTaxClass;
+  }
+}
+
 
   customElements.define('custom-widget', MasterData_Maintain);
-};
-
-document.head.appendChild(script);
 
 }) ();

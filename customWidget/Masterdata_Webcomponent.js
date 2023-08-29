@@ -165,7 +165,7 @@
       // Adding event listener for the input text boxes
       inputBoxId.addEventListener('change', (event) => {
         const newValue = event.target.value;
-        myInvestment.id = newValue;
+        this.myInvestment.id = newValue;
         console.log('New value for ID:', newValue);
       });
 

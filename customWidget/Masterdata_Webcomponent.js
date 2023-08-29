@@ -1,8 +1,6 @@
-import investment from './investment';
-
-
-
 (function () {
+  
+  
   let tmpl = document.createElement('template');
   tmpl.innerHTML = `
       <style>
@@ -106,6 +104,11 @@ import investment from './investment';
       </div>  
         
     `;
+    
+    const script = document.createElement('script');
+    script.src = 'customWidget/investment.js';
+    script.type = 'module';
+    script.onload = () => {  
   class MasterData_Maintain extends HTMLElement {
     constructor() {
       super();
@@ -423,5 +426,8 @@ import investment from './investment';
 
 
   customElements.define('custom-widget', MasterData_Maintain);
+};
+
+document.head.appendChild(script);
 
 }) ();

@@ -153,6 +153,25 @@
       });
 
 
+      // Assuming you have references to the text boxes
+      const inputBoxId = shadowRoot.getElementById('text_box_id');
+
+      // Adding event listener for the input text boxes
+      inputBoxId.addEventListener('change', (event) => {
+        const newValue = event.target.value;
+        console.log('New value for ID:', newValue);
+      });
+
+
+      const inputBoxDesc = shadowRoot.getElementById('text_box_desc');
+      inputBoxDesc.addEventListener('change', (event) => {
+        const newValue = event.target.value;
+        console.log('New value for Description:', newValue);
+        // You can perform further actions based on the new value
+      });
+
+
+
       const buttonDelete = shadowRoot.getElementById('button_delete');
       buttonDelete.addEventListener('click', () => {
         this.showChildPopup();

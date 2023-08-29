@@ -108,7 +108,7 @@
     const script = document.createElement('script');
     script.src = 'https://mridul0007.github.io/customWidget/investment.js';
     script.type = 'module';
-    script.onload = () => {  
+    script.onload = async () => {  
   class MasterData_Maintain extends HTMLElement {
     constructor() {
       super();

@@ -1,3 +1,6 @@
+import investment from 'customWidget\Masterdata_Webcomponent.js';
+
+
 (function () {
   let tmpl = document.createElement('template');
   tmpl.innerHTML = `
@@ -104,6 +107,10 @@
     `;
   class MasterData_Maintain extends HTMLElement {
     constructor() {
+      const myInvestment = new investment();
+      myObject.id = '123';
+      myObject.desc = 'Product description';
+      myObject.tax_class = 'A';
       super();
       this.p_plm_query = {};
       this.widget_operation = '';  // Widget operation 'MODIFY' 'DELETE' 'INSERT'

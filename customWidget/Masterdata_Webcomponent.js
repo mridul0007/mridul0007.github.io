@@ -1,4 +1,4 @@
-import investment from './investment.js';
+import investment from 'customWidget/investment.js';
 
 
 

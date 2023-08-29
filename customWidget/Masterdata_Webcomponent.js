@@ -1,6 +1,7 @@
 import investment from 'customWidget/Masterdata_Webcomponent.js';
 
 
+
 (function () {
   let tmpl = document.createElement('template');
   tmpl.innerHTML = `

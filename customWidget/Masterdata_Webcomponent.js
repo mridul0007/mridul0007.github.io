@@ -90,6 +90,10 @@
             <select id="select_box_level">
             </select>
         </div>
+        <div class="input-row">
+          <label for="text_box_tax">Tax-class:</label>
+          <input type="text" id="text_box_tax" placeholder="Enter value...">
+        </div>
 
           <!-- Buttons row -->
         <div class="button-row">
@@ -173,6 +177,14 @@
       const inputBoxDesc = shadowRoot.getElementById('text_box_desc');
       inputBoxDesc.addEventListener('change', (event) => {
         const newValue = event.target.value;
+        console.log('New value for Description:', newValue);
+        // You can perform further actions based on the new value
+      });
+
+      const inputBoxTax = shadowRoot.getElementById('text_box_tax');
+      inputBoxTax.addEventListener('change', (event) => {
+        const newValue = event.target.value;
+        this.myInvestment.tax_class = newValue;
         console.log('New value for Description:', newValue);
         // You can perform further actions based on the new value
       });
@@ -328,6 +340,8 @@
     text_box_id.value = this.p_plm_query.plm_mp_planningmodelmember.id;
     const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
     text_box_desc.value = this.p_plm_query.plm_mp_planningmodelmember.description;
+    const text_box_tax = this.shadowRoot.getElementById('text_box_desc');
+    text_box_tax.value = this.p_plm_query.plm_mp_planningmodelmember.properties['TAX_CLASS'];
 
 
     this.p_plm_query.plm_method = 'fill_data_members';

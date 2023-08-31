@@ -340,7 +340,7 @@
     text_box_id.value = this.p_plm_query.plm_mp_planningmodelmember.id;
     const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
     text_box_desc.value = this.p_plm_query.plm_mp_planningmodelmember.description;
-    const text_box_tax = this.shadowRoot.getElementById('text_box_desc');
+    const text_box_tax = this.shadowRoot.getElementById('text_box_tax');
     text_box_tax.value = this.p_plm_query.plm_mp_planningmodelmember.properties['TAX_CLASS'];
 
 

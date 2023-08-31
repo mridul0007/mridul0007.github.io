@@ -389,9 +389,9 @@
       const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
       p_query.plm_mp_planningmodelmember.description = text_box_desc.value ;
       const selectDepartment = this.shadowRoot.getElementById('select_box_department');
-      p_query.plm_mp_planningmodelmember.hierarchies['DEPARTMENT'] = selectDepartment.value;
+      p_query.plm_mp_planningmodelmember.hierarchies['DEPARTMENT'].parentId = selectDepartment.value;
       const selectLevel = this.shadowRoot.getElementById('select_box_level');
-      p_query.plm_mp_planningmodelmember.hierarchies['LEVEL'] = selectLevel.value ;
+      p_query.plm_mp_planningmodelmember.hierarchies['LEVEL'].parentId = selectLevel.value ;
 
       return p_query;
   }

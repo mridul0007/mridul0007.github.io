@@ -388,6 +388,10 @@
       p_query.plm_mp_planningmodelmember.id = text_box_id.value;
       const text_box_desc = this.shadowRoot.getElementById('text_box_desc');
       p_query.plm_mp_planningmodelmember.description = text_box_desc.value ;
+      const selectDepartment = this.shadowRoot.getElementById('select_box_department');
+      p_query.plm_mp_planningmodelmember.id = selectDepartment.value;
+      const selectLevel = this.shadowRoot.getElementById('select_box_level');
+      p_query.plm_mp_planningmodelmember.description = selectLevel.value ;
 
       return p_query;
   }

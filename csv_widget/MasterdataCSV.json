@@ -1,5 +1,5 @@
 {
-	"name": "Masterdata_Widget",
+	"name": "Masterdata_CSV",
 	"imports": ["planning-model"],
 	"description": "Master Data CSV",
 	"newInstancePrefix": "Masterdata_maps",

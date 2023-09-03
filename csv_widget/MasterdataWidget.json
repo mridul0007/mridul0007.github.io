@@ -1,7 +1,7 @@
 {
 	"name": "Masterdata_Widget",
 	"imports": ["planning-model"],
-	"description": "Master Data maps",
+	"description": "Master Data CSV",
 	"newInstancePrefix": "Masterdata_maps",
 	"eula": "",
 	"vendor": "",
@@ -13,7 +13,7 @@
 		{
 			"kind": "main",
 			"tag": "custom-widget",
-			"url": "https://mridul0007.github.io/maps widget/Masterdata_Webcomponent.js",
+			"url": "https://mridul0007.github.io/csv_widget/Masterdata_Webcomponent.js",
 			"integrity": "",
 			"ignoreIntegrity": true
 		}

@@ -41,32 +41,43 @@
         fileNameInput.value = fileInput.files[0].name;
       });
 
-      // Add a click event listener to the "Upload" button
-      uploadButton.addEventListener('click', () => {
-        // Get the selected file
-        const selectedFile = fileInput.files[0];
-  
-        if (selectedFile) {
-          // Create a FileReader object
-          const reader = new FileReader();
-  
-          // Define an event handler for when the file is loaded
-          reader.onload = (event) => {
-            const fileContents = event.target.result; // This will contain the file contents
-            
-            // You can now parse the CSV data here. For example, you can split it by lines and then by commas:
-            const lines = fileContents.split('\n');
-            lines.forEach((line) => {
-              const values = line.split(',');
-              console.log('CSV Line:', values);
-              // You can process each line's values here
-            });
-          };
-  
-          // Read the file as text
-          reader.readAsText(selectedFile);
-        }
-      });
+     // ...
+
+    // Add a click event listener to the "Upload" button
+    uploadButton.addEventListener('click', () => {
+      // Get the selected file
+      const selectedFile = fileInput.files[0];
+
+      if (selectedFile) {
+        // Create a FileReader object
+        const reader = new FileReader();
+
+        // Define an event handler for when the file is loaded
+        reader.onload = (event) => {
+          const fileContents = event.target.result; // This will contain the file contents
+          
+          // Detect the separator (either comma or semicolon)
+          let separator = ',';
+          if (fileContents.includes(';')) {
+            separator = ';';
+          }
+
+          // Split the file contents by the detected separator
+          const lines = fileContents.split('\n');
+          lines.forEach((line) => {
+            const values = line.split(separator);
+            console.log('CSV Line:', values);
+            // You can process each line's values here
+          });
+        };
+
+        // Read the file as text
+        reader.readAsText(selectedFile);
+      }
+    });
+
+// ...
+
     }
 
     onCustomWidgetAfterUpdate(ochangedProperties) {}

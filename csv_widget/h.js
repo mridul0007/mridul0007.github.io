@@ -20,6 +20,7 @@
             let shadowRoot = this.attachShadow({ mode: 'open' });
             shadowRoot.appendChild(tmpl.content.cloneNode(true));
             this._export_settings = {};
+            this.fillData();
             
             const fileInput = shadowRoot.getElementById('input_box');
             const fileNameInput = shadowRoot.getElementById('file_name');
@@ -66,7 +67,7 @@
                   // You can process each line's values here
                 });
               };
-              this.fillData();
+              
       
               // Read the file as text
               reader.readAsText(selectedFile);

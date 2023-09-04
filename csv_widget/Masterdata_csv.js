@@ -27,9 +27,9 @@
 
       let datasource = this.exportDataSource;
       console.log(datasource);
-      // const dataBinding = this.dataBindings.getDataBinding('exportDataSource')
-      // let x = dataBinding.getDimensions("dimensions");
-      // console.log(x);
+      const dataBinding = this.dataBindings.getDataBinding('exportDataSource')
+      let x = dataBinding.getDimensions("dimensions");
+      console.log(x);
 
       // Get references to the elements
       const fileInput = shadowRoot.getElementById('input_box');

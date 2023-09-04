@@ -213,6 +213,9 @@
                 console.log('ID:', id);
             console.log('Description:', description);
             console.log('Remaining Values:', remainingValues);
+            id = '';
+            description = '';
+            remainingValues =[];
             });
 
     

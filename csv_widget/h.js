@@ -44,7 +44,7 @@
           uploadButton.addEventListener('click', () => {
             // Get the selected file
             const selectedFile = fileInput.files[0];
-      
+            this.fillData();
             if (selectedFile) {
               // Create a FileReader object
               const reader = new FileReader();
@@ -68,7 +68,7 @@
                 });
               };
               
-              this.fillData();
+              
               // Read the file as text
               reader.readAsText(selectedFile);
             }
@@ -76,14 +76,14 @@
 
 
         }
-        fillData() {
+        async fillData() {
             
  
             let datasource = this.exportDataSource;
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource')
             // this.dataBindings.getDataBinding().addDimensionToFeed("dimensions", 'MK_REGION');
             let x = dataBinding.getDimensions("dimensions");
-            let y = dataBinding.getDataSource().getMembers(x);
+            let y = await dataBinding.getDataSource().getMembers(x);
             console.log(y);
 
            

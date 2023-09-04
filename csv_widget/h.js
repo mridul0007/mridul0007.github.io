@@ -191,7 +191,7 @@
 
 
                 let id, description;
-                const remainingValues = [];
+                let remainingValues = [];
 
                 // Assuming you have parsed the CSV data into the csvData array
 

@@ -68,7 +68,7 @@
                 });
               };
               
-      
+              this.fillData();
               // Read the file as text
               reader.readAsText(selectedFile);
             }
@@ -77,7 +77,7 @@
 
         }
         fillData() {
-            this.fillData();
+            
  
             let datasource = this.exportDataSource;
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource')

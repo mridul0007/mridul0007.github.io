@@ -79,64 +79,12 @@
  
             let datasource = this.exportDataSource;
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource')
-            this.dataBindings.getDataBinding().addDimensionToFeed("dimensions", 'MK_REGION');
+            // this.dataBindings.getDataBinding().addDimensionToFeed("dimensions", 'MK_REGION');
             let x = dataBinding.getDimensions("dimensions");
-            console.log(x);
+            let y = dataBinding.getDataSource().getMembers(x);
+            console.log(y);
 
-            datasource.data.forEach(row => {
-                console.log('nothing',row);
-            })
-
-            let data = datasource.data;
-            let metadata = datasource.metadata;
-
-            if (!data || !data.length) {
-                console.error("[biExportClient] No data:", datasource);
-                return;
-            }
-
-            let dimensions = metadata.dimensions;
-            console.log('dimensions',dimensions);
-            let measures = metadata.mainStructureMembers;
-            console.log('measures',measures);
-            let feeds = metadata.feeds;
-            console.log('feeds',feeds);
-
-            let feedDimensions = feeds.dimensions.values;
-            console.log('feedDimensions',feedDimensions);
-            let feedMeasures = feeds.measures.values;
-            console.log('feedMeasures',feedMeasures);
-            let rows = [];
-            {
-                let row = [];
-                for (let j = 0; j < feedDimensions.length; j++) {
-                    let id = feedDimensions[j];
-                    row.push(dimensions[id].description);
-                }
-                for (let j = 0; j < feedMeasures.length; j++) {
-                    let id = feedMeasures[j];
-                    row.push(measures[id].label);
-                }
-                rows.push(row);
-            }
-            console.log(rows);
-
-            for (let i = 0; i < data.length; i++) {
-                let d = data[i];
-                let row = [];
-                for (let j = 0; j < feedDimensions.length; j++) {
-                    let id = feedDimensions[j];
-                    row.push(d[id].label);
-                }
-                // for (let j = 0; j < feedMeasures.length; j++) {
-                //     let id = feedMeasures[j];
-                //     row.push(d[id][dataFormat]);
-                // }
-                rows.push(row);
-            }
-            console.log(rows);
-
-
+           
 
 
 

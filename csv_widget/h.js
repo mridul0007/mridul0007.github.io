@@ -185,6 +185,42 @@
                 // Store each value in the csvData array
                 csvData.push(values);
               });
+
+
+
+
+
+                let id, description;
+                const remainingValues = [];
+
+                // Assuming you have parsed the CSV data into the csvData array
+
+                // Loop through each row
+                csvData.forEach((row, rowIndex) => {
+                // Loop through each column in the row
+                row.forEach((cellValue, colIndex) => {
+                    if (rowIndex === 0 && colIndex === 0) {
+                    // First row, first column
+                    id = cellValue;
+                    } else if (rowIndex === 0 && colIndex === 1) {
+                    // First row, second column
+                    description = cellValue;
+                    } else {
+                    // All other values
+                    remainingValues.push(cellValue);
+                    }
+                });
+                console.log('ID:', id);
+            console.log('Description:', description);
+            console.log('Remaining Values:', remainingValues);
+            });
+
+    
+            
+
+
+
+
   
               // Display CSV data as an HTML table
               const table = document.createElement('table');

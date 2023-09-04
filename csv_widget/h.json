@@ -1,18 +1,18 @@
 {
-	"name": "mycustomwidget",
+	"name": "h",
 	"description": "Hello World",
-	"newInstancePrefix": "mycustomwidget",
+	"newInstancePrefix": "h",
 	"eula": "",
 	"vendor": "",
 	"license": "",
-	"id": "mycustomwidget",
+	"id": "h",
 	"version": "1.0.2",
 	"icon": "",
 	"webcomponents": [
 		{
 			"kind": "main",
 			"tag": "custom-button",
-			"url": "https://mridul0007.github.io/customWidget/Webcomponent.js",
+			"url": "https://mridul0007.github.io/csv_widget/Webcomponent.js",
 			"integrity": "",
 			"ignoreIntegrity": true
 		}

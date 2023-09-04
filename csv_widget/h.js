@@ -1,64 +1,13 @@
 (function () {
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
-      <style>
-        .child_popup {
-          display: none;
-          flex-direction: column;
-        }
-        /* Add some spacing between the elements in the second div */
-        .child_popup .input-row {
-          display: flex;
-          align-items: center;
-          margin-bottom: 5px;
-        }
-        .child_popup .input-row label {
-          width: 120px; /* Adjust the width as needed for the labels */
-          margin-right: 10px;
-        }
-        .child_popup .input-row input {
-          flex: 1;
-        }
-  
-        /* Style for the buttons */
-        .child_popup .button-row {
-          display: flex; /* Set display to flex to ensure the buttons are visible */
-          flex-direction: row; /* Explicitly set the flex direction to row */
-          gap: 10px;
-          margin-top: 2cm;
-        }
-      </style>
-      <div class="root">
-        <label for="input_box">SELECTED INVESTMENT:</label>
-        <input type="text" id="input_box" placeholder="Enter value...">
-        <button type="button" id="button_modify">MODIFY</button>
-        <button type="button" id="button_delete">DELETE</button>
-        <button type="button" id="button_create">CREATE</button>
-      </div>
-      <div class="child_popup">
-        <div class="input-row">
-          <label for="text_box_id">ID:</label>
-          <input type="text" id="text_box_id" placeholder="Enter value...">
-        </div>
-        <div class="input-row">
-          <label for="text_box_desc">Description:</label>
-          <input type="text" id="text_box_desc" placeholder="Enter value...">
-        </div>
-        <div class="input-row">
-          <label for="text_box_department">Department:</label>
-          <input type="text" id="text_box_department" placeholder="Enter value...">
-        </div>
-        <div class="input-row">
-          <label for="text_box_hierarchy">Hierarchy:</label>
-          <input type="text" id="text_box_hierarchy" placeholder="Enter value...">
-        </div>
-  
-        <!-- Buttons row -->
-        <div class="button-row">
-          <button type="button" id="button_ok">OK</button>
-          <button type="button" id="button_cancel">CANCEL</button>
-        </div>
-      </div>
+    <div class="root">
+    <label for="input_box">Upload file:</label>
+    <input type="file" id="input_box" accept=".csv" style="display: none;">
+    <input type="text" id="file_name" placeholder="Select a CSV file..." readonly>
+    <button id="select_file_button">Select File</button>
+    <button id="upload_button">Upload</button>
+  </div>
     `;
 
     class MasterData_Maintain extends HTMLElement {
@@ -71,103 +20,63 @@
             let shadowRoot = this.attachShadow({ mode: 'open' });
             shadowRoot.appendChild(tmpl.content.cloneNode(true));
             this._export_settings = {};
-            // Add event listeners to the buttons
-            const buttonModify = shadowRoot.getElementById('button_modify');
-            buttonModify.addEventListener('click', () => {
-                this.showChildPopup()
-                this.fillData();
+            
+            const fileInput = shadowRoot.getElementById('input_box');
+            const fileNameInput = shadowRoot.getElementById('file_name');
+            const selectFileButton = shadowRoot.getElementById('select_file_button');
+            const uploadButton = shadowRoot.getElementById('upload_button');
+      
+            // Add a click event listener to the "Select File" button
+            selectFileButton.addEventListener('click', () => {
+              fileInput.click(); // Trigger a click event on the hidden file input
             });
-
-            const buttonDelete = shadowRoot.getElementById('button_delete');
-            buttonDelete.addEventListener('click', () => {
-                this.showChildPopup();
+      
+            // Add a change event listener to the file input
+            fileInput.addEventListener('change', () => {
+              // Display the selected file name in the text input
+              fileNameInput.value = fileInput.files[0].name;
             });
-
-            const buttonCreate = shadowRoot.getElementById('button_create');
-            buttonCreate.addEventListener('click', () => {
-                this.showChildPopup();
-            });
-
-            // Add event listeners to the "OK" and "CANCEL" buttons in the child popup
-            const buttonOk = shadowRoot.getElementById('button_ok');
-            buttonOk.addEventListener('click', () => {
-                this.hideChildPopup();
-            })
-
-            const buttonCancel = shadowRoot.getElementById('button_cancel');
-            buttonCancel.addEventListener('click', () => {
-                this.hideChildPopup();
-            });
-
-
-
-            // Get the input element with the ID "input_box"
-            const inputBox = shadowRoot.getElementById('input_box');
-
-            // Set the value of the input field
-            inputBox.value = this.dept;
-        }
-
-        // Function to show the second div
-        showChildPopup() {
-            const childPopup = this.shadowRoot.querySelector('.child_popup');
-            childPopup.style.display = 'flex';
-        }
-
-        // Function to hide the second div
-        hideChildPopup() {
-            const childPopup = this.shadowRoot.querySelector('.child_popup');
-            childPopup.style.display = 'none';
-        }
-
-        OnCustomWidgetBeforeUpdate(changedProperties) {
-            this._props = { ...this._props, ...changedProperties }
-            console.log('changedProperties', changedProperties);
-            const inputBox = this.shadowRoot.getElementById('input_box');
-
-            // Set the value of the input field
-            inputBox.value = this.dept;
-            input.inputBox = setdept
-        }
-
-        onCustomWidgetAfterUpdate(changedProperties) {
-            if ("dept" in changedProperties) {
-                console.log('value changed', this.dept);
-                const inputBox = this.shadowRoot.getElementById('input_box');
-                inputBox.value = this.dept;
-                console.log('changedProperties after update', changedProperties);
-                // trial
+      
+           // ...
+      
+          // Add a click event listener to the "Upload" button
+          uploadButton.addEventListener('click', () => {
+            // Get the selected file
+            const selectedFile = fileInput.files[0];
+      
+            if (selectedFile) {
+              // Create a FileReader object
+              const reader = new FileReader();
+      
+              // Define an event handler for when the file is loaded
+              reader.onload = (event) => {
+                const fileContents = event.target.result; // This will contain the file contents
+                
+                // Detect the separator (either comma or semicolon)
+                let separator = ',';
+                if (fileContents.includes(';')) {
+                  separator = ';';
+                }
+      
+                // Split the file contents by the detected separator
+                const lines = fileContents.split('\n');
+                lines.forEach((line) => {
+                  const values = line.split(separator);
+                  console.log('CSV Line:', values);
+                  // You can process each line's values here
+                });
+              };
+              this.fillData();
+      
+              // Read the file as text
+              reader.readAsText(selectedFile);
             }
+          });
+
 
         }
         fillData() {
-            // let data_table = this.dataBindings.getDataBinding().getDimensions("dimensions");
-            // console.log(data_table);
-            // let data_table1 = this.dataBindings.getDataBinding().getDataSource();
-            // console.log(data_table1);
-            // const inputBox = this.shadowRoot.getElementById('input_box');
-            // let data_table2 = this.dataBindings.getDataBinding().getMembers("MK_INVESTMENT",inputBox.value);
-            // console.log(data_table2);
-
-            // let datasource = this.exportDataSource;
-            // let data = datasource.data.;
-            // console.log(data)
-            // let metadata = datasource.metadata;
-            // console.log(metadata)
-            // let feeds = metadata.feeds;
-
-            // let feedDimensions = feeds.dimensions.values;
-            // console.log(feedDimensions);
-
-            // var x = this.dataBindings.getDataBinding().getDataSource();
-            // var y = x.getMember("MK_INVESTMENT",'INV_00001').description;
-            // console.log(y);
-
-
-
-
-
-
+ 
             let datasource = this.exportDataSource;
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource')
             this.dataBindings.getDataBinding().addDimensionToFeed("dimensions", 'MK_REGION');

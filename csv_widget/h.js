@@ -83,7 +83,7 @@
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource')
             // this.dataBindings.getDataBinding().addDimensionToFeed("dimensions", 'MK_REGION');
             let x = dataBinding.getDimensions("dimensions");
-            let y = await dataBinding.getDataSource().getMembers(x,{offset: 0,limit:1});
+            let y = await dataBinding.getDataSource()//.getMembers(x,{offset: 0,limit:1});
             console.log(y);
 
            

@@ -85,6 +85,10 @@
             let x = dataBinding.getDimensions("dimensions");
             let y = await dataBinding.getDataSource()//.getMembers(x,{offset: 0,limit:1});
             console.log(y);
+            
+            datasource.data.forEach(row => {
+                console.log(row);
+            })
 
            
 

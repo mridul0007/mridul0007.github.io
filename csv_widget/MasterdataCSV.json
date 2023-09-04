@@ -1,13 +1,13 @@
 {
 	"name": "Masterdata_CSV",
-	"imports": ["planning-model"],
+
 	"description": "Master Data CSV",
-	"newInstancePrefix": "Masterdata_maps",
+	"newInstancePrefix": "Masterdata_csv",
 	"eula": "",
 	"vendor": "",
 	"license": "",
-	"id": "Masterdata_maps",
-	"version": "1.0.1",
+	"id": "Masterdata_csv",
+	"version": "1.0.2",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -20,9 +20,6 @@
 	],
 	"properties": {
 		"p_plm_query":{
-			"type" : "ty_plm_query"
-		},
-		"p_mem_id_selection":{
 			"type" : "string"
 		}
 		
@@ -43,77 +40,20 @@
 		  ]
 		}
 	  },
-	  "types":{
-		"ty_plm_query":{
-			"description" : "Object for PLM query",
-			"properties":[
-				{
-					"name" : "plm_method",
-					"type" : "string",
-					"description" : "operation to do"
-				},
-				{
-					"name" : "plm_mp_planningmodelmember",
-					"type" : "PlanningModelMember",
-					"description" : "Planning model member"
-				},
-				{
-					"name" : "plm_mp_dimension_id",
-					"type" : "string",
-					"description" : "dimension ID"
-				},
-				{
-					"name" : "plm_mp_member_id",
-					"type" : "string",
-					"description" : "member id"
-				},
-				{
-					"name": "plm_mp_member_ids",
-					"type": "string[]",
-					"description": "array of member IDs"
-				},
-				{
-					"name": "plm_mp_planningmodelmembers",
-					"type": "PlanningModelMember[]",
-					"description": "array of PLMs"
-				}
-		  
-		  
-			]
-
-		}
-	  },
 	"methods": {
-		"set_p_mem_id_selection": {
-			"description": "set id",
-			"parameters": [
-				{
-					"name": "p_mem_id_selection",
-					"type": "string",
-					"description": "set selection member ID"
-				}
-			]
-			
-		},
-        "get_p_mem_id_selection": {
-			"returnType": "string",
-			"description": "return selected member ID"
-			
-			
-		},
 		"set_p_plm_query": {
 			"description": "set set_p_plm_query",
 			"parameters": [
 				{
 					"name": "p_plm_query",
-					"type": "ty_plm_query",
+					"type": "string",
 					"description": "set p_plm_query"
 				}
 			]
 			
 		},
 		"get_p_plm_query": {
-			"returnType": "ty_plm_query",
+			"returnType": "string",
 			"description": "get p_plm_query"
 			
 			

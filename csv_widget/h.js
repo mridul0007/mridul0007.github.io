@@ -20,7 +20,7 @@
             let shadowRoot = this.attachShadow({ mode: 'open' });
             shadowRoot.appendChild(tmpl.content.cloneNode(true));
             this._export_settings = {};
-            this.fillData();
+            
             
             const fileInput = shadowRoot.getElementById('input_box');
             const fileNameInput = shadowRoot.getElementById('file_name');
@@ -77,6 +77,7 @@
 
         }
         fillData() {
+            this.fillData();
  
             let datasource = this.exportDataSource;
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource')

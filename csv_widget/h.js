@@ -159,9 +159,9 @@
             // let feedDimensions = feeds.dimensions.values;
             // console.log(feedDimensions);
 
-            var x = this.dataBindings.getDataBinding().getDataSource();
-            var y = x.getMember("MK_INVESTMENT",'INV_00001').description;
-            console.log(y);
+            // var x = this.dataBindings.getDataBinding().getDataSource();
+            // var y = x.getMember("MK_INVESTMENT",'INV_00001').description;
+            // console.log(y);
 
 
 

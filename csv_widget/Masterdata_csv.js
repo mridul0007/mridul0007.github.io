@@ -23,6 +23,9 @@
     init() {
       let shadowRoot = this.attachShadow({ mode: 'open' });
       shadowRoot.appendChild(tmpl.content.cloneNode(true));
+      const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
+      let p_dimension = dataBinding.getDimensions();
+      console.log(p_dimension);
 
       // Get references to the elements
       const fileInput = shadowRoot.getElementById('input_box');

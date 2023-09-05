@@ -11,7 +11,7 @@
           <button id="upload_button">Upload</button>
         </div>
         <div class="drag-drop-elements" style="display: none;">
-          <!-- 1st row: Column names as drag and drop elements -->
+          <!-- 1st row: Column names as drag and drop buttons -->
           <div id="column_names" class="row">
             <!-- Column names will be added here -->
           </div>
@@ -95,11 +95,13 @@
                 .split(separator)
                 .map((columnName) => columnName.trim());
   
-              // Display column names as drag and drop elements
+              // Replace the inner HTML of the "columnNamesDiv" with draggable buttons
               columnNamesDiv.innerHTML = columnNames
-                .map((columnName) => `<div class="drag-element" draggable="true">${columnName}</div>`)
+                .map((columnName) => `<button class="drag-element" draggable="true">${columnName}</button>`)
                 .join('');
-
+  
+              // Show the CSV controls
+              uploadControls.style.display = 'none'; // Hide upload controls
               dragDropElements.style.display = 'block'; // Show drag and drop elements
             };
   

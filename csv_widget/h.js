@@ -238,6 +238,9 @@
       setupDanfo() {
         // You can use danfo.js here after it's loaded
         console.log('danfo.js is loaded and ready to use.');
+        s = new dfd.Series([1, 3, 5, undefined, 6, 8])
+        s.print()
+
       }
   
       fireChanged() {

@@ -112,7 +112,7 @@
                 .join('');
   
               // Show the CSV controls
-              uploadControls.style.display = 'none'; // Hide upload controls
+              
               dragDropElements.style.display = 'block'; // Show drag and drop elements
             };
   

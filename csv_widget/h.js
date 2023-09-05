@@ -1,5 +1,3 @@
-
-
 (function () {
     // Define the HTML template for your custom element
     let tmpl = document.createElement('template');

@@ -184,6 +184,7 @@
     }
   
     // Define your custom element
+    
     customElements.define('custom-button', MasterData_Maintain);
   })();
   

@@ -10,7 +10,7 @@
           <button id="select_file_button">Select File</button>
           <button id="upload_button">Upload</button>
         </div>
-        <div class="drag-drop-elements">
+        <div class="drag-drop-elements" style="display: none;">
           <!-- 1st row: Column names as drag and drop elements -->
           <div id="column_names" class="row">
             <!-- Column names will be added here -->
@@ -99,9 +99,7 @@
               columnNamesDiv.innerHTML = columnNames
                 .map((columnName) => `<div class="drag-element" draggable="true">${columnName}</div>`)
                 .join('');
-  
-              // Show the CSV controls
-              uploadControls.style.display = 'none'; // Hide upload controls
+
               dragDropElements.style.display = 'block'; // Show drag and drop elements
             };
   

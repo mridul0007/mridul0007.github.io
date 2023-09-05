@@ -245,7 +245,7 @@
           };
         
           // Create a DataFrame from the sample data
-          const df = new danfo.DataFrame(data);
+          const df = new window.danfo.DataFrame(data);
         
           // Display the DataFrame in the console
           console.log("DataFrame:");

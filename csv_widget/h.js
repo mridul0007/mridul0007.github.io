@@ -178,6 +178,12 @@
             // Append the new element to the drop zone
             target.appendChild(newElement);
 
+            // Remove the draggable button from its parent (row)
+            const draggableButton = columnNamesDiv.querySelector(`button:contains('${columnName}')`);
+            if (draggableButton) {
+              draggableButton.remove();
+            }
+
             // You can handle the dropped column name here
             console.log(`Dropped "${columnName}" into ${dropTarget}`);
           }

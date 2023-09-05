@@ -143,10 +143,9 @@
       danfoScript.src = 'https://cdn.jsdelivr.net/npm/danfojs@1.1.2/lib/bundle.min.js';
 
       // Define an event listener for when the script is loaded
-      danfoScript.onload = () => {
-        // Now you can use danfo.js here
-        this.setupDanfo();
-      };
+      const scriptLoaded = new Promise((resolve) => {
+        danfoScript.onload = resolve;
+      });
 
       // Append the script element to the document to load danfo.js
       document.body.appendChild(danfoScript);
@@ -235,23 +234,24 @@
         });
       }
 
-      setupDanfo() {
-        // You can use danfo.js here after it's loaded
+      async setupDanfo() {
+        // Wait for the script to be loaded
+        await scriptLoaded;
+      
+        // Now you can use danfo.js here
         console.log('danfo.js is loaded and ready to use.');
         const data = {
-            ID: [1, 2, 3],
-            Description: ["Item 1", "Item 2", "Item 3"],
-            // Add more columns here as needed
-          };
-        
-          // Create a DataFrame from the sample data
-          const df = new window.danfo.DataFrame(data);
-        
-          // Display the DataFrame in the console
-          console.log("DataFrame:");
-          console.log(df);
-
-
+          ID: [1, 2, 3],
+          Description: ["Item 1", "Item 2", "Item 3"],
+          // Add more columns here as needed
+        };
+      
+        // Create a DataFrame from the sample data
+        const df = new danfo.DataFrame(data);
+      
+        // Display the DataFrame in the console
+        console.log("DataFrame:");
+        console.log(df);
       }
   
       fireChanged() {

@@ -137,6 +137,26 @@
       }
   
       init() {
+
+        // Create a script element for danfo.js and set its source
+      const danfoScript = document.createElement('script');
+      danfoScript.src = 'https://cdn.jsdelivr.net/npm/danfojs@1.1.2/lib/bundle.min.js';
+
+      // Define an event listener for when the script is loaded
+      danfoScript.onload = () => {
+        // Now you can use danfo.js here
+        this.setupDanfo();
+      };
+
+      // Append the script element to the document to load danfo.js
+      document.body.appendChild(danfoScript);
+
+      
+  
+
+
+
+
         let shadowRoot = this.attachShadow({ mode: 'open' });
         shadowRoot.appendChild(tmpl.content.cloneNode(true));
   
@@ -213,6 +233,11 @@
             reader.readAsText(selectedFile);
           }
         });
+      }
+
+      setupDanfo() {
+        // You can use danfo.js here after it's loaded
+        console.log('danfo.js is loaded and ready to use.');
       }
   
       fireChanged() {

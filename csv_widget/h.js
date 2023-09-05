@@ -2,34 +2,47 @@
     // Define the HTML template for your custom element
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
-      <div class="root">
-        <div class="upload-controls">
-          <label for="input_box">Upload file:</label>
-          <input type="file" id="input_box" accept=".csv" style="display: none;">
-          <input type="text" id="file_name" placeholder="Select a CSV file..." readonly>
-          <button id="select_file_button">Select File</button>
-          <button id="upload_button">Upload</button>
-        </div>
-        <div class="drag-drop-elements" style="display: none;">
-          <!-- 1st row: Column names as drag and drop buttons -->
-          <div id="column_names" class="row">
-            <!-- Column names will be added here -->
-          </div>
-          <!-- 2nd row: Individual drop zones for ID and Description -->
-          <div class="row">
-            <div id="id_drop_zone" class="drop-zone" data-drop-target="ID">ID</div>
-            <div id="description_drop_zone" class="drop-zone" data-drop-target="Description">Description</div>
-          </div>
-          <!-- 3rd row: Drop zone for Hierarchy -->
-          <div class="row">
-            <div id="hierarchy_drop_zone" class="drop-zone" data-drop-target="Hierarchy">Hierarchy</div>
-          </div>
-          <!-- 4th row: Drop zone for Properties -->
-          <div class="row">
-            <div id="properties_drop_zone" class="drop-zone" data-drop-target="Properties">Properties</div>
-          </div>
-        </div>
+    <div class="root">
+    <label for="input_box">Upload file:</label>
+    <input type="file" id="input_box" accept=".csv" style="display: none;">
+    <input type="text" id="file_name" placeholder="Select a CSV file..." readonly>
+    <button id="select_file_button">Select File</button>
+    <button id="upload_button">Upload</button>
+  </div>
+  <div class="drag-drop">
+    <!-- 1st row: Column names as draggable buttons -->
+    <div id="column_names" class="row">
+      <!-- Column names will be added here as draggable buttons -->
+    </div>
+    <!-- 2nd row: Drop zones for ID and Description with box titles -->
+    <div class="drop-box">
+      <div class="drop-box-title">ID</div>
+      <div id="id_drop_zone" class="drop-zone" data-drop-target="ID">
+        <!-- ID drop zone content will be added here -->
       </div>
+    </div>
+    <div class="drop-box">
+      <div class="drop-box-title">Description</div>
+      <div id="description_drop_zone" class="drop-zone" data-drop-target="Description">
+        <!-- Description drop zone content will be added here -->
+      </div>
+    </div>
+    <!-- 3rd row: Drop zone for Hierarchy with box title -->
+    <div class="drop-box">
+      <div class="drop-box-title">Hierarchy</div>
+      <div id="hierarchy_drop_zone" class="drop-zone" data-drop-target="Hierarchy">
+        <!-- Hierarchy drop zone content will be added here -->
+      </div>
+    </div>
+    <!-- 4th row: Drop zone for Properties with box title -->
+    <div class="drop-box">
+      <div class="drop-box-title">Properties</div>
+      <div id="properties_drop_zone" class="drop-zone" data-drop-target="Properties">
+        <!-- Properties drop zone content will be added here -->
+      </div>
+    </div>
+  </div>
+  
     `;
   
     class MasterData_Maintain extends HTMLElement {

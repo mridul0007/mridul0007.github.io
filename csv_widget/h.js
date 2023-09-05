@@ -90,6 +90,7 @@
         // Now you can use danfo.js here
 
         console.log('danfo.js is loaded and ready to use.');
+        
 
         const data = {
 
@@ -101,7 +102,7 @@
 
         };
         // Create a DataFrame from the sample data
-        const df = new danfo.DataFrame(data);
+        const df = new dfd.DataFrame(data);
         // Display the DataFrame in the console
         console.log("DataFrame:");
         console.log(df);

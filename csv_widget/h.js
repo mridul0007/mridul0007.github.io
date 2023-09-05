@@ -175,7 +175,7 @@
 
             // Replace the inner HTML of the "columnNamesDiv" with draggable buttons
             columnNamesDiv.innerHTML = columnNames
-              .map((columnName) => `<button class="drag-element" draggable="true">${columnName}</button>`)
+              .map((columnName) => `<button class="drag-element" draggable="true" id="${columnName}">${columnName}</button>`)
               .join('');
 
             // Show the CSV controls
@@ -226,7 +226,7 @@
             target.appendChild(newElement);
 
             // Remove the draggable button from its parent (row)
-            const draggableButton = columnNamesDiv.querySelector(`button:contains('${columnName}')`);
+            const draggableButton = columnNamesDiv.querySelector(`button#${columnName}`);
             if (draggableButton) {
               draggableButton.remove();
             }

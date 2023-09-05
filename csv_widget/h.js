@@ -2,46 +2,60 @@
     // Define the HTML template for your custom element
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
-      <div class="root">
-        <label for="input_box">Upload file:</label>
-        <input type="file" id="input_box" accept=".csv" style="display: none;">
-        <input type="text" id="file_name" placeholder="Select a CSV file..." readonly>
-        <button id="select_file_button">Select File</button>
-        <button id="upload_button">Upload</button>
+    <style>
+    /* Add some basic styling for the drop zones */
+    .drop-zone {
+      border: 2px dashed #aaa;
+      padding: 10px;
+      margin: 10px;
+      min-height: 50px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .drop-zone.hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+  <div class="root">
+    <label for="input_box">Upload file:</label>
+    <input type="file" id="input_box" accept=".csv" style="display: none;">
+    <input type="text" id="file_name" placeholder="Select a CSV file..." readonly>
+    <button id="select_file_button">Select File</button>
+    <button id="upload_button">Upload</button>
+  </div>
+  <div class="drag-drop-elements" style="display: none;">
+    <!-- 1st row: Column names as draggable buttons -->
+    <div id="column_names" class="row">
+      <!-- Column names will be added here as draggable buttons -->
+    </div>
+    <!-- 2nd row: Drop zones for ID and Description with box titles -->
+    <div class="drop-box">
+      <div class="drop-box-title">ID</div>
+      <div id="id_drop_zone" class="drop-zone" data-drop-target="ID">
+        <!-- ID drop zone content will be added here -->
       </div>
-      <div class="drag-drop-elements" style="display: none;">
-        <!-- 1st row: Column names as draggable buttons -->
-        <div id="column_names" class="row">
-          <!-- Column names will be added here as draggable buttons -->
-        </div>
-        <!-- 2nd row: Drop zones for ID and Description with box titles -->
-        <div class="drop-box">
-          <div class="drop-box-title">ID</div>
-          <div id="id_drop_zone" class="drop-zone" data-drop-target="ID">
-            <!-- ID drop zone content will be added here -->
-          </div>
-        </div>
-        <div class="drop-box">
-          <div class="drop-box-title">Description</div>
-          <div id="description_drop_zone" class="drop-zone" data-drop-target="Description">
-            <!-- Description drop zone content will be added here -->
-          </div>
-        </div>
-        <!-- 3rd row: Drop zone for Hierarchy with box title -->
-        <div class="drop-box">
-          <div class="drop-box-title">Hierarchy</div>
-          <div id="hierarchy_drop_zone" class="drop-zone" data-drop-target="Hierarchy">
-            <!-- Hierarchy drop zone content will be added here -->
-          </div>
-        </div>
-        <!-- 4th row: Drop zone for Properties with box title -->
-        <div class="drop-box">
-          <div class="drop-box-title">Properties</div>
-          <div id="properties_drop_zone" class="drop-zone" data-drop-target="Properties">
-            <!-- Properties drop zone content will be added here -->
-          </div>
-        </div>
+    </div>
+    <div class="drop-box">
+      <div class="drop-box-title">Description</div>
+      <div id="description_drop_zone" class="drop-zone" data-drop-target="Description">
+        <!-- Description drop zone content will be added here -->
       </div>
+    </div>
+    <!-- 3rd row: Drop zone for Hierarchy with box title -->
+    <div class="drop-box">
+      <div class="drop-box-title">Hierarchy</div>
+      <div id="hierarchy_drop_zone" class="drop-zone" data-drop-target="Hierarchy">
+        <!-- Hierarchy drop zone content will be added here -->
+      </div>
+    </div>
+    <!-- 4th row: Drop zone for Properties with box title -->
+    <div class="drop-box">
+      <div class="drop-box-title">Properties</div>
+      <div id="properties_drop_zone" class="drop-zone" data-drop-target="Properties">
+        <!-- Properties drop zone content will be added here -->
+      </div>
+    </div>
+  </div>
     `;
   
     class MasterData_Maintain extends HTMLElement {

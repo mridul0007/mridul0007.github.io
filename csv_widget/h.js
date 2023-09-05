@@ -1,121 +1,5 @@
-// (function () {
-//     let tmpl = document.createElement('template');
-//     tmpl.innerHTML = `
-//     <div class="root">
-//     <label for="input_box">Upload file:</label>
-//     <input type="file" id="input_box" accept=".csv" style="display: none;">
-//     <input type="text" id="file_name" placeholder="Select a CSV file..." readonly>
-//     <button id="select_file_button">Select File</button>
-//     <button id="upload_button">Upload</button>
-//   </div>
-//     `;
-
-//     class MasterData_Maintain extends HTMLElement {
-//         constructor() {
-//             super();
-//             this.init();
-//         }
-
-//         init() {
-//             let shadowRoot = this.attachShadow({ mode: 'open' });
-//             shadowRoot.appendChild(tmpl.content.cloneNode(true));
-//             this._export_settings = {};
-            
-            
-//             const fileInput = shadowRoot.getElementById('input_box');
-//             const fileNameInput = shadowRoot.getElementById('file_name');
-//             const selectFileButton = shadowRoot.getElementById('select_file_button');
-//             const uploadButton = shadowRoot.getElementById('upload_button');
-      
-//             // Add a click event listener to the "Select File" button
-//             selectFileButton.addEventListener('click', () => {
-//               fileInput.click(); // Trigger a click event on the hidden file input
-//             });
-      
-//             // Add a change event listener to the file input
-//             fileInput.addEventListener('change', () => {
-//               // Display the selected file name in the text input
-//               fileNameInput.value = fileInput.files[0].name;
-//             });
-      
-//            // ...
-      
-//           // Add a click event listener to the "Upload" button
-//           uploadButton.addEventListener('click', () => {
-//             // Get the selected file
-//             const selectedFile = fileInput.files[0];
-//             this.fillData();
-//             if (selectedFile) {
-//               // Create a FileReader object
-//               const reader = new FileReader();
-      
-//               // Define an event handler for when the file is loaded
-//               reader.onload = (event) => {
-//                 const fileContents = event.target.result; // This will contain the file contents
-                
-//                 // Detect the separator (either comma or semicolon)
-//                 let separator = ',';
-//                 if (fileContents.includes(';')) {
-//                   separator = ';';
-//                 }
-      
-//                 // Split the file contents by the detected separator
-//                 const lines = fileContents.split('\n');
-//                 lines.forEach((line) => {
-//                   const values = line.split(separator);
-//                   console.log('CSV Line:', values);
-//                   // You can process each line's values here
-//                 });
-//               };
-              
-              
-//               // Read the file as text
-//               reader.readAsText(selectedFile);
-//             }
-//           });
-
-
-//         }
-//         async fillData() {
-            
- 
-//             // let datasource = this.exportDataSource;
-//             // const dataBinding = this.dataBindings.getDataBinding('exportDataSource')
-//             // // this.dataBindings.getDataBinding().addDimensionToFeed("dimensions", 'MK_REGION');
-//             // let x = dataBinding.getDimensions("dimensions");
-//             // let y = await dataBinding.getDataSource().getMembers(x,{offset: 0,limit:1});
-//             // console.log(y);
-
-//             // datasource.data.forEach(row => {
-//             //     console.log(row);
-//             // })
-
-           
-
-
-
-
-
-
-//         }
-
-
-//         fireChanged() {
-//             console.log('OnClick Triggered');
-//             // this._props= {...this._props,...changedProperties}
-//             // const inputBox = shadowRoot.getElementById('input_box');
-
-//             // // Set the value of the input field
-//             // inputBox.value = this.dept;
-
-//         }
-//     }
-
-//     customElements.define('custom-button', MasterData_Maintain);
-// })();
-
-
 (function () {
+    // Define the HTML template for your custom element
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
       <div class="root">
@@ -127,6 +11,25 @@
         <table id="csv_table">
           <!-- Table headers will be added here -->
         </table>
+        <div id="csv_controls" style="display: none;">
+          <!-- 1st row: Column names as drag and drop elements -->
+          <div id="column_names" class="row">
+            <!-- Column names will be added here -->
+          </div>
+          <!-- 2nd row: Individual drop zones for ID and Description -->
+          <div class="row">
+            <div id="id_drop_zone" class="drop-zone">ID</div>
+            <div id="description_drop_zone" class="drop-zone">Description</div>
+          </div>
+          <!-- 3rd row: Drop zone for Hierarchy -->
+          <div class="row">
+            <div id="hierarchy_drop_zone" class="drop-zone">Hierarchy</div>
+          </div>
+          <!-- 4th row: Drop zone for Properties -->
+          <div class="row">
+            <div id="properties_drop_zone" class="drop-zone">Properties</div>
+          </div>
+        </div>
       </div>
     `;
   
@@ -137,36 +40,26 @@
       }
   
       init() {
-
-        // Create a script element for danfo.js and set its source
-      const danfoScript = document.createElement('script');
-      danfoScript.src = 'https://cdn.jsdelivr.net/npm/danfojs@1.1.2/lib/bundle.min.js';
-
-      // Define an event listener for when the script is loaded
-      const scriptLoaded = new Promise((resolve) => {
-        danfoScript.onload = resolve;
-      });
-
-      // Append the script element to the document to load danfo.js
-      document.body.appendChild(danfoScript);
-
-      
-  
-
-
-
-
+        // Create a shadow DOM for your custom element
         let shadowRoot = this.attachShadow({ mode: 'open' });
         shadowRoot.appendChild(tmpl.content.cloneNode(true));
   
+        // DOM elements
         const fileInput = shadowRoot.getElementById('input_box');
         const fileNameInput = shadowRoot.getElementById('file_name');
         const selectFileButton = shadowRoot.getElementById('select_file_button');
         const uploadButton = shadowRoot.getElementById('upload_button');
         const csvTable = shadowRoot.getElementById('csv_table');
+        const csvControls = shadowRoot.getElementById('csv_controls');
+        const columnNamesDiv = shadowRoot.getElementById('column_names');
+        const idDropZone = shadowRoot.getElementById('id_drop_zone');
+        const descriptionDropZone = shadowRoot.getElementById('description_drop_zone');
+        const hierarchyDropZone = shadowRoot.getElementById('hierarchy_drop_zone');
+        const propertiesDropZone = shadowRoot.getElementById('properties_drop_zone');
   
-        let csvData = []; // Array to store CSV data
-        let columnNames = []; // Array to store column names
+        // Variables to store CSV data and column names
+        let csvData = [];
+        let columnNames = [];
   
         // Add a click event listener to the "Select File" button
         selectFileButton.addEventListener('click', () => {
@@ -202,30 +95,17 @@
               const lines = fileContents.split('\n');
   
               // Extract the header row (first row)
-              const headerRow = lines[0];
-              columnNames = headerRow.split(separator).map((columnName) => columnName.trim());
-              console.log(columnNames);
+              columnNames = lines[0]
+                .split(separator)
+                .map((columnName) => columnName.trim());
   
-              // Remove any existing table headers
-              while (csvTable.firstChild) {
-                csvTable.removeChild(csvTable.firstChild);
-              }
+              // Display column names as drag and drop elements
+              columnNamesDiv.innerHTML = columnNames
+                .map((columnName) => `<div class="drag-element">${columnName}</div>`)
+                .join('');
   
-              // Create table headers from column names
-              const headerRowElement = document.createElement('tr');
-              columnNames.forEach((columnName) => {
-                const headerCell = document.createElement('th');
-                headerCell.textContent = columnName;
-                headerRowElement.appendChild(headerCell);
-              });
-              csvTable.appendChild(headerRowElement);
-  
-              // Continue processing the rest of the CSV data (excluding the header) if necessary
-              for (let i = 1; i < lines.length; i++) {
-                const values = lines[i].split(separator);
-                console.log('CSV Line:', values);
-                // Store or process the data as needed
-              }
+              // Show the CSV controls
+              csvControls.style.display = 'block';
             };
   
             // Read the file as text
@@ -233,32 +113,13 @@
           }
         });
       }
-
-      async setupDanfo() {
-        // Wait for the script to be loaded
-        await scriptLoaded;
-      
-        // Now you can use danfo.js here
-        console.log('danfo.js is loaded and ready to use.');
-        const data = {
-          ID: [1, 2, 3],
-          Description: ["Item 1", "Item 2", "Item 3"],
-          // Add more columns here as needed
-        };
-      
-        // Create a DataFrame from the sample data
-        const df = new danfo.DataFrame(data);
-      
-        // Display the DataFrame in the console
-        console.log("DataFrame:");
-        console.log(df);
-      }
   
       fireChanged() {
         console.log('OnClick Triggered');
       }
     }
   
+    // Define your custom element
     customElements.define('custom-button', MasterData_Maintain);
   })();
   

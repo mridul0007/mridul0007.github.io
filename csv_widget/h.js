@@ -3,31 +3,30 @@
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
       <div class="root">
-        <label for="input_box">Upload file:</label>
-        <input type="file" id="input_box" accept=".csv" style="display: none;">
-        <input type="text" id="file_name" placeholder="Select a CSV file..." readonly>
-        <button id="select_file_button">Select File</button>
-        <button id="upload_button">Upload</button>
-        <table id="csv_table">
-          <!-- Table headers will be added here -->
-        </table>
-        <div id="csv_controls" style="display: none;">
+        <div class="upload-controls">
+          <label for="input_box">Upload file:</label>
+          <input type="file" id="input_box" accept=".csv" style="display: none;">
+          <input type="text" id="file_name" placeholder="Select a CSV file..." readonly>
+          <button id="select_file_button">Select File</button>
+          <button id="upload_button">Upload</button>
+        </div>
+        <div class="drag-drop-elements">
           <!-- 1st row: Column names as drag and drop elements -->
           <div id="column_names" class="row">
             <!-- Column names will be added here -->
           </div>
           <!-- 2nd row: Individual drop zones for ID and Description -->
           <div class="row">
-            <div id="id_drop_zone" class="drop-zone">ID</div>
-            <div id="description_drop_zone" class="drop-zone">Description</div>
+            <div id="id_drop_zone" class="drop-zone" data-drop-target="ID">ID</div>
+            <div id="description_drop_zone" class="drop-zone" data-drop-target="Description">Description</div>
           </div>
           <!-- 3rd row: Drop zone for Hierarchy -->
           <div class="row">
-            <div id="hierarchy_drop_zone" class="drop-zone">Hierarchy</div>
+            <div id="hierarchy_drop_zone" class="drop-zone" data-drop-target="Hierarchy">Hierarchy</div>
           </div>
           <!-- 4th row: Drop zone for Properties -->
           <div class="row">
-            <div id="properties_drop_zone" class="drop-zone">Properties</div>
+            <div id="properties_drop_zone" class="drop-zone" data-drop-target="Properties">Properties</div>
           </div>
         </div>
       </div>
@@ -49,13 +48,10 @@
         const fileNameInput = shadowRoot.getElementById('file_name');
         const selectFileButton = shadowRoot.getElementById('select_file_button');
         const uploadButton = shadowRoot.getElementById('upload_button');
-        const csvTable = shadowRoot.getElementById('csv_table');
-        const csvControls = shadowRoot.getElementById('csv_controls');
         const columnNamesDiv = shadowRoot.getElementById('column_names');
-        const idDropZone = shadowRoot.getElementById('id_drop_zone');
-        const descriptionDropZone = shadowRoot.getElementById('description_drop_zone');
-        const hierarchyDropZone = shadowRoot.getElementById('hierarchy_drop_zone');
-        const propertiesDropZone = shadowRoot.getElementById('properties_drop_zone');
+        const dropZones = shadowRoot.querySelectorAll('.drop-zone');
+        const uploadControls = shadowRoot.querySelector('.upload-controls');
+        const dragDropElements = shadowRoot.querySelector('.drag-drop-elements');
   
         // Variables to store CSV data and column names
         let csvData = [];
@@ -101,16 +97,41 @@
   
               // Display column names as drag and drop elements
               columnNamesDiv.innerHTML = columnNames
-                .map((columnName) => `<div class="drag-element">${columnName}</div>`)
+                .map((columnName) => `<div class="drag-element" draggable="true">${columnName}</div>`)
                 .join('');
   
               // Show the CSV controls
-              csvControls.style.display = 'block';
+              uploadControls.style.display = 'none'; // Hide upload controls
+              dragDropElements.style.display = 'block'; // Show drag and drop elements
             };
   
             // Read the file as text
             reader.readAsText(selectedFile);
           }
+        });
+  
+        // Implement drag-and-drop functionality
+        columnNamesDiv.addEventListener('dragstart', (event) => {
+          event.dataTransfer.setData('text/plain', event.target.textContent);
+        });
+  
+        dropZones.forEach((dropZone) => {
+          dropZone.addEventListener('dragover', (event) => {
+            event.preventDefault();
+          });
+  
+          dropZone.addEventListener('drop', (event) => {
+            event.preventDefault();
+            const columnName = event.dataTransfer.getData('text/plain');
+            const target = event.target;
+            if (target.classList.contains('drop-zone')) {
+              // Set the data-drop-target attribute of the drop zone
+              const dropTarget = target.getAttribute('data-drop-target');
+              target.textContent = columnName;
+              // You can handle the dropped column name here
+              console.log(`Dropped "${columnName}" into ${dropTarget}`);
+            }
+          });
         });
       }
   

@@ -238,21 +238,18 @@
       setupDanfo() {
         // You can use danfo.js here after it's loaded
         console.log('danfo.js is loaded and ready to use.');
-        const { DataFrame } = require("danfo");
-
-        // Sample data (you can replace this with your actual data)
         const data = {
             ID: [1, 2, 3],
             Description: ["Item 1", "Item 2", "Item 3"],
             // Add more columns here as needed
-        };
-
-        // Create a DataFrame from the sample data
-        const df = new DataFrame(data);
-
-        // Display the DataFrame in the console
-        console.log("DataFrame:");
-        console.log(df);
+          };
+        
+          // Create a DataFrame from the sample data
+          const df = new danfo.DataFrame(data);
+        
+          // Display the DataFrame in the console
+          console.log("DataFrame:");
+          console.log(df);
 
 
       }

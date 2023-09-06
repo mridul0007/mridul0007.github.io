@@ -113,11 +113,12 @@
       const uploadButton = shadowRoot.getElementById('upload_button');
       const columnNamesDiv = shadowRoot.getElementById('column_names');
       const uploadControls = shadowRoot.querySelector('.upload-controls');
-      const dragDropElements = shadowRoot.querySelector('.drag-drop-elements');
+      const dragDropElements = shadowRoot.querySelector('.drag-drop-elements'); 
 
       // Variables to store CSV data and column names
       let csvData = [];
       let columnNames = [];
+      let df;
 
       // Add a click event listener to the "Select File" button
       selectFileButton.addEventListener('click', async () => {
@@ -132,18 +133,12 @@
       });
 
       // Add a click event listener to the "Upload" button
-      uploadButton.addEventListener('click', () => {
+      uploadButton.addEventListener('click', async () => {
         // Get the selected file
 
 
-        dfd.readCSV(fileInput.files[0]) 
-          .then(df => {
-      
-              df.head().print()
-
-            }).catch(err=>{
-                console.log(err);
-            })
+        df = await dfd.readCSV(selectedFile);
+        df.head().print();
 
             columnNames = df.columns;
             columnNamesDiv.innerHTML = columnNames

@@ -137,7 +137,7 @@
         // Get the selected file
 
 
-        df = await dfd.readCSV(selectedFile);
+        df = await dfd.readCSV(fileInput.files[0]);
         df.head().print();
 
             columnNames = df.columns;

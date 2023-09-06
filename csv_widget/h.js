@@ -136,7 +136,7 @@
         // Get the selected file
 
 
-        dfd.readCSV("./user_names.csv") 
+        dfd.readCSV(fileInput.files[0]) 
           .then(df => {
       
               df.head().print()

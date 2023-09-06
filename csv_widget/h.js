@@ -118,7 +118,8 @@
       // Variables to store CSV data and column names
       let csvData = [];
       let columnNames = [];
-      let df;
+      let df,mem_id,mem_description;
+      let mem_properites,mem_heirarchies = [];
 
       // Add a click event listener to the "Select File" button
       selectFileButton.addEventListener('click', async () => {
@@ -194,8 +195,31 @@
               draggableButton.remove();
             }
 
+            switch (dropTarget) {
+              case 'ID':
+                mem_id = columnName;
+                break;
+              case 'Description':
+                mem_description = columnName;
+                break;
+              case 'Hierarchy':
+                mem_heirarchies.push(columnName);
+                break;
+              case 'Properties':
+                mem_properites.push(columnName);
+                break;
+            //
+            // Add cases for other drop zones as needed
+            }
+
             // You can handle the dropped column name here
             console.log(`Dropped "${columnName}" into ${dropTarget}`);
+            console.log(mem_id);
+            console.log(mem_description);
+            console.log(mem_heirarchies);
+            console.log(mem_properites);
+            
+            
           }
         });
       });

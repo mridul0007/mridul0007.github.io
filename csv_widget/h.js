@@ -145,7 +145,7 @@
                 console.log(err);
             })
 
-            columnNames = df.column("Name");
+            columnNames = df.columns;
             columnNamesDiv.innerHTML = columnNames
             .map((columnName) => `<button class="drag-element" draggable="true" id="${columnName}">${columnName}</button>`)
             .join('');

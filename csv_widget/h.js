@@ -468,10 +468,41 @@
       // Add a click event listener to the "Import" button
       const importButton = shadowRoot.getElementById('import_button');
       importButton.addEventListener('click', () => {
-        // Implement your import logic here
-        // You can use the mem_id, mem_description, mem_hierarchies, and mem_properties variables
-        // to access the selected data for import.
-        // Trigger your import_csv() function or other logic here.
+        // Check if the required columns are selected
+        if (mem_hierarchies.length > 0 || mem_properties.length > 0) {
+          // Initialize an array to store the imported data
+          const importedData = [];
+
+          // Loop through the rows of the data frame
+          df.forEach((row) => {
+            const importedItem = {
+              ID: row.get(mem_id),
+              Description: row.get(mem_description),
+              Hierarchy: {},
+              Properties: {}
+            };
+
+            // Loop through the hierarchy columns
+            mem_hierarchies.forEach((hierarchyColumn) => {
+              importedItem.Hierarchy[hierarchyColumn] = row.get(hierarchyColumn);
+            });
+
+            // Loop through the properties columns
+            mem_properties.forEach((propertyColumn) => {
+              importedItem.Properties[propertyColumn] = row.get(propertyColumn);
+            });
+
+            importedData.push(importedItem);
+          });
+
+          // Now you have the imported data in the `importedData` array
+          console.log(importedData);
+
+          // You can perform further processing or send the data to your server here
+        } else {
+          // Display an error message or alert if required columns are not selected
+          console.error('Please select all required columns: ID, Description, Hierarchy, Properties');
+        }
       });
     }
 

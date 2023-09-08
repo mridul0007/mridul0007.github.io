@@ -229,7 +229,7 @@
       const importButton = shadowRoot.getElementById('import_button');
       importButton.addEventListener('click', () => {
         // Check if the required columns are selected
-        if (mem_hierarchies.length > 0 || mem_properties.length > 0) {
+        if (this.mem_hierarchies.length > 0 || this.mem_properties.length > 0) {
           // Initialize an array to store the imported data
           const importedData = [];
 
@@ -243,12 +243,12 @@
             };
 
             // Loop through the hierarchy columns
-            mem_hierarchies.forEach((hierarchyColumn) => {
+            this.mem_hierarchies.forEach((hierarchyColumn) => {
               importedItem.Hierarchy[hierarchyColumn] = row.get(hierarchyColumn);
             });
 
             // Loop through the properties columns
-            mem_properties.forEach((propertyColumn) => {
+            this.mem_properties.forEach((propertyColumn) => {
               importedItem.Properties[propertyColumn] = row.get(propertyColumn);
             });
 

@@ -236,20 +236,20 @@
           // Loop through the rows of the data frame using apply
           this.df.apply((row) => {
             const importedItem = {
-              ID: row.get(this.mem_id),
-              Description: row.get(this.mem_description),
+              ID: row[this.mem_id], // Access cell value using indexing
+              Description: row[this.mem_description], // Access cell value using indexing
               Hierarchy: {},
               Properties: {}
             };
       
             // Loop through the hierarchy columns
             this.mem_hierarchies.forEach((hierarchyColumn) => {
-              importedItem.Hierarchy[hierarchyColumn] = row.get(hierarchyColumn);
+              importedItem.Hierarchy[hierarchyColumn] = row[hierarchyColumn]; // Access cell value using indexing
             });
       
             // Loop through the properties columns
             this.mem_properties.forEach((propertyColumn) => {
-              importedItem.Properties[propertyColumn] = row.get(propertyColumn);
+              importedItem.Properties[propertyColumn] = row[propertyColumn]; // Access cell value using indexing
             });
       
             importedData.push(importedItem);

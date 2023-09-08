@@ -232,32 +232,32 @@
         if (this.mem_hierarchies.length > 0 || this.mem_properties.length > 0) {
           // Initialize an array to store the imported data
           const importedData = [];
-
-          // Loop through the rows of the data frame
-          this.df.forEach((row) => {
+      
+          // Loop through the rows of the data frame using apply
+          this.df.apply((row) => {
             const importedItem = {
-              ID: row.get(mem_id),
-              Description: row.get(mem_description),
+              ID: row.get(this.mem_id),
+              Description: row.get(this.mem_description),
               Hierarchy: {},
               Properties: {}
             };
-
+      
             // Loop through the hierarchy columns
             this.mem_hierarchies.forEach((hierarchyColumn) => {
               importedItem.Hierarchy[hierarchyColumn] = row.get(hierarchyColumn);
             });
-
+      
             // Loop through the properties columns
             this.mem_properties.forEach((propertyColumn) => {
               importedItem.Properties[propertyColumn] = row.get(propertyColumn);
             });
-
+      
             importedData.push(importedItem);
           });
-
+      
           // Now you have the imported data in the `importedData` array
           console.log(importedData);
-
+      
           // You can perform further processing or send the data to your server here
         } else {
           // Display an error message or alert if required columns are not selected
@@ -265,7 +265,6 @@
         }
       });
     }
-
     readCSV() {
       // Implement your readCSV() function if needed
     }

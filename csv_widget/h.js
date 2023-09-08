@@ -236,20 +236,20 @@
           // Loop through the rows of the data frame using apply
           this.df.apply((row) => {
             const importedItem = {
-              ID: row[this.mem_id], // Access cell value using indexing
-              Description: row[this.mem_description], // Access cell value using indexing
+              ID: row.iloc(this.columnNames.indexOf(this.mem_id)), // Access cell value by column index
+              Description: row.iloc(this.columnNames.indexOf(this.mem_description)), // Access cell value by column index
               Hierarchy: {},
               Properties: {}
             };
       
             // Loop through the hierarchy columns
             this.mem_hierarchies.forEach((hierarchyColumn) => {
-              importedItem.Hierarchy[hierarchyColumn] = row[hierarchyColumn]; // Access cell value using indexing
+              importedItem.Hierarchy[hierarchyColumn] = row.iloc(this.columnNames.indexOf(hierarchyColumn)); // Access cell value by column index
             });
       
             // Loop through the properties columns
             this.mem_properties.forEach((propertyColumn) => {
-              importedItem.Properties[propertyColumn] = row[propertyColumn]; // Access cell value using indexing
+              importedItem.Properties[propertyColumn] = row.iloc(this.columnNames.indexOf(propertyColumn)); // Access cell value by column index
             });
       
             importedData.push(importedItem);
@@ -264,6 +264,7 @@
           console.error('Please select all required columns: ID, Description, Hierarchy, Properties');
         }
       });
+      
     }
     readCSV() {
       // Implement your readCSV() function if needed

@@ -227,45 +227,51 @@
 
       // Add a click event listener to the "Import" button
       const importButton = shadowRoot.getElementById('import_button');
-      importButton.addEventListener('click', () => {
-        // Check if the required columns are selected
-        if (this.mem_hierarchies.length > 0 || this.mem_properties.length > 0) {
-          // Initialize an array to store the imported data
-          const importedData = [];
-      
-          // Loop through the rows of the data frame
-          for (let i = 0; i < this.df.shape[0]; i++) {
-            const row = this.df.iloc(i);
-      
-            const importedItem = {
-              ID: row[this.mem_id], // Access cell value by column name
-              Description: row[this.mem_description], // Access cell value by column name
-              Hierarchy: {},
-              Properties: {}
-            };
-      
-            // Loop through the hierarchy columns
-            this.mem_hierarchies.forEach((hierarchyColumn) => {
-              importedItem.Hierarchy[hierarchyColumn] = row[hierarchyColumn]; // Access cell value by column name
-            });
-      
-            // Loop through the properties columns
-            this.mem_properties.forEach((propertyColumn) => {
-              importedItem.Properties[propertyColumn] = row[propertyColumn]; // Access cell value by column name
-            });
-      
-            importedData.push(importedItem);
-          }
-      
-          // Now you have the imported data in the `importedData` array
-          console.log(importedData);
-      
-          // You can perform further processing or send the data to your server here
-        } else {
-          // Display an error message or alert if required columns are not selected
-          console.error('Please select all required columns: ID, Description, Hierarchy, Properties');
-        }
+      // ...
+
+// Add a click event listener to the "Import" button
+importButton.addEventListener('click', () => {
+  // Check if the required columns are selected
+  if (this.mem_hierarchies.length > 0 || this.mem_properties.length > 0) {
+    // Initialize an array to store the imported data
+    const importedData = [];
+
+    // Loop through the rows of the data frame
+    for (let i = 0; i < this.df.shape[0]; i++) {
+      const row = this.df.iloc(i);
+
+      const importedItem = {
+        ID: row.$data[this.mem_id], // Access cell value by column name
+        Description: row.$data[this.mem_description], // Access cell value by column name
+        Hierarchy: {},
+        Properties: {}
+      };
+
+      // Loop through the hierarchy columns
+      this.mem_hierarchies.forEach((hierarchyColumn) => {
+        importedItem.Hierarchy[hierarchyColumn] = row.$data[hierarchyColumn]; // Access cell value by column name
       });
+
+      // Loop through the properties columns
+      this.mem_properties.forEach((propertyColumn) => {
+        importedItem.Properties[propertyColumn] = row.$data[propertyColumn]; // Access cell value by column name
+      });
+
+      importedData.push(importedItem);
+    }
+
+    // Now you have the imported data in the `importedData` array
+    console.log(importedData);
+
+    // You can perform further processing or send the data to your server here
+  } else {
+    // Display an error message or alert if required columns are not selected
+    console.error('Please select all required columns: ID, Description, Hierarchy, Properties');
+  }
+});
+
+// ...
+
       
       
     }

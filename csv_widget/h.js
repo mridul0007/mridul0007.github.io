@@ -263,7 +263,7 @@ importButton.addEventListener('click', () => {
         var temp_prop = this.df.loc({rows: [i],columns: [propertyColumn]}).$data[0];
         if( temp_prop !== null)
         {
-          importedItem.Hierarchy[propertyColumn] = temp_prop;
+          importedItem.Properties[propertyColumn] = temp_prop;
         }
 
       });

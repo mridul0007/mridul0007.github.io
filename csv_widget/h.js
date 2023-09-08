@@ -250,7 +250,7 @@ importButton.addEventListener('click', () => {
       // Loop through the hierarchy columns
       this.mem_hierarchies.forEach((hierarchyColumn) => {
 
-        var temp_hier = this.df.loc({rows: [i],columns: [hierarchyColumn]})
+        var temp_hier = this.df.loc({rows: [i],columns: [hierarchyColumn]}).$data[0];
         if( temp_hier !== null)
         {
           importedItem.Hierarchy[hierarchyColumn] = temp_hier;
@@ -260,7 +260,7 @@ importButton.addEventListener('click', () => {
       // Loop through the properties columns
       this.mem_properties.forEach((propertyColumn) => {
 
-        var temp_prop = this.df.loc({rows: [i],columns: [propertyColumn]})
+        var temp_prop = this.df.loc({rows: [i],columns: [propertyColumn]}).$data[0];
         if( temp_prop !== null)
         {
           importedItem.Hierarchy[hierarchyColumn] = temp_prop;

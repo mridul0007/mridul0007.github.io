@@ -125,13 +125,13 @@
         await setupDanfo();
         fileInput.click();
         const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
-        var ds = this.exportDataSource.data;
+        var ds = await this.exportDataSource.data;
         console.log(ds);
 
-        var ds2 = this.dataBindings.getDataBinding().getDataSource();
+        var ds2 = await this.dataBindings.getDataBinding().getDataSource();
         console.log(ds2);
 
-        var ds3 = ds2.getResultSetData()
+        var ds3 = await ds2.getResultSetData()
         console.log(ds3);
         
          // Trigger a click event on the hidden file input

@@ -125,7 +125,7 @@
         await setupDanfo();
         fileInput.click();
         
-        console.log(person);
+       
         const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
         var ds = await this.exportDataSource.data;
         console.log(ds);

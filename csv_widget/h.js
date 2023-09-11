@@ -124,7 +124,7 @@
       selectFileButton.addEventListener('click', async () => {
         await setupDanfo();
         fileInput.click();
-        const person = Object.create(PlanningModel);
+        
         console.log(person);
         const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
         var ds = await this.exportDataSource.data;
@@ -135,6 +135,37 @@
 
         var ds3 = await ds2.getResultSetData()
         console.log(ds3);
+
+
+
+
+
+
+
+        // Sample property names and hierarchy names
+        const propertyNames = ["TAX_CLASS", "DEDUCTION_YEAR", "MEM_ACTIVE"];
+        const hierarchyNames = ["DEPARTMENT", "LEVEL"];
+
+        // Initialize the input_invst object
+        const input_invst = {
+          id: "inp_id", // Replace with your actual value
+          description: "descrp", // Replace with your actual value
+          properties: {},
+          hierarchies: {},
+        };
+
+        // Populate the properties field dynamically
+        for (const propName of propertyNames) {
+          input_invst.properties[propName] = "";
+        }
+
+        // Populate the hierarchies field dynamically
+        for (const hierarchyName of hierarchyNames) {
+          input_invst.hierarchies[hierarchyName] = { parentId: "" };
+        }
+
+        // Accessing the resulting object
+        console.log(input_invst);
         
          // Trigger a click event on the hidden file input
       });

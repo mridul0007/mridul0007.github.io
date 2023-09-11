@@ -1,12 +1,13 @@
 {
-	"name": "h",
-	"description": "Hello World",
-	"newInstancePrefix": "h",
+	"name": "Masterdata_CSV",
+	"imports": ["planning-model"],
+	"description": "Master data CSV imports",
+	"newInstancePrefix": "Masterdata_CSV",
 	"eula": "",
 	"vendor": "",
 	"license": "",
-	"id": "h",
-	"version": "1.0.3",
+	"id": "Masterdata_CSV",
+	"version": "1.0.0",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -18,14 +19,9 @@
 		}
 	],
 	"properties": {
-		"dept": {
-			"type": "string",
-			"default": ""
-		},
-		"height": {
-			"type": "integer",
-			"default": 32
-		}
+		"p_plm_query":{
+			"type" : "ty_plm_query"
+		}	
 	},
 	"dataBindings": {
 		"exportDataSource": {
@@ -43,28 +39,71 @@
 		  ]
 		}
 	  },
-	"methods": {
-		"clear": {
-			"description": "Clear the resultset"
-		},
-		"setId": {
-			"description": "id",
+	  "types":{
+		"ty_plm_query":{
+			"description" : "Object for PLM query",
+			"properties":[
+				
+				{
+					"name" : "plm_mp_planningmodelmember",
+					"type" : "PlanningModelMember",
+					"description" : "Planning model member"
+				},
+				{
+					"name" : "plm_mp_dimension_id",
+					"type" : "string",
+					"description" : "dimension ID"
+				},
+				{
+					"name": "plm_mp_planningmodelmembers",
+					"type": "PlanningModelMember[]",
+					"description": "array of PLMs"
+				}
+			]
+
+		}
+	  },
+	  "methods": {
+		"set_plm_mp_dimension_id": {
+			"description": "set id",
 			"parameters": [
 				{
-					"name": "dept",
+					"name": "plm_mp_dimension_id",
 					"type": "string",
-					"description": "dsad"
+					"description": "set Dimension ID"
 				}
-			],
-			"body": "this.dept = dept;"
+			]
+			
+		},
+        "get_plm_mp_dimension_id": {
+			"returnType": "string",
+			"description": "return Dimension ID"
+			
+			
+		},
+		"set_p_plm_query": {
+			"description": "set set_p_plm_query",
+			"parameters": [
+				{
+					"name": "p_plm_query",
+					"type": "ty_plm_query",
+					"description": "set p_plm_query"
+				}
+			]
+			
+		},
+		"get_p_plm_query": {
+			"returnType": "ty_plm_query",
+			"description": "get p_plm_query"
+			
+			
 		}
+
+
 	},
 	"events": {
-		"onClick": {
-			"description": "Called when the user clicks the button."
-		},
-		"onSave": {
-			"description": "Called when the user clicks the button."
+		"onPlmQueryExecution": {
+			"description": "Called when widget has a PLM query to execute."
 		}
 	}
 	

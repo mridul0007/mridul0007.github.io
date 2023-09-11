@@ -124,6 +124,8 @@
       selectFileButton.addEventListener('click', async () => {
         await setupDanfo();
         fileInput.click();
+        const person = Object.create(PlanningModel);
+        console.log(person);
         const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
         var ds = await this.exportDataSource.data;
         console.log(ds);

@@ -126,23 +126,23 @@
         fileInput.click();
         
        
-        const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
-        var ds = await this.exportDataSource.data;
-        console.log(ds);
+        // const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
+        // var ds = await this.exportDataSource.data;
+        // console.log(ds);
 
-        var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MK_TRIAL');
-        console.log(ds2);
-
-
+        // var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MK_TRIAL');
+        // console.log(ds2);
 
 
 
 
-        // Sample property names and hierarchy names
-        const propertyNames = ["TAX_CLASS", "DEDUCTION_YEAR", "MEM_ACTIVE"];
-        const hierarchyNames = ["DEPARTMENT", "LEVEL"];
 
-        // Initialize the input_invst object
+
+        // // Sample property names and hierarchy names
+        // const propertyNames = ["TAX_CLASS", "DEDUCTION_YEAR", "MEM_ACTIVE"];
+        // const hierarchyNames = ["DEPARTMENT", "LEVEL"];
+
+        // // Initialize the input_invst object
         const input_invst = {
           id: "inp_id", // Replace with your actual value
           description: "descrp", // Replace with your actual value
@@ -276,21 +276,25 @@
 
 // Add a click event listener to the "Import" button
 importButton.addEventListener('click', () => {
-  // Check if their is hierarchy column
-  if (this.mem_hierarchies.length > 0)
-  {
-    this.p_plm_query.plm_mp_planningmodelmember.id = "DUMMY";
-    this.mem_hierarchies.forEach((hierarchyColumn) => {
-      // this.p_plm_query.plm_mp_planningmodelmember.hierarchies[hierarchyColumn].parentId = '';
-    });
 
-    this.mem_properties.forEach((propertyColumn) => {
-      this.p_plm_query.plm_mp_planningmodelmember.properties[propertyColumn]= '';
+  let input_invst = {
+    id: "DUMMY", // Replace with your actual value
+    description: "DUMMY", // Replace with your actual value
+    properties: {},
+    hierarchies: {},
+  };
 
-    });
-    this.p_plm_query.plm_mp_planningmodelmembers.push(this.p_plm_query.plm_mp_planningmodelmember);
-
+  // Populate the properties field dynamically
+  for (const propName of this.mem_properties) {
+    input_invst.properties[propName] = "";
   }
+
+  // Populate the hierarchies field dynamically
+  for (const hierarchyName of this.mem_hierarchies) {
+    input_invst.hierarchies[hierarchyName] = { parentId: "" };
+  }
+  this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst);
+
   
   // Check if the required columns are selected
   if (this.mem_hierarchies.length > 0 || this.mem_properties.length > 0) {
@@ -300,6 +304,8 @@ importButton.addEventListener('click', () => {
     // Loop through the rows of the data frame
     for (let i = 0; i < this.df.shape[0]; i++) {
        
+      input_invst.id = row.$data[i][0];
+      input_invst.description = row.$data[i][1];
 
       let importedItem = {
         ID: row.$data[i][0], // Access cell value by column name
@@ -307,8 +313,7 @@ importButton.addEventListener('click', () => {
         Hierarchy: {},
         Properties: {}
       };
-      this.p_plm_query.plm_mp_planningmodelmember.id = row.$data[i][0];
-      this.p_plm_query.plm_mp_planningmodelmember.description = row.$data[i][1];
+
 
       // Loop through the hierarchy columns
       // this.mem_hierarchies.forEach((hierarchyColumn) => {
@@ -333,17 +338,17 @@ importButton.addEventListener('click', () => {
         if( temp_prop === null)
         {
           importedItem.Properties[propertyColumn] = temp_prop;
-          this.p_plm_query.plm_mp_planningmodelmember.properties[propertyColumn]= '';
+          input_invst.properties[propertyColumn]= '';
         }
         else{
           importedItem.Properties[propertyColumn] = temp_prop;
-          this.p_plm_query.plm_mp_planningmodelmember.properties[propertyColumn]= temp_prop;
+          input_invst.properties[propertyColumn]= temp_prop;
         }
 
       });
 
       importedData.push(importedItem);
-      this.p_plm_query.plm_mp_planningmodelmembers.push(this.p_plm_query.plm_mp_planningmodelmember);
+      this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst);
 
     }
 

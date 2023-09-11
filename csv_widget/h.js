@@ -293,7 +293,8 @@ importButton.addEventListener('click', () => {
   for (const hierarchyName of this.mem_hierarchies) {
     input_invst.hierarchies[hierarchyName] = { parentId: "" };
   }
-  this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst);
+  let input_invst_dummy = { ...input_invst };
+  this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst_dummy);
 
   
   // Check if the required columns are selected
@@ -316,20 +317,20 @@ importButton.addEventListener('click', () => {
 
 
       // Loop through the hierarchy columns
-      // this.mem_hierarchies.forEach((hierarchyColumn) => {
+      this.mem_hierarchies.forEach((hierarchyColumn) => {
 
-      //   var temp_hier = this.df.loc({rows: [i],columns: [hierarchyColumn]}).$data[0][0];
-      //   if( temp_hier === null)
-      //   {
-      //     importedItem.Hierarchy[hierarchyColumn] = 'DUMMY';
-      //     this.p_plm_query.plm_mp_planningmodelmember.hierarchies[hierarchyColumn].parentId = 'DUMMY';
+        var temp_hier = this.df.loc({rows: [i],columns: [hierarchyColumn]}).$data[0][0];
+        if( temp_hier === null)
+        {
+          importedItem.Hierarchy[hierarchyColumn] = 'DUMMY';
+          this.p_plm_query.plm_mp_planningmodelmember.hierarchies[hierarchyColumn].parentId = 'DUMMY';
       
-      //   }
-      //   else{
-      //     this.p_plm_query.plm_mp_planningmodelmember.hierarchies[hierarchyColumn].parentId = temp_hier;
-      //     importedItem.Hierarchy[hierarchyColumn] = temp_hier;
-      //   }
-      // });
+        }
+        else{
+          this.p_plm_query.plm_mp_planningmodelmember.hierarchies[hierarchyColumn].parentId = temp_hier;
+          importedItem.Hierarchy[hierarchyColumn] = temp_hier;
+        }
+      });
 
       // Loop through the properties columns
       this.mem_properties.forEach((propertyColumn) => {

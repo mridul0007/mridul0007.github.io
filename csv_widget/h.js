@@ -76,7 +76,11 @@
       this.mem_hierarchies = [];
       this.mem_id = null;
       this.mem_description = null;
-      this.p_plm_query = {};
+      this.p_plm_query = {
+        plm_mp_planningmodelmember: {},
+        plm_mp_dimension_id: '',
+        plm_mp_planningmodelmembers: []
+    };
       this.init();
     }
 

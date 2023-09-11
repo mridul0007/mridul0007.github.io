@@ -143,25 +143,25 @@
         // const hierarchyNames = ["DEPARTMENT", "LEVEL"];
 
         // // Initialize the input_invst object
-        const input_invst = {
-          id: "inp_id", // Replace with your actual value
-          description: "descrp", // Replace with your actual value
-          properties: {},
-          hierarchies: {},
-        };
+        // const input_invst = {
+        //   id: "inp_id", // Replace with your actual value
+        //   description: "descrp", // Replace with your actual value
+        //   properties: {},
+        //   hierarchies: {},
+        // };
 
-        // Populate the properties field dynamically
-        for (const propName of propertyNames) {
-          input_invst.properties[propName] = "";
-        }
+        // // Populate the properties field dynamically
+        // for (const propName of propertyNames) {
+        //   input_invst.properties[propName] = "";
+        // }
 
-        // Populate the hierarchies field dynamically
-        for (const hierarchyName of hierarchyNames) {
-          input_invst.hierarchies[hierarchyName] = { parentId: "" };
-        }
+        // // Populate the hierarchies field dynamically
+        // for (const hierarchyName of hierarchyNames) {
+        //   input_invst.hierarchies[hierarchyName] = { parentId: "" };
+        // }
 
-        // Accessing the resulting object
-        console.log(input_invst);
+        // // Accessing the resulting object
+        // console.log(input_invst);
         
          // Trigger a click event on the hidden file input
       });

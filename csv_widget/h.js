@@ -133,10 +133,6 @@
         var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MK_TRIAL');
         console.log(ds2);
 
-        var ds3 = await ds2.getResultSetData()
-        console.log(ds3);
-
-
 
 
 

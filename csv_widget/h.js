@@ -209,7 +209,7 @@
           //   console.log(this.mem_description);
           //   console.log(this.mem_hierarchies);
           //   console.log(this.mem_properties);
-          // }
+           }
         });
       });
 

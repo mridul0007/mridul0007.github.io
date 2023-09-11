@@ -76,6 +76,7 @@
       this.mem_hierarchies = [];
       this.mem_id = null;
       this.mem_description = null;
+      this.p_plm_query = {};
       this.init();
     }
 
@@ -203,12 +204,12 @@
             }
 
             // You can handle the dropped column name here
-            console.log(`Dropped "${columnName}" into ${dropTarget}`);
-            console.log(this.mem_id);
-            console.log(this.mem_description);
-            console.log(this.mem_hierarchies);
-            console.log(this.mem_properties);
-          }
+          //   console.log(`Dropped "${columnName}" into ${dropTarget}`);
+          //   console.log(this.mem_id);
+          //   console.log(this.mem_description);
+          //   console.log(this.mem_hierarchies);
+          //   console.log(this.mem_properties);
+          // }
         });
       });
 
@@ -231,6 +232,22 @@
 
 // Add a click event listener to the "Import" button
 importButton.addEventListener('click', () => {
+  // Check if their is hierarchy column
+  if (this.mem_hierarchies.length > 0)
+  {
+    this.p_plm_query.plm_mp_planningmodelmember.id = "DUMMY";
+    this.mem_hierarchies.forEach((hierarchyColumn) => {
+      this.p_plm_query.plm_mp_planningmodelmember.hierarchies[hierarchyColumn].parentId = '';
+    });
+
+    this.mem_properties.forEach((propertyColumn) => {
+      this.p_plm_query.plm_mp_planningmodelmember.properties[propertyColumn]= '';
+
+    });
+    this.p_plm_query.plm_mp_planningmodelmembers.push(this.p_plm_query.plm_mp_planningmodelmember);
+
+  }
+  
   // Check if the required columns are selected
   if (this.mem_hierarchies.length > 0 || this.mem_properties.length > 0) {
     // Initialize an array to store the imported data
@@ -246,13 +263,21 @@ importButton.addEventListener('click', () => {
         Hierarchy: {},
         Properties: {}
       };
+      this.p_plm_query.plm_mp_planningmodelmember.id = row.$data[i][0];
+      this.p_plm_query.plm_mp_planningmodelmember.description = row.$data[i][1];
 
       // Loop through the hierarchy columns
       this.mem_hierarchies.forEach((hierarchyColumn) => {
 
         var temp_hier = this.df.loc({rows: [i],columns: [hierarchyColumn]}).$data[0][0];
-        if( temp_hier !== null)
+        if( temp_hier === null)
         {
+          importedItem.Hierarchy[hierarchyColumn] = 'DUMMY';
+          this.p_plm_query.plm_mp_planningmodelmember.hierarchies[hierarchyColumn].parentId = 'DUMMY';
+      
+        }
+        else{
+          this.p_plm_query.plm_mp_planningmodelmember.hierarchies[hierarchyColumn].parentId = temp_hier;
           importedItem.Hierarchy[hierarchyColumn] = temp_hier;
         }
       });
@@ -261,18 +286,28 @@ importButton.addEventListener('click', () => {
       this.mem_properties.forEach((propertyColumn) => {
 
         var temp_prop = this.df.loc({rows: [i],columns: [propertyColumn]}).$data[0][0];
-        if( temp_prop !== null)
+        if( temp_prop === null)
         {
           importedItem.Properties[propertyColumn] = temp_prop;
+          this.p_plm_query.plm_mp_planningmodelmember.properties[propertyColumn]= '';
+        }
+        else{
+          importedItem.Properties[propertyColumn] = temp_prop;
+          this.p_plm_query.plm_mp_planningmodelmember.properties[propertyColumn]= temp_prop;
         }
 
       });
 
       importedData.push(importedItem);
+      this.p_plm_query.plm_mp_planningmodelmembers.push(this.p_plm_query.plm_mp_planningmodelmember);
+
     }
 
     // Now you have the imported data in the `importedData` array
+    console.log('import data');
     console.log(importedData);
+    console.log('plm query');
+    console.log(this.p_plm_query.plm_mp_planningmodelmembers);
 
     // You can perform further processing or send the data to your server here
   } else {

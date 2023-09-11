@@ -123,7 +123,10 @@
       // Add a click event listener to the "Select File" button
       selectFileButton.addEventListener('click', async () => {
         await setupDanfo();
-        fileInput.click(); // Trigger a click event on the hidden file input
+        fileInput.click();
+        const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
+        
+         // Trigger a click event on the hidden file input
       });
 
       // Add a change event listener to the file input

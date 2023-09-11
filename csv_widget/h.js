@@ -323,11 +323,11 @@ importButton.addEventListener('click', () => {
         if( temp_hier === null)
         {
           importedItem.Hierarchy[hierarchyColumn] = 'DUMMY';
-          this.p_plm_query.plm_mp_planningmodelmember.hierarchies[hierarchyColumn].parentId = 'DUMMY';
+          input_invst.hierarchies[hierarchyColumn].parentId = 'DUMMY';
       
         }
         else{
-          this.p_plm_query.plm_mp_planningmodelmember.hierarchies[hierarchyColumn].parentId = temp_hier;
+          input_invst.hierarchies[hierarchyColumn].parentId = temp_hier;
           importedItem.Hierarchy[hierarchyColumn] = temp_hier;
         }
       });

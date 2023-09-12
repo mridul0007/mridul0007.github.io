@@ -58,6 +58,10 @@
                     
                 }
             }
+            console.log("IDS");
+            console.log(ids);
+            console.log("DESCRIPTION");
+            console.log(desc);
             console.log("done");
 
 

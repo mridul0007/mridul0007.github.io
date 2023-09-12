@@ -2,19 +2,9 @@
     // Define the HTML template for your custom element
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
-    <style>
-      /* Add CSS for the "child" div */
-      .child {
-        display: none; /* Initially hide the "child" div */
-        flex-direction: column; /* Set flex-direction to column */
-        align-items: flex-start; /* Align items to the start */
-        background-color: #f0f0f0; /* Add a background color */
-        padding: 10px; /* Add some padding */
-        border: 2px solid #aaa; /* Add a border */
-      }
-    </style>
+ 
     <button id="filter_button">Filter</button>
-    <div class="child">
+    <div class="child" >
     <label for="select_box_filter">Filter:</label>
           <select id="select_box_filter">
           </select>
@@ -40,11 +30,11 @@
         // Add a click event listener to the "filter_button"
         filterButton.addEventListener('click', async () => {
             // Call the function or perform actions when the button is clicked
-            if (childDiv.style.display === 'none') {
-                childDiv.style.display = 'flex';
-            } else {
-                childDiv.style.display = 'none';
-            }
+            // if (childDiv.style.display === 'none') {
+            //     childDiv.style.display = 'flex';
+            // } else {
+            //     childDiv.style.display = 'none';
+            // }
 
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
             var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');

@@ -172,7 +172,17 @@
 
             filterButton.addEventListener('click', async () => {
                 const filterInput = shadowRoot.getElementById('filter_input');
+                const index = array.findIndex((element) => element === valueToFind);
+
+                    if (index !== -1) {
+                    console.log(`The value ${valueToFind} is found at index ${index}.`);
+                    } else {
+                    console.log(`The value ${valueToFind} is not found in the array.`);
+                    var temp = this.ids[index];
+                    }
                 console.log(filterInput.value);
+                console.log(temp);
+
 
             })
 

@@ -40,7 +40,7 @@
             var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
             console.log(ds2);
 
-            var dimensions =  await this.dataBindings.getDataBinding().getDimensions();
+            var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
             // var members = ArrayUtils.create(Type.MemberInfo);
             // var value = InputField_1.getValue();
             var ids = [];

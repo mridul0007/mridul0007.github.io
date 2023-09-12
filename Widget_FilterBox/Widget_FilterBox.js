@@ -42,11 +42,11 @@
         // Add a click event listener to the "filter_button"
         filterButton.addEventListener('click', async () => {
             // Call the function or perform actions when the button is clicked
-            // if (childDiv.style.display === 'none') {
-            //     childDiv.style.display = 'flex';
-            // } else {
-            //     childDiv.style.display = 'none';
-            // }
+            if (childDiv.style.display === 'none' || childDiv.style.display === '') {
+                childDiv.style.display = 'flex';
+            } else {
+                childDiv.style.display = 'none';
+            }
 
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
             var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
@@ -165,11 +165,11 @@
 
 //             // Add a click event listener to the "filter_button"
 //             filterButton.addEventListener('click', async () => {
-//                 if (childDiv.style.display === 'none' || childDiv.style.display === '') {
-//                     childDiv.style.display = 'flex';
-//                 } else {
-//                     childDiv.style.display = 'none';
-//                 }
+                // if (childDiv.style.display === 'none' || childDiv.style.display === '') {
+                //     childDiv.style.display = 'flex';
+                // } else {
+                //     childDiv.style.display = 'none';
+                // }
 
 //                 var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
 //             console.log(ds2);

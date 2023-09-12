@@ -175,10 +175,10 @@
                 const index = this.desc.findIndex((element) => element === filterInput.value);
 
                     if (index !== -1) {
-                    console.log(`The value ${valueToFind} is found at index ${index}.`);
+                        var temp = this.ids[index];
                     } else {
                     console.log(`The value ${valueToFind} is not found in the array.`);
-                    var temp = this.ids[index];
+                    
                     }
                 console.log(filterInput.value);
                 console.log(temp);

@@ -141,13 +141,13 @@
         }
         </style>
         <div class="container">
-        <button id="filter_button">Filter</button>
+        <button id="search_button">Seach</button>
         <div class="child">
             <input type="text" id="filter_input" list="description_list">
             <datalist id="description_list">
                 <!-- Descriptions will be added here dynamically -->
             </datalist>
-            <button id="close_button">Close</button>
+            <button id="filter_button">Filter</button>
         </div>
         </div>
     `;
@@ -164,12 +164,20 @@
             let shadowRoot = this.attachShadow({ mode: 'open' });
             shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-            const filterButton = shadowRoot.getElementById('filter_button');
+            const searchButton = shadowRoot.getElementById('search_button');
             const filterInput = shadowRoot.getElementById('filter_input');
             const descriptionList = shadowRoot.getElementById('description_list');
+            const filterButton = shadowRoot.getElementById('filter_button');
+
+
+            filterButton.addEventListener('click', async () => {
+                const filterInput = shadowRoot.getElementById('filter_input');
+                console.log(filterInput.value);
+
+            })
 
             // Add a click event listener to the "filter_button"
-            filterButton.addEventListener('click', async () => {
+            searchButton.addEventListener('click', async () => {
                 const childDiv = shadowRoot.querySelector('.child');
                 
                 const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
@@ -239,6 +247,7 @@
                 
             });
         }
+
 
         fireChanged(selectedValue) {
             console.log('Filter Value Selected:', selectedValue);

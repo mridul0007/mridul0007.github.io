@@ -166,13 +166,23 @@
         shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
         const filterButton = shadowRoot.getElementById('filter_button');
+        const childDiv = shadowRoot.querySelector('.child');
+        const filterInput = shadowRoot.getElementById('filter_input');
+        const descriptionList = shadowRoot.getElementById('description_list');
 
-        
+        // Function to close the dropdown
+        function closeDropdown() {
+            childDiv.style.display = 'none';
+        }
+
         // Add a click event listener to the "filter_button"
         filterButton.addEventListener('click', async () => {
-            const childDiv = shadowRoot.querySelector('.child');
             // Call the function or perform actions when the button is clicked
-            
+            if (childDiv.style.display === 'none' || childDiv.style.display === '') {
+                childDiv.style.display = 'flex';
+            } else {
+                closeDropdown(); // Close the dropdown when the button is clicked again
+            }
 
             const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
             var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
@@ -183,8 +193,6 @@
             var filteredDimensions = dimensions.filter((dimension) => {
                 return dimensions_feed.includes(dimension.id);
               });
-            // var members = ArrayUtils.create(Type.MemberInfo);
-            // var value = InputField_1.getValue();
             
             var temp;
             var members;
@@ -199,15 +207,6 @@
                 }
             }
 
-            if (childDiv.style.display === 'none' || childDiv.style.display === '') {
-                childDiv.style.display = 'flex';
-            } else {
-                childDiv.style.display = 'none';
-            }
-
-            const filterInput = shadowRoot.getElementById('filter_input');
-            const descriptionList = shadowRoot.getElementById('description_list');
-
             // Clear the existing options in the datalist
             descriptionList.innerHTML = '';
 
@@ -217,39 +216,37 @@
                 option.value = description;
                 descriptionList.appendChild(option);
             });
-
-            filterInput.addEventListener('input', () => {
-                const userInput = filterInput.value.toLowerCase(); // Get user input (convert to lowercase for case-insensitive filtering)
-                
-                // Filter the descriptions based on user input
-                const filteredDescriptions = this.desc.filter((description) =>
-                    description.toLowerCase().includes(userInput)
-                );
-                
-                // Clear the existing options in the datalist
-                descriptionList.innerHTML = '';
-                
-                // Add filtered descriptions to the datalist
-                filteredDescriptions.forEach((filteredDescription) => {
-                    const option = document.createElement('option');
-                    option.value = filteredDescription;
-                    descriptionList.appendChild(option);
-                });
-            });
-
-            // Add a click event listener to datalist options
-            descriptionList.addEventListener('click', (event) => {
-                const selectedValue = event.target.value;
-                filterInput.value = selectedValue; 
-                console.log(selectedValue);// Set the input value to the selected option
-                // Trigger your custom event or function here for the selected value
-                // For example: this.fireChanged(selectedValue);
-            });
-
         });
 
+        // Add an input event listener to the filter input
+        filterInput.addEventListener('input', () => {
+            const userInput = filterInput.value.toLowerCase();
+            
+            // Filter the descriptions based on user input
+            const filteredDescriptions = this.desc.filter((description) =>
+                description.toLowerCase().includes(userInput)
+            );
+            
+            // Clear the existing options in the datalist
+            descriptionList.innerHTML = '';
+            
+            // Add filtered descriptions to the datalist
+            filteredDescriptions.forEach((filteredDescription) => {
+                const option = document.createElement('option');
+                option.value = filteredDescription;
+                descriptionList.appendChild(option);
+            });
+        });
+
+        // Add a click event listener to datalist options
+        descriptionList.addEventListener('click', (event) => {
+            const selectedValue = event.target.value;
+            filterInput.value = selectedValue; // Set the input value to the selected option
+            closeDropdown(); // Close the dropdown after selecting
+            this.fireChanged(selectedValue); // Trigger your custom event or function here for the selected value
+        });
       }
-  
+
       fireChanged(selectedValue) {
         console.log('Selected Value:', selectedValue);
       }

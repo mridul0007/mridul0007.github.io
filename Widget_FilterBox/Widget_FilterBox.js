@@ -41,6 +41,7 @@
 
         // Add a click event listener to the "filter_button"
         filterButton.addEventListener('click', async () => {
+            const childDiv = shadowRoot.querySelector('.child');
             // Call the function or perform actions when the button is clicked
             if (childDiv.style.display === 'none' || childDiv.style.display === '') {
                 childDiv.style.display = 'flex';

@@ -41,13 +41,7 @@
 
         const filterButton = shadowRoot.getElementById('filter_button');
 
-        const populateInput = () => {
-            const filterInput = shadowRoot.getElementById('filter_input');
-            const descriptionList = shadowRoot.getElementById('description_list');
-            const allDescriptions = this.desc.join(', '); // Join all descriptions with a comma
-            filterInput.value = allDescriptions; // Set the input value
-        };
-
+        
         // Add a click event listener to the "filter_button"
         filterButton.addEventListener('click', async () => {
             const childDiv = shadowRoot.querySelector('.child');
@@ -81,7 +75,6 @@
 
             if (childDiv.style.display === 'none' || childDiv.style.display === '') {
                 childDiv.style.display = 'flex';
-                populateInput();
             } else {
                 childDiv.style.display = 'none';
             }

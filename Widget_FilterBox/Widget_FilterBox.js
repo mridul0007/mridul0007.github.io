@@ -30,10 +30,7 @@
         filterButton.addEventListener('click', async () => {
             // Call the function or perform actions when the button is clicked
         const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
-        var ds = await this.exportDataSource.data;
-        console.log(ds);
-
-        var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('COMP_CODE');
+        var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
         console.log(ds2);
 
 

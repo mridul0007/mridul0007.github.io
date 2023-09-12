@@ -42,6 +42,8 @@
         const filterButton = shadowRoot.getElementById('filter_button');
 
         const populateInput = () => {
+            const filterInput = shadowRoot.getElementById('filter_input');
+            const descriptionList = shadowRoot.getElementById('description_list');
             const allDescriptions = this.desc.join(', '); // Join all descriptions with a comma
             filterInput.value = allDescriptions; // Set the input value
         };

@@ -5,7 +5,6 @@
  
     <button id="filter_button">Filter</button>
     <div class="child">
-        <label for="select_box_filter">Filter:</label>
         <input type="text" id="filter_input" list="description_list">
         <datalist id="description_list">
             <!-- Descriptions will be added here dynamically -->

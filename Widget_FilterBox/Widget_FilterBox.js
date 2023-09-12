@@ -40,7 +40,11 @@
             var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
             console.log(ds2);
 
-            var dimensions =  await this.dataBindings.getDataBinding().getDimensions("dimensions");
+            var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
+            var dimensions_feed =  await this.dataBindings.getDataBinding().getDimensions("dimensions");
+            var filteredDimensions = dimensions.filter((dimension) => {
+                return dimensions_feed.includes(dimension.id);
+              });
             // var members = ArrayUtils.create(Type.MemberInfo);
             // var value = InputField_1.getValue();
             var ids = [];
@@ -48,7 +52,7 @@
             var temp = '';
             var members;
 
-            for (var i = 0; i < dimensions.length; i++) {
+            for (var i = 0; i < dimensions_feed.length; i++) {
                 members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(dimensions[i], {limit: 1000000});
                 for (var j = 0; j < members.length; j++) {
                     temp = dimensions[i].id + ":" + members[j].id;

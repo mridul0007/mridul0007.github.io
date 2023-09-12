@@ -52,12 +52,12 @@
             var temp = '';
             var members;
 
-            for (var i = 0; i < dimensions_feed.length; i++) {
-                members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(dimensions[i], {limit: 1000000});
+            for (var i = 0; i < filteredDimensions.length; i++) {
+                members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
                 for (var j = 0; j < members.length; j++) {
-                    temp = dimensions[i].id + ":" + members[j].id;
+                    temp = filteredDimensions[i].id + ":" + members[j].id;
                     ids.push(temp);
-                    temp = dimensions[i].description + ":" + members[j].description;
+                    temp = filteredDimensions[i].description + ":" + members[j].description;
                     desc.push(temp);
                     
                 }

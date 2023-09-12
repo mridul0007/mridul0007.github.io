@@ -23,7 +23,22 @@
 
         let shadowRoot = this.attachShadow({ mode: 'open' });
         shadowRoot.appendChild(tmpl.content.cloneNode(true));
-        
+
+        const filterButton = shadowRoot.getElementById('filter_button');
+
+        // Add a click event listener to the "filter_button"
+        filterButton.addEventListener('click', async () => {
+            // Call the function or perform actions when the button is clicked
+        const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
+        var ds = await this.exportDataSource.data;
+        console.log(ds);
+
+        var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('COMP_CODE');
+        console.log(ds2);
+
+
+        });
+
       }
   
       fireChanged() {

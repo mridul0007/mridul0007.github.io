@@ -4,11 +4,13 @@
     tmpl.innerHTML = `
  
     <button id="filter_button">Filter</button>
-    <div class="child" >
-    <label for="select_box_filter">Filter:</label>
-          <select id="select_box_filter">
-          </select>
-    <button id="close_button">Close</button>
+    <div class="child">
+        <label for="select_box_filter">Filter:</label>
+        <input type="text" id="filter_input" list="description_list">
+        <datalist id="description_list">
+            <!-- Descriptions will be added here dynamically -->
+        </datalist>
+        <button id="close_button">Close</button>
     </div>
 
 
@@ -62,11 +64,37 @@
                     
                 }
             }
-            console.log("IDS");
-            console.log(ids);
-            console.log("DESCRIPTION");
-            console.log(desc);
-            console.log("done");
+
+            const filterInput = shadowRoot.getElementById('filter_input');
+            const descriptionList = shadowRoot.getElementById('description_list');
+
+            filterInput.addEventListener('input', () => {
+                const userInput = filterInput.value.toLowerCase(); // Get user input (convert to lowercase for case-insensitive filtering)
+                
+                // Clear the existing options in the datalist
+                descriptionList.innerHTML = '';
+                
+                // Filter the descriptions based on user input
+                const filteredDescriptions = desc.filter((description) =>
+                    description.toLowerCase().includes(userInput)
+                );
+                
+                // Add filtered descriptions to the datalist
+                filteredDescriptions.forEach((filteredDescription) => {
+                    const option = document.createElement('option');
+                    option.value = filteredDescription;
+                    descriptionList.appendChild(option);
+                });
+            });
+
+
+
+            
+            // console.log("IDS");
+            // console.log(ids);
+            // console.log("DESCRIPTION");
+            // console.log(desc);
+            // console.log("done");
 
 
 

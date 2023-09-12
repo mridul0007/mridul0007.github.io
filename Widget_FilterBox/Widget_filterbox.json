@@ -1,0 +1,88 @@
+{
+	"name": "Widget_FilterBox",
+	"imports": ["planning-model"],
+	"description": "Widget FilterBox",
+	"newInstancePrefix": "Widget_FilterBox",
+	"eula": "",
+	"vendor": "",
+	"license": "",
+	"id": "Widget_FilterBox",
+	"version": "1.0.0",
+	"icon": "",
+	"webcomponents": [
+		{
+			"kind": "main",
+			"tag": "custom-button",
+			"url": "https://mridul0007.github.io/Widget_FilterBox/Widget_FilterBox.js", 
+			"ignoreIntegrity": true
+		}
+	],
+	"properties": {
+		"p_member_id":{
+			"type" : "string"
+		},
+        "p_dimension_id":{
+			"type" : "string"
+		}		
+	},
+	"dataBindings": {
+		"exportDataSource": {
+		  "feeds": [
+			{
+			  "id": "dimensions",
+			  "description": "The dimensions feed",
+			  "type": "dimension"
+			},
+			{
+			  "id": "measures",
+			  "description": "The measures feed",
+			  "type": "mainStructureMember"
+			}
+		  ]
+		}
+	  },
+	  "methods": {
+		"set_p_member_id": {
+			"description": "set member id",
+			"parameters": [
+				{
+					"name": "p_member_id",
+					"type": "string",
+					"description": "set member ID"
+				}
+			]
+			
+		},
+        "get_p_member_id": {
+			"returnType": "string",
+			"description": "return member ID"
+			
+			
+		},
+        "set_p_dimension_id": {
+			"description": "set member id",
+			"parameters": [
+				{
+					"name": "p_dimension_id",
+					"type": "string",
+					"description": "set dimension ID"
+				}
+			]
+			
+		},
+        "get_p_dimension_id": {
+			"returnType": "string",
+			"description": "return dimension ID"
+			
+			
+		}
+		
+
+	},
+	"events": {
+		"onFilterSelect": {
+			"description": "Called when widget has a value change in filter"
+		}
+	}
+	
+}

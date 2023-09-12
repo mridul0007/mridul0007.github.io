@@ -29,6 +29,8 @@
     class FilterBox extends HTMLElement {
       constructor() {
         super();
+        this.ids = [];
+        this.desc = [];
         this.init();
       }
   
@@ -61,22 +63,20 @@
               });
             // var members = ArrayUtils.create(Type.MemberInfo);
             // var value = InputField_1.getValue();
-            var ids = [];
-            var desc = [];
-            var temp = '';
+            
+            var temp;
             var members;
-
             for (var i = 0; i < filteredDimensions.length; i++) {
                 members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
                 for (var j = 0; j < members.length; j++) {
                     temp = filteredDimensions[i].id + ":" + members[j].id;
-                    ids.push(temp);
+                    this.ids.push(temp);
                     temp = filteredDimensions[i].description + ":" + members[j].description;
-                    desc.push(temp);
+                    this.desc.push(temp);
                     
                 }
             }
-            
+
             if (childDiv.style.display === 'none' || childDiv.style.display === '') {
                 childDiv.style.display = 'flex';
                 populateInput();
@@ -94,7 +94,7 @@
                 descriptionList.innerHTML = '';
                 
                 // Filter the descriptions based on user input
-                const filteredDescriptions = desc.filter((description) =>
+                const filteredDescriptions = this.desc.filter((description) =>
                     description.toLowerCase().includes(userInput)
                 );
                 

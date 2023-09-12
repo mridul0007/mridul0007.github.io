@@ -38,31 +38,31 @@
 //             // }
 
 //             const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
-//             var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
-//             console.log(ds2);
+            // var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
+            // console.log(ds2);
 
-//             var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
-//             var dimensions_feed =  await this.dataBindings.getDataBinding().getDimensions("dimensions");
-//             var filteredDimensions = dimensions.filter((dimension) => {
-//                 return dimensions_feed.includes(dimension.id);
-//               });
-//             // var members = ArrayUtils.create(Type.MemberInfo);
-//             // var value = InputField_1.getValue();
-//             var ids = [];
-//             var desc = [];
-//             var temp = '';
-//             var members;
+            // var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
+            // var dimensions_feed =  await this.dataBindings.getDataBinding().getDimensions("dimensions");
+            // var filteredDimensions = dimensions.filter((dimension) => {
+            //     return dimensions_feed.includes(dimension.id);
+            //   });
+            // // var members = ArrayUtils.create(Type.MemberInfo);
+            // // var value = InputField_1.getValue();
+            // var ids = [];
+            // var desc = [];
+            // var temp = '';
+            // var members;
 
-//             for (var i = 0; i < filteredDimensions.length; i++) {
-//                 members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
-//                 for (var j = 0; j < members.length; j++) {
-//                     temp = filteredDimensions[i].id + ":" + members[j].id;
-//                     ids.push(temp);
-//                     temp = filteredDimensions[i].description + ":" + members[j].description;
-//                     desc.push(temp);
+            // for (var i = 0; i < filteredDimensions.length; i++) {
+            //     members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
+            //     for (var j = 0; j < members.length; j++) {
+            //         temp = filteredDimensions[i].id + ":" + members[j].id;
+            //         ids.push(temp);
+            //         temp = filteredDimensions[i].description + ":" + members[j].description;
+            //         desc.push(temp);
                     
-//                 }
-//             }
+            //     }
+            // }
 
 //             const filterInput = shadowRoot.getElementById('filter_input');
 //             const descriptionList = shadowRoot.getElementById('description_list');
@@ -153,14 +153,38 @@
             const descriptionList = shadowRoot.getElementById('description_list');
 
             // Add a click event listener to the "filter_button"
-            filterButton.addEventListener('click', () => {
+            filterButton.addEventListener('click', async () => {
                 if (childDiv.style.display === 'none' || childDiv.style.display === '') {
                     childDiv.style.display = 'flex';
                 } else {
                     childDiv.style.display = 'none';
                 }
 
-                // Rest of your code...
+                var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
+            console.log(ds2);
+
+            var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
+            var dimensions_feed =  await this.dataBindings.getDataBinding().getDimensions("dimensions");
+            var filteredDimensions = dimensions.filter((dimension) => {
+                return dimensions_feed.includes(dimension.id);
+              });
+            // var members = ArrayUtils.create(Type.MemberInfo);
+            // var value = InputField_1.getValue();
+            var ids = [];
+            var desc = [];
+            var temp = '';
+            var members;
+
+            for (var i = 0; i < filteredDimensions.length; i++) {
+                members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
+                for (var j = 0; j < members.length; j++) {
+                    temp = filteredDimensions[i].id + ":" + members[j].id;
+                    ids.push(temp);
+                    temp = filteredDimensions[i].description + ":" + members[j].description;
+                    desc.push(temp);
+                    
+                }
+            }
             });
 
             // Add an input event listener to the filter input

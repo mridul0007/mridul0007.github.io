@@ -150,108 +150,97 @@
             <button id="close_button">Close</button>
         </div>
         </div>
-        `;
-  
+    `;
+
     class FilterBox extends HTMLElement {
-      constructor() {
-        super();
-        this.ids = [];
-        this.desc = [];
-        this.init();
-      }
-  
-      init() {
-
-        let shadowRoot = this.attachShadow({ mode: 'open' });
-        shadowRoot.appendChild(tmpl.content.cloneNode(true));
-
-        const filterButton = shadowRoot.getElementById('filter_button');
-        const childDiv = shadowRoot.querySelector('.child');
-        const filterInput = shadowRoot.getElementById('filter_input');
-        const descriptionList = shadowRoot.getElementById('description_list');
-
-        // Function to close the dropdown
-        function closeDropdown() {
-            childDiv.style.display = 'none';
+        constructor() {
+            super();
+            this.ids = [];
+            this.desc = [];
+            this.init();
         }
 
-        // Add a click event listener to the "filter_button"
-        filterButton.addEventListener('click', async () => {
-            // Call the function or perform actions when the button is clicked
-            if (childDiv.style.display === 'none' || childDiv.style.display === '') {
-                childDiv.style.display = 'flex';
-            } else {
-                closeDropdown(); // Close the dropdown when the button is clicked again
-            }
+        init() {
+            let shadowRoot = this.attachShadow({ mode: 'open' });
+            shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-            const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
-            var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
-            console.log(ds2);
+            const filterButton = shadowRoot.getElementById('filter_button');
+            const filterInput = shadowRoot.getElementById('filter_input');
+            const descriptionList = shadowRoot.getElementById('description_list');
 
-            var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
-            var dimensions_feed =  await this.dataBindings.getDataBinding().getDimensions("dimensions");
-            var filteredDimensions = dimensions.filter((dimension) => {
-                return dimensions_feed.includes(dimension.id);
-              });
-            
-            var temp;
-            var members;
-            for (var i = 0; i < filteredDimensions.length; i++) {
-                members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
-                for (var j = 0; j < members.length; j++) {
-                    temp = filteredDimensions[i].id + ":" + members[j].id;
-                    this.ids.push(temp);
-                    temp = filteredDimensions[i].description + ":" + members[j].description;
-                    this.desc.push(temp);
-                    
+            // Add a click event listener to the "filter_button"
+            filterButton.addEventListener('click', async () => {
+                const childDiv = shadowRoot.querySelector('.child');
+                
+                const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
+                var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
+                console.log(ds2);
+
+                var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
+                var dimensions_feed =  await this.dataBindings.getDataBinding().getDimensions("dimensions");
+                var filteredDimensions = dimensions.filter((dimension) => {
+                    return dimensions_feed.includes(dimension.id);
+                });
+
+                var temp;
+                var members;
+                for (var i = 0; i < filteredDimensions.length; i++) {
+                    members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
+                    for (var j = 0; j < members.length; j++) {
+                        temp = filteredDimensions[i].id + ":" + members[j].id;
+                        this.ids.push(temp);
+                        temp = filteredDimensions[i].description + ":" + members[j].description;
+                        this.desc.push(temp);
+                    }
                 }
-            }
 
-            // Clear the existing options in the datalist
-            descriptionList.innerHTML = '';
+                if (childDiv.style.display === 'none' || childDiv.style.display === '') {
+                    childDiv.style.display = 'flex';
+                } else {
+                    childDiv.style.display = 'none';
+                }
 
-            // Add filtered descriptions to the datalist
-            this.desc.forEach((description) => {
-                const option = document.createElement('option');
-                option.value = description;
-                descriptionList.appendChild(option);
+                // Clear the existing options in the datalist
+                descriptionList.innerHTML = '';
+
+                // Add all descriptions to the datalist
+                this.desc.forEach((description) => {
+                    const option = document.createElement('option');
+                    option.value = description;
+                    descriptionList.appendChild(option);
+                });
             });
-        });
 
-        // Add an input event listener to the filter input
-        filterInput.addEventListener('input', () => {
-            const userInput = filterInput.value.toLowerCase();
-            
-            // Filter the descriptions based on user input
-            const filteredDescriptions = this.desc.filter((description) =>
-                description.toLowerCase().includes(userInput)
-            );
-            
-            // Clear the existing options in the datalist
-            descriptionList.innerHTML = '';
-            
-            // Add filtered descriptions to the datalist
-            filteredDescriptions.forEach((filteredDescription) => {
-                const option = document.createElement('option');
-                option.value = filteredDescription;
-                descriptionList.appendChild(option);
+            // Add an input event listener to the filter input
+            filterInput.addEventListener('input', () => {
+                const userInput = filterInput.value.toLowerCase();
+
+                // Clear the existing options in the datalist
+                descriptionList.innerHTML = '';
+
+                // Filter the descriptions based on user input
+                const filteredDescriptions = this.desc.filter((description) =>
+                    description.toLowerCase().includes(userInput)
+                );
+
+                // Add filtered descriptions to the datalist
+                filteredDescriptions.forEach((filteredDescription) => {
+                    const option = document.createElement('option');
+                    option.value = filteredDescription;
+                    descriptionList.appendChild(option);
+                });
+
+                // Trigger your custom event here with the filtered descriptions
+                this.fireChanged(filteredDescriptions);
             });
-        });
+        }
 
-        // Add a click event listener to datalist options
-        descriptionList.addEventListener('click', (event) => {
-            const selectedValue = event.target.value;
-            filterInput.value = selectedValue; // Set the input value to the selected option
-            closeDropdown(); // Close the dropdown after selecting
-            this.fireChanged(selectedValue); // Trigger your custom event or function here for the selected value
-        });
-      }
-
-      fireChanged(selectedValue) {
-        console.log('Selected Value:', selectedValue);
-      }
+        fireChanged(selectedValue) {
+            console.log('Filter Value Selected:', selectedValue);
+            // You can implement your custom event handling here
+        }
     }
-  
+
     // Define your custom element
     customElements.define('custom-button', FilterBox);
-  })();
+})();

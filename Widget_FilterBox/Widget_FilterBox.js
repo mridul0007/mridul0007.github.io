@@ -176,6 +176,10 @@
 
                     if (index !== -1) {
                         var temp = this.ids[index];
+                        const parts = temp.split(':');
+                        this.p_dimension_id = parts[0]
+                        this.p_member_id = parts[1]
+                        this.dispatchEvent(new CustomEvent("onFilterSelect"));
                     } else {
                     console.log(`The value ${valueToFind} is not found in the array.`);
                     

@@ -230,8 +230,13 @@
                     descriptionList.appendChild(option);
                 });
 
-                // Trigger your custom event here with the filtered descriptions
-                this.fireChanged(filteredDescriptions);
+                descriptionList.addEventListener('click', (event) => {
+                    const selectedValue = event.target.value;
+                    filterInput.value = selectedValue; // Set the input value to the selected option
+                    descriptionList.innerHTML = ''; // Close the dropdown after selecting
+                    this.fireChanged(selectedValue); // Trigger your custom event or function here for the selected value
+                });
+                
             });
         }
 

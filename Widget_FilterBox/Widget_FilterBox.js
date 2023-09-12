@@ -1,166 +1,44 @@
-(function () {
-    // Define the HTML template for your custom element
-    let tmpl = document.createElement('template');
-    tmpl.innerHTML = `
- 
-    <button id="filter_button">Filter</button>
-    <div class="child">
-        <input type="text" id="filter_input" list="description_list">
-        <datalist id="description_list">
-            <!-- Descriptions will be added here dynamically -->
-        </datalist>
-        <button id="close_button">Close</button>
-    </div>
-
-
-    `;
-  
-    class FilterBox extends HTMLElement {
-      constructor() {
-        super();
-        this.init();
-      }
-  
-      init() {
-
-        let shadowRoot = this.attachShadow({ mode: 'open' });
-        shadowRoot.appendChild(tmpl.content.cloneNode(true));
-
-        const filterButton = shadowRoot.getElementById('filter_button');
-
-        // Add a click event listener to the "filter_button"
-        filterButton.addEventListener('click', async () => {
-            // Call the function or perform actions when the button is clicked
-            // if (childDiv.style.display === 'none') {
-            //     childDiv.style.display = 'flex';
-            // } else {
-            //     childDiv.style.display = 'none';
-            // }
-
-            const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
-            var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
-            console.log(ds2);
-
-            var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
-            var dimensions_feed =  await this.dataBindings.getDataBinding().getDimensions("dimensions");
-            var filteredDimensions = dimensions.filter((dimension) => {
-                return dimensions_feed.includes(dimension.id);
-              });
-            // var members = ArrayUtils.create(Type.MemberInfo);
-            // var value = InputField_1.getValue();
-            var ids = [];
-            var desc = [];
-            var temp = '';
-            var members;
-
-            for (var i = 0; i < filteredDimensions.length; i++) {
-                members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
-                for (var j = 0; j < members.length; j++) {
-                    temp = filteredDimensions[i].id + ":" + members[j].id;
-                    ids.push(temp);
-                    temp = filteredDimensions[i].description + ":" + members[j].description;
-                    desc.push(temp);
-                    
-                }
-            }
-
-            const filterInput = shadowRoot.getElementById('filter_input');
-            const descriptionList = shadowRoot.getElementById('description_list');
-
-            filterInput.addEventListener('input', () => {
-                const userInput = filterInput.value.toLowerCase(); // Get user input (convert to lowercase for case-insensitive filtering)
-                
-                // Clear the existing options in the datalist
-                descriptionList.innerHTML = '';
-                
-                // Filter the descriptions based on user input
-                const filteredDescriptions = desc.filter((description) =>
-                    description.toLowerCase().includes(userInput)
-                );
-                
-                // Add filtered descriptions to the datalist
-                filteredDescriptions.forEach((filteredDescription) => {
-                    const option = document.createElement('option');
-                    option.value = filteredDescription;
-                    descriptionList.appendChild(option);
-                });
-            });
-
-
-
-            
-            // console.log("IDS");
-            // console.log(ids);
-            // console.log("DESCRIPTION");
-            // console.log(desc);
-            // console.log("done");
-
-
-
-        });
-
-      }
-  
-      fireChanged() {
-        console.log('OnClick Triggered');
-      }
-    }
-  
-    // Define your custom element
-    customElements.define('custom-button', FilterBox);
-  })();
-
 // (function () {
 //     // Define the HTML template for your custom element
 //     let tmpl = document.createElement('template');
 //     tmpl.innerHTML = `
-//         <style>
-//             .container {
-//                 display: flex;
-//                 align-items: center;
-//             }
+ 
+//     <button id="filter_button">Filter</button>
+//     <div class="child">
+//         <input type="text" id="filter_input" list="description_list">
+//         <datalist id="description_list">
+//             <!-- Descriptions will be added here dynamically -->
+//         </datalist>
+//         <button id="close_button">Close</button>
+//     </div>
 
-//             .child {
-//                 display: none;
-//                 align-items: center;
-//             }
-//         </style>
-//         <div class="container">
-//             <button id="filter_button">Filter</button>
-//             <div class="child">
-//                 <input type="text" id="filter_input" list="description_list">
-//                 <datalist id="description_list">
-//                     <!-- Descriptions will be added here dynamically -->
-//                 </datalist>
-//                 <button id="close_button">Close</button>
-//             </div>
-//         </div>
+
 //     `;
-
+  
 //     class FilterBox extends HTMLElement {
-//         constructor() {
-//             super();
-//             this.init();
-//         }
+//       constructor() {
+//         super();
+//         this.init();
+//       }
+  
+//       init() {
 
-//         init() {
-//             let shadowRoot = this.attachShadow({ mode: 'open' });
-//             shadowRoot.appendChild(tmpl.content.cloneNode(true));
+//         let shadowRoot = this.attachShadow({ mode: 'open' });
+//         shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-//             const filterButton = shadowRoot.getElementById('filter_button');
-//             const childDiv = shadowRoot.querySelector('.child');
-//             const filterInput = shadowRoot.getElementById('filter_input');
-//             const descriptionList = shadowRoot.getElementById('description_list');
+//         const filterButton = shadowRoot.getElementById('filter_button');
 
-//             // Add a click event listener to the "filter_button"
-//             filterButton.addEventListener('click', async () => {
-//                 if (childDiv.style.display === 'none' || childDiv.style.display === '') {
-//                     childDiv.style.display = 'flex';
-//                 } else {
-//                     childDiv.style.display = 'none';
-//                 }
+//         // Add a click event listener to the "filter_button"
+//         filterButton.addEventListener('click', async () => {
+//             // Call the function or perform actions when the button is clicked
+//             // if (childDiv.style.display === 'none') {
+//             //     childDiv.style.display = 'flex';
+//             // } else {
+//             //     childDiv.style.display = 'none';
+//             // }
 
-//                 var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
+//             const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
+//             var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
 //             console.log(ds2);
 
 //             var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
@@ -185,20 +63,21 @@
                     
 //                 }
 //             }
-//             });
 
-//             // Add an input event listener to the filter input
+//             const filterInput = shadowRoot.getElementById('filter_input');
+//             const descriptionList = shadowRoot.getElementById('description_list');
+
 //             filterInput.addEventListener('input', () => {
-//                 const userInput = filterInput.value.toLowerCase();
-
+//                 const userInput = filterInput.value.toLowerCase(); // Get user input (convert to lowercase for case-insensitive filtering)
+                
 //                 // Clear the existing options in the datalist
 //                 descriptionList.innerHTML = '';
-
+                
 //                 // Filter the descriptions based on user input
 //                 const filteredDescriptions = desc.filter((description) =>
 //                     description.toLowerCase().includes(userInput)
 //                 );
-
+                
 //                 // Add filtered descriptions to the datalist
 //                 filteredDescriptions.forEach((filteredDescription) => {
 //                     const option = document.createElement('option');
@@ -207,14 +86,135 @@
 //                 });
 //             });
 
-//             // Your code for data retrieval and manipulation goes here...
-//         }
 
-//         fireChanged() {
-//             console.log('OnClick Triggered');
-//         }
+
+            
+//             // console.log("IDS");
+//             // console.log(ids);
+//             // console.log("DESCRIPTION");
+//             // console.log(desc);
+//             // console.log("done");
+
+
+
+//         });
+
+//       }
+  
+//       fireChanged() {
+//         console.log('OnClick Triggered');
+//       }
 //     }
-
+  
 //     // Define your custom element
 //     customElements.define('custom-button', FilterBox);
-// })();
+//   })();
+
+(function () {
+    // Define the HTML template for your custom element
+    let tmpl = document.createElement('template');
+    tmpl.innerHTML = `
+        <style>
+            .container {
+                display: flex;
+                align-items: center;
+            }
+
+            .child {
+                display: none;
+                align-items: center;
+            }
+        </style>
+        <div class="container">
+            <button id="filter_button">Filter</button>
+            <div class="child">
+                <input type="text" id="filter_input" list="description_list">
+                <datalist id="description_list">
+                    <!-- Descriptions will be added here dynamically -->
+                </datalist>
+                <button id="close_button">Close</button>
+            </div>
+        </div>
+    `;
+
+    class FilterBox extends HTMLElement {
+        constructor() {
+            super();
+            this.init();
+        }
+
+        init() {
+            let shadowRoot = this.attachShadow({ mode: 'open' });
+            shadowRoot.appendChild(tmpl.content.cloneNode(true));
+
+            const filterButton = shadowRoot.getElementById('filter_button');
+            const childDiv = shadowRoot.querySelector('.child');
+            const filterInput = shadowRoot.getElementById('filter_input');
+            const descriptionList = shadowRoot.getElementById('description_list');
+
+            // Add a click event listener to the "filter_button"
+            filterButton.addEventListener('click', async () => {
+                if (childDiv.style.display === 'none' || childDiv.style.display === '') {
+                    childDiv.style.display = 'flex';
+                } else {
+                    childDiv.style.display = 'none';
+                }
+
+                var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
+            console.log(ds2);
+
+            var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
+            var dimensions_feed =  await this.dataBindings.getDataBinding().getDimensions("dimensions");
+            var filteredDimensions = dimensions.filter((dimension) => {
+                return dimensions_feed.includes(dimension.id);
+              });
+            // var members = ArrayUtils.create(Type.MemberInfo);
+            // var value = InputField_1.getValue();
+            var ids = [];
+            var desc = [];
+            var temp = '';
+            var members;
+
+            for (var i = 0; i < filteredDimensions.length; i++) {
+                members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
+                for (var j = 0; j < members.length; j++) {
+                    temp = filteredDimensions[i].id + ":" + members[j].id;
+                    ids.push(temp);
+                    temp = filteredDimensions[i].description + ":" + members[j].description;
+                    desc.push(temp);
+                    
+                }
+            }
+            });
+
+            // Add an input event listener to the filter input
+            filterInput.addEventListener('input', () => {
+                const userInput = filterInput.value.toLowerCase();
+
+                // Clear the existing options in the datalist
+                descriptionList.innerHTML = '';
+
+                // Filter the descriptions based on user input
+                const filteredDescriptions = desc.filter((description) =>
+                    description.toLowerCase().includes(userInput)
+                );
+
+                // Add filtered descriptions to the datalist
+                filteredDescriptions.forEach((filteredDescription) => {
+                    const option = document.createElement('option');
+                    option.value = filteredDescription;
+                    descriptionList.appendChild(option);
+                });
+            });
+
+            // Your code for data retrieval and manipulation goes here...
+        }
+
+        fireChanged() {
+            console.log('OnClick Triggered');
+        }
+    }
+
+    // Define your custom element
+    customElements.define('custom-button', FilterBox);
+})();

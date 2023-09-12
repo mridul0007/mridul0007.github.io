@@ -14,8 +14,8 @@
 			"kind": "main",
 			"tag": "custom-button",
 			"url": "https://mridul0007.github.io/Widget_FilterBox/Widget_FilterBox.js", 
-			"ignoreIntegrity": true,
-            "Integrity": ""
+			"integrity": "",
+			"ignoreIntegrity": true
 		}
 	],
 	"properties": {

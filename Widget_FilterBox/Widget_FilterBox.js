@@ -130,6 +130,37 @@
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
         <style>
+        #loading_overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 9999;
+            allign-items: center;
+            justify-content: center;
+          }
+      
+          #loading_spinner {
+           
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid white;
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+          }
+      
+          @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg);}
+            100% { transform: translate(-50%, -50%) rotate(360deg);}
+          }
         .container {
             display: flex;
             align-items: center;
@@ -150,6 +181,10 @@
             <button id="filter_button">Filter</button>
         </div>
         </div>
+        <div id="loading_overlay">
+        <div id="loading_spinner"></div>
+        </div>
+
     `;
 
     class FilterBox extends HTMLElement {
@@ -192,6 +227,7 @@
 
             // Add a click event listener to the "filter_button"
             searchButton.addEventListener('click', async () => {
+                loadingOverlad.style.display = "block";
                 const childDiv = shadowRoot.querySelector('.child');
                 
                 const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
@@ -231,6 +267,7 @@
                     option.value = description;
                     descriptionList.appendChild(option);
                 });
+                loadingOverlad.style.display = "none";
             });
 
             // Add an input event listener to the filter input

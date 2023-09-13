@@ -203,6 +203,7 @@
             const filterInput = shadowRoot.getElementById('filter_input');
             const descriptionList = shadowRoot.getElementById('description_list');
             const filterButton = shadowRoot.getElementById('filter_button');
+            var loadingOverlad = shadowRoot.getElementById('loading_overlay');
 
 
             filterButton.addEventListener('click', async () => {

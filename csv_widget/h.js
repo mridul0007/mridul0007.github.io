@@ -124,46 +124,7 @@
       selectFileButton.addEventListener('click', async () => {
         await setupDanfo();
         fileInput.click();
-        
-       
-        // const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
-        // var ds = await this.exportDataSource.data;
-        // console.log(ds);
-
-        // var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MK_TRIAL');
-        // console.log(ds2);
-
-
-
-
-
-
-        // // Sample property names and hierarchy names
-        // const propertyNames = ["TAX_CLASS", "DEDUCTION_YEAR", "MEM_ACTIVE"];
-        // const hierarchyNames = ["DEPARTMENT", "LEVEL"];
-
-        // // Initialize the input_invst object
-        // const input_invst = {
-        //   id: "inp_id", // Replace with your actual value
-        //   description: "descrp", // Replace with your actual value
-        //   properties: {},
-        //   hierarchies: {},
-        // };
-
-        // // Populate the properties field dynamically
-        // for (const propName of propertyNames) {
-        //   input_invst.properties[propName] = "";
-        // }
-
-        // // Populate the hierarchies field dynamically
-        // for (const hierarchyName of hierarchyNames) {
-        //   input_invst.hierarchies[hierarchyName] = { parentId: "" };
-        // }
-
-        // // Accessing the resulting object
-        // console.log(input_invst);
-        
-         // Trigger a click event on the hidden file input
+      
       });
 
       // Add a change event listener to the file input
@@ -274,103 +235,110 @@
       const importButton = shadowRoot.getElementById('import_button');
       // ...
 
-// Add a click event listener to the "Import" button
-importButton.addEventListener('click', () => {
+      // Add a click event listener to the "Import" button
+        importButton.addEventListener('click', () => {
 
-  let input_invst = {
-    id: "DUMMY", // Replace with your actual value
-    description: "DUMMY", // Replace with your actual value
-    properties: {},
-    hierarchies: {},
-  };
+          let input_invst = {
+            id: "DUMMY", // Replace with your actual value
+            description: "DUMMY", // Replace with your actual value
+            properties: {},
+            hierarchies: {},
+          };
 
-  // Populate the properties field dynamically
-  for (const propName of this.mem_properties) {
-    input_invst.properties[propName] = "";
-  }
+          // Populate the properties field dynamically
+          for (const propName of this.mem_properties) {
+            input_invst.properties[propName] = "";
+          }
 
-  // Populate the hierarchies field dynamically
-  for (const hierarchyName of this.mem_hierarchies) {
-    input_invst.hierarchies[hierarchyName] = { parentId: "" };
-  }
-  let input_invst_dummy = { ...input_invst };
-  this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst_dummy);
+          // Populate the hierarchies field dynamically
+          for (const hierarchyName of this.mem_hierarchies) {
+            input_invst.hierarchies[hierarchyName] = { parentId: "" };
+          }
+          let input_invst_dummy = { ...input_invst };
+          this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst_dummy);
 
-  
-  // Check if the required columns are selected
-  if (this.mem_hierarchies.length > 0 || this.mem_properties.length > 0) {
-    // Initialize an array to store the imported data
-    const importedData = [];
-    const row = this.df;
-    // Loop through the rows of the data frame
-    for (let i = 0; i < this.df.shape[0]; i++) {
-       
-      input_invst.id = row.$data[i][0];
-      input_invst.description = row.$data[i][1];
+          
+          // Check if the required columns are selected
+          if (this.mem_hierarchies.length > 0 || this.mem_properties.length > 0) {
+            // Initialize an array to store the imported data
+            const importedData = [];
+            const row = this.df;
+            // Loop through the rows of the data frame
+            for (let i = 0; i < this.df.shape[0]; i++) {
+              
+              input_invst.id = row.$data[i][0];
+              input_invst.description = row.$data[i][1];
 
-      let importedItem = {
-        ID: row.$data[i][0], // Access cell value by column name
-        Description: row.$data[i][1], // Access cell value by column name
-        Hierarchy: {},
-        Properties: {}
-      };
+              let importedItem = {
+                ID: row.$data[i][0], // Access cell value by column name
+                Description: row.$data[i][1], // Access cell value by column name
+                Hierarchy: {},
+                Properties: {}
+              };
 
 
-      // Loop through the hierarchy columns
-      this.mem_hierarchies.forEach((hierarchyColumn) => {
+              // Loop through the hierarchy columns
+              this.mem_hierarchies.forEach((hierarchyColumn) => {
 
-        var temp_hier = this.df.loc({rows: [i],columns: [hierarchyColumn]}).$data[0][0];
-        if( temp_hier === null)
-        {
-          importedItem.Hierarchy[hierarchyColumn] = 'DUMMY';
-          input_invst.hierarchies[hierarchyColumn].parentId = 'DUMMY';
-      
-        }
-        else{
-          input_invst.hierarchies[hierarchyColumn].parentId = temp_hier;
-          importedItem.Hierarchy[hierarchyColumn] = temp_hier;
-        }
-      });
+                var temp_hier = this.df.loc({rows: [i],columns: [hierarchyColumn]}).$data[0][0];
+                if( temp_hier === null)
+                {
+                  importedItem.Hierarchy[hierarchyColumn] = 'DUMMY';
+                  input_invst.hierarchies[hierarchyColumn].parentId = 'DUMMY';
+              
+                }
+                else{
+                  input_invst.hierarchies[hierarchyColumn].parentId = temp_hier;
+                  importedItem.Hierarchy[hierarchyColumn] = temp_hier;
+                }
+              });
 
-      // Loop through the properties columns
-      this.mem_properties.forEach((propertyColumn) => {
+              // Loop through the properties columns
+              this.mem_properties.forEach((propertyColumn) => {
 
-        var temp_prop = this.df.loc({rows: [i],columns: [propertyColumn]}).$data[0][0];
-        if( temp_prop === null)
-        {
-          importedItem.Properties[propertyColumn] = temp_prop;
-          input_invst.properties[propertyColumn]= '';
-        }
-        else{
-          importedItem.Properties[propertyColumn] = temp_prop;
-          input_invst.properties[propertyColumn]= temp_prop;
-        }
+                var temp_prop = this.df.loc({rows: [i],columns: [propertyColumn]}).$data[0][0];
+                if( temp_prop === null)
+                {
+                  importedItem.Properties[propertyColumn] = temp_prop;
+                  input_invst.properties[propertyColumn]= '';
+                }
+                else{
+                  importedItem.Properties[propertyColumn] = temp_prop;
+                  input_invst.properties[propertyColumn]= temp_prop;
+                }
 
-      });
+              });
 
-      importedData.push(importedItem);
-      let input_invst_copy = { ...input_invst };
-      this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst_copy);
+              importedData.push(importedItem);
+              let input_invst_copy = { ...input_invst };
+              this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst_copy);
+
+            }
+
+            // Now you have the imported data in the `importedData` array
+            console.log('import data');
+            console.log(importedData);
+            console.log('plm query');
+            console.log(this.p_plm_query.plm_mp_planningmodelmembers);
+            this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
+            
+
+            // You can perform further processing or send the data to your server here
+          } else {
+            // Display an error message or alert if required columns are not selected
+            console.error('Please select all required columns: ID, Description, Hierarchy, Properties');
+          }
+        });
 
     }
 
-    // Now you have the imported data in the `importedData` array
-    console.log('import data');
-    console.log(importedData);
-    console.log('plm query');
-    console.log(this.p_plm_query.plm_mp_planningmodelmembers);
-
-    // You can perform further processing or send the data to your server here
-  } else {
-    // Display an error message or alert if required columns are not selected
-    console.error('Please select all required columns: ID, Description, Hierarchy, Properties');
-  }
-});
-
-// ...
-
-      
-      
+    set_p_plm_query(p_plm_query) {
+      this.p_plm_query = p_plm_query;
+      this.plm_status = 2;
+    }
+  
+    get_p_plm_query() {
+      return this.p_plm_query;
     }
     readCSV() {
       // Implement your readCSV() function if needed

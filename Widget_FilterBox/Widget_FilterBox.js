@@ -252,12 +252,6 @@
                     }
                 }
 
-                if (childDiv.style.display === 'none' || childDiv.style.display === '') {
-                    childDiv.style.display = 'flex';
-                } else {
-                    childDiv.style.display = 'none';
-                }
-
                 // Clear the existing options in the datalist
                 descriptionList.innerHTML = '';
 
@@ -268,6 +262,11 @@
                     descriptionList.appendChild(option);
                 });
                 loadingOverlad.style.display = "none";
+                if (childDiv.style.display === 'none' || childDiv.style.display === '') {
+                    childDiv.style.display = 'flex';
+                } else {
+                    childDiv.style.display = 'none';
+                }
             });
 
             // Add an input event listener to the filter input

@@ -267,7 +267,24 @@
             console.log('Filter Value Selected:', selectedValue);
             // You can implement your custom event handling here
         }
-    }
+
+
+        set_p_member_id(mem_id) {
+            this.p_member_id = mem_id;
+          }
+        
+          get_p_member_id() {
+            return this.p_member_id;
+          }
+
+        set_p_dimension_id(dim_id) {
+        this.p_dimension_id = dim_id;
+        }
+    
+        get_p_dimension_id() {
+        return this.p_dimension_id;
+        }
+    }   
 
     // Define your custom element
     customElements.define('custom-button', FilterBox);

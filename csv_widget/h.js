@@ -269,7 +269,7 @@
       
           const columnName = event.dataTransfer.getData('text/plain');
           const target = event.target;
-          const sourceDivId = event.dataTransfer.getData('sourceDiv'); // Get the source div's ID
+          const sourceDiv = event.currentTarget;// Get the source div's ID
       
           if (target.classList.contains('drop-zone')) {
             const dropTarget = target.getAttribute('data-drop-target');
@@ -281,10 +281,10 @@
             target.appendChild(newElement);
       
             // Remove the draggable button from its parent (row)
-            if (sourceDivId) {
+            if (sourceDiv) {
               const sourceDiv = document.getElementById(sourceDivId);
               if (sourceDiv) {
-                const draggableButton = sourceDiv.querySelector(`button#${columnName}`);
+                const draggableButton = sourceDiv.id.querySelector(`button#${columnName}`);
                 if (draggableButton) {
                   draggableButton.remove();
                 }

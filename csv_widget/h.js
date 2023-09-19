@@ -251,10 +251,10 @@
       // });
       columnNamesDiv.addEventListener('dragstart', (event) => {
         const columnName = event.target.textContent;
-        const sourceDiv = event.target.closest('.drag-drop-elements'); // Find the parent .drag-drop-elements div
+        const sourceDiv = event.currentTarget; // Use currentTarget to get the current element where the event listener is attached
         if (sourceDiv) {
           // Set a custom data attribute to store the source div's ID
-          event.target.dataset.sourceDiv = sourceDiv.id;
+          event.dataTransfer.setData('sourceDiv', sourceDiv.id);
         }
         event.dataTransfer.setData('text/plain', columnName);
       });

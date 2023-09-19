@@ -620,7 +620,7 @@
             target.appendChild(newElement);
 
             // Remove the draggable button from its parent (row)
-            const draggableButton = shadowRoot.querySelector(`#${columnName}`);
+            const draggableButton = shadowRoot.querySelector(columnName);
 
             if (draggableButton) {
               draggableButton.remove();

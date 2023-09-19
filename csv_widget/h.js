@@ -282,13 +282,10 @@
       
             // Remove the draggable button from its parent (row)
             if (sourceDiv) {
-              const sourceDiv = document.getElementById(sourceDivId);
-              if (sourceDiv) {
                 const draggableButton = sourceDiv.id.querySelector(`button#${columnName}`);
                 if (draggableButton) {
                   draggableButton.remove();
                 }
-              }
             }
       
             switch (dropTarget) {

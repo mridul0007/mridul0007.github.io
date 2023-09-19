@@ -259,7 +259,6 @@
         event.dataTransfer.setData('text/plain', columnName);
       });
       
-      
       const dropZones = shadowRoot.querySelectorAll('.drop-zone');
       
       // In the drop event listener

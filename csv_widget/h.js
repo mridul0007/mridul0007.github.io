@@ -222,6 +222,7 @@
           if (target.classList.contains('drop-zone')) {
             // Set the data-drop-target attribute of the drop zone
             const dropTarget = target.getAttribute('data-drop-target');
+            const dragParent = sourceDiv.getAttribute('data-drop-target');
 
             // Create a new button element with the dropped column name as the content
             const newElement = document.createElement('button');
@@ -238,6 +239,16 @@
             const draggableButton = div_id.querySelector(`button#${columnName}`);
             if (draggableButton) {
               draggableButton.remove();
+            }
+
+            switch (dragParent) {
+              case 'Hierarchy':
+                this.mem_hierarchies.pop(columnName);
+                break;
+              case 'Properties':
+                this.mem_properties.pop(columnName);
+                break;
+              // Add cases for other drop zones as needed
             }
 
             switch (dropTarget) {

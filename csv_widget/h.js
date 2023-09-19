@@ -55,7 +55,7 @@
   </style>
   <div class="root">
     <label for="input_box_id">Dimension ID:</label>
-    <input type="text" id="dimension_id" placeholder="Dimension ID..." readonly>
+    <input type="text" id="dimension_id" placeholder="Dimension ID...">
     <label for="input_box">Upload file:</label>
     <input type="file" id="input_box" accept=".csv" style="display: none;">
     <input type="text" id="file_name" placeholder="Select a CSV file..." readonly>

@@ -228,6 +228,7 @@
             newElement.classList.add('drag-element');
             newElement.textContent = columnName;
             newElement.draggable = true;
+            newElement.id = columnName;
 
             // Append the new button element to the drop zone
             target.appendChild(newElement);

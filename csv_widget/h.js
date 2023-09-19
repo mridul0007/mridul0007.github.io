@@ -362,7 +362,7 @@
         for (const hierarchyName of this.mem_hierarchies) {
           input_invst.hierarchies[hierarchyName] = { parentId: "" };
         }
-        let input_invst_dummy = { ...input_invst };
+        let input_invst_dummy = JSON.parse(JSON.stringify(input_invst));
         this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst_dummy);
 
         

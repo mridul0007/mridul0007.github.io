@@ -64,7 +64,7 @@
   </div>
   <div class="drag-drop-elements" style="display: none;">
     <!-- 1st row: Column names as draggable buttons -->
-    <div id="column_names" class="row">
+    <div id="column_names_drop_zone" class="row">
       <!-- Column names will be added here as draggable buttons -->
     </div>
     <!-- 2nd row: Drop zones for ID and Description with box titles -->
@@ -151,7 +151,7 @@
       const fileNameInput = shadowRoot.getElementById('file_name');
       const selectFileButton = shadowRoot.getElementById('select_file_button');
       const uploadButton = shadowRoot.getElementById('upload_button');
-      const columnNamesDiv = shadowRoot.getElementById('column_names');
+      const columnNamesDiv = shadowRoot.getElementById('column_names_drop_zone');
       const uploadControls = shadowRoot.querySelector('.upload-controls');
       const dragDropElements = shadowRoot.querySelector('.drag-drop-elements'); 
 
@@ -258,7 +258,7 @@
         }
         event.dataTransfer.setData('text/plain', columnName);
       });
-      
+
       const dropZones = shadowRoot.querySelectorAll('.drop-zone');
       
       // In the drop event listener

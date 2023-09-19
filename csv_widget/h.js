@@ -310,7 +310,7 @@
               });
 
               importedData.push(importedItem);
-              input_invst_copy = JSON.parse(JSON.stringify(input_invst));
+              let input_invst_copy = JSON.parse(JSON.stringify(input_invst));
               this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst_copy);
 
             }

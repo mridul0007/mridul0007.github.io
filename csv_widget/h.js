@@ -157,6 +157,7 @@
 
       // Variables to store CSV data and column names
       let csvData = [];
+      let sourceDiv;
       
       // Add a click event listener to the "Select File" button
       selectFileButton.addEventListener('click', async () => {
@@ -186,109 +187,58 @@
         dragDropElements.style.display = 'block'; // Show drag and drop elements
       });
 
-      // // Implement drag-and-drop functionality
-      // columnNamesDiv.addEventListener('dragstart', (event) => {
-      //   event.dataTransfer.setData('text/plain', event.target.textContent);
-      // });
-
-      // const dropZones = shadowRoot.querySelectorAll('.drop-zone');
-
-      // dropZones.forEach((dropZone) => {
-      //   dropZone.addEventListener('dragover', (event) => {
-      //     event.preventDefault();
-      //     // Add a class to indicate the hover state
-      //     dropZone.classList.add('hover');
-      //   });
-
-      //   dropZone.addEventListener('dragleave', (event) => {
-      //     // Remove the hover class when the element is dragged out
-      //     dropZone.classList.remove('hover');
-      //   });
-
-      //   dropZone.addEventListener('drop', (event) => {
-      //     event.preventDefault();
-      //     dropZone.classList.remove('hover'); // Remove the hover class
-
-      //     const columnName = event.dataTransfer.getData('text/plain');
-      //     const target = event.target;
-
-      //     if (target.classList.contains('drop-zone')) {
-      //       // Set the data-drop-target attribute of the drop zone
-      //       const dropTarget = target.getAttribute('data-drop-target');
-
-      //       // Create a new button element with the dropped column name as the content
-      //       const newElement = document.createElement('button');
-      //       newElement.classList.add('drag-element');
-      //       newElement.textContent = columnName;
-      //       newElement.draggable = true;
-
-      //       // Append the new button element to the drop zone
-      //       target.appendChild(newElement);
-
-      //       // Remove the draggable button from its parent (row)
-      //       const draggableButton = columnNamesDiv.querySelector(`button#${columnName}`);
-      //       if (draggableButton) {
-      //         draggableButton.remove();
-      //       }
-
-      //       switch (dropTarget) {
-      //         case 'ID':
-      //           this.mem_id = columnName;
-      //           break;
-      //         case 'Description':
-      //           this.mem_description = columnName;
-      //           break;
-      //         case 'Hierarchy':
-      //           this.mem_hierarchies.push(columnName);
-      //           break;
-      //         case 'Properties':
-      //           this.mem_properties.push(columnName);
-      //           break;
-      //         // Add cases for other drop zones as needed
-      //       }
-      //     }
-      //   });
-      // });
+      // Implement drag-and-drop functionality
       columnNamesDiv.addEventListener('dragstart', (event) => {
-        const columnName = event.target.textContent;
-        const sourceDiv = event.currentTarget; // Use currentTarget to get the current element where the event listener is attached
-        if (sourceDiv) {
-          // Set a custom data attribute to store the source div's ID
-          event.dataTransfer.setData('sourceDiv', sourceDiv.id);
-        }
-        event.dataTransfer.setData('text/plain', columnName);
+        sourceDiv = event.currentTarget;
+        event.dataTransfer.setData('text/plain', event.target.textContent);
       });
-      
+
       const dropZones = shadowRoot.querySelectorAll('.drop-zone');
-      
-      // In the drop event listener
+
       dropZones.forEach((dropZone) => {
+
+        dropZone.addEventListener('dragstart', (event) => {
+          sourceDiv = event.currentTarget;
+          event.dataTransfer.setData('text/plain', event.target.textContent);
+        });
+        dropZone.addEventListener('dragover', (event) => {
+          event.preventDefault();
+          // Add a class to indicate the hover state
+          dropZone.classList.add('hover');
+        });
+
+        dropZone.addEventListener('dragleave', (event) => {
+          // Remove the hover class when the element is dragged out
+          dropZone.classList.remove('hover');
+        });
+
         dropZone.addEventListener('drop', (event) => {
           event.preventDefault();
-          dropZone.classList.remove('hover');
-      
+          dropZone.classList.remove('hover'); // Remove the hover class
+
           const columnName = event.dataTransfer.getData('text/plain');
           const target = event.target;
-          const sourceDiv = event.currentTarget;// Get the source div's ID
-      
+
           if (target.classList.contains('drop-zone')) {
+            // Set the data-drop-target attribute of the drop zone
             const dropTarget = target.getAttribute('data-drop-target');
+
+            // Create a new button element with the dropped column name as the content
             const newElement = document.createElement('button');
             newElement.classList.add('drag-element');
             newElement.textContent = columnName;
             newElement.draggable = true;
-      
+
+            // Append the new button element to the drop zone
             target.appendChild(newElement);
-      
+
             // Remove the draggable button from its parent (row)
-            if (sourceDiv) {
-              const div_id = shadowRoot.getElementById(sourceDiv.id);
-                const draggableButton = div_id.querySelector(`button#${columnName}`);
-                if (draggableButton) {
-                  draggableButton.remove();
-                }
+            const div_id = shadowRoot.getElementById(sourceDiv.id);
+            const draggableButton = div_id.querySelector(`button#${columnName}`);
+            if (draggableButton) {
+              draggableButton.remove();
             }
-      
+
             switch (dropTarget) {
               case 'ID':
                 this.mem_id = columnName;
@@ -307,6 +257,64 @@
           }
         });
       });
+      // columnNamesDiv.addEventListener('dragstart', (event) => {
+      //   const columnName = event.target.textContent;
+      //   const sourceDiv = event.currentTarget; // Use currentTarget to get the current element where the event listener is attached
+      //   if (sourceDiv) {
+      //     // Set a custom data attribute to store the source div's ID
+      //     event.dataTransfer.setData('sourceDiv', sourceDiv.id);
+      //   }
+      //   event.dataTransfer.setData('text/plain', columnName);
+      // });
+      
+      // const dropZones = shadowRoot.querySelectorAll('.drop-zone');
+      
+      // // In the drop event listener
+      // dropZones.forEach((dropZone) => {
+      //   dropZone.addEventListener('drop', (event) => {
+      //     event.preventDefault();
+      //     dropZone.classList.remove('hover');
+      
+      //     const columnName = event.dataTransfer.getData('text/plain');
+      //     const target = event.target;
+      //     const sourceDiv = event.currentTarget;// Get the source div's ID
+      
+      //     if (target.classList.contains('drop-zone')) {
+      //       const dropTarget = target.getAttribute('data-drop-target');
+      //       const newElement = document.createElement('button');
+      //       newElement.classList.add('drag-element');
+      //       newElement.textContent = columnName;
+      //       newElement.draggable = true;
+      
+      //       target.appendChild(newElement);
+      
+      //       // Remove the draggable button from its parent (row)
+      //       if (sourceDiv) {
+      //         const div_id = shadowRoot.getElementById(sourceDiv.id);
+      //           const draggableButton = div_id.querySelector(`button#${columnName}`);
+      //           if (draggableButton) {
+      //             draggableButton.remove();
+      //           }
+      //       }
+      
+      //       switch (dropTarget) {
+      //         case 'ID':
+      //           this.mem_id = columnName;
+      //           break;
+      //         case 'Description':
+      //           this.mem_description = columnName;
+      //           break;
+      //         case 'Hierarchy':
+      //           this.mem_hierarchies.push(columnName);
+      //           break;
+      //         case 'Properties':
+      //           this.mem_properties.push(columnName);
+      //           break;
+      //         // Add cases for other drop zones as needed
+      //       }
+      //     }
+      //   });
+      // });
       // Add a click event listener to the "Cancel" button
       const cancelButton = shadowRoot.getElementById('cancel_button');
       cancelButton.addEventListener('click', () => {

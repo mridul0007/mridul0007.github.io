@@ -3,6 +3,37 @@
   let tmpl = document.createElement('template');
   tmpl.innerHTML = `
   <style>
+    #loading_overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 9999;
+      allign-items: center;
+      justify-content: center;
+    }
+
+    #loading_spinner {
+    
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 4px solid white;
+      border-top: 4px solid transparent;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg);}
+      100% { transform: translate(-50%, -50%) rotate(360deg);}
+    }
     /* Add some basic styling for the drop zones */
     .drop-zone {
       border: 2px dashed #aaa;
@@ -23,6 +54,8 @@
     }
   </style>
   <div class="root">
+    <label for="input_box_id">Dimension ID:</label>
+    <input type="text" id="dimension_id" placeholder="Dimension ID..." readonly>
     <label for="input_box">Upload file:</label>
     <input type="file" id="input_box" accept=".csv" style="display: none;">
     <input type="text" id="file_name" placeholder="Select a CSV file..." readonly>
@@ -65,6 +98,9 @@
     <button id="cancel_button">Cancel</button>
     <button id="import_button">Import</button>
   </div>
+  <div id="loading_overlay">
+        <div id="loading_spinner"></div>
+    </div>
   `;
 
   class MasterData_Maintain extends HTMLElement {
@@ -108,6 +144,9 @@
       shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
       // DOM elements
+      var loadingOverlad = shadowRoot.getElementById('loading_overlay');
+      const dimension_id_lable = shadowRoot.getElementById('input_box_id');
+      const dimension_id_inp = shadowRoot.getElementById('dimension_id');
       const fileInput = shadowRoot.getElementById('input_box');
       const fileNameInput = shadowRoot.getElementById('file_name');
       const selectFileButton = shadowRoot.getElementById('select_file_button');
@@ -136,6 +175,7 @@
       // Add a click event listener to the "Upload" button
       uploadButton.addEventListener('click', async () => {
         // Get the selected file
+        this.p_plm_query.plm_mp_dimension_id = dimension_id_inp.value;
         this.df = await dfd.readCSV(fileInput.files[0]);
         this.df.head().print();
 

@@ -363,8 +363,8 @@
         this.mem_properties = collectButtonsFromDropZone(propertiesDropZone);
 
         // Now you have the button names within these drop zones
-        console.log('Hierarchy Buttons:', hierarchyButtons);
-        console.log('Properties Buttons:', propertiesButtons);
+        console.log('Hierarchy Buttons:', this.mem_hierarchies);
+        console.log('Properties Buttons:', this.mem_properties);
 
         let input_invst = {
           id: "DUMMY", // Replace with your actual value

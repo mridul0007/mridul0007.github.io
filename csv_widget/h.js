@@ -346,6 +346,25 @@
       // Add a click event listener to the "Import" button
       importButton.addEventListener('click', () => {
 
+
+        const hierarchyDropZone = shadowRoot.getElementById('hierarchy_drop_zone');
+        const propertiesDropZone = shadowRoot.getElementById('properties_drop_zone');
+
+        // Function to collect button elements within a drop zone
+        function collectButtonsFromDropZone(dropZone) {
+          const buttons = dropZone.querySelectorAll('.drag-element');
+          const buttonNames = [...buttons].map((button) => button.textContent);
+          return buttonNames;
+        }
+
+        // Collect buttons from the Hierarchy and Properties drop zones
+        const hierarchyButtons = collectButtonsFromDropZone(hierarchyDropZone);
+        const propertiesButtons = collectButtonsFromDropZone(propertiesDropZone);
+
+        // Now you have the button names within these drop zones
+        console.log('Hierarchy Buttons:', hierarchyButtons);
+        console.log('Properties Buttons:', propertiesButtons);
+
         let input_invst = {
           id: "DUMMY", // Replace with your actual value
           description: "DUMMY", // Replace with your actual value
@@ -362,7 +381,7 @@
         for (const hierarchyName of this.mem_hierarchies) {
           input_invst.hierarchies[hierarchyName] = { parentId: "" };
         }
-        let input_invst_dummy = JSON.parse(JSON.stringify(input_invst));
+        let input_invst_dummya = JSON.parse(JSON.stringify(input_invst));
         this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst_dummy);
 
         

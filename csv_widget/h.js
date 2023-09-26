@@ -52,6 +52,13 @@
     .drop-element {
       margin: 5px;
     }
+
+    .error-message {
+      display: flex;
+      color: black;
+      padding: 10px;
+      text-align: center;
+  }
   </style>
   <div class="root">
     <label for="input_box_id">Dimension ID:</label>
@@ -62,6 +69,11 @@
     <button id="select_file_button">Select File</button>
     <button id="upload_button">Upload</button>
   </div>
+
+  <div class="error-message"> 
+  <input type="text" id="error_Div" placeholder="" style="display: none;">
+  </div> 
+
   <div class="drag-drop-elements" style="display: none;">
     <!-- 1st row: Column names as draggable buttons -->
     <div id="column_names" class="row">
@@ -474,6 +486,12 @@
 
     }
 
+    showError(display_text) {
+      const errorDiv = this.shadowRoot.getElementById('error_Div');
+      errorDiv.value  = display_text;
+      errorDiv.style.display = 'flex';
+  }
+
     loadingScreen(){
       var loadingOverlad = this.shadowRoot.getElementById('loading_overlay');
       loadingOverlad.style.display = "block";
@@ -535,7 +553,7 @@
           
           this.showError('Connection Error, reload page');
           this.plm_status = 0;
-          this.hideLoadingScreen();
+          // this.hideLoadingScreen();
         }
       }
       console.log(iteration);

@@ -117,6 +117,7 @@
         plm_mp_dimension_id: '',
         plm_mp_planningmodelmembers: []
       };
+      this.plm_status = 0;
       this.init();
     }
 

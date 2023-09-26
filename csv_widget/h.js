@@ -556,7 +556,6 @@
           // this.hideLoadingScreen();
         }
       }
-      console.log(iteration);
     }
 
     set_p_plm_query(p_plm_query) {

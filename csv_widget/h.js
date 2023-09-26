@@ -344,7 +344,7 @@
       const importButton = shadowRoot.getElementById('import_button');
       
       // Add a click event listener to the "Import" button
-      importButton.addEventListener('click', () => {
+      importButton.addEventListener('click', async () => {
 
         this.p_plm_query.plm_mp_dimension_id = dimension_id_inp.value;
 
@@ -448,7 +448,8 @@
           console.log(importedData);
           console.log('plm query');
           console.log(this.p_plm_query.plm_mp_planningmodelmembers);
-          this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
+          // this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
+          r_query = await this.plm_query_execute(this.p_plm_query);
           
 
           // You can perform further processing or send the data to your server here
@@ -458,6 +459,62 @@
         }
       });
 
+    }
+
+    async sleep(ms) {
+      return new Promise(function(resolve) {
+        setTimeout(resolve, ms);
+      });
+    }
+
+  //   plm query execute function
+    async plm_query_execute(p_query) {
+      var loadingOverlad = shadowRoot.getElementById('loading_overlay');
+      loadingOverlad.style.display = "block";
+      // let iteration = 0;
+      // const iteration_max = 10;
+      let iteration_time = 0;
+      const max_time = 5000;
+    
+      while (iteration_time <= max_time) {
+        if (this.plm_status == 0) {
+          this.plm_status = 1;
+          // iteration = iteration + 1;
+          iteration_time = iteration_time + 50;
+          this.p_plm_query =  p_query; 
+          this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
+          await this.sleep(50);
+          break; // Exit the loop
+        } else {
+          await this.sleep(50);
+        }
+        console.log(iteration_time);
+      }
+    
+      if (iteration_time === max_time) {
+        this.showError('Connection Error, reload page');
+      } else {
+        iteration_time = 0;
+        while (iteration_time <= max_time) {
+          if (this.plm_status == 2) {
+            loadingOverlad.style.display = "none";
+            let r_query = this.p_plm_query;
+            this.plm_status = 0;
+            return r_query;
+          } else {
+            await this.sleep(50);
+          }
+          iteration_time = iteration_time + 50;
+        }
+    
+        if (iteration_time === max_time) {
+          
+          this.showError('Connection Error, reload page');
+          this.plm_status = 0;
+          this.hideLoadingScreen();
+        }
+      }
+      console.log(iteration);
     }
 
     set_p_plm_query(p_plm_query) {

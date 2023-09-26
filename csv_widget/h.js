@@ -459,6 +459,29 @@
         }
       });
 
+      // loadingScreen(){
+      //   var loadingOverlad = shadowRoot.getElementById('loading_overlay');
+      //   loadingOverlad.style.display = "block";
+  
+      // }
+  
+      // hideLoadingScreen(){
+      //   var loadingOverlad = shadowRoot.getElementById('loading_overlay');
+      //   loadingOverlad.style.display = "none";
+      // }
+      
+
+    }
+
+    loadingScreen(){
+      var loadingOverlad = this.shadowRoot.getElementById('loading_overlay');
+      loadingOverlad.style.display = "block";
+
+    }
+
+    hideLoadingScreen(){
+      var loadingOverlad = this.shadowRoot.getElementById('loading_overlay');
+      loadingOverlad.style.display = "none";
     }
 
     async sleep(ms) {
@@ -469,7 +492,7 @@
 
   //   plm query execute function
     async plm_query_execute(p_query) {
-      var loadingOverlad = shadowRoot.getElementById('loading_overlay');
+      var loadingOverlad = this.shadowRoot.getElementById('loading_overlay');
       loadingOverlad.style.display = "block";
       // let iteration = 0;
       // const iteration_max = 10;

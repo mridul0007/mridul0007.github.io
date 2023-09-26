@@ -174,7 +174,7 @@
       // Add a click event listener to the "Upload" button
       uploadButton.addEventListener('click', async () => {
         // Get the selected file
-        this.p_plm_query.plm_mp_dimension_id = dimension_id_inp.value;
+        
         this.df = await dfd.readCSV(fileInput.files[0]);
         this.df.head().print();
 
@@ -241,31 +241,31 @@
               draggableButton.remove();
             }
 
-            switch (dragParent) {
-              case 'Hierarchy':
-                this.mem_hierarchies.pop(columnName);
-                break;
-              case 'Properties':
-                this.mem_properties.pop(columnName);
-                break;
-              // Add cases for other drop zones as needed
-            }
+            // switch (dragParent) {
+            //   case 'Hierarchy':
+            //     this.mem_hierarchies.pop(columnName);
+            //     break;
+            //   case 'Properties':
+            //     this.mem_properties.pop(columnName);
+            //     break;
+            //   // Add cases for other drop zones as needed
+            // }
 
-            switch (dropTarget) {
-              case 'ID':
-                this.mem_id = columnName;
-                break;
-              case 'Description':
-                this.mem_description = columnName;
-                break;
-              case 'Hierarchy':
-                this.mem_hierarchies.push(columnName);
-                break;
-              case 'Properties':
-                this.mem_properties.push(columnName);
-                break;
-              // Add cases for other drop zones as needed
-            }
+            // switch (dropTarget) {
+            //   case 'ID':
+            //     this.mem_id = columnName;
+            //     break;
+            //   case 'Description':
+            //     this.mem_description = columnName;
+            //     break;
+            //   case 'Hierarchy':
+            //     this.mem_hierarchies.push(columnName);
+            //     break;
+            //   case 'Properties':
+            //     this.mem_properties.push(columnName);
+            //     break;
+            //   // Add cases for other drop zones as needed
+            // }
           }
         });
       });
@@ -346,6 +346,7 @@
       // Add a click event listener to the "Import" button
       importButton.addEventListener('click', () => {
 
+        this.p_plm_query.plm_mp_dimension_id = dimension_id_inp.value;
 
         const hierarchyDropZone = shadowRoot.getElementById('hierarchy_drop_zone');
         const propertiesDropZone = shadowRoot.getElementById('properties_drop_zone');
@@ -358,8 +359,8 @@
         }
 
         // Collect buttons from the Hierarchy and Properties drop zones
-        const hierarchyButtons = collectButtonsFromDropZone(hierarchyDropZone);
-        const propertiesButtons = collectButtonsFromDropZone(propertiesDropZone);
+        this.mem_hierarchies = collectButtonsFromDropZone(hierarchyDropZone);
+        this.mem_properties = collectButtonsFromDropZone(propertiesDropZone);
 
         // Now you have the button names within these drop zones
         console.log('Hierarchy Buttons:', hierarchyButtons);
@@ -393,8 +394,8 @@
           // Loop through the rows of the data frame
           for (let i = 0; i < this.df.shape[0]; i++) {
             
-            input_invst.id = row.$data[i][0];
-            input_invst.description = row.$data[i][1];
+            input_invst.id = this.df.loc({rows: [i],columns: ["ID"]}).$data[0][0];
+            input_invst.description = this.df.loc({rows: [i],columns: ["Description"]}).$data[0][0];
 
             let importedItem = {
               ID: row.$data[i][0], // Access cell value by column name

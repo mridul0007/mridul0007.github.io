@@ -539,6 +539,8 @@
       } else {
         iteration_time = 0;
         while (iteration_time <= max_time) {
+          console.log(iteration_time);
+          console.log(this.plm_status);
           if (this.plm_status == 2) {
             loadingOverlad.style.display = "none";
             let r_query = this.p_plm_query;
@@ -551,6 +553,7 @@
         }
     
         if (iteration_time === max_time) {
+          console.log("finish");
           loadingOverlad.style.display = "none";
           this.showError('Connection Error, reload page');
           this.plm_status = 0;

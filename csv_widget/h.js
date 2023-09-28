@@ -544,6 +544,7 @@
           if (this.plm_status == 2) {
             loadingOverlad.style.display = "none";
             this.showError('import successfull');
+            dragDropElements.style.display = 'none'; 
             let r_query = this.p_plm_query;
             this.plm_status = 0;
             return r_query;
@@ -556,6 +557,7 @@
         if (iteration_time === max_time) {
           console.log("finish");
           loadingOverlad.style.display = "none";
+          dragDropElements.style.display = 'none'; 
           this.showError('Connection Error, reload page');
           this.plm_status = 0;
           // this.hideLoadingScreen();

@@ -517,7 +517,7 @@
       // let iteration = 0;
       // const iteration_max = 10;
       let iteration_time = 0;
-      const max_time = 5000;
+      const max_time = 500000000;
     
       while (iteration_time <= max_time) {
         if (this.plm_status == 0) {

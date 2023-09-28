@@ -543,6 +543,7 @@
           console.log(this.plm_status);
           if (this.plm_status == 2) {
             loadingOverlad.style.display = "none";
+            this.showError('import successfull');
             let r_query = this.p_plm_query;
             this.plm_status = 0;
             return r_query;

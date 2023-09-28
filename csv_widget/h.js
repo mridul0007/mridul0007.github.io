@@ -399,8 +399,6 @@
         this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst_dummy);
 
         
-        // Check if the required columns are selected
-        if (this.mem_hierarchies.length > 0 || this.mem_properties.length > 0) {
           // Initialize an array to store the imported data
           const importedData = [];
           const row = this.df;
@@ -426,6 +424,12 @@
               {
                 importedItem.Hierarchy[hierarchyColumn] = 'DUMMY';
                 input_invst.hierarchies[hierarchyColumn].parentId = 'DUMMY';
+            
+              }
+              else if( temp_hier === "<root>")
+              {
+                importedItem.Hierarchy[hierarchyColumn] = temp_hier;
+                input_invst.hierarchies[hierarchyColumn].parentId = '';
             
               }
               else{
@@ -466,10 +470,7 @@
           
 
           // You can perform further processing or send the data to your server here
-        } else {
-          // Display an error message or alert if required columns are not selected
-          console.error('Please select all required columns: ID, Description, Hierarchy, Properties');
-        }
+        
       });
 
       // loadingScreen(){

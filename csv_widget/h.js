@@ -551,7 +551,7 @@
         }
     
         if (iteration_time === max_time) {
-          
+          loadingOverlad.style.display = "none";
           this.showError('Connection Error, reload page');
           this.plm_status = 0;
           // this.hideLoadingScreen();

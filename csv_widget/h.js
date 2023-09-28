@@ -466,7 +466,7 @@
           console.log('plm query');
           console.log(this.p_plm_query.plm_mp_planningmodelmembers);
           // this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
-          r_query = await this.plm_query_execute(this.p_plm_query);
+          var r_query = await this.plm_query_execute(this.p_plm_query);
           
 
           // You can perform further processing or send the data to your server here

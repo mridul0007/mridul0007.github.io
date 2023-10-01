@@ -70,7 +70,7 @@
     <button id="upload_button">Upload</button>
   </div>
 
-  <input type="text" id="error_Div" placeholder="" style="display: none; background: none; border: none;" readonly>
+  <input type="text" id="error_Div" placeholder="" style="display: none; background: none; border: none; margin-top: 10px;" readonly>
 
 
   <div class="drag-drop-elements" id="drag_drop_cont" style="display: none;">
@@ -413,8 +413,9 @@
       this.mem_properties = [];
     }
 
-    showMessage(display_text) {
+    showMessage(display_text, msg_type) {
       const errorDiv = this.shadowRoot.getElementById('error_Div');
+      errorDiv.style.borderColor = ;
       errorDiv.value  = display_text;
       errorDiv.style.display = 'flex';
   }
@@ -470,7 +471,7 @@
           console.log(this.plm_status);
           if (this.plm_status == 2) {
             loadingOverlad.style.display = "none";
-            this.showMessage(this.p_plm_query.plm_mp_planningmodelmember_status);
+            this.showMessage(this.p_plm_query.plm_mp_planningmodelmember_status,"green");
             dragDropElements.style.display = 'none'; 
             this.clearDragAndDropFields();
             let r_query = this.p_plm_query;
@@ -486,7 +487,7 @@
           console.log("finish");
           loadingOverlad.style.display = "none";
           dragDropElements.style.display = 'none'; 
-          this.showMessage(this.p_plm_query.plm_mp_planningmodelmember_status);
+          this.showMessage(this.p_plm_query.plm_mp_planningmodelmember_status,"red");
           this.clearDragAndDropFields();
           this.plm_status = 0;
         }

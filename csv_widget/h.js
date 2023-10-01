@@ -446,7 +446,7 @@
           console.log(this.plm_status);
           if (this.plm_status == 2) {
             loadingOverlad.style.display = "none";
-            this.showMessage(plm_mp_planningmodelmember_status);
+            this.showMessage(this.p_plm_query.plm_mp_planningmodelmember_status);
             dragDropElements.style.display = 'none'; 
             let r_query = this.p_plm_query;
             this.plm_status = 0;
@@ -466,7 +466,7 @@
         }
       }
     }
-
+  
     set_p_plm_query(p_plm_query) {
       this.p_plm_query = p_plm_query;
       this.plm_status = 2;

@@ -415,7 +415,15 @@
 
     showMessage(display_text, msg_type) {
       const errorDiv = this.shadowRoot.getElementById('error_Div');
-      errorDiv.style.borderColor = ;
+      if(msg_type === 'red')
+      {
+        errorDiv.style.backgroundColor = 'lightcoral';
+      }
+      else{
+        errorDiv.style.backgroundColor = 'lightgreen';
+      }
+      errorDiv.style.borderColor = msg_type;
+    
       errorDiv.value  = display_text;
       errorDiv.style.display = 'flex';
   }

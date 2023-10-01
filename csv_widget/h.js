@@ -70,9 +70,8 @@
     <button id="upload_button">Upload</button>
   </div>
 
-  <div class="error-message"> 
-  <input type="text" id="error_Div" placeholder="" style="display: none;" readonly>
-  </div> 
+  <input type="text" id="error_Div" placeholder="" style="display: none; background: none; border: none;" readonly>
+
 
   <div class="drag-drop-elements" id="drag_drop_cont" style="display: none;">
     <!-- 1st row: Column names as draggable buttons -->

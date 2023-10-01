@@ -165,7 +165,6 @@
       const selectFileButton = shadowRoot.getElementById('select_file_button');
       const uploadButton = shadowRoot.getElementById('upload_button');
       const columnNamesDiv = shadowRoot.getElementById('column_names');
-      const uploadControls = shadowRoot.querySelector('.upload-controls');
       const dragDropElements = shadowRoot.querySelector('.drag-drop-elements'); 
 
       // Variables to store CSV data and column names
@@ -416,6 +415,7 @@
   //   plm query execute function
     async plm_query_execute(p_query) {
       var loadingOverlad = this.shadowRoot.getElementById('loading_overlay');
+      const dragDropElements = shadowRoot.querySelector('.drag-drop-elements'); 
       loadingOverlad.style.display = "block";
       // let iteration = 0;
       // const iteration_max = 10;

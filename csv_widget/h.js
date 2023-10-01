@@ -261,6 +261,7 @@
       cancelButton.addEventListener('click', () => {
         // Hide the drag-and-drop elements
         dragDropElements.style.display = 'none';
+        this.clearDragAndDropFields();
 
         // Clear the variables
         this.mem_id = null;
@@ -387,6 +388,30 @@
         
       });
 
+      
+
+    }
+
+    clearDragAndDropFields() {
+      // Clear the column names div
+      const columnNamesDiv = this.shadowRoot.getElementById('column_names');
+      columnNamesDiv.innerHTML = '';
+  
+      // Clear the drop zones
+      const dropZones = this.shadowRoot.querySelectorAll('.drop-zone');
+      dropZones.forEach((dropZone) => {
+        dropZone.innerHTML = '';
+      });
+  
+      // Hide the drag-and-drop elements
+      const dragDropElements = this.shadowRoot.querySelector('.drag-drop-elements');
+      dragDropElements.style.display = 'none';
+  
+      // Clear the variables
+      this.mem_id = null;
+      this.mem_description = null;
+      this.mem_hierarchies = [];
+      this.mem_properties = [];
     }
 
     showMessage(display_text) {
@@ -448,6 +473,7 @@
             loadingOverlad.style.display = "none";
             this.showMessage(this.p_plm_query.plm_mp_planningmodelmember_status);
             dragDropElements.style.display = 'none'; 
+            this.clearDragAndDropFields();
             let r_query = this.p_plm_query;
             this.plm_status = 0;
             return r_query;
@@ -462,6 +488,7 @@
           loadingOverlad.style.display = "none";
           dragDropElements.style.display = 'none'; 
           this.showMessage(this.p_plm_query.plm_mp_planningmodelmember_status);
+          this.clearDragAndDropFields();
           this.plm_status = 0;
         }
       }

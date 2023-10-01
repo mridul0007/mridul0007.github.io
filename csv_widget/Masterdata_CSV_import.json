@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "Masterdata_CSV",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -45,8 +45,8 @@
 			"properties":[
 				
 				{
-					"name" : "plm_mp_planningmodelmember",
-					"type" : "PlanningModelMember",
+					"name" : "plm_mp_planningmodelmember_status",
+					"type" : "string",
 					"description" : "Planning model member"
 				},
 				{
@@ -96,8 +96,8 @@
 			"returnType": "ty_plm_query",
 			"description": "get p_plm_query"
 			
-			
 		}
+		
 
 
 	},

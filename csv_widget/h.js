@@ -71,7 +71,7 @@
   </div>
 
   <div class="error-message"> 
-  <input type="text" id="error_Div" placeholder="" style="display: none;">
+  <input type="text" id="error_Div" placeholder="" style="display: none;" readonly>
   </div> 
 
   <div class="drag-drop-elements" style="display: none;">
@@ -253,93 +253,10 @@
             if (draggableButton) {
               draggableButton.remove();
             }
-
-            // switch (dragParent) {
-            //   case 'Hierarchy':
-            //     this.mem_hierarchies.pop(columnName);
-            //     break;
-            //   case 'Properties':
-            //     this.mem_properties.pop(columnName);
-            //     break;
-            //   // Add cases for other drop zones as needed
-            // }
-
-            // switch (dropTarget) {
-            //   case 'ID':
-            //     this.mem_id = columnName;
-            //     break;
-            //   case 'Description':
-            //     this.mem_description = columnName;
-            //     break;
-            //   case 'Hierarchy':
-            //     this.mem_hierarchies.push(columnName);
-            //     break;
-            //   case 'Properties':
-            //     this.mem_properties.push(columnName);
-            //     break;
-            //   // Add cases for other drop zones as needed
-            // }
           }
         });
       });
-      // columnNamesDiv.addEventListener('dragstart', (event) => {
-      //   const columnName = event.target.textContent;
-      //   const sourceDiv = event.currentTarget; // Use currentTarget to get the current element where the event listener is attached
-      //   if (sourceDiv) {
-      //     // Set a custom data attribute to store the source div's ID
-      //     event.dataTransfer.setData('sourceDiv', sourceDiv.id);
-      //   }
-      //   event.dataTransfer.setData('text/plain', columnName);
-      // });
       
-      // const dropZones = shadowRoot.querySelectorAll('.drop-zone');
-      
-      // // In the drop event listener
-      // dropZones.forEach((dropZone) => {
-      //   dropZone.addEventListener('drop', (event) => {
-      //     event.preventDefault();
-      //     dropZone.classList.remove('hover');
-      
-      //     const columnName = event.dataTransfer.getData('text/plain');
-      //     const target = event.target;
-      //     const sourceDiv = event.currentTarget;// Get the source div's ID
-      
-      //     if (target.classList.contains('drop-zone')) {
-      //       const dropTarget = target.getAttribute('data-drop-target');
-      //       const newElement = document.createElement('button');
-      //       newElement.classList.add('drag-element');
-      //       newElement.textContent = columnName;
-      //       newElement.draggable = true;
-      
-      //       target.appendChild(newElement);
-      
-      //       // Remove the draggable button from its parent (row)
-      //       if (sourceDiv) {
-      //         const div_id = shadowRoot.getElementById(sourceDiv.id);
-      //           const draggableButton = div_id.querySelector(`button#${columnName}`);
-      //           if (draggableButton) {
-      //             draggableButton.remove();
-      //           }
-      //       }
-      
-      //       switch (dropTarget) {
-      //         case 'ID':
-      //           this.mem_id = columnName;
-      //           break;
-      //         case 'Description':
-      //           this.mem_description = columnName;
-      //           break;
-      //         case 'Hierarchy':
-      //           this.mem_hierarchies.push(columnName);
-      //           break;
-      //         case 'Properties':
-      //           this.mem_properties.push(columnName);
-      //           break;
-      //         // Add cases for other drop zones as needed
-      //       }
-      //     }
-      //   });
-      // });
       // Add a click event listener to the "Cancel" button
       const cancelButton = shadowRoot.getElementById('cancel_button');
       cancelButton.addEventListener('click', () => {
@@ -468,26 +385,12 @@
           // this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
           var r_query = await this.plm_query_execute(this.p_plm_query);
           
-
-          // You can perform further processing or send the data to your server here
         
       });
 
-      // loadingScreen(){
-      //   var loadingOverlad = shadowRoot.getElementById('loading_overlay');
-      //   loadingOverlad.style.display = "block";
-  
-      // }
-  
-      // hideLoadingScreen(){
-      //   var loadingOverlad = shadowRoot.getElementById('loading_overlay');
-      //   loadingOverlad.style.display = "none";
-      // }
-      
-
     }
 
-    showError(display_text) {
+    showMessage(display_text) {
       const errorDiv = this.shadowRoot.getElementById('error_Div');
       errorDiv.value  = display_text;
       errorDiv.style.display = 'flex';
@@ -535,7 +438,7 @@
       }
     
       if (iteration_time === max_time) {
-        this.showError('Connection Error, reload page');
+        this.showMessage('Connection Error, reload page');
       } else {
         iteration_time = 0;
         while (iteration_time <= max_time) {
@@ -543,7 +446,7 @@
           console.log(this.plm_status);
           if (this.plm_status == 2) {
             loadingOverlad.style.display = "none";
-            this.showError('import successfull');
+            this.showMessage(plm_mp_planningmodelmember_status);
             dragDropElements.style.display = 'none'; 
             let r_query = this.p_plm_query;
             this.plm_status = 0;
@@ -558,9 +461,8 @@
           console.log("finish");
           loadingOverlad.style.display = "none";
           dragDropElements.style.display = 'none'; 
-          this.showError('Connection Error, reload page');
+          this.showMessage(this.p_plm_query.plm_mp_planningmodelmember_status);
           this.plm_status = 0;
-          // this.hideLoadingScreen();
         }
       }
     }

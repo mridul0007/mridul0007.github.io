@@ -74,7 +74,7 @@
   <input type="text" id="error_Div" placeholder="" style="display: none;" readonly>
   </div> 
 
-  <div class="drag-drop-elements" style="display: none;">
+  <div class="drag-drop-elements" id="drag_drop_cont" style="display: none;">
     <!-- 1st row: Column names as draggable buttons -->
     <div id="column_names" class="row">
       <!-- Column names will be added here as draggable buttons -->
@@ -415,7 +415,7 @@
   //   plm query execute function
     async plm_query_execute(p_query) {
       var loadingOverlad = this.shadowRoot.getElementById('loading_overlay');
-      const dragDropElements = shadowRoot.querySelector('.drag-drop-elements'); 
+      const dragDropElements = this.shadowRoot.querySelector('.drag-drop-elements'); 
       loadingOverlad.style.display = "block";
       // let iteration = 0;
       // const iteration_max = 10;

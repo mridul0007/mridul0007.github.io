@@ -58,7 +58,9 @@
       color: black;
       padding: 10px;
       text-align: center;
-  }
+    }
+
+
   </style>
   <div class="root">
     <label for="input_box_id">Dimension ID:</label>
@@ -417,10 +419,10 @@
       const errorDiv = this.shadowRoot.getElementById('error_Div');
       if(msg_type === 'red')
       {
-        errorDiv.style.backgroundColor = 'lightcoral';
+        errorDiv.style.color = 'lightcoral';
       }
       else{
-        errorDiv.style.backgroundColor = 'lightgreen';
+        errorDiv.style.color = 'lightgreen';
       }
       errorDiv.style.borderColor = msg_type;
     

@@ -326,61 +326,54 @@
             input_invst.id = this.df.loc({rows: [i],columns: ["ID"]}).$data[0][0];
             input_invst.description = this.df.loc({rows: [i],columns: ["Description"]}).$data[0][0];
 
-            let importedItem = {
-              ID: row.$data[i][0], // Access cell value by column name
-              Description: row.$data[i][1], // Access cell value by column name
-              Hierarchy: {},
-              Properties: {}
-            };
+           
 
 
             // Loop through the hierarchy columns
-            this.mem_hierarchies.forEach((hierarchyColumn) => {
+          //   this.mem_hierarchies.forEach((hierarchyColumn) => {
 
-              var temp_hier = this.df.loc({rows: [i],columns: [hierarchyColumn]}).$data[0][0];
-              if( temp_hier === null)
-              {
-                importedItem.Hierarchy[hierarchyColumn] = 'DUMMY';
-                input_invst.hierarchies[hierarchyColumn].parentId = 'DUMMY';
+          //     var temp_hier = this.df.loc({rows: [i],columns: [hierarchyColumn]}).$data[0][0];
+          //     if( temp_hier === null)
+          //     {
+                
+          //       input_invst.hierarchies[hierarchyColumn].parentId = 'DUMMY';
             
-              }
-              else if( temp_hier === "<root>")
-              {
-                importedItem.Hierarchy[hierarchyColumn] = temp_hier;
-                input_invst.hierarchies[hierarchyColumn].parentId = '';
+          //     }
+          //     else if( temp_hier === "<root>")
+          //     {
+                
+          //       input_invst.hierarchies[hierarchyColumn].parentId = '';
             
-              }
-              else{
-                input_invst.hierarchies[hierarchyColumn].parentId = temp_hier;
-                importedItem.Hierarchy[hierarchyColumn] = temp_hier;
-              }
-            });
+          //     }
+          //     else{
+          //       input_invst.hierarchies[hierarchyColumn].parentId = temp_hier;
+                
+          //     }
+          //   });
 
-            // Loop through the properties columns
-            this.mem_properties.forEach((propertyColumn) => {
+          //   // Loop through the properties columns
+          //   this.mem_properties.forEach((propertyColumn) => {
 
-              var temp_prop = this.df.loc({rows: [i],columns: [propertyColumn]}).$data[0][0];
-              if( temp_prop === null)
-              {
-                importedItem.Properties[propertyColumn] = temp_prop;
-                input_invst.properties[propertyColumn]= '';
-              }
-              else{
-                importedItem.Properties[propertyColumn] = temp_prop;
-                input_invst.properties[propertyColumn]= temp_prop;
-              }
+          //     var temp_prop = this.df.loc({rows: [i],columns: [propertyColumn]}).$data[0][0];
+          //     if( temp_prop === null)
+          //     {
+                
+          //       input_invst.properties[propertyColumn]= '';
+          //     }
+          //     else{
+                
+          //       input_invst.properties[propertyColumn]= temp_prop;
+          //     }
 
-            });
+          //   });
 
-            importedData.push(importedItem);
-            let input_invst_copy = JSON.parse(JSON.stringify(input_invst));
-            this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst_copy);
+            
+          //   let input_invst_copy = JSON.parse(JSON.stringify(input_invst));
+          //   this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst_copy);
 
-          }
+          // }
 
-          // Now you have the imported data in the `importedData` array
-          console.log('import data');
-          console.log(importedData);
+          // Now you have the imported data in the `PLM` array
           console.log('plm query');
           console.log(this.p_plm_query.plm_mp_planningmodelmembers);
           // this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));

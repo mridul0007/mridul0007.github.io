@@ -300,8 +300,8 @@
         let input_invst = {
           id: "DUMMY", // Replace with your actual value
           description: "DUMMY", // Replace with your actual value
-          // properties: {},
-          // hierarchies: {},
+          properties: {},
+          hierarchies: {},
         };
 
         // Populate the properties field dynamically
@@ -330,42 +330,42 @@
 
 
             // Loop through the hierarchy columns
-          //   this.mem_hierarchies.forEach((hierarchyColumn) => {
+            this.mem_hierarchies.forEach((hierarchyColumn) => {
 
-          //     var temp_hier = this.df.loc({rows: [i],columns: [hierarchyColumn]}).$data[0][0];
-          //     if( temp_hier === null)
-          //     {
+              var temp_hier = this.df.loc({rows: [i],columns: [hierarchyColumn]}).$data[0][0];
+              if( temp_hier === null)
+              {
                 
-          //       input_invst.hierarchies[hierarchyColumn].parentId = 'DUMMY';
+                input_invst.hierarchies[hierarchyColumn].parentId = 'DUMMY';
             
-          //     }
-          //     else if( temp_hier === "<root>")
-          //     {
+              }
+              else if( temp_hier === "<root>")
+              {
                 
-          //       input_invst.hierarchies[hierarchyColumn].parentId = '';
+                input_invst.hierarchies[hierarchyColumn].parentId = '';
             
-          //     }
-          //     else{
-          //       input_invst.hierarchies[hierarchyColumn].parentId = temp_hier;
+              }
+              else{
+                input_invst.hierarchies[hierarchyColumn].parentId = temp_hier;
                 
-          //     }
-          //   });
+              }
+            });
 
-          //   // Loop through the properties columns
-          //   this.mem_properties.forEach((propertyColumn) => {
+            // Loop through the properties columns
+            this.mem_properties.forEach((propertyColumn) => {
 
-          //     var temp_prop = this.df.loc({rows: [i],columns: [propertyColumn]}).$data[0][0];
-          //     if( temp_prop === null)
-          //     {
+              var temp_prop = this.df.loc({rows: [i],columns: [propertyColumn]}).$data[0][0];
+              if( temp_prop === null)
+              {
                 
-          //       input_invst.properties[propertyColumn]= '';
-          //     }
-          //     else{
+                input_invst.properties[propertyColumn]= '';
+              }
+              else{
                 
-          //       input_invst.properties[propertyColumn]= temp_prop;
-          //     }
+                input_invst.properties[propertyColumn]= temp_prop;
+              }
 
-          //   });
+            });
 
             
             let input_invst_copy = JSON.parse(JSON.stringify(input_invst));

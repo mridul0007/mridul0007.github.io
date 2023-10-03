@@ -300,8 +300,8 @@
         let input_invst = {
           id: "DUMMY", // Replace with your actual value
           description: "DUMMY", // Replace with your actual value
-          properties: {},
-          hierarchies: {},
+          // properties: {},
+          // hierarchies: {},
         };
 
         // Populate the properties field dynamically
@@ -368,10 +368,10 @@
           //   });
 
             
-          //   let input_invst_copy = JSON.parse(JSON.stringify(input_invst));
-          //   this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst_copy);
+            let input_invst_copy = JSON.parse(JSON.stringify(input_invst));
+            this.p_plm_query.plm_mp_planningmodelmembers.push(input_invst_copy);
 
-          // }
+          }
 
           // Now you have the imported data in the `PLM` array
           console.log('plm query');

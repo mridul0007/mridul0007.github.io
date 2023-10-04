@@ -126,7 +126,6 @@
       this.mem_id = null;
       this.mem_description = null;
       this.p_plm_query = {
-        plm_mp_planningmodelmember: {},
         plm_mp_dimension_id: '',
         plm_mp_planningmodelmembers: []
       };
@@ -263,12 +262,6 @@
         // Hide the drag-and-drop elements
         dragDropElements.style.display = 'none';
         this.clearDragAndDropFields();
-
-        // Clear the variables
-        this.mem_id = null;
-        this.mem_description = null;
-        this.mem_hierarchies = [];
-        this.mem_properties = [];
       });
 
       // Add a click event listener to the "Import" button
@@ -400,6 +393,7 @@
       // Hide the drag-and-drop elements
       const dragDropElements = this.shadowRoot.querySelector('.drag-drop-elements');
       dragDropElements.style.display = 'none';
+      this.p_plm_query.plm_mp_planningmodelmembers = [];
   
       // Clear the variables
       this.mem_id = null;

@@ -440,6 +440,11 @@
       });
     }
 
+    hideMessage() {
+      const errorDiv = this.shadowRoot.getElementById('error_Div');
+      errorDiv.style.display = 'none';
+  }
+
   //   plm query execute function
     async plm_query_execute(p_query) {
       var loadingOverlad = this.shadowRoot.getElementById('loading_overlay');
@@ -466,6 +471,9 @@
       }
     
       if (iteration_time === max_time) {
+        setTimeout(() => {
+          this.hideMessage();
+        }, 3000);
         this.showMessage('Connection Error, reload page');
       } else {
         iteration_time = 0;
@@ -474,6 +482,9 @@
           console.log(this.plm_status);
           if (this.plm_status == 2) {
             loadingOverlad.style.display = "none";
+            setTimeout(() => {
+              this.hideMessage();
+            }, 3000);
             this.showMessage(this.p_plm_query.plm_mp_planningmodelmember_status,"green");
             dragDropElements.style.display = 'none'; 
             this.clearDragAndDropFields();
@@ -490,6 +501,9 @@
           console.log("finish");
           loadingOverlad.style.display = "none";
           dragDropElements.style.display = 'none'; 
+          setTimeout(() => {
+            this.hideMessage();
+          }, 3000);
           this.showMessage(this.p_plm_query.plm_mp_planningmodelmember_status,"red");
           this.clearDragAndDropFields();
           this.plm_status = 0;

@@ -489,7 +489,7 @@
         setTimeout(() => {
           this.hideMessage();
         }, 3000);
-        this.showMessage('Connection Error, reload page');
+        this.showMessage('Connection Error, reload page',"red");
       } else {
         iteration_time = 0;
         while (iteration_time <= max_time) {
@@ -500,7 +500,15 @@
             setTimeout(() => {
               this.hideMessage();
             }, 3000);
-            this.showMessage(this.p_plm_query.plm_mp_planningmodelmember_status,"green");
+            if(this.p_plm_query.plm_mp_planningmodelmember_status === "Import failed")
+            {
+              this.showMessage(this.p_plm_query.plm_mp_planningmodelmember_status,"red");
+            }
+            else{
+              this.showMessage(this.p_plm_query.plm_mp_planningmodelmember_status,"green");
+
+            }
+          
             dragDropElements.style.display = 'none'; 
             this.clearDragAndDropFields();
             let r_query = this.p_plm_query;

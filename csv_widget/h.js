@@ -272,7 +272,10 @@
 
         const idDropZone = shadowRoot.getElementById('id_drop_zone');
         if (!idDropZone.querySelector('.drag-element')) {
-          showMessage('Please drag an ID to the ID drop zone', 'red');
+          setTimeout(() => {
+            this.hideMessage();
+          }, 3000);
+          this.showMessage('Please drag an ID to the ID drop zone', 'red');
           return; // Exit the function
         }
       

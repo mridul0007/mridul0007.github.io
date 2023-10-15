@@ -1,0 +1,44 @@
+{
+    "eula": "",
+    "vendor": "",
+    "license": "",
+    "id": "Chart",
+    "version": "1.0.0",
+    "name": "Chart",
+    "newInstancePrefix": "EChartPrepared",
+    "description": "A sample custom widget wrapped EChart Prepared",
+    "webcomponents": [
+      {
+        "kind": "main",
+        "tag": "com-sap-sample-echarts-prepared",
+        "url": "https://mridul0007.github.io/Echarts/chart.js",
+        "integrity": "",
+        "ignoreIntegrity": true
+      }
+    ],
+    "properties": {
+		"width": {
+			"type": "integer",
+			"default": 600
+		},
+		"height": {
+			"type": "integer",
+			"default": 420
+		}
+	},
+	"methods": {
+		  "render": {
+			  "description": "Render",
+			  "parameters": [
+				  {
+					  "name": "resultSet",
+					  "type": "any",
+					  "description": "The json"
+				  }
+			  ]
+		  }
+	},
+	"events": {
+  
+	}
+  }

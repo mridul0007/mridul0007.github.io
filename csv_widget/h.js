@@ -62,6 +62,9 @@
     #error_Div {
       max-height: 800px; /* You can adjust this value based on your design */
       overflow: auto;
+      padding: 10px;
+      text-align: center; 
+      width: 300px; /* Set a specific width for the text box */
     }
 
 

@@ -60,7 +60,7 @@
       text-align: center;
     }
     #error_Div {
-      max-height: 200px; /* You can adjust this value based on your design */
+      max-height: 800px; /* You can adjust this value based on your design */
       overflow: auto;
     }
 

@@ -82,7 +82,7 @@
     </div>
     <!-- 2nd row: Drop zones for ID and Description with box titles -->
     <div class="drop-box">
-      <div class="drop-box-title">ID</div>
+      <div class="drop-box-title">ID*</div>
       <div id="id_drop_zone" class="drop-zone" data-drop-target="ID">
         <!-- ID drop zone content will be added here -->
       </div>
@@ -270,7 +270,14 @@
       // Add a click event listener to the "Import" button
       importButton.addEventListener('click', async () => {
 
-        this.p_plm_query.plm_mp_dimension_id = dimension_id_inp.value;
+        const idDropZone = shadowRoot.getElementById('id_drop_zone');
+        if (!idDropZone.querySelector('.drag-element')) {
+          showMessage('Please drag an ID to the ID drop zone', 'red');
+          return; // Exit the function
+        }
+      
+        else{
+          this.p_plm_query.plm_mp_dimension_id = dimension_id_inp.value;
 
         const hierarchyDropZone = shadowRoot.getElementById('hierarchy_drop_zone');
         const propertiesDropZone = shadowRoot.getElementById('properties_drop_zone');
@@ -371,6 +378,12 @@
           console.log(this.p_plm_query.plm_mp_planningmodelmembers);
           // this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
           var r_query = await this.plm_query_execute(this.p_plm_query);
+
+
+        }
+
+
+        
           
         
       });

@@ -30,27 +30,27 @@ var getScriptPromisify = (src) => {
         // this.render()
       }
   
-      // async render () {
-      //   await getScriptPromisify('https://cdn.bootcdn.net/ajax/libs/echarts/5.0.0/echarts.min.js')
+      async render () {
+        await getScriptPromisify('https://cdn.bootcdn.net/ajax/libs/echarts/5.0.0/echarts.min.js')
   
-      //   const chart = echarts.init(this._root)
-      //   const option = {
-      //       xAxis: {
-      //         type: 'category',
-      //         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      //       },
-      //       yAxis: {
-      //         type: 'value'
-      //       },
-      //       series: [
-      //         {
-      //           data: [150, 230, 224, 218, 135, 147, 260],
-      //           type: 'line'
-      //         }
-      //       ]
-      //     };
-      //   chart.setOption(option)
-      // }
+        const chart = echarts.init(this._root)
+        const option = {
+            xAxis: {
+              type: 'category',
+              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            yAxis: {
+              type: 'value'
+            },
+            series: [
+              {
+                data: [150, 230, 224, 218, 135, 147, 260],
+                type: 'line'
+              }
+            ]
+          };
+        chart.setOption(option)
+      }
     }
   
     customElements.define('com-sap-sample-echarts-prepared', SamplePrepared)

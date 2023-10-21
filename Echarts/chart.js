@@ -33,6 +33,8 @@ var getScriptPromisify = (src) => {
 
       this._props = {};
       this._chart = null;
+
+      this.render();
     }
 
     onCustomWidgetResize (width, height) {

@@ -1,10 +1,13 @@
 var getScriptPromisify = (src) => {
   return new Promise(resolve => {
-    $.getScript(src, resolve);
+    const script = document.createElement('script');
+    script.src = src;
+    document.head.appendChild(script);
+    script.onload = resolve;
   });
 };
 
-(function () {
+(async function () {
   const prepared = document.createElement('template');
   prepared.innerHTML = `
     <style>
@@ -25,24 +28,24 @@ var getScriptPromisify = (src) => {
   class SamplePrepared extends HTMLElement {
     constructor () {
       super();
-  
+
       this._shadowRoot = this.attachShadow({ mode: 'open' });
       this._shadowRoot.appendChild(prepared.content.cloneNode(true));
-  
+
       this._chart = null;
-  
+
       this.render();
     }
-  
+
     async render () {
       try {
         await getScriptPromisify('https://cdn.bootcdn.net/ajax/libs/echarts/5.0.0/echarts.min.js');
-  
+
         // Create or retrieve the chart container
         if (!this._chart) {
           this._chart = echarts.init(this._shadowRoot.querySelector('#chart'));
         }
-  
+
         const geoMapOption = {
           type: 'geo',
           map: 'USA',
@@ -58,14 +61,13 @@ var getScriptPromisify = (src) => {
             borderColor: '#ccc',
           },
         };
-  
+
         this._chart.setOption(geoMapOption);
       } catch (error) {
         console.error('An error occurred:', error);
       }
     }
   }
-  
+
   customElements.define('com-sap-sample-echarts-prepared', SamplePrepared);
-  
 })();

@@ -37,6 +37,8 @@ var getScriptPromisify = (src) => {
     }
 
     async render () {
+      this._shadowRoot.appendChild(prepared.content)
+
       await getScriptPromisify('https://cdn.bootcdn.net/ajax/libs/echarts/5.0.0/echarts.min.js')
 
       const chart = echarts.init(document.getElementById('chart'));
@@ -63,4 +65,3 @@ var getScriptPromisify = (src) => {
 
   customElements.define('com-sap-sample-echarts-prepared', SamplePrepared)
 })()
-

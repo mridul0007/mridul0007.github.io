@@ -1,9 +1,10 @@
-var getScriptPromisify = (src) => {
-  return new Promise(resolve => {
+const getScriptPromisify = (src) => {
+  return new Promise((resolve, reject) => {
     const script = document.createElement('script');
     script.src = src;
-    document.head.appendChild(script);
     script.onload = resolve;
+    script.onerror = reject; // Handle any loading errors
+    document.head.appendChild(script);
   });
 };
 
@@ -26,7 +27,7 @@ var getScriptPromisify = (src) => {
   `;
 
   class SamplePrepared extends HTMLElement {
-    constructor () {
+    constructor() {
       super();
 
       this._shadowRoot = this.attachShadow({ mode: 'open' });
@@ -34,10 +35,10 @@ var getScriptPromisify = (src) => {
 
       this._chart = null;
 
-      this.render();
+      this.renderAfterLibraryLoaded();
     }
 
-    async render () {
+    async renderAfterLibraryLoaded() {
       try {
         await getScriptPromisify('https://cdn.bootcdn.net/ajax/libs/echarts/5.0.0/echarts.min.js');
 

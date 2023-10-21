@@ -29,11 +29,11 @@ var getScriptPromisify = (src) => {
 
       this._props = {}
 
-      this.render()
+      // this.render()
     }
 
     onCustomWidgetResize (width, height) {
-      // this.render()
+      this.render()
     }
 
     async render () {

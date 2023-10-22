@@ -42,7 +42,7 @@ const getScriptPromisify = (src) => {
         var option;
 
         myChart.showLoading();
-        $.get('https://mridul0007.github.io/Echarts/German_State.json', function (SateJson) {
+        $.get('https://mridul0007.github.io/Echarts/German_State.json', function (StateJson) {
           myChart.hideLoading();
           echarts.registerMap('German', StateJson
           //  {

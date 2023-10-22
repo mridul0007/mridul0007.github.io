@@ -42,9 +42,9 @@ const getScriptPromisify = (src) => {
         var option;
 
         myChart.showLoading();
-        $.get('https://mridul0007.github.io/Echarts/Germany.json', function (usaJson) {
+        $.get('https://mridul0007.github.io/Echarts/German_State.json', function (SateJson) {
           myChart.hideLoading();
-          echarts.registerMap('USA', usaJson
+          echarts.registerMap('German', StateJson
           //  {
           //   Alaska: {
           //     // 把阿拉斯加移到美国主大陆左下方
@@ -66,10 +66,12 @@ const getScriptPromisify = (src) => {
           // }
           );
           var data = [
-            { ID_1: 1, value: 250 },
-            { ID_1: 2, value: 500 },
-            { ID_1: 3, value: 1500 },
-            { ID_1: 4, value: 2500 }
+            { name: "Baden-Württemberg", value: 250 },
+            { name: "Bayern", value: 500 },
+            { name: "Berlin", value: 1500 },
+            { name: "Brandenburg", value: 2500 },
+            { name: "Bremen", value: 2500 }
+            
           ];
           data.sort(function (a, b) {
             return a.value - b.value;
@@ -91,42 +93,42 @@ const getScriptPromisify = (src) => {
                 id: 'population',
                 type: 'map',
                 roam: true,
-                map: 'USA',
+                map: 'German',
                 animationDurationUpdate: 1000,
                 universalTransition: true,
                 data: data
               }
             ]
           };
-          // const barOption = {
-          //   xAxis: {
-          //     type: 'value'
-          //   },
-          //   yAxis: {
-          //     type: 'category',
-          //     axisLabel: {
-          //       rotate: 30
-          //     },
-          //     data: data.map(function (item) {
-          //       return item.ID_1;
-          //     })
-          //   },
-          //   animationDurationUpdate: 1000,
-          //   series: {
-          //     type: 'bar',
-          //     id: 'population',
-          //     data: data.map(function (item) {
-          //       return item.value;
-          //     }),
-          //     universalTransition: true
-          //   }
-          // };
+          const barOption = {
+            xAxis: {
+              type: 'value'
+            },
+            yAxis: {
+              type: 'category',
+              axisLabel: {
+                rotate: 30
+              },
+              data: data.map(function (item) {
+                return item.name;
+              })
+            },
+            animationDurationUpdate: 1000,
+            series: {
+              type: 'bar',
+              id: 'population',
+              data: data.map(function (item) {
+                return item.value;
+              }),
+              universalTransition: true
+            }
+          };
           let currentOption = mapOption;
           myChart.setOption(mapOption);
-          // setInterval(function () {
-          //   currentOption = currentOption === mapOption ? barOption : mapOption;
-          //   myChart.setOption(currentOption, true);
-          // }, 10000);
+          setInterval(function () {
+            currentOption = currentOption === mapOption ? barOption : mapOption;
+            myChart.setOption(currentOption, true);
+          }, 3000);
         });
 
         option && myChart.setOption(option);

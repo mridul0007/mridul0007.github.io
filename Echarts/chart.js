@@ -47,132 +47,132 @@ const getScriptPromisify = (src) => {
           this._chart = echarts.init(this._shadowRoot.querySelector('#chart'));
         }
 
-        const option = {
-          title : {
-              text : '2012 World GDP Top 8',
-              subtext : 'from baike （Billion $）',
-              x : 'center'
-          },
-          tooltip : {
-              trigger: 'item',
-              showDelay: 0,
-              transitionDuration: 0.2,
-              formatter : function (params) {
-                  var value = params.value + '';
-                  value = value.replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
-                  return params.seriesName + '<br/>' + value + ' Billion';
+        myChart.showLoading();
+        $.get('https://cdnjs.cloudflare.com/ajax/libs/echarts/5.0.0/map/json/USA.json', function (usaJson) {
+          myChart.hideLoading();
+          echarts.registerMap('USA', usaJson, {
+            Alaska: {
+              // 把阿拉斯加移到美国主大陆左下方
+              left: -131,
+              top: 25,
+              width: 15
+            },
+            Hawaii: {
+              left: -110,
+              top: 28,
+              width: 5
+            },
+            'Puerto Rico': {
+              // 波多黎各
+              left: -76,
+              top: 26,
+              width: 2
+            }
+          });
+          var data = [
+            { name: 'Alabama', value: 4822023 },
+            { name: 'Alaska', value: 731449 },
+            { name: 'Arizona', value: 6553255 },
+            { name: 'Arkansas', value: 2949131 },
+            { name: 'California', value: 38041430 },
+            { name: 'Colorado', value: 5187582 },
+            { name: 'Connecticut', value: 3590347 },
+            { name: 'Delaware', value: 917092 },
+            { name: 'District of Columbia', value: 632323 },
+            { name: 'Florida', value: 19317568 },
+            { name: 'Georgia', value: 9919945 },
+            { name: 'Hawaii', value: 1392313 },
+            { name: 'Idaho', value: 1595728 },
+            { name: 'Illinois', value: 12875255 },
+            { name: 'Indiana', value: 6537334 },
+            { name: 'Iowa', value: 3074186 },
+            { name: 'Kansas', value: 2885905 },
+            { name: 'Kentucky', value: 4380415 },
+            { name: 'Louisiana', value: 4601893 },
+            { name: 'Maine', value: 1329192 },
+            { name: 'Maryland', value: 5884563 },
+            { name: 'Massachusetts', value: 6646144 },
+            { name: 'Michigan', value: 9883360 },
+            { name: 'Minnesota', value: 5379139 },
+            { name: 'Mississippi', value: 2984926 },
+            { name: 'Missouri', value: 6021988 },
+            { name: 'Montana', value: 1005141 },
+            { name: 'Nebraska', value: 1855525 },
+            { name: 'Nevada', value: 2758931 },
+            { name: 'New Hampshire', value: 1320718 },
+            { name: 'New Jersey', value: 8864590 },
+            { name: 'New Mexico', value: 2085538 },
+            { name: 'New York', value: 19570261 },
+            { name: 'North Carolina', value: 9752073 },
+            { name: 'North Dakota', value: 699628 },
+            { name: 'Ohio', value: 11544225 },
+            
+            { name: 'South Dakota', value: 833354 },
+            { name: 'Tennessee', value: 6456243 },
+            { name: 'Texas', value: 26059203 },
+            { name: 'Utah', value: 2855287 },
+            { name: 'Puerto Rico', value: 3667084 }
+          ];
+          data.sort(function (a, b) {
+            return a.value - b.value;
+          });
+          const mapOption = {
+            visualMap: {
+              left: 'right',
+              min: 500000,
+              max: 38000000,
+              inRange: {
+                // prettier-ignore
+                color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+              },
+              text: ['High', 'Low'],
+              calculable: true
+            },
+            series: [
+              {
+                id: 'population',
+                type: 'map',
+                roam: true,
+                map: 'USA',
+                animationDurationUpdate: 1000,
+                universalTransition: true,
+                data: data
               }
-          },
-          toolbox: {
-              show : true,
-              x: 'right',
-              y: 'bottom',
-              feature : {
-                  mark : {show: true},
-                  dataView : {show: true, readOnly: false},
-                  restore : {show: true},
-                  saveAsImage : {show: true}
-              }
-          },
-          dataRange: {
-              orient: 'horizontal',
-              x : 'center',
-              y: 'center',
-              min: 2000,
-              max: 16000,
-              splitNumber: 0,            // 分割段数，默认为5
-              text:['16,000B','2,000B'],  
-              calculable : true,
-              itemWidth:40,
-              color: ['orangered','yellow','lightskyblue']
-          },
-          series : [
-              {
-                  name: 'Japan',
-                  type: 'map',
-                  mapType: 'world|Japan',
-                  mapLocation: {x:'5%', y:'10%',width:'22%',height:'35%'},
-                  itemStyle: itemStyle,
-                  data:[
-                      {name : 'Japan', value : 5963.9}
-                  ]
+            ]
+          };
+          const barOption = {
+            xAxis: {
+              type: 'value'
+            },
+            yAxis: {
+              type: 'category',
+              axisLabel: {
+                rotate: 30
               },
-              {
-                  name: 'China',
-                  type: 'map',
-                  mapType: 'world|Pakistan',
-                  mapLocation: {x:'30%', y:'10%',width:'22%',height:'35%'},
-                  itemStyle: itemStyle,
-                  itemStyle: itemStyle,
-                  data:[
-                      {name : 'China', value : 25}
-                  ]
-              },
-              {
-                  name: 'Japan',
-                  type: 'map',
-                  mapType: 'world|Japan',
-                  mapLocation: {x:'55%', y:'10%',width:'22%',height:'35%'},
-                  itemStyle: itemStyle,
-                  data:[
-                      {name : 'Japan', value : 5963.9}
-                  ]
-              },
-              {
-                  name: 'Germany',
-                  type: 'map',
-                  mapType: 'world|Germany',
-                  mapLocation: {x:'76%', y:'10%',width:'22%',height:'35%'},
-                  itemStyle: itemStyle,
-                  data:[
-                      {name : 'Germany', value : 3400.5}
-                  ]
-              },
-              {
-                  name: 'France',
-                  type: 'map',
-                  mapType: 'world|France',
-                  mapLocation: {x:'5%', y:'60%',width:'22%',height:'35%'},
-                  itemStyle: itemStyle,
-                  data:[
-                      {name : 'France', value : 2608.6}
-                  ]
-              },
-              {
-                  name: 'United Kingdom',
-                  type: 'map',
-                  mapType: 'world|United Kingdom',
-                  mapLocation: {x:'33%', y:'60%',width:'22%',height:'35%'},
-                  itemStyle: itemStyle,
-                  data:[
-                      {name : 'United Kingdom', value : 2440.5}
-                  ]
-              },
-              {
-                  name: 'Brazil',
-                  type: 'map',
-                  mapType: 'world|Brazil',
-                  mapLocation: {x:'55%', y:'60%',width:'22%',height:'35%'},
-                  itemStyle: itemStyle,
-                  data:[
-                      {name : 'Brazil', value : 2395.9}
-                  ]
-              },
-              {
-                  name: 'Russia',
-                  type: 'map',
-                  mapType: 'world|Russia',
-                  mapLocation: {x:'76%', y:'70%',width:'22%',height:'35%'},
-                  itemStyle: itemStyle,
-                  data:[
-                      {name : 'Russia', value : 2021.9}
-                  ]
-              }
-          ]
-      };
+              data: data.map(function (item) {
+                return item.name;
+              })
+            },
+            animationDurationUpdate: 1000,
+            series: {
+              type: 'bar',
+              id: 'population',
+              data: data.map(function (item) {
+                return item.value;
+              }),
+              universalTransition: true
+            }
+          };
+          let currentOption = mapOption;
+          myChart.setOption(mapOption);
+          setInterval(function () {
+            currentOption = currentOption === mapOption ? barOption : mapOption;
+            myChart.setOption(currentOption, true);
+          }, 2000);
+        });
                           
 
-        this._chart.setOption(option);
+        this._chart.setOption(mapOption);
       } catch (error) {
         console.error('An error occurred:', error);
       }

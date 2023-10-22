@@ -66,10 +66,10 @@ const getScriptPromisify = (src) => {
           // }
           );
           var data = [
-            { NAME_3_3: 'Oldenburg', value: 4822023 },
-            { NAME_3_3: 'Dortmund', value: 731449 },
-            { NAME_3: 'Schwäbisch', value: 6553255 },
-            { NAME_3: 'Zollernalbkreis', value: 2949131 }
+            { NAME_3: 'Oldenburg', value: 250 },
+            { NAME_3: 'Dortmund', value: 500 },
+            { NAME_3: 'Schwäbisch', value: 1500 },
+            { NAME_3: 'Zollernalbkreis', value: 2500 }
           ];
           data.sort(function (a, b) {
             return a.value - b.value;
@@ -77,8 +77,8 @@ const getScriptPromisify = (src) => {
           const mapOption = {
             visualMap: {
               left: 'right',
-              min: 500000,
-              max: 38000000,
+              min: 1,
+              max: 3000,
               inRange: {
                 // prettier-ignore
                 color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']

@@ -8,44 +8,38 @@ const getScriptPromisify = (src) => {
   });
 };
 
-(async function () {
-  const prepared = document.createElement('template');
+(function () {
+  const prepared = document.createElement('template')
   prepared.innerHTML = `
-    <style>
-      #root {
-        width: 100%;
-        height: 100%;
-      }
-      #chart { 
-        width: 100%;
-        height: 100%;
-      }
-    </style>
-    <div id="root">
-      <div id="chart"></div>
-    </div>
-  `;
-
+      <style>
+      </style>
+      <div id="root" style="width: 100%; height: 100%;">
+      </div>
+    `
   class SamplePrepared extends HTMLElement {
-    constructor() {
-      super();
+    constructor () {
+      super()
 
-      this._shadowRoot = this.attachShadow({ mode: 'open' });
-      this._shadowRoot.appendChild(prepared.content.cloneNode(true));
+      this._shadowRoot = this.attachShadow({ mode: 'open' })
+      this._shadowRoot.appendChild(prepared.content.cloneNode(true))
 
-      this._chart = null;
+      this._root = this._shadowRoot.getElementById('root')
 
-      this.renderAfterLibraryLoaded();
+      this._props = {}
+
+      this.render()
     }
 
-    async renderAfterLibraryLoaded() {
-      try {
-        await getScriptPromisify('https://cdn.bootcdn.net/ajax/libs/echarts/5.0.0/echarts.min.js');
+    onCustomWidgetResize (width, height) {
+      this.render()
+    }
 
-        // Create or retrieve the chart container
-        if (!this._chart) {
-          this._chart = echarts.init(this._shadowRoot.querySelector('#chart'));
-        }
+    async render () {
+      await getScriptPromisify('https://cdn.bootcdn.net/ajax/libs/echarts/5.0.0/echarts.min.js')
+
+      const myChart = echarts.init(this._root)
+
+        var option;
 
         myChart.showLoading();
         $.get('https://cdnjs.cloudflare.com/ajax/libs/echarts/5.0.0/map/json/USA.json', function (usaJson) {
@@ -106,7 +100,7 @@ const getScriptPromisify = (src) => {
             { name: 'North Carolina', value: 9752073 },
             { name: 'North Dakota', value: 699628 },
             { name: 'Ohio', value: 11544225 },
-            
+
             { name: 'South Dakota', value: 833354 },
             { name: 'Tennessee', value: 6456243 },
             { name: 'Texas', value: 26059203 },
@@ -170,14 +164,16 @@ const getScriptPromisify = (src) => {
             myChart.setOption(currentOption, true);
           }, 2000);
         });
-                          
 
-        this._chart.setOption(mapOption);
-      } catch (error) {
-        console.error('An error occurred:', error);
-      }
+        option && myChart.setOption(option);
+
+
+
+
+      
+      // chart.setOption(option)
     }
   }
 
-  customElements.define('com-sap-sample-echarts-prepared', SamplePrepared);
-})();
+  customElements.define('com-sap-sample-echarts-prepared', SamplePrepared)
+})()

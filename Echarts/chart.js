@@ -66,10 +66,10 @@ const getScriptPromisify = (src) => {
           // }
           );
           var data = [
-            { NAME_3: 'Oldenburg', value: 250 },
-            { NAME_3: 'Dortmund', value: 500 },
-            { NAME_3: 'Schwäbisch', value: 1500 },
-            { NAME_3: 'Zollernalbkreis', value: 2500 }
+            { NAME_2: 'Nordrhein-Westfalen', value: 250 },
+            { NAME_2: 'Baden-Württemberg', value: 500 },
+            { NAME_2: 'Bayern', value: 1500 },
+            { NAME_2: 'Sachsen-Anhalt', value: 2500 }
           ];
           data.sort(function (a, b) {
             return a.value - b.value;
@@ -98,35 +98,35 @@ const getScriptPromisify = (src) => {
               }
             ]
           };
-          const barOption = {
-            xAxis: {
-              type: 'value'
-            },
-            yAxis: {
-              type: 'category',
-              axisLabel: {
-                rotate: 30
-              },
-              data: data.map(function (item) {
-                return item.NAME_3;
-              })
-            },
-            animationDurationUpdate: 1000,
-            series: {
-              type: 'bar',
-              id: 'population',
-              data: data.map(function (item) {
-                return item.value;
-              }),
-              universalTransition: true
-            }
-          };
+          // const barOption = {
+          //   xAxis: {
+          //     type: 'value'
+          //   },
+          //   yAxis: {
+          //     type: 'category',
+          //     axisLabel: {
+          //       rotate: 30
+          //     },
+          //     data: data.map(function (item) {
+          //       return item.NAME_2;
+          //     })
+          //   },
+          //   animationDurationUpdate: 1000,
+          //   series: {
+          //     type: 'bar',
+          //     id: 'population',
+          //     data: data.map(function (item) {
+          //       return item.value;
+          //     }),
+          //     universalTransition: true
+          //   }
+          // };
           let currentOption = mapOption;
           myChart.setOption(mapOption);
-          setInterval(function () {
-            currentOption = currentOption === mapOption ? barOption : mapOption;
-            myChart.setOption(currentOption, true);
-          }, 10000);
+          // setInterval(function () {
+          //   currentOption = currentOption === mapOption ? barOption : mapOption;
+          //   myChart.setOption(currentOption, true);
+          // }, 10000);
         });
 
         option && myChart.setOption(option);

@@ -66,10 +66,10 @@ const getScriptPromisify = (src) => {
           // }
           );
           var data = [
-            { NAME_2: 'Nordrhein-Westfalen', value: 250 },
-            { NAME_2: 'Baden-Württemberg', value: 500 },
-            { NAME_2: 'Bayern', value: 1500 },
-            { NAME_2: 'Sachsen-Anhalt', value: 2500 }
+            { NAME_1: 'Nordrhein-Westfalen', value: 250 },
+            { NAME_1: 'Baden-Württemberg', value: 500 },
+            { NAME_1: 'Bayern', value: 1500 },
+            { NAME_1: 'Sachsen-Anhalt', value: 2500 }
           ];
           data.sort(function (a, b) {
             return a.value - b.value;
@@ -108,7 +108,7 @@ const getScriptPromisify = (src) => {
           //       rotate: 30
           //     },
           //     data: data.map(function (item) {
-          //       return item.NAME_2;
+          //       return item.NAME_1;
           //     })
           //   },
           //   animationDurationUpdate: 1000,

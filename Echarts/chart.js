@@ -162,7 +162,7 @@ const getScriptPromisify = (src) => {
           setInterval(function () {
             currentOption = currentOption === mapOption ? barOption : mapOption;
             myChart.setOption(currentOption, true);
-          }, 2000);
+          }, 10000);
         });
 
         option && myChart.setOption(option);

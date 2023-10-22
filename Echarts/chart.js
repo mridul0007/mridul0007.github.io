@@ -42,7 +42,7 @@ const getScriptPromisify = (src) => {
         var option;
 
         myChart.showLoading();
-        $.get('https://echarts.apache.org/examples/data/asset/geo/USA.json', function (usaJson) {
+        $.get('https://mridul0007.github.io/Echarts/USA.json', function (usaJson) {
           myChart.hideLoading();
           echarts.registerMap('USA', usaJson, {
             Alaska: {

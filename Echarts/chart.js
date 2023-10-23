@@ -131,7 +131,7 @@ const getScriptPromisify = (src) => {
             }
           };
           // let currentOption = mapOption;
-          // myChart.setOption(mapOption);
+         myChart.setOption(mapOption);
           // setInterval(function () {
           //   currentOption = currentOption === mapOption ? barOption : mapOption;
           //   myChart.setOption(currentOption, true);

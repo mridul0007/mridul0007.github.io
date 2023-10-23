@@ -42,11 +42,11 @@ const getScriptPromisify = (src) => {
         var option;
 
         var idArray = [];
-
+        console.log(data_inp);
         // Iterate over the array of objects and extract the IDs.
-        for (var object of data_inp) {
-          idArray.push(object.id);
-          console.log(object.id)
+        for (var i =0 ; i <data_inp.len() ; i++) {
+          idArray.push(object[i].id);
+          console.log(object[i].id);
 }
 
         myChart.showLoading();

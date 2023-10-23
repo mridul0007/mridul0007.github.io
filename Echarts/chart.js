@@ -44,7 +44,8 @@ const getScriptPromisify = (src) => {
         var idArray = [];
         console.log(data_inp);
         // Iterate over the array of objects and extract the IDs.
-        for (var i =0 ; i < data_inp.length; i++) {
+        for (var i = 0 ; i < data_inp.length; i++) {
+          console.log("entered");
           idArray.push(data_inp[i].id);
           console.log(data_inp[i].id);
 }

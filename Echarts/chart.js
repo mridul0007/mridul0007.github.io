@@ -42,7 +42,7 @@ const getScriptPromisify = (src) => {
         var option;
 
         myChart.showLoading();
-        $.get('https://mridul0007.github.io/Echarts/German_State.json', function (StateJson) {
+        $.get('https://mridul0007.github.io/Echarts/Germany.json', function (StateJson) {
           myChart.hideLoading();
           echarts.registerMap('German', StateJson
           //  {
@@ -66,11 +66,11 @@ const getScriptPromisify = (src) => {
           // }
           );
           var data = [
-            { name: "Baden-Württemberg", value: 250 },
-            { name: "Bayern", value: 500 },
-            { name: "Berlin", value: 1500 },
-            { name: "Brandenburg", value: 2500 },
-            { name: "Bremen", value: 2500 }
+            { NAME_3: "Dortmund Städte", value: 250 },
+            { NAME_3: "Wittmund", value: 500 },
+            { NAME_3: "Osnabrück", value: 1500 },
+            { NAME_3: "Ostalbkreis", value: 2500 },
+            { NAME_3: "Calw", value: 2500 }
             
           ];
           data.sort(function (a, b) {
@@ -110,7 +110,7 @@ const getScriptPromisify = (src) => {
                 rotate: 30
               },
               data: data.map(function (item) {
-                return item.name;
+                return item.NAME_3;
               })
             },
             animationDurationUpdate: 1000,

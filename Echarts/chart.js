@@ -78,27 +78,7 @@ const getScriptPromisify = (src) => {
         console.log(counts); // { 1: 7, 2: 4 }
         $.get('https://mridul0007.github.io/Echarts/German_State.json', function (StateJson) {
           myChart.hideLoading();
-          echarts.registerMap('German', StateJson
-          //  {
-          //   Alaska: {
-          //     // 把阿拉斯加移到美国主大陆左下方
-          //     left: -131,
-          //     top: 25,
-          //     width: 15
-          //   },
-          //   Hawaii: {
-          //     left: -110,
-          //     top: 28,
-          //     width: 5
-          //   },
-          //   'Puerto Rico': {
-          //     // 波多黎各
-          //     left: -76,
-          //     top: 26,
-          //     width: 2
-          //   }
-          // }
-          );
+          echarts.registerMap('German', StateJson);
           var data = formattedArray;
           data.sort(function (a, b) {
             return a.value - b.value;
@@ -150,12 +130,22 @@ const getScriptPromisify = (src) => {
               universalTransition: true
             }
           };
-          let currentOption = mapOption;
-          myChart.setOption(mapOption);
-          setInterval(function () {
-            currentOption = currentOption === mapOption ? barOption : mapOption;
-            myChart.setOption(currentOption, true);
-          }, 3000);
+          // let currentOption = mapOption;
+          // myChart.setOption(mapOption);
+          // setInterval(function () {
+          //   currentOption = currentOption === mapOption ? barOption : mapOption;
+          //   myChart.setOption(currentOption, true);
+          // }, 3000);
+          myChart.on('click', function (params) {
+            if (params.seriesType === 'map') {
+              // Toggle between map and bar chart when a state is clicked.
+              if (myChart.getOption() === mapOption) {
+                myChart.setOption(barOption);
+              } else {
+                myChart.setOption(mapOption);
+              }
+            }
+          });
         });
 
         option && myChart.setOption(option);

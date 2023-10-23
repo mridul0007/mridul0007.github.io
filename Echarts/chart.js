@@ -84,6 +84,11 @@ const getScriptPromisify = (src) => {
             return a.value - b.value;
           });
           const mapOption = {
+            tooltip: {
+              show: true,
+              trigger: "axis",
+              triggerOn: "click",
+            },
             visualMap: {
               left: 'right',
               min: 1,
@@ -136,6 +141,7 @@ const getScriptPromisify = (src) => {
           //   currentOption = currentOption === mapOption ? barOption : mapOption;
           //   myChart.setOption(currentOption, true);
           // }, 3000);
+          myChart.on("showTip", console.log);
           myChart.on('click', function (params) {
             if (params.seriesType === 'map') {
               // Toggle between map and bar chart when a state is clicked.

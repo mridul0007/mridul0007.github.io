@@ -85,9 +85,7 @@ const getScriptPromisify = (src) => {
           });
           const mapOption = {
 
-            select: {
-
-            }
+            
             tooltip: {
               show: true,
               triggerOn: "click",
@@ -143,7 +141,7 @@ const getScriptPromisify = (src) => {
           setInterval(function () {
             currentOption = currentOption === mapOption ? barOption : mapOption;
             myChart.setOption(currentOption, true);
-          }, 10000);
+          }, 13000);
           // myChart.on("showTip", console.log);
           // myChart.on('click', function (params) {
           //   if (params.seriesType === 'map') {

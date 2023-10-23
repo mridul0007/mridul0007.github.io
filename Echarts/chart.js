@@ -84,9 +84,12 @@ const getScriptPromisify = (src) => {
             return a.value - b.value;
           });
           const mapOption = {
+
+            select: {
+
+            }
             tooltip: {
               show: true,
-              trigger: "axis",
               triggerOn: "click",
             },
             visualMap: {
@@ -137,21 +140,21 @@ const getScriptPromisify = (src) => {
           };
           // let currentOption = mapOption;
          myChart.setOption(mapOption);
-          // setInterval(function () {
-          //   currentOption = currentOption === mapOption ? barOption : mapOption;
-          //   myChart.setOption(currentOption, true);
-          // }, 3000);
-          myChart.on("showTip", console.log);
-          myChart.on('click', function (params) {
-            if (params.seriesType === 'map') {
-              // Toggle between map and bar chart when a state is clicked.
-              if (myChart.getOption() === mapOption) {
-                myChart.setOption(barOption);
-              } else {
-                myChart.setOption(mapOption);
-              }
-            }
-          });
+          setInterval(function () {
+            currentOption = currentOption === mapOption ? barOption : mapOption;
+            myChart.setOption(currentOption, true);
+          }, 10000);
+          // myChart.on("showTip", console.log);
+          // myChart.on('click', function (params) {
+          //   if (params.seriesType === 'map') {
+          //     // Toggle between map and bar chart when a state is clicked.
+          //     if (myChart.getOption() === mapOption) {
+          //       myChart.setOption(barOption);
+          //     } else {
+          //       myChart.setOption(mapOption);
+          //     }
+          //   }
+          // });
         });
 
         option && myChart.setOption(option);

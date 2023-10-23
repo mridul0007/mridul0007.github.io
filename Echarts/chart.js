@@ -42,7 +42,7 @@ const getScriptPromisify = (src) => {
         var option;
 
         myChart.showLoading();
-        function countElements(data_inp) {
+        function countElements(array) {
           // Create an object to store the counts of each element in the array.
           var counts = {};
         

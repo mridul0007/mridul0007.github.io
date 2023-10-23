@@ -34,7 +34,7 @@ const getScriptPromisify = (src) => {
       this.render()
     }
 
-    async render () {
+    async render ( data_inp) {
       await getScriptPromisify('https://cdn.bootcdn.net/ajax/libs/echarts/5.0.0/echarts.min.js')
 
       const myChart = echarts.init(this._root)
@@ -42,7 +42,31 @@ const getScriptPromisify = (src) => {
         var option;
 
         myChart.showLoading();
-        $.get('https://mridul0007.github.io/Echarts/Germany.json', function (StateJson) {
+        function countElements(array) {
+          // Create an object to store the counts of each element in the array.
+          var counts = {};
+        
+          // Iterate over the array and increment the count of the current element in the object.
+          for (var element of array) {
+            counts[element] = counts[element] ? counts[element] + 1 : 1;
+          }
+        
+          // Return the object containing the counts of each element in the array.
+          return counts;
+        }
+
+        var counts = countElements(array);
+
+        const formattedArray = [];
+        for (const key in counts) {
+          formattedArray.push({ name: key, value: counts[key] });
+        }
+        
+        // Example usage:
+        
+        
+        console.log(counts); // { 1: 7, 2: 4 }
+        $.get('https://mridul0007.github.io/Echarts/German_State.json', function (StateJson) {
           myChart.hideLoading();
           echarts.registerMap('German', StateJson
           //  {
@@ -65,14 +89,7 @@ const getScriptPromisify = (src) => {
           //   }
           // }
           );
-          var data = [
-            { NAME_3: "Dortmund Städte", value: 250 },
-            { NAME_3: "Wittmund", value: 500 },
-            { NAME_3: "Osnabrück", value: 1500 },
-            { NAME_3: "Ostalbkreis", value: 2500 },
-            { NAME_3: "Calw", value: 2500 }
-            
-          ];
+          var data = formattedArray;
           data.sort(function (a, b) {
             return a.value - b.value;
           });
@@ -110,7 +127,7 @@ const getScriptPromisify = (src) => {
                 rotate: 30
               },
               data: data.map(function (item) {
-                return item.NAME_3;
+                return item.name;
               })
             },
             animationDurationUpdate: 1000,

@@ -34,7 +34,7 @@ const getScriptPromisify = (src) => {
       this.render()
     }
 
-    async render ( data_inp) {
+    async render (data_inp) {
       await getScriptPromisify('https://cdn.bootcdn.net/ajax/libs/echarts/5.0.0/echarts.min.js')
 
       const myChart = echarts.init(this._root)
@@ -44,9 +44,9 @@ const getScriptPromisify = (src) => {
         var idArray = [];
         console.log(data_inp);
         // Iterate over the array of objects and extract the IDs.
-        for (var i =0 ; i <data_inp.length ; i++) {
-          idArray.push(object[i].id);
-          console.log(object[i].id);
+        for (var i =0 ; i < data_inp.length; i++) {
+          idArray.push(data_inp[i].id);
+          console.log(data_inp[i].id);
 }
 
         myChart.showLoading();

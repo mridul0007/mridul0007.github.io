@@ -41,10 +41,10 @@ const getScriptPromisify = (src) => {
 
         var option;
 
-        const idArray = [];
+        var idArray = [];
 
         // Iterate over the array of objects and extract the IDs.
-        for (const object of data_inp) {
+        for (var object of data_inp) {
           idArray.push(object.id);
           console.log(object.id)
 }
@@ -64,6 +64,7 @@ const getScriptPromisify = (src) => {
         }
 
         var counts = countElements(idArray);
+        console.log(counts);
 
         const formattedArray = [];
         for (const key in counts) {

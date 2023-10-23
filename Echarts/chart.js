@@ -41,6 +41,14 @@ const getScriptPromisify = (src) => {
 
         var option;
 
+        const idArray = [];
+
+        // Iterate over the array of objects and extract the IDs.
+        for (const object of data_inp) {
+          idArray.push(object.id);
+          console.log(object.id)
+}
+
         myChart.showLoading();
         function countElements(array) {
           // Create an object to store the counts of each element in the array.
@@ -55,7 +63,7 @@ const getScriptPromisify = (src) => {
           return counts;
         }
 
-        var counts = countElements(data_inp);
+        var counts = countElements(idArray);
 
         const formattedArray = [];
         for (const key in counts) {

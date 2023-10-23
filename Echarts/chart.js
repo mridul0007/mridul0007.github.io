@@ -46,8 +46,8 @@ const getScriptPromisify = (src) => {
         // Iterate over the array of objects and extract the IDs.
         for (var i = 0 ; i < data_inp.length; i++) {
           console.log("entered");
-          idArray.push(data_inp[i].id);
-          console.log(data_inp[i].id);
+          idArray.push(data_inp[i].LOCATION_STATE);
+          console.log(data_inp[i].LOCATION_STATE);
 }
 
         myChart.showLoading();

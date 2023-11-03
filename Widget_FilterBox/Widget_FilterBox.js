@@ -172,7 +172,6 @@
         }
         </style>
         <div class="container">
-        <button id="search_button">Seach</button>
         <div class="child">
             <input type="text" id="filter_input" list="description_list">
             <datalist id="description_list">
@@ -199,7 +198,7 @@
             let shadowRoot = this.attachShadow({ mode: 'open' });
             shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-            const searchButton = shadowRoot.getElementById('search_button');
+            // const searchButton = shadowRoot.getElementById('search_button');
             const filterInput = shadowRoot.getElementById('filter_input');
             var descriptionList = shadowRoot.getElementById('description_list');
             const filterButton = shadowRoot.getElementById('filter_button');
@@ -226,51 +225,6 @@
 
             })
 
-            // Add a click event listener to the "filter_button"
-            searchButton.addEventListener('click', async () => {
-                loadingOverlad.style.display = "block";
-                const childDiv = shadowRoot.querySelector('.child');
-                
-                const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
-                var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
-                console.log(ds2);
-
-                var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
-                var dimensions_feed =  await this.dataBindings.getDataBinding().getDimensions("dimensions");
-                var filteredDimensions = dimensions.filter((dimension) => {
-                    return dimensions_feed.includes(dimension.id);
-                });
-
-                var temp;
-                var members;
-                for (var i = 0; i < filteredDimensions.length; i++) {
-                    members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
-                    for (var j = 0; j < members.length; j++) {
-                        temp = filteredDimensions[i].id + ":" + members[j].id;
-                        this.ids.push(temp);
-                        temp = filteredDimensions[i].description + ":" + members[j].description;
-                        this.desc.push(temp);
-                    }
-                }
-
-                var descriptionList = this.shadowRoot.getElementById('description_list');
-
-                // Clear the existing options in the datalist
-                descriptionList.innerHTML = '';
-
-                // Add all descriptions to the datalist
-                this.desc.forEach((description) => {
-                    const option = document.createElement('option');
-                    option.value = description;
-                    descriptionList.appendChild(option);
-                });
-                loadingOverlad.style.display = "none";
-                if (childDiv.style.display === 'none' || childDiv.style.display === '') {
-                    childDiv.style.display = 'flex';
-                } else {
-                    childDiv.style.display = 'none';
-                }
-            });
             
 
             // Add an input event listener to the filter input

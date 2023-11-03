@@ -252,7 +252,7 @@
                         this.desc.push(temp);
                     }
                 }
-
+                var descriptionList = this.shadowRoot.getElementById('description_list');
                 // Clear the existing options in the datalist
                 descriptionList.innerHTML = '';
 
@@ -269,7 +269,7 @@
                     childDiv.style.display = 'none';
                 }
             });
-            var descriptionList = this.shadowRoot.getElementById('description_list');
+            
 
             // Add an input event listener to the filter input
             filterInput.addEventListener('input', () => {

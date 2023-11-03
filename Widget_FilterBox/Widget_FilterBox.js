@@ -201,7 +201,7 @@
 
             const searchButton = shadowRoot.getElementById('search_button');
             const filterInput = shadowRoot.getElementById('filter_input');
-            const descriptionList = shadowRoot.getElementById('description_list');
+            var descriptionList = shadowRoot.getElementById('description_list');
             const filterButton = shadowRoot.getElementById('filter_button');
             var loadingOverlad = shadowRoot.getElementById('loading_overlay');
 
@@ -269,6 +269,7 @@
                     childDiv.style.display = 'none';
                 }
             });
+            var descriptionList = this.shadowRoot.getElementById('description_list');
 
             // Add an input event listener to the filter input
             filterInput.addEventListener('input', () => {

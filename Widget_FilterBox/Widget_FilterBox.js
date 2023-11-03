@@ -323,9 +323,9 @@
         }
 
         async start_Binding(){
-            var loadingOverlad = shadowRoot.getElementById('loading_overlay');
+            var loadingOverlad = this.shadowRoot.getElementById('loading_overlay');
             loadingOverlad.style.display = "block";
-                const childDiv = shadowRoot.querySelector('.child');
+                const childDiv = this.shadowRoot.querySelector('.child');
                 
                 const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
                 var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');

@@ -87,8 +87,17 @@ const getScriptPromisify = (src) => {
 
             
             tooltip: {
-              show: true,
-              triggerOn: "click",
+              triggerOn: 'click',
+              formatter: function (params) {
+                // Get the data for the clicked region.
+                const data = params.data;
+          
+                // Format the data.
+                const formattedData = `${data.name}: ${data.value}`;
+          
+                // Return the formatted data.
+                return formattedData;
+              }
             },
             visualMap: {
               left: 'right',
@@ -153,6 +162,14 @@ const getScriptPromisify = (src) => {
           //     }
           //   }
           // });
+        });
+
+        myChart.on('click', function (params) {
+          // Get the name of the clicked region.
+          const regionName = params.name;
+        
+          // Do something with the region name, such as displaying it in an alert box.
+          alert(`The clicked region is: ${regionName}`);
         });
 
         option && myChart.setOption(option);

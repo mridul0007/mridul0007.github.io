@@ -254,6 +254,7 @@
                 }
                 var descriptionList = this.shadowRoot.getElementById('description_list');
                 
+
                 // Clear the existing options in the datalist
                 descriptionList.innerHTML = '';
 

@@ -323,6 +323,7 @@
         }
 
         async start_Binding(){
+            var loadingOverlad = shadowRoot.getElementById('loading_overlay');
             loadingOverlad.style.display = "block";
                 const childDiv = shadowRoot.querySelector('.child');
                 

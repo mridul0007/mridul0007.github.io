@@ -7,7 +7,7 @@
 	"vendor": "",
 	"license": "",
 	"id": "Widget_FilterBox",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -76,6 +76,9 @@
 			"description": "return dimension ID"
 			
 			
+		},
+		"start_Binding" : {
+			"description" : "initiate binding"
 		}
 		
 
@@ -83,6 +86,9 @@
 	"events": {
 		"onFilterSelect": {
 			"description": "Called when widget has a value change in filter"
+		},
+		"onInit" : {
+			"description" : "Inititalization of data"
 		}
 	}
 	

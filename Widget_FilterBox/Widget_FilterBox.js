@@ -51,7 +51,6 @@
             <datalist id="description_list">
                 <!-- Descriptions will be added here dynamically -->
             </datalist>
-            <button id="filter_button">Filter</button>
         </div>
         </div>
         <div id="loading_overlay">
@@ -75,29 +74,6 @@
             // const searchButton = shadowRoot.getElementById('search_button');
             const filterInput = shadowRoot.getElementById('filter_input');
             var descriptionList = shadowRoot.getElementById('description_list');
-            const filterButton = shadowRoot.getElementById('filter_button');
-           
-
-
-            filterButton.addEventListener('click', async () => {
-                const filterInput = shadowRoot.getElementById('filter_input');
-                const index = this.desc.findIndex((element) => element === filterInput.value);
-
-                    if (index !== -1) {
-                        var temp = this.ids[index];
-                        const parts = temp.split(':');
-                        this.p_dimension_id = parts[0]
-                        this.p_member_id = parts[1]
-                        this.dispatchEvent(new CustomEvent("onFilterSelect"));
-                    } else {
-                    console.log(`The value ${valueToFind} is not found in the array.`);
-                    
-                    }
-                console.log(filterInput.value);
-                console.log(temp);
-
-
-            })
 
             
 
@@ -119,18 +95,10 @@
                     option.value = filteredDescription;
                     descriptionList.appendChild(option);
                 });
-
-                descriptionList.addEventListener('change', (event) => {
-                    const selectedValue = event.target.value;
-                    filterInput.value = selectedValue; // Set the input value to the selected option
-                    descriptionList.innerHTML = ''; // Close the dropdown after selecting
-                    this.fireChanged(selectedValue); // Trigger your custom event or function here for the selected value
-                });
-                
             });
 
             filterInput.addEventListener('change', () => {
-                descriptionList.innerHTML = ''; // Close the dropdown after selecting
+                // descriptionList.innerHTML = ''; // Close the dropdown after selecting
                 const filterInput = shadowRoot.getElementById('filter_input');
                 const index = this.desc.findIndex((element) => element === filterInput.value);
 

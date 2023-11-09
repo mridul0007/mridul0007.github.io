@@ -130,10 +130,25 @@
             });
 
             filterInput.addEventListener('change', () => {
-                const selectedValue = event.target.value;
-                    filterInput.value = selectedValue; // Set the input value to the selected option
-                    descriptionList.innerHTML = ''; // Close the dropdown after selecting
-                    this.fireChanged(selectedValue); 
+                const selectedValue = filterInput.value
+                    // Set the input value to the selected option
+                descriptionList.innerHTML = ''; // Close the dropdown after selecting
+                this.fireChanged(selectedValue); 
+                const filterInput = shadowRoot.getElementById('filter_input');
+                const index = this.desc.findIndex((element) => element === filterInput.value);
+
+                    if (index !== -1) {
+                        var temp = this.ids[index];
+                        const parts = temp.split(':');
+                        this.p_dimension_id = parts[0]
+                        this.p_member_id = parts[1]
+                        this.dispatchEvent(new CustomEvent("onFilterSelect"));
+                    } else {
+                    console.log(`The value ${valueToFind} is not found in the array.`);
+                    
+                    }
+                console.log(filterInput.value);
+                console.log(temp);
 
             });
 

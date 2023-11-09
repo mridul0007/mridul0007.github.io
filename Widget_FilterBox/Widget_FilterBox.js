@@ -130,8 +130,6 @@
             });
 
             filterInput.addEventListener('change', () => {
-                const selectedValue = filterInput.value
-                    // Set the input value to the selected option
                 descriptionList.innerHTML = ''; // Close the dropdown after selecting
                 this.fireChanged(selectedValue); 
                 const filterInput = shadowRoot.getElementById('filter_input');

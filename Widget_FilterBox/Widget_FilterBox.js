@@ -131,7 +131,6 @@
 
             filterInput.addEventListener('change', () => {
                 descriptionList.innerHTML = ''; // Close the dropdown after selecting
-                this.fireChanged(selectedValue); 
                 const filterInput = shadowRoot.getElementById('filter_input');
                 const index = this.desc.findIndex((element) => element === filterInput.value);
 

@@ -128,6 +128,18 @@
                 });
                 
             });
+
+            filterInput.addEventListener('change', () => {
+                const selectedValue = event.target.value;
+                    filterInput.value = selectedValue; // Set the input value to the selected option
+                    descriptionList.innerHTML = ''; // Close the dropdown after selecting
+                    this.fireChanged(selectedValue); 
+
+            });
+
+
+
+
         }
 
 

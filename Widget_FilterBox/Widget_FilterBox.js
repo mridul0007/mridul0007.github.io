@@ -68,16 +68,21 @@
         }
 
        async init() {
-            var loadingOverlad = this.shadowRoot.getElementById('loading_overlay');
+        
+            let shadowRoot = this.attachShadow({ mode: 'open' });
+            shadowRoot.appendChild(tmpl.content.cloneNode(true));
+
+
+            var loadingOverlad = shadowRoot.getElementById('loading_overlay');
             loadingOverlad.style.display = "block";
-                const childDiv = this.shadowRoot.querySelector('.child');
+                const childDiv = shadowRoot.querySelector('.child');
                 
-                const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
-                var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
+                const dataBinding = dataBindings.getDataBinding('exportDataSource');
+                var ds2 = await dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
                 console.log(ds2);
 
-                var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
-                var dimensions_feed =  await this.dataBindings.getDataBinding().getDimensions("dimensions");
+                var dimensions =  await dataBindings.getDataBinding().getDataSource().getDimensions();
+                var dimensions_feed =  await dataBindings.getDataBinding().getDimensions("dimensions");
                 var filteredDimensions = dimensions.filter((dimension) => {
                     return dimensions_feed.includes(dimension.id);
                 });
@@ -85,7 +90,7 @@
                 var temp;
                 var members;
                 for (var i = 0; i < filteredDimensions.length; i++) {
-                    members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
+                    members =  await dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
                     for (var j = 0; j < members.length; j++) {
                         temp = filteredDimensions[i].id + ":" + members[j].id;
                         this.ids.push(temp);
@@ -94,7 +99,7 @@
                     }
                 }
 
-                var descriptionList = this.shadowRoot.getElementById('description_list');
+                var descriptionList = shadowRoot.getElementById('description_list');
                 // Clear the existing options in the datalist
                 descriptionList.innerHTML = '';
 
@@ -117,8 +122,6 @@
 
 
 
-            let shadowRoot = this.attachShadow({ mode: 'open' });
-            shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
             // const searchButton = shadowRoot.getElementById('search_button');
             const filterInput = shadowRoot.getElementById('filter_input');

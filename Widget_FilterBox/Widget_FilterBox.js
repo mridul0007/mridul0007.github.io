@@ -147,46 +147,41 @@
         async start_Binding(){
             var loadingOverlad = this.shadowRoot.getElementById('loading_overlay');
             loadingOverlad.style.display = "block";
-                const childDiv = this.shadowRoot.querySelector('.child');
-                
-                const dataBinding = this.dataBindings.getDataBinding('exportDataSource');
-                var ds2 = await this.dataBindings.getDataBinding().getDataSource().getMembers('MDBELNR');
-                console.log(ds2);
+            const childDiv = this.shadowRoot.querySelector('.child');
+            var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
+            var dimensions_feed =  await this.dataBindings.getDataBinding().getDimensions("dimensions");
+            var filteredDimensions = dimensions.filter((dimension) => {
+                return dimensions_feed.includes(dimension.id);
+            });
 
-                var dimensions =  await this.dataBindings.getDataBinding().getDataSource().getDimensions();
-                var dimensions_feed =  await this.dataBindings.getDataBinding().getDimensions("dimensions");
-                var filteredDimensions = dimensions.filter((dimension) => {
-                    return dimensions_feed.includes(dimension.id);
-                });
-
-                var temp;
-                var members;
-                for (var i = 0; i < filteredDimensions.length; i++) {
-                    members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
-                    for (var j = 0; j < members.length; j++) {
-                        temp = filteredDimensions[i].id + ":" + members[j].id;
-                        this.ids.push(temp);
-                        temp = filteredDimensions[i].description + ":" + members[j].description;
-                        this.desc.push(temp);
-                    }
+            var temp;
+            var members;
+            for (var i = 0; i < filteredDimensions.length; i++) {
+                members =  await this.dataBindings.getDataBinding().getDataSource().getMembers(filteredDimensions[i], {limit: 1000000});
+                for (var j = 0; j < members.length; j++) {
+                    temp = filteredDimensions[i].id + ":" + members[j].id;
+                    this.ids.push(temp);
+                    temp = filteredDimensions[i].description + ":" + members[j].description;
+                    this.desc.push(temp);
                 }
+            }
 
-                var descriptionList = this.shadowRoot.getElementById('description_list');
-                // Clear the existing options in the datalist
-                descriptionList.innerHTML = '';
+            var descriptionList = this.shadowRoot.getElementById('description_list');
+            // Clear the existing options in the datalist
+            descriptionList.innerHTML = '';
 
-                // Add all descriptions to the datalist
-                this.desc.forEach((description) => {
-                    const option = document.createElement('option');
-                    option.value = description;
-                    descriptionList.appendChild(option);
-                });
-                loadingOverlad.style.display = "none";
-                if (childDiv.style.display === 'none' || childDiv.style.display === '') {
-                    childDiv.style.display = 'flex';
-                } else {
-                    childDiv.style.display = 'none';
-                }
+            // Add all descriptions to the datalist
+            this.desc.forEach((description) => {
+                const option = document.createElement('option');
+                option.value = description;
+                descriptionList.appendChild(option);
+            });
+            loadingOverlad.style.display = "none";
+            if (childDiv.style.display === 'none' || childDiv.style.display === '') {
+                childDiv.style.display = 'flex';
+            } else {
+                childDiv.style.display = 'none';
+            }
 
         }
     }   

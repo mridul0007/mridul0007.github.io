@@ -6,13 +6,13 @@
 	"vendor": "Mridul Koshy",
 	"license": "",
 	"id": "GoogleMaps",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"icon": "",
 	"webcomponents": [
 		{
 			"kind": "main",
 			"tag": "custom-button",
-			"url": "https://mridul0007.github.io/GoogleMaps/GoogleMaps.js",
+			"url": "https://mridul0007.github.io/GoogleMaps/GoogleMaps.JS",
 			"integrity": ""	,
 			"ignoreIntegrity": true
 			

@@ -51,6 +51,16 @@
         marker.addListener('click', () => {
           console.log('Marker clicked!');
         });
+
+        // Add resize event listener to update map dimensions
+        window.addEventListener('resize', () => {
+            const width = this.shadowRoot.host.offsetWidth;
+            const height = this.shadowRoot.host.offsetHeight;
+            mapContainer.style.width = width + 'px';
+            mapContainer.style.height = height + 'px';
+            google.maps.event.trigger(map, 'resize');
+        });
+
       }
   
       fireChanged() {

@@ -11,7 +11,7 @@
   
       init() {
         // Initialize Google Maps API
-        const googleMapsAPIKey = 'AIzaSyBvDuhVqv5ahUahnypfBXm7xhLPraRwGww'; // Replace with your API key
+        const googleMapsAPIKey = process.env.SECRET_API_KEY;
         const script = document.createElement('script');
         script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsAPIKey}`;
         script.onload = () => {

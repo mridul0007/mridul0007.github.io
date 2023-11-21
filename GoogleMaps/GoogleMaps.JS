@@ -1,73 +1,59 @@
 (function () {
     let tmpl = document.createElement('template');
-    tmpl.innerHTML =
-      `<button type="button" id="myBtn">Helper Button</button>`;
-  
+    tmpl.innerHTML = `
+        <style>
+            #map-container {
+                height: 400px; /* Adjust the height as needed */
+                width: 100%; /* Adjust the width as needed */
+            }
+        </style>
+        <button type="button" id="myBtn">Helper Button</button>
+        <div id="map-container"></div>
+    `;
+
     class GoogleMaps extends HTMLElement {
-      constructor() {
-        super();
-        this.init();
-      }
-  
-      init() {
-        // Initialize Google Maps API
-        const googleMapsAPIKey = process.env.SECRET_API_KEY;
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsAPIKey}`;
-        script.onload = () => {
-          this.createGoogleMap();
-        };
-        document.body.appendChild(script);
-  
-        // Set up event listener for the button
-        let shadowRoot = this.attachShadow({ mode: 'open' });
-        shadowRoot.appendChild(tmpl.content.cloneNode(true));
-        this.addEventListener('click', event => {
-          var event = new Event('onClick');
-          this.fireChanged();
-          this.dispatchEvent(event);
-        });
-      }
-  
-      createGoogleMap() {
-        // Create a Google Maps instance and add it to the shadow DOM
-        const mapContainer = document.createElement('div');
-        mapContainer.style.width = '400px';
-        mapContainer.style.height = '300px';
-        const mapOptions = {
-          zoom: 8,
-          center: { lat: 37.7749, lng: -122.4194 },
-        };
-        const map = new google.maps.Map(mapContainer, mapOptions);
-        this.shadowRoot.appendChild(mapContainer);
-  
-        // Add a marker to the map
-        const marker = new google.maps.Marker({
-          position: { lat: 37.7749, lng: -122.4194 },
-          map: map,
-        });
-  
-        // Add event listener for marker clicks
-        marker.addListener('click', () => {
-          console.log('Marker clicked!');
-        });
+        constructor() {
+            super();
+            this.init();
+        }
 
-        // Add resize event listener to update map dimensions
-        window.addEventListener('resize', () => {
-            const width = this.shadowRoot.host.offsetWidth;
-            const height = this.shadowRoot.host.offsetHeight;
-            mapContainer.style.width = width + 'px';
-            mapContainer.style.height = height + 'px';
-            google.maps.event.trigger(map, 'resize');
-        });
+        init() {
+            this.attachShadow({ mode: 'open' });
+            this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
+        }
 
-      }
-  
-      fireChanged() {
-        console.log('OnClick Triggered');
-      }
+        set_api_key(api_key) {
+            
+            // Load the Google Maps JavaScript API with the provided key
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${api_key}&callback=initMap`;
+            script.async = true;
+            script.defer = true;
+            script.onerror = () => console.error('Error loading Google Maps API');
+
+            // Attach the script to the document
+            document.head.appendChild(script);
+
+            // Define the callback function (initMap) that will be called when the API is loaded
+            window.initMap = () => {
+                this.renderMap();
+            };
+        }
+
+        renderMap() {
+            // Get the map container element
+            const mapContainer = this.shadowRoot.querySelector('#map-container');
+
+            // Create a new map centered at a specific location
+            const map = new google.maps.Map(mapContainer, {
+                center: { lat: 0, lng: 0 }, // Set your desired initial coordinates
+                zoom: 8 // Set the initial zoom level
+            });
+
+            // You can customize the map further as needed
+            // For example, add markers, shapes, etc.
+        }
     }
-  
-    customElements.define('custom-button', GoogleMaps);
-  })();
-  
+
+    customElements.define('google-maps', GoogleMaps);
+})();

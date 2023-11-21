@@ -19,23 +19,25 @@
 		}		
 	],
 	"properties": {
-		"width": {
-			"type": "integer",
-			"default": 192
-		},
-		"height": {
-			"type": "integer",
-			"default": 32
+		"api_key": {
+			"type": "string"
 		}
 	},
 	"methods": {
-		"clear": {
-			"description": "Clear the resultset"
+		"set_api_key": {
+			"description": "set api key",
+            "parameters": [
+				{
+					"name": "api_key",
+					"type": "string",
+					"description": "set API key"
+				}
+			]
 		}
 	},
 	"events": {
-		"onClick": {
-			"description": "Called when the user clicks the button."
+		"onPLM_query": {
+			"description": "query actions."
 		}
 	}
 }

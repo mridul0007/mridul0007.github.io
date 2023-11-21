@@ -40,7 +40,54 @@
             };
         }
 
-        renderMap() {
+        const cityData = [
+            {
+              name: "Berlin",
+              lat: 52.5200,
+              lng: 13.4051,
+              additionalMarkers: [
+                { name: "Brandenburg Gate", lat: 52.5164, lng: 13.3777 },
+                { name: "Reichstag Building", lat: 52.5169, lng: 13.3809 },
+              ],
+            },
+            {
+              name: "Hamburg",
+              lat: 53.5503,
+              lng: 10.0006,
+              additionalMarkers: [
+                { name: "Miniatur Wunderland", lat: 53.5496, lng: 9.9953 },
+                { name: "Elbphilharmonie Hamburg", lat: 53.5461, lng: 9.9994 },
+              ],
+            },
+            {
+              name: "Munich",
+              lat: 48.1351,
+              lng: 11.5731,
+              additionalMarkers: [
+                { name: "Hofbräuhaus München", lat: 48.1372, lng: 11.5759 },
+                { name: "Deutsches Museum", lat: 48.1494, lng: 11.5705 },
+              ],
+            },
+            {
+              name: "Cologne",
+              lat: 50.9334,
+              lng: 6.9599,
+              additionalMarkers: [
+                { name: "Kölner Dom", lat: 50.9417, lng: 6.9589 },
+                { name: "Schokoladenmuseum", lat: 50.9378, lng: 6.9548 },
+              ],
+            },
+            {
+              name: "Frankfurt",
+              lat: 50.1156, lng: 8.6823,
+              additionalMarkers: [
+                { name: "Römer", lat: 50.1157, lng: 8.6792 },
+                { name: "Senckenberg Museum", lat: 50.1127, lng: 8.6753 },
+              ],
+            },
+          ];
+          
+          renderMap() {
             // Get the map container element
             const mapContainer = this.shadowRoot.querySelector('#map-container');
           
@@ -49,13 +96,54 @@
               center: { lat: 51.5078, lng: 9.5790 }, // Germany's central coordinates
               zoom: 6 // Set the initial zoom level
             });
+
             const cityData = [
-                { name: "Berlin", lat: 52.5200, lng: 13.4051 },
-                { name: "Hamburg", lat: 53.5503, lng: 10.0006 },
-                { name: "Munich", lat: 48.1351, lng: 11.5731 },
-                { name: "Cologne", lat: 50.9334, lng: 6.9599 },
-                { name: "Frankfurt", lat: 50.1156, lng: 8.6823 },
+                {
+                  name: "Berlin",
+                  lat: 52.5200,
+                  lng: 13.4051,
+                  additionalMarkers: [
+                    { name: "Brandenburg Gate", lat: 52.5164, lng: 13.3777 },
+                    { name: "Reichstag Building", lat: 52.5169, lng: 13.3809 },
+                  ],
+                },
+                {
+                  name: "Hamburg",
+                  lat: 53.5503,
+                  lng: 10.0006,
+                  additionalMarkers: [
+                    { name: "Miniatur Wunderland", lat: 53.5496, lng: 9.9953 },
+                    { name: "Elbphilharmonie Hamburg", lat: 53.5461, lng: 9.9994 },
+                  ],
+                },
+                {
+                  name: "Munich",
+                  lat: 48.1351,
+                  lng: 11.5731,
+                  additionalMarkers: [
+                    { name: "Hofbräuhaus München", lat: 48.1372, lng: 11.5759 },
+                    { name: "Deutsches Museum", lat: 48.1494, lng: 11.5705 },
+                  ],
+                },
+                {
+                  name: "Cologne",
+                  lat: 50.9334,
+                  lng: 6.9599,
+                  additionalMarkers: [
+                    { name: "Kölner Dom", lat: 50.9417, lng: 6.9589 },
+                    { name: "Schokoladenmuseum", lat: 50.9378, lng: 6.9548 },
+                  ],
+                },
+                {
+                  name: "Frankfurt",
+                  lat: 50.1156, lng: 8.6823,
+                  additionalMarkers: [
+                    { name: "Römer", lat: 50.1157, lng: 8.6792 },
+                    { name: "Senckenberg Museum", lat: 50.1127, lng: 8.6753 },
+                  ],
+                },
               ];
+              
           
             // Add markers for each city
             for (const city of cityData) {
@@ -65,15 +153,29 @@
                 title: city.name,
               });
           
-              // Add a click event listener to display a popup with the city name
+              // Add a click event listener to zoom in and display additional markers
               marker.addListener('click', () => {
-                const popup = new google.maps.InfoWindow({
-                  content: city.name,
-                });
-                popup.open(map, marker);
+                map.setZoom(12); // Zoom in to city level
+                map.setCenter({ lat: city.lat, lng: city.lng }); // Center map on city location
+          
+                // Remove existing additional markers (if any)
+                map.clearOverlays();
+          
+                // Add additional markers for the clicked city
+                for (const additionalMarker of city.additionalMarkers) {
+                  const additionalMarkerPosition = { lat: additionalMarker.lat, lng: additionalMarker.lng };
+                  const additionalMarkerContent = additionalMarker.name;
+          
+                  const additionalMarker = new google.maps.Marker({
+                    position: additionalMarkerPosition,
+                    map: map,
+                    title: additionalMarkerContent,
+                  });
+                }
               });
             }
           }
+          
     }
 
     customElements.define('custom-button', GoogleMaps);

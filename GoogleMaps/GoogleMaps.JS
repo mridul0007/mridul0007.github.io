@@ -118,8 +118,7 @@
         
                 // Add a click event listener to zoom in and display additional markers
                 marker.addListener('click', () => {
-                    map.setZoom(12); // Zoom in to city level
-                    map.setCenter({ lat: city.lat, lng: city.lng }); // Center map on city location
+                    const bounds = new google.maps.LatLngBounds();// Center map on city location
                 
                     // Remove existing additional markers (if any)
                     this.clearMarkers();
@@ -135,6 +134,8 @@
                             title: additionalMarkerContent,
                         });
                     }
+                    // Fit the map to the bounds
+                    map.fitBounds(bounds);
                 });
             }
         }

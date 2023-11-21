@@ -109,8 +109,8 @@
               ];
         
               // Add markers for each city
-for (const city of cityData) {
-    const cityMarker = new google.maps.Marker({
+for (var city of cityData) {
+    var cityMarker = new google.maps.Marker({
         position: { lat: city.lat, lng: city.lng },
         map: map,
         title: city.name,
@@ -119,20 +119,20 @@ for (const city of cityData) {
     // Add a click event listener to zoom in and display additional markers
     cityMarker.addListener('click', (function (clickedCity) {
         return function () {
-            const bounds = new google.maps.LatLngBounds();
+            var bounds = new google.maps.LatLngBounds();
 
             // Extend bounds with the city marker
             bounds.extend({ lat: clickedCity.lat, lng: clickedCity.lng });
 
             // Add additional markers for the clicked city
-            for (const additionalMarkerData of clickedCity.additionalMarkers) {
-                const additionalMarkerPosition = {
+            for (var additionalMarkerData of clickedCity.additionalMarkers) {
+                var additionalMarkerPosition = {
                     lat: additionalMarkerData.lat,
                     lng: additionalMarkerData.lng,
                 };
-                const additionalMarkerContent = additionalMarkerData.name;
+                var additionalMarkerContent = additionalMarkerData.name;
 
-                const additionalMarker = new google.maps.Marker({
+                var additionalMarker = new google.maps.Marker({
                     position: additionalMarkerPosition,
                     map: map,
                     title: additionalMarkerContent,

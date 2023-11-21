@@ -107,7 +107,7 @@
                   ],
                 },
               ];
-              var cityMarker = new google.maps.Marker();
+            var cityMarker = new google.maps.Marker();
               // Add markers for each city
             for (var city of cityData) {
                 cityMarker = new google.maps.Marker({

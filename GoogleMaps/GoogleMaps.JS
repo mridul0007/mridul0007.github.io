@@ -116,37 +116,48 @@
                 });
 
                 // Add a click event listener to zoom in and display additional markers
-                marker.addListener('click', () => {
-                    var bounds = new google.maps.LatLngBounds();
-
-                    // Extend bounds with the city marker
-                    bounds.extend({ lat: city.lat, lng: city.lng });
-
-                    // Add additional markers for the clicked city
-                    for (var additionalMarkerData of city.additionalMarkers) {
-                        var additionalMarkerPosition = { lat: additionalMarkerData.lat, lng: additionalMarkerData.lng };
-                        var additionalMarkerContent = additionalMarkerData.name;
-
-                        var additionalMarker = new google.maps.Marker({
-                            position: additionalMarkerPosition,
-                            map: map,
-                            title: additionalMarkerContent,
+                marker.addListener('click', (function (clickedCity) {
+                    return function () {
+                        const bounds = new google.maps.LatLngBounds();
+            
+                        // Extend bounds with the city marker
+                        bounds.extend({ lat: clickedCity.lat, lng: clickedCity.lng });
+            
+                        // Add additional markers for the clicked city
+                        for (const additionalMarkerData of clickedCity.additionalMarkers) {
+                            const additionalMarkerPosition = {
+                                lat: additionalMarkerData.lat,
+                                lng: additionalMarkerData.lng,
+                            };
+                            const additionalMarkerContent = additionalMarkerData.name;
+            
+                            const additionalMarker = new google.maps.Marker({
+                                position: additionalMarkerPosition,
+                                map: map,
+                                title: additionalMarkerContent,
+                            });
+            
+                            // Extend bounds with additional markers
+                            bounds.extend(additionalMarkerPosition);
+                        }
+            
+                        // Fit the map to the bounds
+                        map.fitBounds(bounds);
+            
+                        // Set a reasonable zoom level to maintain interactivity
+                        const listener = google.maps.event.addListener(map, 'idle', () => {
+                            if (map.getZoom() > 12) map.setZoom(12);
+                            google.maps.event.removeListener(listener);
+            
+                            // Explicitly set the center after fitting bounds
+                            map.setCenter(bounds.getCenter());
                         });
-
-                        bounds.extend(additionalMarkerPosition); // Extend bounds with additional markers
-                    }
-
-                    // Fit the map to the bounds
-                    map.fitBounds(bounds);
-                    map.setCenter(bounds.getCenter());
-
-                    // Set a reasonable zoom level to maintain interactivity
-                    var listener = google.maps.event.addListener(map, 'idle', () => {
-                        if (map.getZoom() > 12) map.setZoom(12);
-                        google.maps.event.removeListener(listener);
-                        map.setCenter(bounds.getCenter());
-                    });
-                });
+            
+                        // You can access clickedCity here
+                        console.log('Clicked city:', clickedCity.name);
+                    };
+                })(city));
+            }
             }
         }
     }

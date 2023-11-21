@@ -117,10 +117,10 @@
 
                 // Add a click event listener to zoom in and display additional markers
                 marker.addListener('click', () => {
-                    const bounds = new google.maps.LatLngBounds(); // Center map on city location
+                    const bounds = new google.maps.LatLngBounds();
 
-                    // Remove existing additional markers (if any)
-                    this.clearMarkers();
+                    // Extend bounds with the city marker
+                    bounds.extend({ lat: city.lat, lng: city.lng });
 
                     // Add additional markers for the clicked city
                     for (const additionalMarkerData of city.additionalMarkers) {
@@ -147,17 +147,7 @@
                 });
             }
         }
-
-        clearMarkers() {
-            const map = this.shadowRoot.querySelector('#map-container').__map;
-            if (map) {
-                // Loop through each marker and set map to null to remove it
-                map.getMarkers().forEach((marker) => {
-                    marker.setMap(null);
-                });
-            }
-        }
     }
 
-    customElements.define('custom-button', GoogleMaps);
+    customElements.define('google-maps', GoogleMaps);
 })();

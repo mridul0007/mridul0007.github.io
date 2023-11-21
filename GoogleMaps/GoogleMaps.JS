@@ -117,7 +117,7 @@
 
                 // Add a click event listener to zoom in and display additional markers
                 marker.addListener('click', () => {
-                    const bounds = new google.maps.LatLngBounds();
+                    var bounds = new google.maps.LatLngBounds();
 
                     // Extend bounds with the city marker
                     bounds.extend({ lat: city.lat, lng: city.lng });

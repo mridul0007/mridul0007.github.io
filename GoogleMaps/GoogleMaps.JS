@@ -122,7 +122,7 @@ for (var city of cityData) {
             var bounds = new google.maps.LatLngBounds();
 
             // Extend bounds with the city marker
-            bounds.extend({ lat: clickedCity.lat, lng: clickedCity.lng });
+            bounds.extend(new google.maps.LatLng(clickedCity.lat, clickedCity.lng ));
 
             // Add additional markers for the clicked city
             for (var additionalMarkerData of clickedCity.additionalMarkers) {
@@ -137,9 +137,6 @@ for (var city of cityData) {
                     map: map,
                     title: additionalMarkerContent,
                 });
-
-                // Extend bounds with additional markers
-                bounds.extend(additionalMarkerPosition);
             }
 
             // Fit the map to the bounds

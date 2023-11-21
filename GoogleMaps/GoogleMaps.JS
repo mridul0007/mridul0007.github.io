@@ -107,56 +107,56 @@
                   ],
                 },
               ];
-        
+              var cityMarker = new google.maps.Marker();
               // Add markers for each city
-for (var city of cityData) {
-    var cityMarker = new google.maps.Marker({
-        position: { lat: city.lat, lng: city.lng },
-        map: map,
-        title: city.name,
-    });
-}
-
-    // Add a click event listener to zoom in and display additional markers
-    cityMarker.addListener('click', (function (clickedCity) {
-        return function () {
-            var bounds = new google.maps.LatLngBounds();
-
-            // Extend bounds with the city marker
-            bounds.extend(new google.maps.LatLng(clickedCity.lat, clickedCity.lng ));
-
-            // Add additional markers for the clicked city
-            for (var additionalMarkerData of clickedCity.additionalMarkers) {
-                var additionalMarkerPosition = {
-                    lat: additionalMarkerData.lat,
-                    lng: additionalMarkerData.lng,
-                };
-                var additionalMarkerContent = additionalMarkerData.name;
-
-                var additionalMarker = new google.maps.Marker({
-                    position: additionalMarkerPosition,
+            for (var city of cityData) {
+                cityMarker = new google.maps.Marker({
+                    position: { lat: city.lat, lng: city.lng },
                     map: map,
-                    title: additionalMarkerContent,
+                    title: city.name,
                 });
-                bounds.extend(new google.maps.LatLng(additionalMarkerPosition));
             }
 
-            // Fit the map to the bounds
-            map.fitBounds(bounds);
+            // Add a click event listener to zoom in and display additional markers
+            cityMarker.addListener('click', (function (clickedCity) {
+                return function () {
+                    var bounds = new google.maps.LatLngBounds();
 
-            // Set a reasonable zoom level to maintain interactivity
-            const listener = google.maps.event.addListener(map, 'idle', () => {
-                if (map.getZoom() > 12) map.setZoom(12);
-                google.maps.event.removeListener(listener);
+                    // Extend bounds with the city marker
+                    bounds.extend(new google.maps.LatLng(clickedCity.lat, clickedCity.lng ));
 
-                // Explicitly set the center after fitting bounds
-                map.setCenter(bounds.getCenter());
-            });
+                    // Add additional markers for the clicked city
+                    for (var additionalMarkerData of clickedCity.additionalMarkers) {
+                        var additionalMarkerPosition = {
+                            lat: additionalMarkerData.lat,
+                            lng: additionalMarkerData.lng,
+                        };
+                        var additionalMarkerContent = additionalMarkerData.name;
 
-            // You can access clickedCity here
-            console.log('Clicked city:', clickedCity.name);
-                };
-            })(city));
+                        var additionalMarker = new google.maps.Marker({
+                            position: additionalMarkerPosition,
+                            map: map,
+                            title: additionalMarkerContent,
+                        });
+                        bounds.extend(new google.maps.LatLng(additionalMarkerPosition));
+                    }
+
+                    // Fit the map to the bounds
+                    map.fitBounds(bounds);
+
+                    // Set a reasonable zoom level to maintain interactivity
+                    const listener = google.maps.event.addListener(map, 'idle', () => {
+                        if (map.getZoom() > 12) map.setZoom(12);
+                        google.maps.event.removeListener(listener);
+
+                        // Explicitly set the center after fitting bounds
+                        map.setCenter(bounds.getCenter());
+                    });
+
+                    // You can access clickedCity here
+                    console.log('Clicked city:', clickedCity.name);
+                        };
+                    })(city));
         }
 
         }

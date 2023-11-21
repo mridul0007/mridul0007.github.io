@@ -115,6 +115,7 @@ for (var city of cityData) {
         map: map,
         title: city.name,
     });
+}
 
     // Add a click event listener to zoom in and display additional markers
     cityMarker.addListener('click', (function (clickedCity) {
@@ -137,6 +138,7 @@ for (var city of cityData) {
                     map: map,
                     title: additionalMarkerContent,
                 });
+                bounds.extend(new google.maps.LatLng(additionalMarkerPosition));
             }
 
             // Fit the map to the bounds
@@ -158,7 +160,7 @@ for (var city of cityData) {
         }
 
         }
-    }
+    
 
     customElements.define('custom-button', GoogleMaps);
 })();

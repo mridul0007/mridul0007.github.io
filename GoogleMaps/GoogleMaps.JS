@@ -138,6 +138,7 @@
 
                     // Fit the map to the bounds
                     map.fitBounds(bounds);
+                    map.setCenter(bounds.getCenter());
 
                     // Set a reasonable zoom level to maintain interactivity
                     const listener = google.maps.event.addListener(map, 'idle', () => {

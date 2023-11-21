@@ -48,7 +48,7 @@
             const map = new google.maps.Map(mapContainer, {
               center: { lat: 51.5078, lng: 9.5790 }, // Germany's central coordinates
               zoom: 6, // Set the initial zoom level
-              disableDefaultUI: true // Disable default UI elements
+              disableDefaultUI: false // Disable default UI elements
             });
 
             const cityData = [

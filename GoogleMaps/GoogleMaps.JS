@@ -12,7 +12,7 @@
     `;
 
     class GoogleMaps extends HTMLElement {
-        varructor() {
+        constructor() {
             super();
             this.init();
         }

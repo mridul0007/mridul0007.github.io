@@ -143,6 +143,7 @@
                     const listener = google.maps.event.addListener(map, 'idle', () => {
                         if (map.getZoom() > 12) map.setZoom(12);
                         google.maps.event.removeListener(listener);
+                        map.setCenter(bounds.getCenter());
                     });
                 });
             }

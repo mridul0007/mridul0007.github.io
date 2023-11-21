@@ -107,15 +107,15 @@
                   ],
                 },
               ];
-            var cityMarker = new google.maps.Marker();
+            
               // Add markers for each city
             for (var city of cityData) {
-                cityMarker = new google.maps.Marker({
+                var cityMarker = new google.maps.Marker({
                     position: { lat: city.lat, lng: city.lng },
                     map: map,
                     title: city.name,
                 });
-            }
+            
 
             // Add a click event listener to zoom in and display additional markers
             cityMarker.addListener('click', (function (clickedCity) {
@@ -157,7 +157,8 @@
                     console.log('Clicked city:', clickedCity.name);
                         };
                     })(city));
-        }
+                }
+            }
 
         }
     

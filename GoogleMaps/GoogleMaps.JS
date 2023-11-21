@@ -108,34 +108,42 @@
                 },
               ];
         
-            // Add markers for each city
-            for (const city of cityData) {
+              for (const city of cityData) {
                 const marker = new google.maps.Marker({
                     position: { lat: city.lat, lng: city.lng },
                     map: map,
                     title: city.name,
                 });
-        
+
                 // Add a click event listener to zoom in and display additional markers
                 marker.addListener('click', () => {
-                    const bounds = new google.maps.LatLngBounds();// Center map on city location
-                
+                    const bounds = new google.maps.LatLngBounds(); // Center map on city location
+
                     // Remove existing additional markers (if any)
                     this.clearMarkers();
-                
+
                     // Add additional markers for the clicked city
                     for (const additionalMarkerData of city.additionalMarkers) {
                         const additionalMarkerPosition = { lat: additionalMarkerData.lat, lng: additionalMarkerData.lng };
                         const additionalMarkerContent = additionalMarkerData.name;
-                
+
                         const additionalMarker = new google.maps.Marker({
                             position: additionalMarkerPosition,
                             map: map,
                             title: additionalMarkerContent,
                         });
+
+                        bounds.extend(additionalMarkerPosition); // Extend bounds with additional markers
                     }
+
                     // Fit the map to the bounds
                     map.fitBounds(bounds);
+
+                    // Set a reasonable zoom level to maintain interactivity
+                    const listener = google.maps.event.addListener(map, 'idle', () => {
+                        if (map.getZoom() > 12) map.setZoom(12);
+                        google.maps.event.removeListener(listener);
+                    });
                 });
             }
         }
@@ -149,8 +157,6 @@
                 });
             }
         }
-        
-          
     }
 
     customElements.define('custom-button', GoogleMaps);

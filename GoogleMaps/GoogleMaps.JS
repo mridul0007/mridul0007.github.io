@@ -120,15 +120,15 @@
                 marker.addListener('click', () => {
                     map.setZoom(12); // Zoom in to city level
                     map.setCenter({ lat: city.lat, lng: city.lng }); // Center map on city location
-            
+                
                     // Remove existing additional markers (if any)
                     this.clearMarkers();
-            
+                
                     // Add additional markers for the clicked city
-                    for (const additionalMarker of city.additionalMarkers) {
-                        const additionalMarkerPosition = { lat: additionalMarker.lat, lng: additionalMarker.lng };
-                        const additionalMarkerContent = additionalMarker.name;
-            
+                    for (const additionalMarkerData of city.additionalMarkers) {
+                        const additionalMarkerPosition = { lat: additionalMarkerData.lat, lng: additionalMarkerData.lng };
+                        const additionalMarkerContent = additionalMarkerData.name;
+                
                         const additionalMarker = new google.maps.Marker({
                             position: additionalMarkerPosition,
                             map: map,

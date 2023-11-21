@@ -3,11 +3,11 @@
     tmpl.innerHTML = `
         <style>
             #map-container {
-                height: 400px; /* Adjust the height as needed */
+                height: 800px; /* Adjust the height as needed */
                 width: 100%; /* Adjust the width as needed */
             }
         </style>
-        <button type="button" id="myBtn">Helper Button</button>
+    
         <div id="map-container"></div>
     `;
 

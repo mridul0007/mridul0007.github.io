@@ -110,11 +110,15 @@
             
               // Add markers for each city
             for (var city of cityData) {
+                var bounds = new google.maps.LatLngBounds();
                 var cityMarker = new google.maps.Marker({
                     position: { lat: city.lat, lng: city.lng },
                     map: map,
                     title: city.name,
-                });
+                }
+                );
+                bounds.extend(new google.maps.LatLng(city.lat,city.lng));
+                map.fitBounds(bounds);
             
 
             // Add a click event listener to zoom in and display additional markers

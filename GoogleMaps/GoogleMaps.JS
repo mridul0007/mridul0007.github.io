@@ -12,7 +12,7 @@
     `;
 
     class GoogleMaps extends HTMLElement {
-        constructor() {
+        varructor() {
             super();
             this.init();
         }
@@ -25,7 +25,7 @@
         async set_api_key(api_key) {
             
             // Load the Google Maps JavaScript API with the provided key
-            const script = document.createElement('script');
+            var script = document.createElement('script');
             script.src = `https://maps.googleapis.com/maps/api/js?key=${api_key}&callback=initMap`;
             script.async = true;
             script.defer = true;
@@ -42,10 +42,10 @@
           
         renderMap() {
             // Get the map container element
-            const mapContainer = this.shadowRoot.querySelector('#map-container');
+            var mapContainer = this.shadowRoot.querySelector('#map-container');
         
             // Customize the map style to hide points of interest
-            const mapStyles = [
+            var mapStyles = [
                 {
                     featureType: 'poi',
                     elementType: 'labels',
@@ -54,14 +54,14 @@
             ];
         
             // Create a new map centered at a specific location
-            const map = new google.maps.Map(mapContainer, {
+            var map = new google.maps.Map(mapContainer, {
                 center: { lat: 51.5078, lng: 9.5790 }, // Germany's central coordinates
                 zoom: 6, // Set the initial zoom level
                 disableDefaultUI: false, // Disable default UI elements
                 styles: mapStyles, // Apply custom map styles
             });
         
-            const cityData = [
+            var cityData = [
                 {
                   name: "Berlin",
                   lat: 52.5200,
@@ -108,8 +108,8 @@
                 },
               ];
         
-              for (const city of cityData) {
-                const marker = new google.maps.Marker({
+              for (var city of cityData) {
+                var marker = new google.maps.Marker({
                     position: { lat: city.lat, lng: city.lng },
                     map: map,
                     title: city.name,
@@ -123,11 +123,11 @@
                     bounds.extend({ lat: city.lat, lng: city.lng });
 
                     // Add additional markers for the clicked city
-                    for (const additionalMarkerData of city.additionalMarkers) {
-                        const additionalMarkerPosition = { lat: additionalMarkerData.lat, lng: additionalMarkerData.lng };
-                        const additionalMarkerContent = additionalMarkerData.name;
+                    for (var additionalMarkerData of city.additionalMarkers) {
+                        var additionalMarkerPosition = { lat: additionalMarkerData.lat, lng: additionalMarkerData.lng };
+                        var additionalMarkerContent = additionalMarkerData.name;
 
-                        const additionalMarker = new google.maps.Marker({
+                        var additionalMarker = new google.maps.Marker({
                             position: additionalMarkerPosition,
                             map: map,
                             title: additionalMarkerContent,
@@ -141,7 +141,7 @@
                     map.setCenter(bounds.getCenter());
 
                     // Set a reasonable zoom level to maintain interactivity
-                    const listener = google.maps.event.addListener(map, 'idle', () => {
+                    var listener = google.maps.event.addListener(map, 'idle', () => {
                         if (map.getZoom() > 12) map.setZoom(12);
                         google.maps.event.removeListener(listener);
                         map.setCenter(bounds.getCenter());

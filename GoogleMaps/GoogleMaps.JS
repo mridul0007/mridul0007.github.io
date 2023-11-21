@@ -22,7 +22,7 @@
             this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
         }
 
-        set_api_key(api_key) {
+        async set_api_key(api_key) {
             
             // Load the Google Maps JavaScript API with the provided key
             const script = document.createElement('script');
@@ -46,7 +46,7 @@
 
             // Create a new map centered at a specific location
             const map = new google.maps.Map(mapContainer, {
-                center: { lat: 0, lng: 0 }, // Set your desired initial coordinates
+                center: { lat: 51.51, lng: 7.46 }, // Set your desired initial coordinates
                 zoom: 8 // Set the initial zoom level
             });
 

@@ -43,16 +43,37 @@
         renderMap() {
             // Get the map container element
             const mapContainer = this.shadowRoot.querySelector('#map-container');
-
+          
             // Create a new map centered at a specific location
             const map = new google.maps.Map(mapContainer, {
-                center: { lat: 51.51, lng: 7.46 }, // Set your desired initial coordinates
-                zoom: 8 // Set the initial zoom level
+              center: { lat: 51.5078, lng: 9.5790 }, // Germany's central coordinates
+              zoom: 6 // Set the initial zoom level
             });
-
-            // You can customize the map further as needed
-            // For example, add markers, shapes, etc.
-        }
+            const cityData = [
+                { name: "Berlin", lat: 52.5200, lng: 13.4051 },
+                { name: "Hamburg", lat: 53.5503, lng: 10.0006 },
+                { name: "Munich", lat: 48.1351, lng: 11.5731 },
+                { name: "Cologne", lat: 50.9334, lng: 6.9599 },
+                { name: "Frankfurt", lat: 50.1156, lng: 8.6823 },
+              ];
+          
+            // Add markers for each city
+            for (const city of cityData) {
+              const marker = new google.maps.Marker({
+                position: { lat: city.lat, lng: city.lng },
+                map: map,
+                title: city.name,
+              });
+          
+              // Add a click event listener to display a popup with the city name
+              marker.addListener('click', () => {
+                const popup = new google.maps.InfoWindow({
+                  content: city.name,
+                });
+                popup.open(map, marker);
+              });
+            }
+          }
     }
 
     customElements.define('custom-button', GoogleMaps);

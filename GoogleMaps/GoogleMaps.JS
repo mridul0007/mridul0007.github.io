@@ -120,21 +120,31 @@
                 marker.addListener('click', () => {
                     map.setZoom(12); // Zoom in to city level
                     map.setCenter({ lat: city.lat, lng: city.lng }); // Center map on city location
-        
+            
                     // Remove existing additional markers (if any)
-                    map.clearOverlays();
-        
+                    this.clearMarkers();
+            
                     // Add additional markers for the clicked city
                     for (const additionalMarker of city.additionalMarkers) {
                         const additionalMarkerPosition = { lat: additionalMarker.lat, lng: additionalMarker.lng };
                         const additionalMarkerContent = additionalMarker.name;
-        
+            
                         const additionalMarker = new google.maps.Marker({
                             position: additionalMarkerPosition,
                             map: map,
                             title: additionalMarkerContent,
                         });
                     }
+                });
+            }
+        }
+
+        clearMarkers() {
+            const map = this.shadowRoot.querySelector('#map-container').__map;
+            if (map) {
+                // Loop through each marker and set map to null to remove it
+                map.getMarkers().forEach((marker) => {
+                    marker.setMap(null);
                 });
             }
         }

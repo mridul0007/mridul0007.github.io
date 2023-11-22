@@ -117,7 +117,7 @@
                     title: city.name,
                 }
                 );
-                bounds.extend(new google.maps.LatLng(city.lat,city.lng));
+                //bounds.extend(new google.maps.LatLng(city.lat,city.lng));
             
 
                 // Add a click event listener to zoom in and display additional markers
@@ -149,7 +149,7 @@
 
                         // Set a reasonable zoom level to maintain interactivity
                         const listener = google.maps.event.addListener(map, 'idle', () => {
-                            if (map.getZoom() > 12) map.setZoom(12);
+                            if (map.getZoom() > 12) map.setZoom(8);
                             google.maps.event.removeListener(listener);
 
                             // Explicitly set the center after fitting bounds

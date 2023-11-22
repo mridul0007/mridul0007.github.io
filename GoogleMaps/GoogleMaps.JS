@@ -56,7 +56,7 @@
             // Create a new map centered at a specific location
             var map = new google.maps.Map(mapContainer, {
                 center: { lat: 51.5078, lng: 9.5790 }, // Germany's central coordinates
-                zoom: 6, // Set the initial zoom level
+                zoom: 3, // Set the initial zoom level
                 disableDefaultUI: false, // Disable default UI elements
                 styles: mapStyles, // Apply custom map styles
             });

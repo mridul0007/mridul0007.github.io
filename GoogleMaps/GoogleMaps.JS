@@ -192,7 +192,7 @@
                 { lat: 53.7200, lng: 14.6050 },
                 { lat: 53.7300, lng: 14.6150 },
                 { lat: 53.7400, lng: 14.6250 }];
-               for(i =0 ;i < berlinDataPoints.length; i++)
+               for(var i =0 ;i < berlinDataPoints.length; i++)
                {
                 var marker = new google.maps.Marker({
                             position: { lat: randomLat, lng: randomLng },

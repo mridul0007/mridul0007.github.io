@@ -116,7 +116,7 @@
                         setTimeout(() => {
                             // Center map on the clicked marker
                             map.setCenter(marker.getPosition());
-                        }, 100); // Adjust the delay as needed
+                        }, 300); // Adjust the delay as needed
                     });
                 });
         

@@ -80,7 +80,6 @@
         
                 // Push the marker to the array
                 markers.push(marker);
-                var bounds = new google.maps.LatLngBounds();
                 bounds.extend(marker.getPosition());
             }
              // Center the map initially using all markers

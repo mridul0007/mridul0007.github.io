@@ -51,13 +51,13 @@
 
 
 //             // Customize the map style to hide points of interest
-//             var mapStyles = [
-//                 {
-//                     featureType: 'poi',
-//                     elementType: 'labels',
-//                     stylers: [{ visibility: 'off' }],
-//                 },
-//             ];
+            // var mapStyles = [
+            //     {
+            //         featureType: 'poi',
+            //         elementType: 'labels',
+            //         stylers: [{ visibility: 'off' }],
+            //     },
+            // ];
 
 //             // Create a new map centered at a specific location
 //             var map = new google.maps.Map(mapContainer, {
@@ -169,6 +169,14 @@
         renderMap() {
             // Get the map container element
             var mapContainer = this.shadowRoot.querySelector('#map-container');
+
+            var mapStyles = [
+                {
+                    featureType: 'poi',
+                    elementType: 'labels',
+                    stylers: [{ visibility: 'off' }],
+                },
+            ];
         
             // Adjust latitude and longitude range based on the map container size
             var containerHeight = mapContainer.clientHeight;

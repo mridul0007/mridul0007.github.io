@@ -69,7 +69,7 @@
             var markers = [];
             var bounds = new google.maps.LatLngBounds();
             var berlinDataPoints = [
-                { lat: 52.5200, lng: 13.4050 },
+                { lat: 48.5200, lng: 13.4050 },
                 { lat: 52.5300, lng: 13.4150 },
                 { lat: 52.5400, lng: 13.4250 },
                 { lat: 52.5500, lng: 13.4350 },
@@ -191,7 +191,7 @@
                 { lat: 53.7100, lng: 14.5950 },
                 { lat: 53.7200, lng: 14.6050 },
                 { lat: 53.7300, lng: 14.6150 },
-                { lat: 53.7400, lng: 14.6250 }];
+                { lat: 60.7400, lng: 18.6250 }];
 
                 var lat_m,lng_m;
                for(var i =0 ;i < berlinDataPoints.length; i++)

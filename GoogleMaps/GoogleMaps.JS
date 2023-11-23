@@ -169,22 +169,13 @@
         renderMap() {
             // Get the map container element
             var mapContainer = this.shadowRoot.querySelector('#map-container');
-
+        
             // Adjust latitude and longitude range based on the map container size
             var containerHeight = mapContainer.clientHeight;
             var containerWidth = mapContainer.clientWidth;
             var latRange = containerHeight / 111; // Approximate degrees per pixel for latitude
             var lngRange = containerWidth / (111 * Math.cos((51.5078 * Math.PI) / 180)); // Approximate degrees per pixel for longitude
-
-            // Customize the map style to hide points of interest
-            var mapStyles = [
-                {
-                    featureType: 'poi',
-                    elementType: 'labels',
-                    stylers: [{ visibility: 'off' }],
-                },
-            ];
-
+        
             // Create a new map centered at a specific location
             var map = new google.maps.Map(mapContainer, {
                 center: { lat: 51.5078, lng: 9.5790 }, // Germany's central coordinates
@@ -192,51 +183,63 @@
                 disableDefaultUI: false, // Disable default UI elements
                 styles: mapStyles, // Apply custom map styles
             });
-
+        
             // Create an array to hold individual markers
             var markers = [];
-
+        
             // Add 150 markers with random positions
             for (var i = 0; i < 150; i++) {
                 var randomLat = 51.5078 - latRange / 2 + Math.random() * latRange; // Adjust latitude range based on container size
                 var randomLng = 9.5790 - lngRange / 2 + Math.random() * lngRange; // Adjust longitude range based on container size
-
+        
                 var marker = new google.maps.Marker({
                     position: { lat: randomLat, lng: randomLng },
                     title: "City " + i,
                 });
-
+        
                 // Push the marker to the array
                 markers.push(marker);
             }
-
+        
             // Import the MarkerClusterer library
             var script = document.createElement('script');
             script.src = 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js';
             document.head.appendChild(script);
-
+        
             // Wait for the MarkerClusterer library to load before creating the cluster
             script.onload = () => {
                 // Create a MarkerClusterer object. The markers will be clustered at different zoom levels.
                 var markerCluster = new MarkerClusterer(map, markers, {
                     imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
                 });
-
+        
+                // Create a LatLngBounds object to encompass all markers
+                var bounds = new google.maps.LatLngBounds();
+                markers.forEach(marker => {
+                    bounds.extend(marker.getPosition());
+                });
+        
+                // Fit the map to the bounds
+                map.fitBounds(bounds);
+        
                 // Add a click event listener to zoom in and display individual markers
                 markers.forEach((marker) => {
                     marker.addListener('click', () => {
                         // Zoom in
                         map.setZoom(12);
-                        
-                        // Center map on the clicked marker
-                        map.setCenter(marker.getPosition());
+        
+                        // Delay the centering operation to ensure it happens after the zoom
+                        setTimeout(() => {
+                            // Center map on the clicked marker
+                            map.setCenter(marker.getPosition());
+                        }, 100); // Adjust the delay as needed
                     });
                 });
-
+        
                 // Add a click event listener to zoom out and display clustered markers
                 map.addListener('zoom_changed', () => {
                     var currentZoom = map.getZoom();
-
+        
                     // If the zoom level is greater than a threshold, show individual markers
                     if (currentZoom > 10) {
                         markerCluster.clearMarkers();
@@ -246,6 +249,7 @@
                 });
             };
         }
+        
     }
 
     customElements.define('custom-button', GoogleMaps);

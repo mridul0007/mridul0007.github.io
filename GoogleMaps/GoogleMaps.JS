@@ -237,9 +237,9 @@
             var markers = [];
 
             // Add 1000 markers with random positions
-            for (var i = 0; i < 100; i++) {
-                var randomLat = 51.5078 + Math.random() * 2; // Adjust latitude range as needed
-                var randomLng = 9.5790 + Math.random() * 2; // Adjust longitude range as needed
+            for (var i = 0; i < 150; i++) {
+                var randomLat = 51.5078 + Math.random() * 5; // Adjust latitude range as needed
+                var randomLng = 9.5790 + Math.random() * 5; // Adjust longitude range as needed
 
                 var marker = new google.maps.Marker({
                     position: { lat: randomLat, lng: randomLng },
@@ -263,7 +263,18 @@
                 });
 
                 // Add a click event listener to zoom in and display individual markers
-                google.maps.event.addListener(map, 'zoom_changed', function () {
+                markers.forEach((marker) => {
+                    marker.addListener('click', () => {
+                        // Zoom in
+                        map.setZoom(12);
+                        
+                        // Center map on the clicked marker
+                        map.setCenter(marker.getPosition());
+                    });
+                });
+
+                // Add a click event listener to zoom out and display clustered markers
+                map.addListener('zoom_changed', () => {
                     var currentZoom = map.getZoom();
 
                     // If the zoom level is greater than a threshold, show individual markers
@@ -279,3 +290,4 @@
 
     customElements.define('custom-button', GoogleMaps);
 })();
+

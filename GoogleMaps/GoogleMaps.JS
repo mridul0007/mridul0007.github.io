@@ -180,9 +180,10 @@
                 window.initMap = () => {
                     // Resolve the promise when the map is ready
                     resolve();
-                    // Call renderMap to initialize the map
-                     this.renderMap();   
                 };
+            }).then(() => {
+                // Call renderMap to initialize the map
+                this.renderMap();
             });
         }
 

@@ -237,9 +237,9 @@
             var markers = [];
 
             // Add 1000 markers with random positions
-            for (var i = 0; i < 1000; i++) {
-                var randomLat = 51.5078 + Math.random() * 5; // Adjust latitude range as needed
-                var randomLng = 9.5790 + Math.random() * 5; // Adjust longitude range as needed
+            for (var i = 0; i < 100; i++) {
+                var randomLat = 51.5078 + Math.random() * 2; // Adjust latitude range as needed
+                var randomLng = 9.5790 + Math.random() * 2; // Adjust longitude range as needed
 
                 var marker = new google.maps.Marker({
                     position: { lat: randomLat, lng: randomLng },

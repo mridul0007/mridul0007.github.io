@@ -163,6 +163,12 @@
 
         async set_api_key(api_key) {
             return new Promise((resolve, reject) => {
+                // Define the callback function (initMap) that will be called when the API is loaded
+                window.initMap = () => {
+                    // Resolve the promise when the map is ready
+                    resolve();
+                };
+        
                 // Load the Google Maps JavaScript API with the provided key
                 var script = document.createElement('script');
                 script.src = `https://maps.googleapis.com/maps/api/js?key=${api_key}&callback=initMap`;
@@ -172,20 +178,15 @@
                     console.error('Error loading Google Maps API');
                     reject('Error loading Google Maps API');
                 };
-
+        
                 // Attach the script to the document
                 document.head.appendChild(script);
-
-                // Define the callback function (initMap) that will be called when the API is loaded
-                window.initMap = () => {
-                    // Resolve the promise when the map is ready
-                    resolve();
-                };
             }).then(() => {
                 // Call renderMap to initialize the map
                 this.renderMap();
             });
         }
+        
 
         async renderMap() {
             // Wait for the Google Maps API to be loaded

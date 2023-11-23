@@ -224,6 +224,7 @@
             // }
              // Center the map initially using all markers
             map.fitBounds(bounds);
+            map.setZoom(6);
                 
             // Import the MarkerClusterer library
             var script = document.createElement('script');
@@ -250,7 +251,7 @@
                 markers.forEach((marker) => {
                     marker.addListener('click', () => {
                         // Zoom in
-                        map.setZoom(12);
+                        map.setZoom(6);
         
                         // Delay the centering operation to ensure it happens after the zoom
                         setTimeout(() => {

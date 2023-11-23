@@ -43,13 +43,13 @@
 //             // Get the map container element
 //             var mapContainer = this.shadowRoot.querySelector('#map-container');
 
-//             var mapStyles = [
-//                 {
-//                     featureType: 'poi',
-//                     elementType: 'labels',
-//                     stylers: [{ visibility: 'off' }],
-//                 },
-//             ];
+            // var mapStyles = [
+            //     {
+            //         featureType: 'poi',
+            //         elementType: 'labels',
+            //         stylers: [{ visibility: 'off' }],
+            //     },
+            // ];
         
 //             // Adjust latitude and longitude range based on the map container size
 //             var containerHeight = mapContainer.clientHeight;
@@ -191,6 +191,13 @@
         async renderMap() {
             // Wait for the Google Maps API to be loaded
             await this.set_api_key('YOUR_API_KEY'); // Replace with your actual API key
+            var mapStyles = [
+                {
+                    featureType: 'poi',
+                    elementType: 'labels',
+                    stylers: [{ visibility: 'off' }],
+                },
+            ];
 
             // Get the map container element
             var mapContainer = this.shadowRoot.querySelector('#map-container');

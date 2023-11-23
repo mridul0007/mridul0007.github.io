@@ -81,7 +81,13 @@
                 // Push the marker to the array
                 markers.push(marker);
             }
-        
+             // Center the map initially using all markers
+            var bounds = new google.maps.LatLngBounds();
+            markers.forEach((marker) => {
+                bounds.extend(marker.getPosition());
+            });
+            map.fitBounds(bounds);
+                
             // Import the MarkerClusterer library
             var script = document.createElement('script');
             script.src = 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js';

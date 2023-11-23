@@ -194,8 +194,10 @@
                 { lat: 53.7400, lng: 14.6250 }];
                for(var i =0 ;i < berlinDataPoints.length; i++)
                {
+                lat_m = berlinDataPoints[i].lat;
+                lng_m =berlinDataPoints[i].lng;
                 var marker = new google.maps.Marker({
-                            position: { lat: randomLat, lng: randomLng },
+                            position: { lat: lat_m, lng: lng_m },
                             title: "City " + i,
                         });
                 

@@ -67,7 +67,7 @@
         
             // Create an array to hold individual markers
             var markers = [];
-        
+            var bounds = new google.maps.LatLngBounds();
             // Add 150 markers with random positions
             for (var i = 0; i < 150; i++) {
                 var randomLat = 51.5078 - latRange / 2 + Math.random() * latRange; // Adjust latitude range based on container size
@@ -80,9 +80,11 @@
         
                 // Push the marker to the array
                 markers.push(marker);
+                var bounds = new google.maps.LatLngBounds();
+                bounds.extend(marker.getPosition());
             }
              // Center the map initially using all markers
-            var bounds = new google.maps.LatLngBounds();
+            
             markers.forEach((marker) => {
                 bounds.extend(marker.getPosition());
             });

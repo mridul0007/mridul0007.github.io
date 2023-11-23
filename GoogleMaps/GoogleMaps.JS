@@ -83,10 +83,6 @@
                 bounds.extend(marker.getPosition());
             }
              // Center the map initially using all markers
-            
-            markers.forEach((marker) => {
-                bounds.extend(marker.getPosition());
-            });
             map.fitBounds(bounds);
                 
             // Import the MarkerClusterer library

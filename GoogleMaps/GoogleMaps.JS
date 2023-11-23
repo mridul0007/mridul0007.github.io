@@ -102,13 +102,13 @@
                 });
         
                 // Create a LatLngBounds object to encompass all markers
-                var bounds = new google.maps.LatLngBounds();
-                markers.forEach(marker => {
-                    bounds.extend(marker.getPosition());
-                });
+                // ar bounds = new google.maps.LatLngBounds();
+                // markers.forEach(marker => {
+                //     bounds.extend(marker.getPosition());
+                // });
         
-                // Fit the map to the bounds
-                map.fitBounds(bounds);
+                // // Fit the map to the bounds
+                // map.fitBounds(bounds);v
         
                 // Add a click event listener to zoom in and display individual markers
                 markers.forEach((marker) => {

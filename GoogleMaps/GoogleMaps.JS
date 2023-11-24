@@ -511,6 +511,21 @@
                 // Set the map center and zoom to fit all markers
                 map.fitBounds(bounds);
 
+                google.maps.event.addListener(markerCluster, 'clusterclick', function(cluster) {
+                    // Get all markers in the clicked cluster
+                    var markersInCluster = cluster.getMarkers();
+                
+                    // Calculate the bounds of all markers in the cluster
+                    var clusterBounds = new google.maps.LatLngBounds();
+                    markersInCluster.forEach((marker) => {
+                        clusterBounds.extend(marker.getPosition());
+                    });
+                
+                    // Adjust the map bounds to fit all markers in the cluster
+                    map.fitBounds(clusterBounds);
+                })
+                
+
                 // Add a click event listener to zoom in and display individual markers
                 markers.forEach((marker) => {
                     marker.addListener('click', () => {

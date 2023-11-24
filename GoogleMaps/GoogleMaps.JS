@@ -527,7 +527,7 @@
         }
     }
 
-    customElements.define('google-maps', GoogleMaps);
+    customElements.define('custom-button', GoogleMaps);
 })();
 
 

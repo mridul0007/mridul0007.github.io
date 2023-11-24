@@ -483,7 +483,7 @@
                 });
 
                 // // Push the marker to the array
-                // markers.push(marker);
+                markers.push(marker);
                 // bounds.extend(marker.getPosition());
             }
 

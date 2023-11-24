@@ -507,14 +507,18 @@
                 markers.forEach((marker) => {
                     marker.addListener('click', () => {
                         // Get the bounds of the clicked marker
+                        console.log('Marker Clicked:', marker);
                         var markerBounds = new google.maps.LatLngBounds();
+                        console.log('Marker Bounds:', markerBounds);
                         markerBounds.extend(marker.getPosition());
+                        console.log('Marker Bounds extend:', markerBounds);
 
                         // Get the bounds of the cluster
                         var clusterBounds = markerCluster.getBounds();
 
                         // Extend the bounds of the clicked marker with the cluster bounds
                         markerBounds.union(clusterBounds);
+                        console.log('Marker Bounds union:', markerBounds);
 
                         // Fit the map to the extended bounds
                         map.fitBounds(markerBounds);

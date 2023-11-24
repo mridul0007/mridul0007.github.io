@@ -523,6 +523,7 @@
                 
                     // Adjust the map bounds to fit all markers in the cluster
                     map.fitBounds(clusterBounds);
+                    map.setZoom(map.getZoom() - 1);
                 })
                 
 

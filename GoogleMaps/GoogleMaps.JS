@@ -339,8 +339,8 @@
 
             // Create a new map centered at a specific location
             var map = new google.maps.Map(mapContainer, {
-                // center: { lat: 51.5078, lng: 9.5790 }, // Germany's central coordinates
-                // zoom: 3, // Set the initial zoom level
+                center: { lat: 0, lng: 0 }, // Germany's central coordinates
+                zoom: 3, // Set the initial zoom level
                 disableDefaultUI: false, // Disable default UI elements
                 styles: mapStyles, // Apply custom map styles
             });
@@ -502,6 +502,14 @@
                 var markerCluster = new MarkerClusterer(map, markers, {
                     imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
                 });
+                // Calculate the bounds of all markers
+                var bounds = new google.maps.LatLngBounds();
+                markers.forEach((marker) => {
+                    bounds.extend(marker.getPosition());
+                });
+
+                // Set the map center and zoom to fit all markers
+                map.fitBounds(bounds);
 
                 // Add a click event listener to zoom in and display individual markers
                 markers.forEach((marker) => {

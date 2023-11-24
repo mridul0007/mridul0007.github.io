@@ -482,14 +482,14 @@
                     title: "City " + i,
                 });
 
-                // Push the marker to the array
-                markers.push(marker);
-                bounds.extend(marker.getPosition());
+                // // Push the marker to the array
+                // markers.push(marker);
+                // bounds.extend(marker.getPosition());
             }
 
             // Center the map initially using all markers
-            map.fitBounds(bounds);
-            map.setZoom(6);
+            // map.fitBounds(bounds);
+            // map.setZoom(6);
 
             // Import the MarkerClusterer library
             var script = document.createElement('script');

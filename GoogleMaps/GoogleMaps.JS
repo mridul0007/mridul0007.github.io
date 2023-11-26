@@ -40,6 +40,7 @@
 
             // Define the callback function (initMap) that will be called when the API is loaded
             window.initMap = () => {
+                window.MarkerClusterer = MarkerClusterer;
                 this.renderMap();
             };
         }

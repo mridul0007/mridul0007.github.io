@@ -23,14 +23,10 @@
         }
 
         async set_api_key(apiKey) {
-            this.apiKey = apiKey;
-            await this.loadGoogleMapsScript();
-        }
-
-        loadGoogleMapsScript() {
+            
             return new Promise((resolve, reject) => {
                 const mapsScript = document.createElement('script');
-                mapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${this.apiKey}&callback=initMap`;
+                mapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
                 mapsScript.defer = true;
                 mapsScript.async = true;
                 mapsScript.onload = () => {

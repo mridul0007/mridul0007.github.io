@@ -41,6 +41,7 @@
                 };
                 mapsScript.onerror = reject;
                 document.head.appendChild(mapsScript);
+                this.renderMap();
             });
         }
 

@@ -141,12 +141,14 @@
 
                 // // Push the marker to the array
                 markers.push(marker);
-                loc = new google.maps.LatLng(lat_m, lng_m);
+                loc = new google.maps.LatLngBounds(lat_m, lng_m);
                 bounds.extend(loc);
+                // bounds.extend(marker.getPosition());
             }
 
-            map.fitBounds(bounds);
-           map.panToBounds(bounds);
+            // Center the map initially using all markers
+            // map.fitBounds(bounds);
+            // map.setZoom(6);
 
             // Import the MarkerClusterer library
             var script = document.createElement('script');
@@ -158,7 +160,14 @@
                 // Create a MarkerClusterer object. The markers will be clustered at different zoom levels.
                 var markerCluster = new markerClusterer.MarkerClusterer({ markers, map, gridSize: 40,viewportPadding : 50 });
                 // Calculate the bounds of all markers
-                
+                var bounds = new google.maps.LatLngBounds();
+                markers.forEach((marker) => {
+                    bounds.extend(marker.getPosition());
+                });
+
+                // Set the map center and zoom to fit all markers
+                map.fitBounds(bounds);
+                map.panToBounds(bounds);
                 
 
                 // Add a click event listener to zoom in and display individual markers

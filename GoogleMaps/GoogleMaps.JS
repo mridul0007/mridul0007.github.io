@@ -225,7 +225,7 @@
                 // Set the map center and zoom to fit all markers
                 map.fitBounds(bounds);
 
-                google.maps.event.addListener(markerCluster, 'clusterclick', function(cluster) {
+                google.maps.event.addListener(markerCluster, 'clusterclick', (event,cluster) {
                     // Get all markers in the clicked cluster
                     var markersInCluster = cluster.getMarkers();
                 

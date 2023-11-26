@@ -143,10 +143,11 @@
                 markers.push(marker);
                 loc = new google.maps.LatLngBounds(lat_m, lng_m);
                 bounds.extend(loc);
-                map.fitBounds(bounds);
-                map.panToBounds(bounds);
+                
                 // bounds.extend(marker.getPosition());
             }
+            map.fitBounds(bounds);
+                map.panToBounds(bounds);
 
             // Center the map initially using all markers
             // map.fitBounds(bounds);

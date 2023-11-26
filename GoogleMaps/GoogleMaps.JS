@@ -131,7 +131,7 @@
                 { lat: 53.3500, lng: 14.2350 },
                 { lat: 53.7300, lng: 14.6150 }];
 
-                bounds = new google.maps.LatLngBounds();
+               var bounds = new google.maps.LatLngBounds();
             for (var i = 0; i < berlinDataPoints.length; i++) {
                 var lat_m = berlinDataPoints[i].lat;
                 var lng_m = berlinDataPoints[i].lng;

@@ -14,6 +14,7 @@
     class GoogleMaps extends HTMLElement {
         constructor() {
             super();
+            this.apiKey = ''; // Add a property to store the API key
             this.init();
         }
 
@@ -23,10 +24,14 @@
         }
 
         async set_api_key(apiKey) {
-            
+            this.apiKey = apiKey;
+            await this.loadGoogleMapsScript();
+        }
+
+        loadGoogleMapsScript() {
             return new Promise((resolve, reject) => {
                 const mapsScript = document.createElement('script');
-                mapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+                mapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${this.apiKey}&callback=initMap`;
                 mapsScript.defer = true;
                 mapsScript.async = true;
                 mapsScript.onload = () => {
@@ -41,7 +46,6 @@
                 };
                 mapsScript.onerror = reject;
                 document.head.appendChild(mapsScript);
-                this.renderMap();
             });
         }
 
@@ -49,13 +53,11 @@
             // Get the map container element
             const mapContainer = this.shadowRoot.getElementById('map-container');
 
-            // Use the Google Maps API to create a map
+            // Now you can use the Google Maps API to create a map
             const map = new google.maps.Map(mapContainer, {
-                center: { lat: -34.397, lng: 150.644 },
-                zoom: 8
+                center: { lat: 0, lng:  0},
+                zoom: 2
             });
-
-
             var markers = [];
             var berlinDataPoints = [
                 { lat: 48.5200, lng: 13.4050 },
@@ -198,11 +200,19 @@
             }
 
             // Now you can use the Marker Cluster library
-            const markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+            const markerCluster = new MarkerClusterer(map, [], { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 
             // Add markers or any other map functionality as needed
         }
     }
 
-    customElements.define('custom-button', GoogleMaps);
+    // Define the initMap function that will be called by the Google Maps API script
+    window.initMap = () => {
+        const mapComponent = document.querySelector('google-maps');
+        if (mapComponent) {
+            mapComponent.renderMap();
+        }
+    };
+
+    customElements.define('google-maps', GoogleMaps);
 })();

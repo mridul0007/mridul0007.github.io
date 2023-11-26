@@ -131,24 +131,22 @@
                 { lat: 53.7300, lng: 14.6150 }];
                
 
-            var bounds = new google.maps.LatLngBounds();
-
             for (var i = 0; i < berlinDataPoints.length; i++) {
                 var lat_m = berlinDataPoints[i].lat;
                 var lng_m = berlinDataPoints[i].lng;
                 var marker = new google.maps.Marker({
-                    position: { lat: lat_m, lng: lng_m },
+                    position: { lat: parseFloat(lat_m), lng: parseFloat(lng_m) },
                     title: "City " + i,
                 });
 
                 // // Push the marker to the array
                 markers.push(marker);
-                // bounds.extend(marker.getPosition());
+                loc = new google.maps.LatLng(lat_m, lng_m);
+                bounds.extend(loc);
             }
 
-            // Center the map initially using all markers
-            // map.fitBounds(bounds);
-            // map.setZoom(6);
+            map.fitBounds(bounds);
+           map.panToBounds(bounds);
 
             // Import the MarkerClusterer library
             var script = document.createElement('script');
@@ -160,29 +158,7 @@
                 // Create a MarkerClusterer object. The markers will be clustered at different zoom levels.
                 var markerCluster = new markerClusterer.MarkerClusterer({ markers, map, gridSize: 40,viewportPadding : 50 });
                 // Calculate the bounds of all markers
-                var bounds = new google.maps.LatLngBounds();
-                markers.forEach((marker) => {
-                    bounds.extend(marker.getPosition());
-                });
-
-                // Set the map center and zoom to fit all markers
-                map.fitBounds(bounds);
-                map.panToBounds(bounds);
-
-                google.maps.event.addListener(markerCluster, 'clusterclick', function(cluster) {
-                    // Get all markers in the clicked cluster
-                    var markersInCluster = cluster.getMarkers();
                 
-                    // Calculate the bounds of all markers in the cluster
-                    var clusterBounds = new google.maps.LatLngBounds();
-                    markersInCluster.forEach((marker) => {
-                        clusterBounds.extend(marker.getPosition());
-                    });
-                
-                    // Adjust the map bounds to fit all markers in the cluster
-                    map.fitBounds(clusterBounds);
-                    map.setZoom(map.getZoom() - 1);
-                })
                 
 
                 // Add a click event listener to zoom in and display individual markers

@@ -143,6 +143,8 @@
                 markers.push(marker);
                 loc = new google.maps.LatLngBounds(lat_m, lng_m);
                 bounds.extend(loc);
+                map.fitBounds(bounds);
+                map.panToBounds(bounds);
                 // bounds.extend(marker.getPosition());
             }
 
@@ -166,8 +168,8 @@
                 });
 
                 // Set the map center and zoom to fit all markers
-                map.fitBounds(bounds);
-                map.panToBounds(bounds);
+                // map.fitBounds(bounds);
+                // map.panToBounds(bounds);
                 
 
                 // Add a click event listener to zoom in and display individual markers

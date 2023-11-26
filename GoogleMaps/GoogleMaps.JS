@@ -35,14 +35,22 @@
             clusterScript.src = 'https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js';
             document.head.appendChild(clusterScript);
 
-            // Attach the scripts to the document
-            document.head.appendChild(script);
+            // Use promises to ensure both scripts are loaded before calling initMap
+            await Promise.all([
+                new Promise((resolve, reject) => {
+                    script.onload = resolve;
+                    script.onerror = () => reject('Error loading Google Maps API');
+                    document.head.appendChild(script);
+                }),
+                new Promise((resolve, reject) => {
+                    clusterScript.onload = resolve;
+                    clusterScript.onerror = () => reject('Error loading MarkerClusterer library');
+                    document.head.appendChild(clusterScript);
+                }),
+            ]);
 
-            // Define the callback function (initMap) that will be called when the API is loaded
-            window.initMap = () => {
-                window.MarkerClusterer = MarkerClusterer;
-                this.renderMap();
-            };
+            // Make MarkerClusterer globally accessible
+            window.MarkerClusterer = MarkerClusterer;
         }
 
 

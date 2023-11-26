@@ -49,7 +49,8 @@
                 {
                     featureType: 'poi',
                     elementType: 'labels',
-                    stylers: [{ visibility: 'off' }],
+                    stylers: [{ visibility: 'off' }]
+                    
                 },
             ];
 
@@ -129,8 +130,8 @@
                 { lat: 53.3400, lng: 14.2250 },
                 { lat: 53.3500, lng: 14.2350 },
                 { lat: 53.7300, lng: 14.6150 }];
-               
 
+                bounds = new google.maps.LatLngBounds();
             for (var i = 0; i < berlinDataPoints.length; i++) {
                 var lat_m = berlinDataPoints[i].lat;
                 var lng_m = berlinDataPoints[i].lng;

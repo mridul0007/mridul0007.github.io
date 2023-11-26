@@ -64,7 +64,7 @@
             // Create an array to hold individual markers
             var markers = [];
             var berlinDataPoints = [
-                { lat: 48.5200, lng: 13.4050 },
+              
                 { lat: 52.5300, lng: 13.4150 },
                 { lat: 52.5400, lng: 13.4250 },
                 { lat: 52.5500, lng: 13.4350 },
@@ -128,8 +128,8 @@
                 { lat: 53.3300, lng: 14.2150 },
                 { lat: 53.3400, lng: 14.2250 },
                 { lat: 53.3500, lng: 14.2350 },
-                { lat: 53.7300, lng: 14.6150 },
-                { lat: 60.7400, lng: 18.6250 }];
+                { lat: 53.7300, lng: 14.6150 }];
+               
 
             var bounds = new google.maps.LatLngBounds();
 

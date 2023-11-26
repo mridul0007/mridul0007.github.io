@@ -484,7 +484,7 @@
             // Wait for the MarkerClusterer library to load before creating the cluster
             script.onload = () => {
                 // Create a MarkerClusterer object. The markers will be clustered at different zoom levels.
-                var markerCluster = new MarkerClusterer(map, markers, {
+                var markerCluster = new markerClusterer.MarkerClusterer(map, markers, {
                     imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
                 });
                 // Calculate the bounds of all markers

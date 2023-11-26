@@ -141,7 +141,7 @@
 
                 // // Push the marker to the array
                 markers.push(marker);
-                loc = new google.maps.LatLngBounds(lat_m, lng_m);
+                var loc = new google.maps.LatLng(parseFloat(lat_m), parseFloat(lng_m));
                 bounds.extend(loc);
                 
                 // bounds.extend(marker.getPosition());

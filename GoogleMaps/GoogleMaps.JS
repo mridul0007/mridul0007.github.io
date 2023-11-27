@@ -3,7 +3,13 @@
 (function () {
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
-
+        <style>
+            #map-container {
+                height: 100% /* Adjust the height as needed */
+                width: 100%; /* Adjust the width as needed */
+            }
+        </style>
+    
         <div id="map-container"></div>
     `;
 

@@ -189,18 +189,26 @@
                 { lat: 53.7300, lng: 14.6150 },
                 { lat: 60.7400, lng: 18.6250 }];
 
+
+                var iconUrls = [
+                    'https://mridul0007.github.io/GoogleMaps/dog.png',
+                    'https://mridul0007.github.io/GoogleMaps/cat.png',
+                    // ... add more icon URLs as needed
+                ];
+
                var bounds = new google.maps.LatLngBounds();
             for (var i = 0; i < berlinDataPoints.length; i++) {
                 var lat_m = berlinDataPoints[i].lat;
                 var lng_m = berlinDataPoints[i].lng;
+                var iconUrl = iconUrls[i % iconUrls.length];
 
 
-                var customMarkerIcon = 'https://mridul0007.github.io/GoogleMaps/dog.png';
+                
 
                 var marker = new google.maps.Marker({
                     position: { lat: parseFloat(lat_m), lng: parseFloat(lng_m) },
                     title: "City " + i,
-                    icon : customMarkerIcon,
+                    icon : iconUrl,
                 });
 
                 // // Push the marker to the array

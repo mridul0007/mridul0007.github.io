@@ -206,7 +206,7 @@
                 // bounds.extend(marker.getPosition());
             }
             map.fitBounds(bounds);
-                map.panToBounds(bounds);
+            map.panToBounds(bounds);
 
             // Center the map initially using all markers
             // map.fitBounds(bounds);
@@ -231,16 +231,6 @@
                         map.fitBounds(paddedBounds);
                       }
                 });
-                // Calculate the bounds of all markers
-                var bounds = new google.maps.LatLngBounds();
-                markers.forEach((marker) => {
-                    bounds.extend(marker.getPosition());
-                });
-
-                // Set the map center and zoom to fit all markers
-                // map.fitBounds(bounds);
-                // map.panToBounds(bounds);
-                
 
                 // Add a click event listener to zoom in and display individual markers
                 markers.forEach((marker) => {
@@ -250,20 +240,6 @@
                         var markerBounds = new google.maps.LatLngBounds();
                         console.log('Marker Bounds:', markerBounds);
                         markerBounds.extend(marker.getPosition());
-                        console.log('Marker Bounds extend:', markerBounds);
-
-                        // Get the bounds of the cluster
-                        var clusterBounds = markerCluster.getBounds();
-
-                        // Extend the bounds of the clicked marker with the cluster bounds
-                        markerBounds.union(clusterBounds);
-                        console.log('Marker Bounds union:', markerBounds);
-
-                        // Fit the map to the extended bounds
-                        map.fitBounds(markerBounds);
-
-                        // Set a suitable zoom level (adjust as needed)
-                        map.setZoom(map.getZoom() - 1);
                     });
                 });
             };

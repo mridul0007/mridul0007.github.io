@@ -193,9 +193,14 @@
             for (var i = 0; i < berlinDataPoints.length; i++) {
                 var lat_m = berlinDataPoints[i].lat;
                 var lng_m = berlinDataPoints[i].lng;
+
+
+                var customMarkerIcon = 'https://mridul0007.github.io/GoogleMaps/dog.png';
+
                 var marker = new google.maps.Marker({
                     position: { lat: parseFloat(lat_m), lng: parseFloat(lng_m) },
                     title: "City " + i,
+                    icon : customMarkerIcon,
                 });
 
                 // // Push the marker to the array

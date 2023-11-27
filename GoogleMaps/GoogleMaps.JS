@@ -162,7 +162,17 @@
             // Wait for the MarkerClusterer library to load before creating the cluster
             script.onload = () => {
                 // Create a MarkerClusterer object. The markers will be clustered at different zoom levels.
-                var markerCluster = new markerClusterer.MarkerClusterer({ markers, map, gridSize: 40,viewportPadding : 50 });
+                var markerCluster = new markerClusterer.MarkerClusterer({ markers, map, gridSize: 40,viewportPadding : 50 ,
+                    onClusterClickHandler: (event, cluster, map) => {
+                        // Zoom in to the cluster
+                        map.zoomIn();
+                    
+                        // Extend the cluster bounds to include all markers
+                        const bounds = cluster.getBounds();
+                        const paddedBounds = extendBoundsToPaddedViewport(bounds, map.getProjection(), 50);
+                        map.fitBounds(paddedBounds);
+                      }
+                });
                 // Calculate the bounds of all markers
                 var bounds = new google.maps.LatLngBounds();
                 markers.forEach((marker) => {

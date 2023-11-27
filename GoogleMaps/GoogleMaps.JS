@@ -130,34 +130,16 @@
 
             // Import the MarkerClusterer library
             var script = document.createElement('script');
-            script.src = 'https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js';
+             script.src = 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js';
             document.head.appendChild(script);
 
             // Wait for the MarkerClusterer library to load before creating the cluster
             script.onload = () => {
-                // Create a MarkerClusterer object. The markers will be clustered at different zoom levels.
-                var markerCluster = new markerClusterer.MarkerClusterer({ markers, map, gridSize: 40,viewportPadding : 50 ,
-                    onClusterClickHandler: (event, cluster, map) => {
-                        // Zoom in to the cluster
-                        map.zoomIn();
-                    
-                        // Extend the cluster bounds to include all markers
-                        const bounds = cluster.getBounds();
-                        const paddedBounds = extendBoundsToPaddedViewport(bounds, map.getProjection(), 50);
-                        map.fitBounds(paddedBounds);
-                      }
+                
+                var markerCluster = new MarkerClusterer(map, markers, {
+                    imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
                 });
-
-                // Add a click event listener to zoom in and display individual markers
-                markers.forEach((marker) => {
-                    marker.addListener('click', () => {
-                        // Get the bounds of the clicked marker
-                        console.log('Marker Clicked:', marker);
-                        var markerBounds = new google.maps.LatLngBounds();
-                        console.log('Marker Bounds:', markerBounds);
-                        markerBounds.extend(marker.getPosition());
-                    });
-                });
+                
             };
         }
     }

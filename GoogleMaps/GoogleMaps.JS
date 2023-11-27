@@ -5,8 +5,8 @@
     tmpl.innerHTML = `
         <style>
             #map-container {
-                height: 800px; /* Adjust the height as needed */
-                width: 800px; /* Adjust the width as needed */
+                height: 500px; /* Adjust the height as needed */
+                width: 500px; /* Adjust the width as needed */
             }
         </style>
     

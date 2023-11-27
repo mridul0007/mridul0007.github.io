@@ -96,7 +96,7 @@
                 var iconUrls = [
                     'https://mridul0007.github.io/GoogleMaps/dog.png',
                     'https://mridul0007.github.io/GoogleMaps/cat.png',
-                    // ... add more icon URLs as needed
+                    'https://mridul0007.github.io/GoogleMaps/car.png',
                 ];
 
                var bounds = new google.maps.LatLngBounds();

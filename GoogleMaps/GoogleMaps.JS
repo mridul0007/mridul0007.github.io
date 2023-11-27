@@ -6,7 +6,7 @@
         <style>
             #map-container {
                 height: 800px; /* Adjust the height as needed */
-                width: 800%; /* Adjust the width as needed */
+                width: 800px; /* Adjust the width as needed */
             }
         </style>
     

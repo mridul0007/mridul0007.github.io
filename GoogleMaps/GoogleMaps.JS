@@ -78,6 +78,7 @@
                 var lat_m = this.plm_data[i].properties["lat"];
                 var lng_m = this.plm_data[i].properties["long"];
                 var iconUrl = iconUrls[i % iconUrls.length];
+                var image_Url = this.plm_data[i].properties["image"];
 
 
                 
@@ -86,12 +87,30 @@
                     position: { lat: parseFloat(lat_m), lng: parseFloat(lng_m) },
                     title: "City " + i,
                     icon : iconUrl,
+                    imageUrl: image_Url,
                 });
                 // Add click event listener to each marker
                 marker.addListener('click', function () {
                     // Zoom in to street level when marker is clicked
                     map.setZoom(15); // You can adjust the zoom level as needed
                     map.setCenter(marker.getPosition());
+                    var infoWindow = new google.maps.InfoWindow();
+
+                    // Set the content of the InfoWindow (HTML content)
+                    var content = `
+                        <div>
+                            <img src="${this.imageUrl}" style="width: 100%; height: auto;">
+                        </div>
+                        <div>
+                            ${marker.getTitle()}
+                        </div>
+                    `;
+
+                    // Set the content of the InfoWindow
+                    infoWindow.setContent(content);
+
+                    // Open the InfoWindow on the clicked marker
+                    infoWindow.open(map, marker);
                 });
 
                 // // Push the marker to the array

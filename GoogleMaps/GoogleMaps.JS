@@ -38,11 +38,12 @@
 
             // Define the callback function (initMap) that will be called when the API is loaded
             window.initMap = () => {
-                this.renderMap();
+                // this.renderMap();
             };
         }
         async set_data(plm_data) {
             this.plm_data = plm_data;
+            this.renderMap();
         }
 
         renderMap() {
@@ -95,7 +96,7 @@
             // }
             
             // Log the generated data points
-            console.log(nrwDataPoints);
+            // console.log(nrwDataPoints);
             
                 var iconUrls = [
                     'https://mridul0007.github.io/GoogleMaps/dog.png',

@@ -123,7 +123,7 @@
                                                     <td class="tg-baqh" colspan="4">3</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="tg-baqh" colspan="4">4</td>
+                                                    <td class="tg-baqh" colspan="4"> ${marker.getTitle()}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="tg-0lax">5</td>

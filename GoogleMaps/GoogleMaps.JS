@@ -88,6 +88,7 @@
                     title: this.plm_data[i].id,
                     icon : iconUrl,
                     imageUrl: image_Url,
+                    randdata : "hello"
                 });
                 // Add click event listener to each marker
                 marker.addListener('click', function () {
@@ -103,6 +104,9 @@
                         </div>
                         <div>
                             ${marker.getTitle()}
+                        </div>
+                        <div>
+                            ${marker.randdata}
                         </div>
                     `;
 

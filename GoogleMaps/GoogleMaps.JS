@@ -85,7 +85,7 @@
 
                 var marker = new google.maps.Marker({
                     position: { lat: parseFloat(lat_m), lng: parseFloat(lng_m) },
-                    title: "City " + i,
+                    title: this.plm_data[i].id,
                     icon : iconUrl,
                     imageUrl: image_Url,
                 });

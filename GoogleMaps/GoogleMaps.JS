@@ -106,8 +106,8 @@
 
                var bounds = new google.maps.LatLngBounds();
             for (var i = 0; i < this.plm_data.length; i++) {
-                var lat_m = this.plm_data[i].lat;
-                var lng_m = this.plm_data[i].long;
+                var lat_m = this.plm_data[i].properties["lat"];
+                var lng_m = this.plm_data[i].properties["long"];
                 var iconUrl = iconUrls[i % iconUrls.length];
 
 

@@ -1,5 +1,3 @@
-
-
 (function () {
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
@@ -63,48 +61,19 @@
             var map = new google.maps.Map(mapContainer, {
                 center: { lat: 0, lng: 0 }, // Germany's central coordinates
                 zoom: 2, // Set the initial zoom level
-                disableDefaultUI: false, // Disable default UI elements
+                disableDefaultUI: true, // Disable default UI elements
                 styles: mapStyles, // Apply custom map styles
             });
 
             // Create an array to hold individual markers
             var markers = [];
+            var iconUrls = [
+                'https://mridul0007.github.io/GoogleMaps/dog.png',
+                'https://mridul0007.github.io/GoogleMaps/cat.png',
+                'https://mridul0007.github.io/GoogleMaps/car.png',
+            ];
 
-
-
-            // function getRandomInRange(min, max) {
-            //     return Math.random() * (max - min) + min;
-            // }
-            
-            // // NRW bounding box coordinates
-            // const nrwBounds = {
-            //     minLat: 50.2985,
-            //     maxLat: 51.7519,
-            //     minLng: 5.8662,
-            //     maxLng: 9.4324,
-            // };
-            
-            // // Array to store generated points
-            // const nrwDataPoints = [];
-            
-            // // Generate 1000 random latitude and longitude points inside NRW
-            // for (let i = 0; i < 1000; i++) {
-            //     const lat = getRandomInRange(nrwBounds.minLat, nrwBounds.maxLat);
-            //     const lng = getRandomInRange(nrwBounds.minLng, nrwBounds.maxLng);
-                
-            //     nrwDataPoints.push({ lat, lng });
-            // }
-            
-            // Log the generated data points
-            // console.log(nrwDataPoints);
-            
-                var iconUrls = [
-                    'https://mridul0007.github.io/GoogleMaps/dog.png',
-                    'https://mridul0007.github.io/GoogleMaps/cat.png',
-                    'https://mridul0007.github.io/GoogleMaps/car.png',
-                ];
-
-               var bounds = new google.maps.LatLngBounds();
+            var bounds = new google.maps.LatLngBounds();
             for (var i = 0; i < this.plm_data.length; i++) {
                 var lat_m = this.plm_data[i].properties["lat"];
                 var lng_m = this.plm_data[i].properties["long"];
@@ -117,6 +86,12 @@
                     position: { lat: parseFloat(lat_m), lng: parseFloat(lng_m) },
                     title: "City " + i,
                     icon : iconUrl,
+                });
+                // Add click event listener to each marker
+                marker.addListener('click', function () {
+                    // Zoom in to street level when marker is clicked
+                    map.setZoom(15); // You can adjust the zoom level as needed
+                    map.setCenter(marker.getPosition());
                 });
 
                 // // Push the marker to the array

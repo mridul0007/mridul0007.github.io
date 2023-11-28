@@ -97,6 +97,62 @@
                     map.setCenter(marker.getPosition());
                     var infoWindow = new google.maps.InfoWindow();
 
+                    var tableContent = `
+                                        <style type="text/css">
+                                            .tg  {border-collapse:collapse;border-spacing:0;}
+                                            .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                                            overflow:hidden;padding:10px 5px;word-break:normal;}
+                                            .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                                            font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                                            .tg .tg-baqh{text-align:center;vertical-align:top}
+                                            .tg .tg-wp8o{border-color:#000000;text-align:center;vertical-align:top}
+                                            .tg .tg-0lax{text-align:left;vertical-align:top}
+                                            .tg .tg-73oq{border-color:#000000;text-align:left;vertical-align:top}
+                                        </style>
+                                        <table class="tg">
+                                            <thead>
+                                                <tr>
+                                                    <th class="tg-wp8o" colspan="4">1</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="tg-baqh" colspan="4">2</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tg-baqh" colspan="4">3</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tg-baqh" colspan="4">4</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tg-0lax">5</td>
+                                                    <td class="tg-0lax">6</td>
+                                                    <td class="tg-0lax">7</td>
+                                                    <td class="tg-0lax">7</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tg-0lax">5</td>
+                                                    <td class="tg-0lax">6</td>
+                                                    <td class="tg-0lax">7</td>
+                                                    <td class="tg-0lax">7</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tg-0lax">5</td>
+                                                    <td class="tg-0lax">6</td>
+                                                    <td class="tg-0lax">7</td>
+                                                    <td class="tg-0lax">7</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="tg-0lax">5</td>
+                                                    <td class="tg-0lax">6</td>
+                                                    <td class="tg-0lax">7</td>
+                                                    <td class="tg-73oq">7</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    `;
+
                     // Set the content of the InfoWindow (HTML content)
                     var content = `
                         <div>
@@ -109,6 +165,8 @@
                             ${marker.randdata}
                         </div>
                     `;
+
+                    var content = content + tableContent;
 
                     // Set the content of the InfoWindow
                     infoWindow.setContent(content);

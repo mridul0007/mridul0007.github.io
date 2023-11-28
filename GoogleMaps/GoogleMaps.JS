@@ -120,7 +120,7 @@
                                                     <td class="tg-baqh" colspan="4">2</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="tg-baqh" colspan="4">${this.imageUrl}</td>
+                                                <td class="tg-baqh" colspan="4"><img src="${image_Url}" alt="Image"></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="tg-baqh" colspan="4"> ${marker.getTitle()}</td>

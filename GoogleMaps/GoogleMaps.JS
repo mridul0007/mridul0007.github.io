@@ -83,7 +83,7 @@
 
                 
 
-                var marker = new google.maps.Marker({
+                let marker = new google.maps.Marker({
                     position: { lat: parseFloat(lat_m), lng: parseFloat(lng_m) },
                     title: this.plm_data[i].id,
                     icon : iconUrl,

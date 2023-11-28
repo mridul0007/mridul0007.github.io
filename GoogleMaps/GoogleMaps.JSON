@@ -1,5 +1,6 @@
 {
 	"name": "GoogleMaps",
+	"imports": ["planning-model"],
 	"description": "GoogleMaps",
 	"newInstancePrefix": "GoogleMaps",
 	"eula": "",
@@ -21,7 +22,11 @@
 	"properties": {
 		"api_key": {
 			"type": "string"
+		},
+		"plm_data": {
+			"type": "PlanningModelMember[]"
 		}
+		
 	},
 	"methods": {
 		"set_api_key": {
@@ -31,6 +36,15 @@
 					"name": "api_key",
 					"type": "string",
 					"description": "set API key"
+				}]
+			},
+		"set_data":{
+			"description": "send data to maps widget",
+			"parameters": [
+				{
+					"name": "plm_data",
+					"type": "PlanningModelMember[]",
+					"description": "send data to maps widget"
 				}
 			]
 		}

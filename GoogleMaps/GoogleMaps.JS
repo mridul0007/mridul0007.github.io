@@ -17,6 +17,7 @@
         constructor() {
             super();
             this.init();
+            this.plm_data = {};
         }
 
         init() {
@@ -39,6 +40,9 @@
             window.initMap = () => {
                 this.renderMap();
             };
+        }
+        async set_data(plm_data) {
+            this.plm_data = plm_data;
         }
 
         renderMap() {
@@ -67,28 +71,28 @@
 
 
 
-            function getRandomInRange(min, max) {
-                return Math.random() * (max - min) + min;
-            }
+            // function getRandomInRange(min, max) {
+            //     return Math.random() * (max - min) + min;
+            // }
             
-            // NRW bounding box coordinates
-            const nrwBounds = {
-                minLat: 50.2985,
-                maxLat: 51.7519,
-                minLng: 5.8662,
-                maxLng: 9.4324,
-            };
+            // // NRW bounding box coordinates
+            // const nrwBounds = {
+            //     minLat: 50.2985,
+            //     maxLat: 51.7519,
+            //     minLng: 5.8662,
+            //     maxLng: 9.4324,
+            // };
             
-            // Array to store generated points
-            const nrwDataPoints = [];
+            // // Array to store generated points
+            // const nrwDataPoints = [];
             
-            // Generate 1000 random latitude and longitude points inside NRW
-            for (let i = 0; i < 1000; i++) {
-                const lat = getRandomInRange(nrwBounds.minLat, nrwBounds.maxLat);
-                const lng = getRandomInRange(nrwBounds.minLng, nrwBounds.maxLng);
+            // // Generate 1000 random latitude and longitude points inside NRW
+            // for (let i = 0; i < 1000; i++) {
+            //     const lat = getRandomInRange(nrwBounds.minLat, nrwBounds.maxLat);
+            //     const lng = getRandomInRange(nrwBounds.minLng, nrwBounds.maxLng);
                 
-                nrwDataPoints.push({ lat, lng });
-            }
+            //     nrwDataPoints.push({ lat, lng });
+            // }
             
             // Log the generated data points
             console.log(nrwDataPoints);
@@ -100,9 +104,9 @@
                 ];
 
                var bounds = new google.maps.LatLngBounds();
-            for (var i = 0; i < nrwDataPoints.length; i++) {
-                var lat_m = nrwDataPoints[i].lat;
-                var lng_m = nrwDataPoints[i].lng;
+            for (var i = 0; i < this.plm_data.length; i++) {
+                var lat_m = this.plm_data[i].lat;
+                var lng_m = this.plm_data[i].long;
                 var iconUrl = iconUrls[i % iconUrls.length];
 
 

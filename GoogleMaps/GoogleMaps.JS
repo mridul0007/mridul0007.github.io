@@ -133,7 +133,7 @@
                                             <td class="tg-0lax">8</td>
                                         </tr>
                                         <tr>
-                                            <td class="tg-0lax">WT-Gruppe</td>
+                                            <td class="tg-0lax">WT-Gruppe:</td>
                                             <td class="tg-0lax">6</td>
                                             <td class="tg-0lax">7</td>
                                             <td class="tg-0lax">8</td>
@@ -154,20 +154,8 @@
                                         </table>
                                     `;
 
-                    // Set the content of the InfoWindow (HTML content)
-                    var content = `
-                        <div>
-                            <img src="${this.imageUrl}" style="width: 100%; height: auto;">
-                        </div>
-                        <div>
-                            ${marker.getTitle()}
-                        </div>
-                        <div>
-                            ${marker.randdata}
-                        </div>
-                    `;
 
-                    var content = content + tableContent;
+                    var content =  tableContent;
 
                     // Set the content of the InfoWindow
                     infoWindow.setContent(content);

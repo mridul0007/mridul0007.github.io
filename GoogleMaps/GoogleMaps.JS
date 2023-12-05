@@ -45,6 +45,7 @@
         }
 
         renderMap() {
+            const startTime = new Date();
             // Get the map container element
             var mapContainer = this.shadowRoot.querySelector('#map-container');
 
@@ -65,7 +66,7 @@
                 styles: mapStyles, // Apply custom map styles
             });
 
-            // Create an array to hold individual markers
+            // Create an array to hold individual markers and icons
             var markers = [];
             var iconUrls = [
                 'https://mridul0007.github.io/GoogleMaps/dog.png',
@@ -93,7 +94,7 @@
                 // Add click event listener to each marker
                 marker.addListener('click', function () {
                     // Zoom in to street level when marker is clicked
-                    map.setZoom(15); // You can adjust the zoom level as needed
+                    map.setZoom(15); 
                     map.setCenter(marker.getPosition());
                     var infoWindow = new google.maps.InfoWindow();
 
@@ -191,6 +192,9 @@
                 });
                 
             };
+            const endTime = new Date();
+            const duration = endTime - startTime;
+            console.log(duration);
         }
     }
 

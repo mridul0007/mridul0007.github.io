@@ -200,10 +200,24 @@
 
 
 
-            var map = new google.maps.Map(document.getElementById('map'), {
+            var mapContainer = this.shadowRoot.querySelector('#map-container');
+
+            var mapStyles = [
+                {
+                    featureType: 'poi',
+                    elementType: 'labels',
+                    stylers: [{ visibility: 'off' }]
+                    
+                },
+            ];
+
+            // Create a new map centered at a specific location
+            var map = new google.maps.Map(mapContainer, {
                 zoom: 4,
-                center: new google.maps.LatLng(51.1657, 10.4515)
-              });
+                center: new google.maps.LatLng(51.1657, 10.4515),
+                disableDefaultUI: true, // Disable default UI elements
+                styles: mapStyles, // Apply custom map styles
+            });
               
               var markers = [];
               

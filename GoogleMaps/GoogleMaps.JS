@@ -276,7 +276,7 @@
                 }
               ];
               var script = document.createElement('script');
-              script.src = 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/plus/1.5.7/markerclustererplus.js';
+              script.src = 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/plus/1.3.6/markerclustererplus.js';
              document.head.appendChild(script);
               script.onload = () => {
                 

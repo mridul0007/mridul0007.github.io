@@ -276,8 +276,8 @@
                 }
               ];
               var script = document.createElement('script');
-              script.src = 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/plus/1.3.6/markerclustererplus.js';
-             document.head.appendChild(script);
+                script.src = 'https://cdn.jsdelivr.net/npm/marker-clusterer-plus@2.1.4/dist/markerclusterer.min.js'; // Use the latest version
+                document.head.appendChild(script);
               script.onload = () => {
                 
                 var markerClusterer = new MarkerClustererPlus(markers, {

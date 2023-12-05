@@ -275,11 +275,17 @@
                   textSize: 12
                 }
               ];
-              
-              var markerClusterer = new MarkerClustererPlus(markers, {
-                styles: styles,
-                gridSize: 50
-              });
+              var script = document.createElement('script');
+              script.src = 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/plus/1.5.7/markerclustererplus.js';
+             document.head.appendChild(script);
+              script.onload = () => {
+                
+                var markerClusterer = new MarkerClustererPlus(markers, {
+                    styles: styles,
+                    gridSize: 50
+                  });
+                
+            };
               
         }
     }

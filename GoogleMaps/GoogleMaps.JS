@@ -164,7 +164,7 @@
                     // Open the InfoWindow on the clicked marker
                     infoWindow.open(map, marker);
                     const startTime = new Date();
-                    this.dispatchEvent(new CustomEvent("onPlmQueryExecution", { bubbles: true }));
+                    this.a\plm_query_execute();
                     
                     const endTime = new Date();
                     const duration = endTime - startTime;
@@ -200,7 +200,15 @@
                 
             };
         }
+
+        async plm_query_execute() {
+            this.dispatchEvent(new CustomEvent("onPlmQueryExecution", { bubbles: true }));
+
+        }
+
     }
+
+
 
     customElements.define('custom-button', GoogleMaps);
 })();

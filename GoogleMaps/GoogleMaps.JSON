@@ -50,7 +50,7 @@
 		}
 	},
 	"events": {
-		"onPLM_query": {
+		"onPlmQueryExecution": {
 			"description": "query actions."
 		}
 	}

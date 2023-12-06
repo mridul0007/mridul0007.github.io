@@ -92,7 +92,7 @@
                     randdata : "hello"
                 });
                 // Add click event listener to each marker
-                marker.addListener('click', function () {
+                marker.addListener('click', async ()  => {
                     // Zoom in to street level when marker is clicked
                     map.setZoom(15); 
                     map.setCenter(marker.getPosition());
@@ -164,7 +164,7 @@
                     // Open the InfoWindow on the clicked marker
                     infoWindow.open(map, marker);
                     const startTime = new Date();
-                    plm_query_execute();
+                    await this.plm_query_execute();
                     
                     const endTime = new Date();
                     const duration = endTime - startTime;

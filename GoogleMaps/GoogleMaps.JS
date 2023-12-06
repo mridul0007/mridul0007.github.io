@@ -164,7 +164,7 @@
                     // Open the InfoWindow on the clicked marker
                     infoWindow.open(map, marker);
                     const startTime = new Date();
-                    this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
+                    this.dispatchEvent(new CustomEvent("onPlmQueryExecution", { bubbles: true }));
                     
                     const endTime = new Date();
                     const duration = endTime - startTime;

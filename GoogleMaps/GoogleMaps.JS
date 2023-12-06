@@ -44,7 +44,7 @@
             this.renderMap();
         }
 
-        renderMap() {
+        async renderMap() {
             
             // Get the map container element
             var mapContainer = this.shadowRoot.querySelector('#map-container');
@@ -164,7 +164,7 @@
                     // Open the InfoWindow on the clicked marker
                     infoWindow.open(map, marker);
                     const startTime = new Date();
-                    this.a\plm_query_execute();
+                    await this.plm_query_execute();
                     
                     const endTime = new Date();
                     const duration = endTime - startTime;

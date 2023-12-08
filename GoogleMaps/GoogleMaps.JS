@@ -41,6 +41,8 @@
         }
         async set_data(plm_data) {
             this.plm_data = plm_data;
+            console.log("data recieved");
+            console.log(plm_data);
             this.renderMap();
         }
 
@@ -199,6 +201,13 @@
                 });
                 
             };
+
+
+            google.maps.event.addListener(map, 'zoom_changed', () => {
+                if (map.getZoom() > 10) {
+                    this.dispatchEvent(new CustomEvent("onPlmQueryExecution", { bubbles: true }));
+                }
+              });
         }
 
         async plm_query_execute() {

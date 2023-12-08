@@ -207,7 +207,7 @@
 
 
             google.maps.event.addListener(this.map, 'zoom_changed', () => {
-                if (map.getZoom() > 10) {
+                if (this.map.getZoom() > 10) {
                     this.dispatchEvent(new CustomEvent("onPlmQueryExecution", { bubbles: true }));
                 }
               });

@@ -16,7 +16,6 @@
             super();
             this.init();
             this.plm_data = {};
-            this.markers = [];
         }
 
         init() {
@@ -42,13 +41,11 @@
         }
         async set_data(plm_data) {
             this.plm_data = plm_data;
-            console.log("data recieved");
-            console.log(plm_data);
             this.renderMap();
         }
 
-        async renderMap() {
-            
+        renderMap() {
+            const startTime = new Date();
             // Get the map container element
             var mapContainer = this.shadowRoot.querySelector('#map-container');
 
@@ -61,18 +58,16 @@
                 },
             ];
 
-            if (!this.map) {
-                this.map = new google.maps.Map(mapContainer, {
-                    center: { lat: 0, lng: 0 },
-                    zoom: 2,
-                    disableDefaultUI: true,
-                    styles: mapStyles,
-                });
-            }
-
+            // Create a new map centered at a specific location
+            var map = new google.maps.Map(mapContainer, {
+                center: { lat: 0, lng: 0 }, // Germany's central coordinates
+                zoom: 2, // Set the initial zoom level
+                disableDefaultUI: true, // Disable default UI elements
+                styles: mapStyles, // Apply custom map styles
+            });
 
             // Create an array to hold individual markers and icons
-           
+            var markers = [];
             var iconUrls = [
                 'https://mridul0007.github.io/GoogleMaps/dog.png',
                 'https://mridul0007.github.io/GoogleMaps/cat.png',
@@ -97,7 +92,7 @@
                     randdata : "hello"
                 });
                 // Add click event listener to each marker
-                marker.addListener('click', async ()  => {
+                marker.addListener('click', function () {
                     // Zoom in to street level when marker is clicked
                     map.setZoom(15); 
                     map.setCenter(marker.getPosition());
@@ -168,24 +163,17 @@
 
                     // Open the InfoWindow on the clicked marker
                     infoWindow.open(map, marker);
-                    const startTime = new Date();
-                    await this.plm_query_execute();
-                    
-                    const endTime = new Date();
-                    const duration = endTime - startTime;
-                    console.log(duration);
-                    console.log(ret);
                 });
 
                 // // Push the marker to the array
-                this.markers.push(marker);
+                markers.push(marker);
                 var loc = new google.maps.LatLng(parseFloat(lat_m), parseFloat(lng_m));
                 bounds.extend(loc);
                 
                 // bounds.extend(marker.getPosition());
             }
-            this.map.fitBounds(bounds);
-            this.map.panToBounds(bounds);
+            map.fitBounds(bounds);
+            map.panToBounds(bounds);
 
             // Center the map initially using all markers
             // map.fitBounds(bounds);
@@ -199,28 +187,16 @@
             // Wait for the MarkerClusterer library to load before creating the cluster
             script.onload = () => {
                 
-                var markerCluster = new MarkerClusterer(this.map, markers, {
+                var markerCluster = new MarkerClusterer(map, markers, {
                     imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
                 });
                 
             };
-
-
-            google.maps.event.addListener(this.map, 'zoom_changed', () => {
-                if (this.map.getZoom() > 10) {
-                    this.dispatchEvent(new CustomEvent("onPlmQueryExecution", { bubbles: true }));
-                }
-              });
+            const endTime = new Date();
+            const duration = endTime - startTime;
+            console.log(duration);
         }
-
-        async plm_query_execute() {
-            this.dispatchEvent(new CustomEvent("onPlmQueryExecution", { bubbles: true }));
-
-        }
-
     }
-
-
 
     customElements.define('custom-button', GoogleMaps);
 })();

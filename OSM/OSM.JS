@@ -122,6 +122,9 @@
             const endTime = new Date();
             const duration = endTime - startTime;
             console.log(duration);
+
+            var loadingOverlad = this.shadowRoot.getElementById('loading_overlay');
+            loadingOverlad.style.display = "none";
         }
         
     }

@@ -56,6 +56,7 @@
             this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
             var loadingOverlay = this.shadowRoot.getElementById('loading_overlay');
             loadingOverlay.style.display = "block";
+            this.renderMap();
         }
 
         async setData(mapData) {
@@ -121,7 +122,7 @@
         //     var loadingOverlay = this.shadowRoot.getElementById('loading_overlay');
         //     loadingOverlay.style.display = "none";
         // }
-        
+
         renderMap() {
             const startTime = new Date();
             var mapContainer = this.shadowRoot.querySelector('#map-container');

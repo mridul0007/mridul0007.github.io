@@ -81,7 +81,7 @@
         }
 
         renderMap() {
-            const startTime = new Date();
+           
             var mapContainer = this.shadowRoot.querySelector('#map-container');
         
             // Check if mapContainer exists
@@ -119,9 +119,7 @@
             // Fit the map bounds to show all markers
             map.fitBounds(bounds);
         
-            const endTime = new Date();
-            const duration = endTime - startTime;
-            console.log(duration);
+          
 
             var loadingOverlad = this.shadowRoot.getElementById('loading_overlay');
             loadingOverlad.style.display = "none";

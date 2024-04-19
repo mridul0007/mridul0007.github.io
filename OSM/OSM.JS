@@ -69,7 +69,7 @@
             }
         </style>
     
-        <div id="map"></div>
+        <div id="map-container"></div>
         <div id="loading_overlay">
             <div id="loading_spinner"></div>
         </div>
@@ -103,54 +103,46 @@
 
         renderMap() {
             const startTime = new Date();
-            var map = this.shadowRoot.querySelector('#map');
-            map = L.map('map').setView([51.505, -0.09], 13);
-
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            var mapContainer = this.shadowRoot.querySelector('#map-container');
+        
+            // Check if mapContainer exists
+            if (!mapContainer) {
+                console.error('Map container element not found.');
+                return;
+            }
+        
+            // Initialize the map using Leaflet
+            var map = L.map(mapContainer).setView([51.1657, 10.4515], 6); // Centered on Germany
+        
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-
-            var marker = L.marker([51.5, -0.09]).addTo(map);
         
-            // // Check if mapContainer exists
-            // if (!mapContainer) {
-            //     console.error('Map container element not found.');
-            //     return;
-            // }
+            // Generate 200 random marker points within Germany
+            var markers = [];
+            var bounds = new L.LatLngBounds();
+            for (var i = 0; i < 200; i++) {
+                // Generate random coordinates within Germany's bounding box
+                var lat = Math.random() * (55.0576 - 47.2701) + 47.2701;
+                var lng = Math.random() * (15.0419 - 5.8663) + 5.8663;
         
-            // // Initialize the map using Leaflet
-            // var map = L.map(mapContainer).setView([51.1657, 10.4515], 6); // Centered on Germany
+                var marker = L.marker([lat, lng]);
+                markers.push(marker);
+                bounds.extend([lat, lng]);
+            }
         
-            // // Add OpenStreetMap tiles
-            // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            // }).addTo(map);
+            // Add markers to a cluster group
+            var markerCluster = L.markerClusterGroup();
+            markerCluster.addLayers(markers);
+            map.addLayer(markerCluster);
         
-            // // Generate 200 random marker points within Germany
-            // var markers = [];
-            // var bounds = new L.LatLngBounds();
-            // for (var i = 0; i < 200; i++) {
-            //     // Generate random coordinates within Germany's bounding box
-            //     var lat = Math.random() * (55.0576 - 47.2701) + 47.2701;
-            //     var lng = Math.random() * (15.0419 - 5.8663) + 5.8663;
+            // Fit the map bounds to show all markers
+            map.fitBounds(bounds);
         
-            //     var marker = L.marker([lat, lng]);
-            //     markers.push(marker);
-            //     bounds.extend([lat, lng]);
-            // }
-        
-            // // Add markers to a cluster group
-            // var markerCluster = L.markerClusterGroup();
-            // markerCluster.addLayers(markers);
-            // map.addLayer(markerCluster);
-        
-            // // Fit the map bounds to show all markers
-            // map.fitBounds(bounds);
-        
-            // const endTime = new Date();
-            // const duration = endTime - startTime;
-            // console.log(duration);
+            const endTime = new Date();
+            const duration = endTime - startTime;
+            console.log(duration);
         }
         
     }

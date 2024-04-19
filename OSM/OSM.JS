@@ -112,9 +112,9 @@
             }
         
             // Add markers to a cluster group
-            var markerCluster = L.markerClusterGroup();
-            markerCluster.addLayers(markers);
-            map.addLayer(markerCluster);
+            // var markerCluster = L.markerClusterGroup();
+            // markerCluster.addLayers(markers);
+            // map.addLayer(markerCluster);
         
             // Fit the map bounds to show all markers
             map.fitBounds(bounds);

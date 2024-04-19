@@ -58,10 +58,6 @@
             loadingOverlay.style.display = "block";
         }
 
-        async setAPIKey(apiKey) {
-            // No API key required for OpenStreetMap
-        }
-
         async setData(mapData) {
             this.mapData = mapData;
             this.renderMap();

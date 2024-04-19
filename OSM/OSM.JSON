@@ -29,15 +29,6 @@
 		
 	},
 	"methods": {
-		"set_api_key": {
-			"description": "set api key",
-            "parameters": [
-				{
-					"name": "api_key",
-					"type": "string",
-					"description": "set API key"
-				}]
-			},
 		"set_data":{
 			"description": "send data to maps widget",
 			"parameters": [

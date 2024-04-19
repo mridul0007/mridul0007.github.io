@@ -63,64 +63,105 @@
             this.renderMap();
         }
 
+        // renderMap() {
+        //     const startTime = new Date();
+        //     var mapContainer = this.shadowRoot.querySelector('#map-container');
+
+        //     // Initialize the map using Leaflet
+        //     var map = L.map(mapContainer).setView([51.1657, 10.4515], 6); // Centered on Germany
+
+        //     // Add OpenStreetMap tiles
+        //     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        //         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        //     }).addTo(map);
+
+        //     // Create an array to hold individual markers and icons
+        //     var markers = [];
+        //     var iconUrls = [
+        //         'https://mridul0007.github.io/GoogleMaps/dog.png',
+        //         'https://mridul0007.github.io/GoogleMaps/cat.png',
+        //         'https://mridul0007.github.io/GoogleMaps/car.png',
+        //     ];
+
+        //     var bounds = new L.LatLngBounds();
+        //     for (var i = 0; i < this.mapData.length; i++) {
+        //         var lat = this.mapData[i].lat;
+        //         var lng = this.mapData[i].lng;
+        //         var iconUrl = iconUrls[i % iconUrls.length];
+        //         var imageUrl = this.mapData[i].imageUrl;
+
+        //         var marker = L.marker([lat, lng], { icon: L.icon({ iconUrl: iconUrl }) });
+
+        //         // Add click event listener to each marker
+        //         marker.on('click', function () {
+        //             // Zoom in to street level when marker is clicked
+        //             map.setView(marker.getLatLng(), 15);
+        //             var infoWindow = L.popup()
+        //                 .setLatLng(marker.getLatLng())
+        //                 .setContent('<img src="' + imageUrl + '" alt="Image">')
+        //                 .openOn(map);
+        //         });
+
+        //         markers.push(marker);
+        //         bounds.extend([lat, lng]);
+        //     }
+
+        //     // Add markers to a cluster group
+        //     var markerCluster = L.markerClusterGroup();
+        //     markerCluster.addLayers(markers);
+        //     map.addLayer(markerCluster);
+
+        //     // Fit the map bounds to show all markers
+        //     map.fitBounds(bounds);
+
+        //     const endTime = new Date();
+        //     const duration = endTime - startTime;
+        //     console.log(duration);
+
+        //     var loadingOverlay = this.shadowRoot.getElementById('loading_overlay');
+        //     loadingOverlay.style.display = "none";
+        // }
+        
         renderMap() {
             const startTime = new Date();
             var mapContainer = this.shadowRoot.querySelector('#map-container');
-
+        
             // Initialize the map using Leaflet
             var map = L.map(mapContainer).setView([51.1657, 10.4515], 6); // Centered on Germany
-
+        
             // Add OpenStreetMap tiles
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-
-            // Create an array to hold individual markers and icons
+        
+            // Generate 200 random marker points within Germany
             var markers = [];
-            var iconUrls = [
-                'https://mridul0007.github.io/GoogleMaps/dog.png',
-                'https://mridul0007.github.io/GoogleMaps/cat.png',
-                'https://mridul0007.github.io/GoogleMaps/car.png',
-            ];
-
             var bounds = new L.LatLngBounds();
-            for (var i = 0; i < this.mapData.length; i++) {
-                var lat = this.mapData[i].lat;
-                var lng = this.mapData[i].lng;
-                var iconUrl = iconUrls[i % iconUrls.length];
-                var imageUrl = this.mapData[i].imageUrl;
-
-                var marker = L.marker([lat, lng], { icon: L.icon({ iconUrl: iconUrl }) });
-
-                // Add click event listener to each marker
-                marker.on('click', function () {
-                    // Zoom in to street level when marker is clicked
-                    map.setView(marker.getLatLng(), 15);
-                    var infoWindow = L.popup()
-                        .setLatLng(marker.getLatLng())
-                        .setContent('<img src="' + imageUrl + '" alt="Image">')
-                        .openOn(map);
-                });
-
+            for (var i = 0; i < 200; i++) {
+                // Generate random coordinates within Germany's bounding box
+                var lat = Math.random() * (55.0576 - 47.2701) + 47.2701;
+                var lng = Math.random() * (15.0419 - 5.8663) + 5.8663;
+        
+                var marker = L.marker([lat, lng]);
                 markers.push(marker);
                 bounds.extend([lat, lng]);
             }
-
+        
             // Add markers to a cluster group
             var markerCluster = L.markerClusterGroup();
             markerCluster.addLayers(markers);
             map.addLayer(markerCluster);
-
+        
             // Fit the map bounds to show all markers
             map.fitBounds(bounds);
-
+        
             const endTime = new Date();
             const duration = endTime - startTime;
             console.log(duration);
-
-            var loadingOverlay = this.shadowRoot.getElementById('loading_overlay');
-            loadingOverlay.style.display = "none";
         }
+        
+
+
     }
 
     customElements.define('custom-button', OSMMapWidget);

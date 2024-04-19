@@ -1,4 +1,17 @@
 (function () {
+    // Function to load Leaflet library dynamically
+    function loadLeaflet(callback) {
+        var script = document.createElement('script');
+        script.src = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js';
+        script.onload = callback;
+        document.head.appendChild(script);
+
+        var style = document.createElement('link');
+        style.rel = 'stylesheet';
+        style.href = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css';
+        document.head.appendChild(style);
+    }
+
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
         <style>
@@ -56,7 +69,10 @@
             this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
             var loadingOverlay = this.shadowRoot.getElementById('loading_overlay');
             loadingOverlay.style.display = "block";
-            this.renderMap();
+            // Load Leaflet library dynamically before rendering the map
+            loadLeaflet(() => {
+                this.renderMap();
+            });
         }
 
         async setData(mapData) {
@@ -67,6 +83,12 @@
         renderMap() {
             const startTime = new Date();
             var mapContainer = this.shadowRoot.querySelector('#map-container');
+        
+            // Check if mapContainer exists
+            if (!mapContainer) {
+                console.error('Map container element not found.');
+                return;
+            }
         
             // Initialize the map using Leaflet
             var map = L.map(mapContainer).setView([51.1657, 10.4515], 6); // Centered on Germany
@@ -101,7 +123,9 @@
             const duration = endTime - startTime;
             console.log(duration);
         }
+        
     }
+
 
     customElements.define('custom-button', OSMMapWidget);
 })();

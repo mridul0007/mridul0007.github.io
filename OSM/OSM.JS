@@ -52,7 +52,22 @@
 
         renderMap() {
 
-            var marker = L.marker([51.1657, 10.4515]).addTo(this.map);
+            var mapIcon = L.Icon.extend({
+                options: {
+                    shadowUrl: '',
+                    iconSize:     [38, 95],
+                    shadowSize:   [50, 64],
+                    iconAnchor:   [22, 94],
+                    shadowAnchor: [4, 62],
+                    popupAnchor:  [-3, -76]
+                }
+            });
+
+            var dogIcon = new mapIcon({iconUrl: 'https://mridul0007.github.io/GoogleMaps/dog.png'}),
+            catIcon = new mapIcon({iconUrl: 'https://mridul0007.github.io/GoogleMaps/cat.png'}),
+            carIcon = new mapIcon({iconUrl: 'https://mridul0007.github.io/GoogleMaps/car.png'});
+
+            var marker = L.marker([51.1657, 10.4515], {icon: dogIcon} ).addTo(this.map);
             marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 
         }

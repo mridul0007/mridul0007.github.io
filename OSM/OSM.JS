@@ -79,7 +79,9 @@
                 var iconUrl = iconUrls[i % iconUrls.length];
                 var image_Url = this.plm_data[i].properties["image"];
 
-            var marker = L.marker([lat_m, lng_m], {icon: iconUrl} ).addTo(this.map);
+                var setIcon = new mapIcon({iconUrl: iconUrl});
+
+            var marker = L.marker([lat_m, lng_m], {icon: setIcon} ).addTo(this.map);
             marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
            
 

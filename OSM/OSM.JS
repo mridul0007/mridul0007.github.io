@@ -41,7 +41,7 @@
             this.map = L.map(this.shadowRoot.getElementById('map')).setView([51.1657, 10.4515], 6); // Centered on Germany
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+            }).addTo(this.map);
            
         }
 

@@ -52,6 +52,8 @@
 
         renderMap() {
 
+            var bounds = new L.LatLngBounds();
+
             var iconUrls = [
                 'https://mridul0007.github.io/GoogleMaps/dog.png',
                 'https://mridul0007.github.io/GoogleMaps/cat.png',

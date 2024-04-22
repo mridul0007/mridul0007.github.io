@@ -80,11 +80,69 @@
                 var lng_m = this.plm_data[i].properties["long"];
                 var iconUrl = iconUrls[i % iconUrls.length];
                 var image_Url = this.plm_data[i].properties["image"];
+                var tableContent = `
+                                        <style type="text/css">
+                                        .tg  {border-collapse:collapse;border-spacing:0;}
+                                        .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                                        overflow:hidden;padding:0px 2px;word-break:normal;}
+                                        .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                                        font-weight:normal;overflow:hidden;padding:0px 2px;word-break:normal;}
+                                        .tg .tg-baqh{text-align:center;vertical-align:top}
+                                        .tg .tg-jdb5{border-color:#000000;font-weight:bold;text-align:center;vertical-align:bottom}
+                                        .tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+                                        .tg .tg-0lax{text-align:left;vertical-align:top}
+                                        .tg .tg-73oq{border-color:#000000;text-align:left;vertical-align:top}
+                                        </style>
+                                        <table class="tg">
+                                        <thead>
+                                        <tr>
+                                            <th class="tg-jdb5" colspan="4">QID: 36520</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="tg-amwm" colspan="4">WTN: Nicht vorhanden</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-amwm" colspan="4">VIKTORIAALLEE 44</td>
+                                        </tr>
+                                        <tr>
+                                        <td class="tg-baqh" colspan="4"><img src="${image_Url}" alt="Image"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">Anbietergruppe:</td>
+                                            <td class="tg-0lax">6</td>
+                                            <td class="tg-0lax">7</td>
+                                            <td class="tg-0lax">8</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">WT-Gruppe:</td>
+                                            <td class="tg-0lax">6</td>
+                                            <td class="tg-0lax">7</td>
+                                            <td class="tg-0lax">8</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax"PPS:</td>
+                                            <td class="tg-0lax">6</td>
+                                            <td class="tg-0lax">7</td>
+                                            <td class="tg-0lax">8</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">Tagespreis:</td>
+                                            <td class="tg-0lax">6</td>
+                                            <td class="tg-0lax">7</td>
+                                            <td class="tg-73oq">8</td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
+                                    `;
+
+
 
                 var setIcon = new mapIcon({iconUrl: iconUrl});
 
             var marker = L.marker([lat_m, lng_m], {icon: setIcon} ).addTo(this.map);
-            marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+            marker.bindPopup(tableContent).openPopup();
             bounds.extend([lat_m, lng_m]);
 
             }

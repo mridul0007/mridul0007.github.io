@@ -80,7 +80,7 @@
                 var lng_m = this.plm_data[i].properties["long"];
                 var iconUrl = iconUrls[i % iconUrls.length];
                 var image_Url = this.plm_data[i].properties["image"];
-                var tableContent = ` <div style="max-width: 300px; max-height: 300px; overflow: auto;">
+                var tableContent = ` <div style="max-width: 400px; max-height: 300px; overflow: auto;">
                                         <table style="width: 100%; border-collapse: collapse;">
                                             <thead>
                                                 <tr style="background-color: #f2f2f2;">

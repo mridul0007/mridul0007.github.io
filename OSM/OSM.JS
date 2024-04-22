@@ -38,7 +38,7 @@
         }
 
         initMap() {
-            const map = L.map(this.shadowRoot.getElementById('map')).setView([51.1657, 10.4515], 6); // Centered on Germany
+            this.map = L.map(this.shadowRoot.getElementById('map')).setView([51.1657, 10.4515], 6); // Centered on Germany
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
@@ -52,7 +52,7 @@
 
         renderMap() {
 
-            var marker = L.marker([51.1657, 10.4515]).addTo(map);
+            var marker = L.marker([51.1657, 10.4515]).addTo(this.map);
             marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 
         }

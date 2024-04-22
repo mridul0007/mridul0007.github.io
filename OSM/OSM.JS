@@ -15,7 +15,8 @@
             const mapContainer = document.createElement('div');
             mapContainer.setAttribute('id', 'map');
             // Apply styles for the map container
-            mapContainer.style.height = '300px'; // Example height, adjust as needed
+            mapContainer.style.height = '500px'; // Example height, adjust as needed
+            mapContainer.style.width = '500px'; // Example height, adjust as needed
             // Append the map container to the shadow DOM
             this.shadowRoot.appendChild(mapContainer);
             // Load Leaflet CSS

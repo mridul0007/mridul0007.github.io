@@ -1,153 +1,56 @@
 (function () {
-    // Function to load Leaflet library dynamically
-    function loadLeaflet(callback) {
-        var script = document.createElement('script');
-        script.src = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js';
-        script.onload = callback;
-        document.head.appendChild(script);
-
-        var style = document.createElement('link');
-        style.rel = 'stylesheet';
-        style.href = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css';
-        document.head.appendChild(style);
-    }
-
-    // Function to load Leaflet MarkerCluster plugin dynamically
-    function loadMarkerCluster(callback) {
-        var script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js';
-        script.onload = callback;
-        document.head.appendChild(script);
-
-        var style = document.createElement('link');
-        style.rel = 'stylesheet';
-        style.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css';
-        document.head.appendChild(style);
-
-        var styleDefault = document.createElement('link');
-        styleDefault.rel = 'stylesheet';
-        styleDefault.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css';
-        document.head.appendChild(styleDefault);
-    }
+   
 
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
-        <style>
-        #loading_overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-          }
-      
-          #loading_spinner {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 4px solid white;
-            border-top: 4px solid transparent;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 2s linear infinite;
-          }
-      
-          @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg);}
-            100% { transform: translate(-50%, -50%) rotate(360deg);}
-          }
-            #map-container {
-                height: 100%;
-                width: 100%;
-            }
-        </style>
-    
-        <div id="map-container"></div>
-        <div id="loading_overlay">
-            <div id="loading_spinner"></div>
-        </div>
+        
     `;
 
-    class OSMMapWidget extends HTMLElement {
+    class LeafletMap extends HTMLElement {
         constructor() {
             super();
-            this.init();
-            this.mapData = {};
-        }
-
-        init() {
+            // Create shadow DOM
             this.attachShadow({ mode: 'open' });
-            this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
-            var loadingOverlay = this.shadowRoot.getElementById('loading_overlay');
-            // loadingOverlay.style.display = "block";
-            // Load Leaflet library dynamically before rendering the map
-            loadLeaflet(() => {
-                // Load MarkerCluster plugin dynamically before rendering the map
-                loadMarkerCluster(() => {
-                    this.renderMap();
-                });
-            });
+            // Create a container for the map
+            const mapContainer = document.createElement('div');
+            mapContainer.setAttribute('id', 'map');
+            // Apply styles for the map container
+            mapContainer.style.height = '300px'; // Example height, adjust as needed
+            // Append the map container to the shadow DOM
+            this.shadowRoot.appendChild(mapContainer);
+            // Load Leaflet CSS
+            this.loadLeafletCSS();
+            // Load Leaflet JS and initialize the map
+            this.loadLeafletJS();
         }
-
-        async setData(mapData) {
-            this.mapData = mapData;
-            this.renderMap();
+    
+        loadLeafletCSS() {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+            link.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
+            link.crossOrigin = '';
+            this.shadowRoot.appendChild(link);
         }
-
-        renderMap() {
-            const startTime = new Date();
-            var mapContainer = this.shadowRoot.querySelector('#map-container');
-        
-            // Check if mapContainer exists
-            if (!mapContainer) {
-                console.error('Map container element not found.');
-                return;
-            }
-        
-            // Initialize the map using Leaflet
-            var map = L.map(mapContainer).setView([51.1657, 10.4515], 6); // Centered on Germany
-        
-            // Add OpenStreetMap tiles
+    
+        loadLeafletJS() {
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+            script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+            script.crossOrigin = '';
+            script.onload = this.initMap.bind(this);
+            this.shadowRoot.appendChild(script);
+        }
+    
+        initMap() {
+            const map = L.map('map').setView([51.1657, 10.4515], 6); // Centered on Germany
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-        
-            // Generate 200 random marker points within Germany
-            var markers = [];
-            var bounds = new L.LatLngBounds();
-            for (var i = 0; i < 200; i++) {
-                // Generate random coordinates within Germany's bounding box
-                var lat = Math.random() * (55.0576 - 47.2701) + 47.2701;
-                var lng = Math.random() * (15.0419 - 5.8663) + 5.8663;
-        
-                var marker = L.marker([lat, lng]);
-                markers.push(marker);
-                bounds.extend([lat, lng]);
-            }
-        
-            // Add markers to a cluster group
-            var markerCluster = L.markerClusterGroup();
-            markerCluster.addLayers(markers);
-            map.addLayer(markerCluster);
-        
-            // Fit the map bounds to show all markers
-            map.fitBounds(bounds);
-        
-            const endTime = new Date();
-            const duration = endTime - startTime;
-            console.log(duration);
         }
-        
     }
-
-    customElements.define('custom-button', OSMMapWidget);
+    
+    customElements.define('custom-button', LeafletMap);
 })();
 
 

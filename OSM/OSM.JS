@@ -142,7 +142,7 @@
                 var setIcon = new mapIcon({iconUrl: iconUrl});
 
             var marker = L.marker([lat_m, lng_m], {icon: setIcon} ).addTo(this.map);
-            marker.bindPopup(tableContent).openPopup();
+            marker.bindPopup(tableContent);
             bounds.extend([lat_m, lng_m]);
 
             }

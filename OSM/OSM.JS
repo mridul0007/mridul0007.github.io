@@ -55,9 +55,9 @@
             var mapIcon = L.Icon.extend({
                 options: {
                     shadowUrl: '',
-                    iconSize:     [38, 95],
+                    iconSize:     [10, 10],
                     shadowSize:   [50, 64],
-                    iconAnchor:   [22, 94],
+                    iconAnchor:   [10, 10],
                     shadowAnchor: [4, 62],
                     popupAnchor:  [-3, -76]
                 }

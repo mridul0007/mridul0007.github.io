@@ -83,9 +83,10 @@
 
             var marker = L.marker([lat_m, lng_m], {icon: setIcon} ).addTo(this.map);
             marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-           
+            bounds.extend([lat_m, lng_m]);
 
             }
+            this.map.fitBounds(bounds);
 
         }
     }

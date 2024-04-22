@@ -52,23 +52,38 @@
 
         renderMap() {
 
+            var iconUrls = [
+                'https://mridul0007.github.io/GoogleMaps/dog.png',
+                'https://mridul0007.github.io/GoogleMaps/cat.png',
+                'https://mridul0007.github.io/GoogleMaps/car.png',
+            ];
+
             var mapIcon = L.Icon.extend({
                 options: {
                     shadowUrl: '',
                     iconSize:     [20, 20],
                     shadowSize:   [50, 64],
-                    iconAnchor:   [10, 10],
+                    iconAnchor:   [20,20],
                     shadowAnchor: [4, 62],
                     popupAnchor:  [-3, -76]
                 }
             });
 
-            var dogIcon = new mapIcon({iconUrl: 'https://mridul0007.github.io/GoogleMaps/dog.png'}),
-            catIcon = new mapIcon({iconUrl: 'https://mridul0007.github.io/GoogleMaps/cat.png'}),
-            carIcon = new mapIcon({iconUrl: 'https://mridul0007.github.io/GoogleMaps/car.png'});
+            // var dogIcon = new mapIcon({iconUrl: 'https://mridul0007.github.io/GoogleMaps/dog.png'}),
+            // catIcon = new mapIcon({iconUrl: 'https://mridul0007.github.io/GoogleMaps/cat.png'}),
+            // carIcon = new mapIcon({iconUrl: 'https://mridul0007.github.io/GoogleMaps/car.png'});
 
-            var marker = L.marker([51.1657, 10.4515], {icon: dogIcon} ).addTo(this.map);
+            for (var i = 0; i < this.plm_data.length; i++) {
+                var lat_m = this.plm_data[i].properties["lat"];
+                var lng_m = this.plm_data[i].properties["long"];
+                var iconUrl = iconUrls[i % iconUrls.length];
+                var image_Url = this.plm_data[i].properties["image"];
+
+            var marker = L.marker([lat_m, lng_m], {icon: iconUrl} ).addTo(this.map);
             marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+           
+
+            }
 
         }
     }

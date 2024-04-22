@@ -67,7 +67,7 @@
                     shadowSize:   [50, 64],
                     iconAnchor:   [20,20],
                     shadowAnchor: [4, 62],
-                    popupAnchor:  [0, 10]
+                    popupAnchor:  [0, -10]
                 }
             });
 
@@ -80,61 +80,50 @@
                 var lng_m = this.plm_data[i].properties["long"];
                 var iconUrl = iconUrls[i % iconUrls.length];
                 var image_Url = this.plm_data[i].properties["image"];
-                var tableContent = `
-                                        <style type="text/css">
-                                        .tg  {border-collapse:collapse;border-spacing:0;}
-                                        .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-                                        overflow:hidden;padding:0px 2px;word-break:normal;}
-                                        .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-                                        font-weight:normal;overflow:hidden;padding:0px 2px;word-break:normal;}
-                                        .tg .tg-baqh{text-align:center;vertical-align:top}
-                                        .tg .tg-jdb5{border-color:#000000;font-weight:bold;text-align:center;vertical-align:bottom}
-                                        .tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-                                        .tg .tg-0lax{text-align:left;vertical-align:top}
-                                        .tg .tg-73oq{border-color:#000000;text-align:left;vertical-align:top}
-                                        </style>
-                                        <table class="tg">
-                                        <thead>
-                                        <tr>
-                                            <th class="tg-jdb5" colspan="4">QID: 36520</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td class="tg-amwm" colspan="4">WTN: Nicht vorhanden</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-amwm" colspan="4">VIKTORIAALLEE 44</td>
-                                        </tr>
-                                        <tr>
-                                        <td class="tg-baqh" colspan="4"><img src="${image_Url}" alt="Image"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-0lax">Anbietergruppe:</td>
-                                            <td class="tg-0lax">6</td>
-                                            <td class="tg-0lax">7</td>
-                                            <td class="tg-0lax">8</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-0lax">WT-Gruppe:</td>
-                                            <td class="tg-0lax">6</td>
-                                            <td class="tg-0lax">7</td>
-                                            <td class="tg-0lax">8</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-0lax"PPS:</td>
-                                            <td class="tg-0lax">6</td>
-                                            <td class="tg-0lax">7</td>
-                                            <td class="tg-0lax">8</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tg-0lax">Tagespreis:</td>
-                                            <td class="tg-0lax">6</td>
-                                            <td class="tg-0lax">7</td>
-                                            <td class="tg-73oq">8</td>
-                                        </tr>
-                                        </tbody>
+                var tableContent = ` <div style="max-width: 300px; max-height: 300px; overflow: auto;">
+                                        <table style="width: 100%; border-collapse: collapse;">
+                                            <thead>
+                                                <tr style="background-color: #f2f2f2;">
+                                                    <th colspan="4" style="text-align: center;">QID: 36520</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="4" style="text-align: center;">WTN: Nicht vorhanden</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4" style="text-align: center;">VIKTORIAALLEE 44</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4" style="text-align: center;"><img src="${image_Url}" alt="Image" style="max-width: 100%; height: auto;"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: left;">Anbietergruppe:</td>
+                                                    <td style="text-align: center;">6</td>
+                                                    <td style="text-align: center;">7</td>
+                                                    <td style="text-align: center;">8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: left;">WT-Gruppe:</td>
+                                                    <td style="text-align: center;">6</td>
+                                                    <td style="text-align: center;">7</td>
+                                                    <td style="text-align: center;">8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: left;">PPS:</td>
+                                                    <td style="text-align: center;">6</td>
+                                                    <td style="text-align: center;">7</td>
+                                                    <td style="text-align: center;">8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: left;">Tagespreis:</td>
+                                                    <td style="text-align: center;">6</td>
+                                                    <td style="text-align: center;">7</td>
+                                                    <td style="text-align: center;">8</td>
+                                                </tr>
+                                            </tbody>
                                         </table>
+                                    </div>
                                     `;
 
 

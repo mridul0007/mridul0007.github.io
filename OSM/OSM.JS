@@ -80,51 +80,52 @@
                 var lng_m = this.plm_data[i].properties["long"];
                 var iconUrl = iconUrls[i % iconUrls.length];
                 var image_Url = this.plm_data[i].properties["image"];
-                var tableContent = ` <div style="max-width: 400px; max-height: 300px; overflow: auto;">
-                                        <table style="width: 100%; border-collapse: collapse;">
-                                            <thead>
-                                                <tr style="background-color: #f2f2f2;">
-                                                    <th colspan="4" style="text-align: center;">QID: 36520</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td colspan="4" style="text-align: center;">WTN: Nicht vorhanden</td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="4" style="text-align: center;">VIKTORIAALLEE 44</td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="4" style="text-align: center;"><img src="${image_Url}" alt="Image" style="max-width: 100%; height: auto;"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="text-align: left;">Anbietergruppe:</td>
-                                                    <td style="text-align: center;">6</td>
-                                                    <td style="text-align: center;">7</td>
-                                                    <td style="text-align: center;">8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="text-align: left;">WT-Gruppe:</td>
-                                                    <td style="text-align: center;">6</td>
-                                                    <td style="text-align: center;">7</td>
-                                                    <td style="text-align: center;">8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="text-align: left;">PPS:</td>
-                                                    <td style="text-align: center;">6</td>
-                                                    <td style="text-align: center;">7</td>
-                                                    <td style="text-align: center;">8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="text-align: left;">Tagespreis:</td>
-                                                    <td style="text-align: center;">6</td>
-                                                    <td style="text-align: center;">7</td>
-                                                    <td style="text-align: center;">8</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    `;
+                var tableContent = `
+                                <div style="max-width: 400px; max-height: 300px; overflow: auto;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead>
+                                    <tr style="background-color: #f2f2f2;">
+                                        <th colspan="4" style="text-align: center;">QID: 36520</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; border: 1px solid #ddd;">WTN: Nicht vorhanden</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; border: 1px solid #ddd;">VIKTORIAALLEE 44</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; border: 1px solid #ddd;"><img src="${image_Url}" alt="Image" style="max-width: 100%; height: auto;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left; border: 1px solid #ddd;">Anbietergruppe:</td>
+                                        <td style="text-align: center; border: 1px solid #ddd;">6</td>
+                                        <td style="text-align: center; border: 1px solid #ddd;">7</td>
+                                        <td style="text-align: center; border: 1px solid #ddd;">8</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left; border: 1px solid #ddd;">WT-Gruppe:</td>
+                                        <td style="text-align: center; border: 1px solid #ddd;">6</td>
+                                        <td style="text-align: center; border: 1px solid #ddd;">7</td>
+                                        <td style="text-align: center; border: 1px solid #ddd;">8</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left; border: 1px solid #ddd;">PPS:</td>
+                                        <td style="text-align: center; border: 1px solid #ddd;">6</td>
+                                        <td style="text-align: center; border: 1px solid #ddd;">7</td>
+                                        <td style="align: center; border: 1px solid #ddd;">8</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left; border: 1px solid #ddd;">Tagespreis:</td>
+                                        <td style="text-align: center; border: 1px solid #ddd;">6</td>
+                                        <td style="text-align: center; border: 1px solid #ddd;">7</td>
+                                        <td style="text-align: center; border: 1px solid #ddd;">8</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                                `;
 
 
 

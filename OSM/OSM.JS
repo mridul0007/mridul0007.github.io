@@ -178,17 +178,14 @@ class LeafletMap extends HTMLElement {
     loadMarkerClusterCSS() {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = 'https://unpkg.com/leaflet.markercluster@1.5.1/dist/MarkerCluster.css';
-        link.integrity = 'sha256-o2YV6xujBbfg+A/6QgznlcXUkI8YJk6tFWYDZhf8iII=';
-        link.crossOrigin = '';
+        link.href = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css';
         this.shadowRoot.appendChild(link);
     }
 
     loadMarkerClusterJS() {
         const script = document.createElement('script');
-        script.src = 'https://unpkg.com/leaflet.markercluster@1.5.1/dist/leaflet.markercluster.js';
-        script.integrity = 'sha256-FzTzdRCSgzS/ZFWHVZTrjq2w1Rfz/nFNFTCG75uMq3I=';
-        script.crossOrigin = '';
+        script.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js';
+        script.onload = this.renderMap.bind(this);
         this.shadowRoot.appendChild(script);
     }
 

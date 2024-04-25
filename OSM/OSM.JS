@@ -250,7 +250,11 @@
 
             var markerCluster = L.markerClusterGroup();
 
-    
+            // Define the onClick function outside the renderMap method
+            function onClick(e) {
+                this.map.setView(e.latlng, 30);
+                e.target.openPopup();
+            }
 
             for (var i = 0; i < this.plm_data.length; i++) {
                 var lat_m = this.plm_data[i].properties["lat"];
@@ -306,14 +310,9 @@
 
                 var setIcon = new mapIcon({ iconUrl: iconUrl });
 
-                var marker = L.marker([lat_m, lng_m], { icon: setIcon }).on('click', markerOnClick).addTo(map);
-
-                function markerOnClick(e)
-                {
-                  alert("hi. you clicked the marker at " + e.latlng);
-                };
+                var marker = L.marker([lat_m, lng_m], { icon: setIcon });
                 marker.bindPopup(tableContent);
-                
+                marker.on('click', onClick); // Bind click event to marker
                 markerCluster.addLayer(marker);
                 bounds.extend([lat_m, lng_m]);
             }

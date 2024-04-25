@@ -65,7 +65,7 @@
 
 
             try {
-                await Promise.all([this.loadLeafletJS(), this.loadMarkerClusterJS()]);
+                await Promise.all([this.loadLeafletCSS(), this.loadLeafletJS(), this.loadMarkerClusterCSS(),this.loadMarkerClusterJS()]);
                 this.plm_data = plm_data;
                 this.renderMap();
                 this.initMap();

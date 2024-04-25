@@ -85,7 +85,7 @@ class LeafletMap extends HTMLElement {
                 shadowSize:   [50, 64],
                 iconAnchor:   [20, 20],
                 shadowAnchor: [4, 62],
-                popupAnchor:  [0, -10]
+                popupAnchor:  [0, -30]
             }
         });
 

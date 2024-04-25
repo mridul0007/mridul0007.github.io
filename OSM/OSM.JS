@@ -3,8 +3,8 @@
     tmpl.innerHTML = `
         <style>
             #map {
-                height: 500px;
-                width: 500px;
+                height: 100%;
+                width: 100%;
             }
             .leaflet-popup-content-wrapper {
                 max-height: 400px; /* Adjust this value as needed */

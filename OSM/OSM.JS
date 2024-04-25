@@ -7,7 +7,7 @@
                 width: 500px;
             }
             .leaflet-popup-content-wrapper {
-                max-height: 200px; /* Adjust this value as needed */
+                max-height: 400px; /* Adjust this value as needed */
                 overflow-y: auto;
               }
         </style>

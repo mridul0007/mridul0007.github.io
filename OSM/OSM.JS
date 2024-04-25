@@ -156,14 +156,7 @@ class LeafletMap extends HTMLElement {
             var setIcon = new mapIcon({ iconUrl: iconUrl });
 
             var marker = L.marker([lat_m, lng_m], { icon: setIcon });
-            // Efficient event handling for zoom and popup on click
-            (function(marker, lat_m, lng_m, tableContent) {
-                marker.on('click', function(e) {
-                this.map.setView([lat_m, lng_m], 15); // Zoom to level 15
-                this.bindPopup(tableContent).openPopup(); // Bind and open popup
-                });
-            })(marker.clone(), lat_m, lng_m, tableContent.cloneNode(true)); // Clone marker and content for better performance
-
+            marker.bindPopup(tableContent);
             markerCluster.addLayer(marker);
             bounds.extend([lat_m, lng_m]);
         }

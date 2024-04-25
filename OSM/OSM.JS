@@ -141,18 +141,18 @@ class LeafletMap extends HTMLElement {
 
             var setIcon = new mapIcon({ iconUrl: iconUrl });
 
-            var marker = L.marker([lat_m, lng_m], { icon: setIcon });
+            var marker = L.marker([lat_m, lng_m], { icon: setIcon }).on('click', onClick);;
             marker.bindPopup(tableContent);
             markerCluster.addLayer(marker);
             bounds.extend([lat_m, lng_m]);
         }
          // Bind click event to marker
-         marker.on('click', function(e) {
-            // Zoom to ground level
+         function onClick(e) {
             this.map.setView(e.latlng, 18);
             // Open popup
             e.target.openPopup();
-        }.bind(this));
+            alert(this.getLatLng());
+        }
 
         this.map.addLayer(markerCluster);
         this.map.fitBounds(bounds);

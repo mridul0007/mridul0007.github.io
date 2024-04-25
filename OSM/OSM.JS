@@ -178,10 +178,10 @@
             super();
             this.attachShadow({ mode: 'open' });
             this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
-            // this.loadLeafletCSS();
-            // this.loadLeafletJS();
-            // this.loadMarkerClusterCSS();
-            // this.loadMarkerClusterJS();
+            this.loadLeafletCSS();
+            this.loadLeafletJS();
+            this.loadMarkerClusterCSS();
+            this.loadMarkerClusterJS();
         }
 
         loadLeafletCSS() {
@@ -230,10 +230,6 @@
 
         renderMap() {
 
-            this.loadLeafletCSS();
-            this.loadLeafletJS();
-            this.loadMarkerClusterCSS();
-            this.loadMarkerClusterJS();
 
             var bounds = new L.LatLngBounds();
 

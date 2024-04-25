@@ -161,6 +161,7 @@ class LeafletMap extends HTMLElement {
         this.map.fitBounds(bounds);
     }
 }
+// console
 
 customElements.define('custom-button', LeafletMap);
 })();

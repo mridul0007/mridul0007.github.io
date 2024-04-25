@@ -124,24 +124,24 @@ class LeafletMap extends HTMLElement {
                                         <tr>
                                             <td class="tg-0lax">Anbietergruppe:</td>
                                             <td class="tg-0lax">6</td>
-                                            <td class="tg-0lax">7</td>
+                                            <td class="tg-0lax">Old Data XXXX</td>
                                             <td class="tg-0lax">8</td>
                                         </tr>
                                         <tr>
                                             <td class="tg-0lax">WT-Gruppe:</td>
                                             <td class="tg-0lax">6</td>
                                             <td class="tg-0lax">7</td>
-                                            <td class="tg-0lax">8</td>
+                                            <td class="tg-0lax">New Data 2131</td>
                                         </tr>
                                         <tr>
                                             <td class="tg-0lax"PPS:</td>
-                                            <td class="tg-0lax">6</td>
+                                            <td class="tg-0lax">Mridul</td>
                                             <td class="tg-0lax">7</td>
                                             <td class="tg-0lax">8</td>
                                         </tr>
                                         <tr>
                                             <td class="tg-0lax">Tagespreis:</td>
-                                            <td class="tg-0lax">6</td>
+                                            <td class="tg-0lax">Mridul</td>
                                             <td class="tg-0lax">7</td>
                                             <td class="tg-73oq">8</td>
                                         </tr>

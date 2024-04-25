@@ -6,6 +6,10 @@
                 height: 500px;
                 width: 500px;
             }
+            .leaflet-popup-content-wrapper {
+                max-height: 200px; /* Adjust this value as needed */
+                overflow-y: auto;
+              }
         </style>
         <div id="map"></div>
     `;
@@ -93,7 +97,7 @@ class LeafletMap extends HTMLElement {
             var iconUrl = iconUrls[i % iconUrls.length];
             var image_Url = this.plm_data[i].properties["image"];
             var tableContent = `
-            <style type="text/css">
+            <style type="text/css" >
                                         .tg  {border-collapse:collapse;border-spacing:0;}
                                         .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
                                         overflow:hidden;padding:0px 2px;word-break:normal;}

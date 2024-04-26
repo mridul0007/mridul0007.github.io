@@ -167,5 +167,5 @@ class LeafletMap extends HTMLElement {
 }
 // console
 
-customElements.define('custom-button', LeafletMap);
+customElements.define('custom-button1', LeafletMap);
 })();

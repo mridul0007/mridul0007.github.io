@@ -12,7 +12,7 @@
 	"webcomponents": [
 		{
 			"kind": "main",
-			"tag": "custom-button",
+			"tag": "custom-button1",
 			"url": "https://mridul0007.github.io/OSM/OSM.JS",
 			"integrity": ""	,
 			"ignoreIntegrity": true

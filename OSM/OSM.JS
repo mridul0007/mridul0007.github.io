@@ -25,6 +25,8 @@ class LeafletMap extends HTMLElement {
         this.loadMarkerClusterJS();
     }
 
+    map = null;
+
     loadLeafletCSS() {
         const link = document.createElement('link');
         link.rel = 'stylesheet';

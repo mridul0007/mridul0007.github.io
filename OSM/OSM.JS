@@ -158,21 +158,14 @@ class LeafletMap extends HTMLElement {
 
             var setIcon = new mapIcon({ iconUrl: iconUrl });
             var marker = L.marker([lat_m, lng_m], { icon: setIcon });
-            marker.on('click', function(e) {
-                mapInstance.setView(e.latlng, 15);
-                mapInstance.on('zoomend', function() {
-                  marker.setPopupContent(tableContent); 
-                  marker.openPopup(); 
-                });
-              }.bind(this));
 
            
-            // marker.on('click', function(e) {
-            //     var lat = e.latlng.lat;
-            //     var lng = e.latlng.lng;
-            //     mapInstance.setView(e.latlng, 15);
-            // }.bind(this)); 
-            // marker.bindPopup(tableContent);
+            marker.on('click', function(e) {
+                var lat = e.latlng.lat;
+                var lng = e.latlng.lng;
+                mapInstance.setView(e.latlng, 15);
+            }.bind(this)); 
+            marker.bindPopup(tableContent);
             markerCluster.addLayer(marker);
             bounds.extend([lat_m, lng_m]);
         }

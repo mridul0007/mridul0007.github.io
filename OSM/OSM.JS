@@ -165,7 +165,7 @@ class LeafletMap extends HTMLElement {
                 var lng = e.latlng.lng;
                 mapInstance.setView(e.latlng, 15);
             }.bind(this)); 
-            marker.bindPopup(tableContent);
+            marker.bindPopup(tableContent,{ autoPan: false, anchor: [0.5, -0.5], keepInView: true });
             markerCluster.addLayer(marker);
             bounds.extend([lat_m, lng_m]);
         }

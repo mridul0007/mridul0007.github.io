@@ -92,6 +92,7 @@ class LeafletMap extends HTMLElement {
         });
 
         var markerCluster = L.markerClusterGroup();
+        const mapInstance = this.map;
 
         for (var i = 0; i < this.plm_data.length; i++) {
             var lat_m = this.plm_data[i].properties["lat"];
@@ -159,7 +160,7 @@ class LeafletMap extends HTMLElement {
 
             var marker = L.marker([lat_m, lng_m], { icon: setIcon });
             marker.on('click', function(e) {
-                this.map.setView(e.latlng, 15);
+                mapInstance.setView(e.latlng, 15);
             }.bind(this)); 
             marker.bindPopup(tableContent);
             markerCluster.addLayer(marker);

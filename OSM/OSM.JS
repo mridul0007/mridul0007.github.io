@@ -158,9 +158,10 @@ class LeafletMap extends HTMLElement {
             var setIcon = new mapIcon({ iconUrl: iconUrl });
 
             var marker = L.marker([lat_m, lng_m], { icon: setIcon });
-            marker.on('click', function(e){
-                map.setView(e.latlng, 15);
-            });
+            marker.on('click', function(e) {
+                // Use this.map instead of map
+                this.map.setView(e.latlng, 15);
+            }.bind(this)); 
             marker.bindPopup(tableContent);
             markerCluster.addLayer(marker);
             bounds.extend([lat_m, lng_m]);

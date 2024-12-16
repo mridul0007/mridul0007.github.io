@@ -11,6 +11,7 @@
         gap: 10px; /* Spacing between boxes */
         width: 100%;
         max-width: 600px;
+        margin-left: 2rem;
       }
 
       .box {

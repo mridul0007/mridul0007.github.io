@@ -16,6 +16,7 @@
         width: 100%;
         max-width: 600px;
         margin-left: 1rem;
+        margin-top:1 rem;
       }
 
       .box {

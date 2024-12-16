@@ -118,16 +118,16 @@
           'https://www.aljazeera.com/wp-content/uploads/2023/06/2023-06-03T161801Z_431956431_UP1EJ63199ZLD_RTRMADP_3_SOCCER-CHAMPIONS-FCB-WOB-PREVIEW-1685809233.jpg?resize=1800%2C1800'
         ],
         'Real Madrid': [
-          'https://via.placeholder.com/200?text=Real+1',
-          'https://via.placeholder.com/200?text=Real+2',
-          'https://via.placeholder.com/200?text=Real+3',
-          'https://via.placeholder.com/200?text=Real+4'
+          'https://www.reddit.com/media?url=https%3A%2F%2Fexternal-preview.redd.it%2Freal-madrid-cf-web-oficial-del-real-madrid-cf-mbappe-v0-4Zi0mI0v73EJmHIlWbfMqlHxLRsIoY-o32oej3ZXmgY.jpg%3Fauto%3Dwebp%26s%3D73e630760a37a9a29df097ed72732b337018928f',
+          'https://realsoccerclub.org/wp-content/uploads/2022/05/avc8199_thumb-real-madrid-campeones-de-europa-14-veces-levantan-el-trofeo.jpg',
+          'https://cdn.britannica.com/94/204494-050-39C19F9E/crisiano-ronaldo-in-action-at-the-spanish-cup-match-between-fc-barcelona-and-real-madrid-2012.jpg',
+          'https://www.shutterstock.com/image-photo/barcelona-apr-5-real-madrid-260nw-2420517127.jpg'
         ],
         'Bayern Munich': [
-          'https://via.placeholder.com/200?text=Bayern+1',
-          'https://via.placeholder.com/200?text=Bayern+2',
-          'https://via.placeholder.com/200?text=Bayern+3',
-          'https://via.placeholder.com/200?text=Bayern+4'
+          'https://i.scdn.co/image/ab67616d0000b2732ac525d334b13a4be87f40f6',
+          'https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_2:1,c_fill,g_custom,w_1280/v1/cms/public/images/fcbayern-com/homepage/club/erfolge/champions-league/2020_header.jpg',
+          'https://imgresizer.eurosport.com/unsafe/1200x0/filters:format(jpeg)/origin-imgresizer.eurosport.com/2021/11/02/3247575-66468768-2560-1440.jpg',
+          'https://www.getfootballnewsgermany.com/assets/arsenal-fc-v-fc-bayern-munchen-quarter-final-first-leg-uefa-champions-league-2023-24-scaled.jpg'
         ]
       };
       this.populateTable();

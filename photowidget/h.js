@@ -5,7 +5,7 @@
     <style>
      :host {
       display: block;
-      margin-left: 2rem; /* Margin applied to the widget itself */
+      margin-left: 1rem; /* Margin applied to the widget itself */
     }
       /* General styling for the widget */
       .container {

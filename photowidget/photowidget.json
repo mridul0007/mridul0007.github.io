@@ -1,12 +1,12 @@
 {
-	"name": "Masterdata_CSV",
+	"name": "photowidget",
 	"imports": ["planning-model"],
-	"description": "Master data CSV imports",
-	"newInstancePrefix": "Masterdata_CSV",
+	"description": "Photowidget SAC",
+	"newInstancePrefix": "photowidget",
 	"eula": "",
 	"vendor": "",
 	"license": "",
-	"id": "Masterdata_CSV",
+	"id": "photowidget",
 	"version": "1.0.1",
 	"icon": "",
 	"webcomponents": [

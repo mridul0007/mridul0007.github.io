@@ -23,81 +23,8 @@
 			"type" : "ty_plm_query"
 		}	
 	},
-	"dataBindings": {
-		"exportDataSource": {
-		  "feeds": [
-			{
-			  "id": "dimensions",
-			  "description": "The dimensions feed",
-			  "type": "dimension"
-			},
-			{
-			  "id": "measures",
-			  "description": "The measures feed",
-			  "type": "mainStructureMember"
-			}
-		  ]
-		}
-	  },
-	  "types":{
-		"ty_plm_query":{
-			"description" : "Object for PLM query",
-			"properties":[
-				
-				{
-					"name" : "plm_mp_planningmodelmember_status",
-					"type" : "string",
-					"description" : "Planning model member"
-				},
-				{
-					"name" : "plm_mp_dimension_id",
-					"type" : "string",
-					"description" : "dimension ID"
-				},
-				{
-					"name": "plm_mp_planningmodelmembers",
-					"type": "PlanningModelMember[]",
-					"description": "array of PLMs"
-				}
-			]
-
-		}
-	  },
-	  "methods": {
-		"set_plm_mp_dimension_id": {
-			"description": "set id",
-			"parameters": [
-				{
-					"name": "plm_mp_dimension_id",
-					"type": "string",
-					"description": "set Dimension ID"
-				}
-			]
-			
-		},
-        "get_plm_mp_dimension_id": {
-			"returnType": "string",
-			"description": "return Dimension ID"
-			
-			
-		},
-		"set_p_plm_query": {
-			"description": "set set_p_plm_query",
-			"parameters": [
-				{
-					"name": "p_plm_query",
-					"type": "ty_plm_query",
-					"description": "set p_plm_query"
-				}
-			]
-			
-		},
-		"get_p_plm_query": {
-			"returnType": "ty_plm_query",
-			"description": "get p_plm_query"
-			
-		}
-		
+	"methods": {
+	
 
 
 	},

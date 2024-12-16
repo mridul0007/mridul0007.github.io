@@ -96,7 +96,42 @@
       this.attachShadow({ mode: 'open' }); // Attach shadow DOM
       this.shadowRoot.appendChild(tmpl.content.cloneNode(true)); // Append template to shadow DOM
       this.tableBody = this.shadowRoot.getElementById('table-body');
+      this.images = [
+        this.shadowRoot.getElementById('img1'),
+        this.shadowRoot.getElementById('img2'),
+        this.shadowRoot.getElementById('img3'),
+        this.shadowRoot.getElementById('img4')
+      ];
+
+      // Map club names to images
+      this.clubImageMap = {
+        'Manchester United': [
+          'https://media.gettyimages.com/id/1917992001/photo/wigan-england-bruno-fernandes-of-manchester-united-is-congratulated-by-teammates-after.jpg?s=612x612&w=gi&k=20&c=CfFgd-Xv8QID8icBDESPJx7MbPhsoIbwZvv6S7RA04A=',
+          'https://via.placeholder.com/200?text=ManU+2',
+          'https://via.placeholder.com/200?text=ManU+3',
+          'https://via.placeholder.com/200?text=ManU+4'
+        ],
+        'FC Barcelona': [
+          'https://media.gettyimages.com/id/1917992001/photo/wigan-england-bruno-fernandes-of-manchester-united-is-congratulated-by-teammates-after.jpg?s=612x612&w=gi&k=20&c=CfFgd-Xv8QID8icBDESPJx7MbPhsoIbwZvv6S7RA04A=',
+          'https://via.placeholder.com/200?text=Barca+2',
+          'https://via.placeholder.com/200?text=Barca+3',
+          'https://via.placeholder.com/200?text=Barca+4'
+        ],
+        'Real Madrid': [
+          'https://via.placeholder.com/200?text=Real+1',
+          'https://via.placeholder.com/200?text=Real+2',
+          'https://via.placeholder.com/200?text=Real+3',
+          'https://via.placeholder.com/200?text=Real+4'
+        ],
+        'Bayern Munich': [
+          'https://via.placeholder.com/200?text=Bayern+1',
+          'https://via.placeholder.com/200?text=Bayern+2',
+          'https://via.placeholder.com/200?text=Bayern+3',
+          'https://via.placeholder.com/200?text=Bayern+4'
+        ]
+      };
       this.populateTable();
+      
     }
 
     // Custom initialization method (optional)
@@ -151,11 +186,24 @@
         urlLink.target = '_blank';
         urlCell.appendChild(urlLink);
         row.appendChild(urlCell);
+        row.addEventListener('click', () => this.updateImages(item.club));
 
         // Add row to table
         this.tableBody.appendChild(row);
       });
     }
+    updateImages(clubName) {
+      const images = this.clubImageMap[clubName];
+      if (images) {
+        this.images.forEach((imgElement, index) => {
+          imgElement.src = images[index] || '';
+          imgElement.alt = `${clubName} Image ${index + 1}`;
+        });
+      } else {
+        console.warn('No images found for club:', clubName);
+      }
+    }
+  }
   
   }
 

@@ -25,6 +25,7 @@
         align-items: center;
         overflow: hidden;
         border-radius: 8px;
+        margin: 2rem
       }
 
       .box img {

@@ -198,7 +198,7 @@
     }
   }
   
-  }
+  
 
   // Define your custom element
   customElements.define('custom-button', Photowidget);

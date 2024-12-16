@@ -55,7 +55,7 @@
 
     // Example event handler
     fireChanged() {
-      console.log('OnClick Triggered');
+      console.log('OnClick Triggered  lll');
     }
   }
 

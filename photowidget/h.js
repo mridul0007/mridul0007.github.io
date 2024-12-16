@@ -40,13 +40,54 @@
       .box img:hover {
         transform: scale(1.1); /* Zoom on hover */
       }
+      
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+      }
+
+      th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      a {
+        color: blue;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
     </style>
     <div class="container">
-      <div class="box"><img src="image1.jpg" alt="Image 1"></div>
-      <div class="box"><img src="image2.jpg" alt="Image 2"></div>
-      <div class="box"><img src="image3.jpg" alt="Image 3"></div>
-      <div class="box"><img src="image4.jpg" alt="Image 4"></div>
+      <div class="box"><img id="img1" src="" alt="Box 1"></div>
+      <div class="box"><img id="img2" src="" alt="Box 2"></div>
+      <div class="box"><img id="img3" src="" alt="Box 3"></div>
+      <div class="box"><img id="img4" src="" alt="Box 4"></div>
     </div>
+    <table>
+      <thead>
+        <tr>
+          <th>CLUB</th>
+          <th>URL</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <!-- Rows will be dynamically added here -->
+      </tbody>
+    </table>
   `;
 
   class Photowidget extends HTMLElement {
@@ -54,6 +95,8 @@
       super();
       this.attachShadow({ mode: 'open' }); // Attach shadow DOM
       this.shadowRoot.appendChild(tmpl.content.cloneNode(true)); // Append template to shadow DOM
+      this.tableBody = this.shadowRoot.getElementById('table-body');
+      this.populateTable();
     }
 
     // Custom initialization method (optional)
@@ -65,6 +108,55 @@
     fireChanged() {
       console.log('OnClick Triggered  lll');
     }
+
+    populateTable() {
+
+      const clubData = [
+        { club: 'Manchester United', url: 'https://www.manutd.com' },
+        { club: 'FC Barcelona', url: 'https://www.fcbarcelona.com' },
+        { club: 'Real Madrid', url: 'https://www.realmadrid.com' },
+        { club: 'Bayern Munich', url: 'https://www.fcbayern.com' },
+        { club: 'Chelsea FC', url: 'https://www.chelseafc.com' },
+        { club: 'Liverpool FC', url: 'https://www.liverpoolfc.com' },
+        { club: 'Juventus FC', url: 'https://www.juventus.com' },
+        { club: 'Paris Saint-Germain', url: 'https://www.psg.fr' },
+        { club: 'Arsenal FC', url: 'https://www.arsenal.com' },
+        { club: 'AC Milan', url: 'https://www.acmilan.com' },
+        { club: 'Inter Milan', url: 'https://www.inter.it' },
+        { club: 'Atletico Madrid', url: 'https://en.atleticodemadrid.com' }
+      ];
+      // Clear existing rows
+      this.tableBody.innerHTML = '';
+
+      // Check if data is valid
+      if (!Array.isArray(clubData)) {
+        console.error('Data should be an array of objects with club and url keys.');
+        return;
+      }
+
+      // Populate rows
+      clubData.forEach(item => {
+        const row = document.createElement('tr');
+
+        // Club column
+        const clubCell = document.createElement('td');
+        clubCell.textContent = item.club || 'N/A';
+        row.appendChild(clubCell);
+
+        // URL column
+        const urlCell = document.createElement('td');
+        const urlLink = document.createElement('a');
+        urlLink.href = item.url || '#';
+        urlLink.textContent = item.url || 'N/A';
+        urlLink.target = '_blank';
+        urlCell.appendChild(urlLink);
+        row.appendChild(urlCell);
+
+        // Add row to table
+        this.tableBody.appendChild(row);
+      });
+    }
+  
   }
 
   // Define your custom element

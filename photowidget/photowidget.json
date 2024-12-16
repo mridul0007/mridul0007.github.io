@@ -19,14 +19,14 @@
 		}
 	],
 	"properties": {
-		"p_plm_query":{
-			"type" : "ty_plm_query"
-		}	
+		"p_plm_obj":{
+			"type" : "string"
+		}
 	},
 	"methods": {
-	
-
-
+		"clear": {
+			"description": "Clear plm"
+		}
 	},
 	"events": {
 		"onPlmQueryExecution": {

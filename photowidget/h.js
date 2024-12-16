@@ -151,14 +151,7 @@
         { club: 'FC Barcelona', url: 'https://www.fcbarcelona.com' },
         { club: 'Real Madrid', url: 'https://www.realmadrid.com' },
         { club: 'Bayern Munich', url: 'https://www.fcbayern.com' },
-        { club: 'Chelsea FC', url: 'https://www.chelseafc.com' },
-        { club: 'Liverpool FC', url: 'https://www.liverpoolfc.com' },
-        { club: 'Juventus FC', url: 'https://www.juventus.com' },
-        { club: 'Paris Saint-Germain', url: 'https://www.psg.fr' },
-        { club: 'Arsenal FC', url: 'https://www.arsenal.com' },
-        { club: 'AC Milan', url: 'https://www.acmilan.com' },
-        { club: 'Inter Milan', url: 'https://www.inter.it' },
-        { club: 'Atletico Madrid', url: 'https://en.atleticodemadrid.com' }
+        { club: 'Chelsea FC', url: 'https://www.chelseafc.com' }
       ];
       // Clear existing rows
       this.tableBody.innerHTML = '';

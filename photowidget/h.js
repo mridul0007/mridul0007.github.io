@@ -107,15 +107,15 @@
       this.clubImageMap = {
         'Manchester United': [
           'https://media.gettyimages.com/id/1917992001/photo/wigan-england-bruno-fernandes-of-manchester-united-is-congratulated-by-teammates-after.jpg?s=612x612&w=gi&k=20&c=CfFgd-Xv8QID8icBDESPJx7MbPhsoIbwZvv6S7RA04A=',
-          'https://via.placeholder.com/200?text=ManU+2',
-          'https://via.placeholder.com/200?text=ManU+3',
-          'https://via.placeholder.com/200?text=ManU+4'
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeJQyDiBmouEtZ3czWEddEziz2RxKIWBfFVg&s',
+          'https://assets.goal.com/images/v3/bltc044f74b72e40288/656fedc92073b5c79fcb807686fbc40ac54f2fdb.png?auto=webp&format=pjpg&width=3840&quality=60',
+          'https://library.sportingnews.com/styles/twitter_card_120x120/s3/2022-04/Manchester%20United%20crest%20Champions%20League%20trophy%20split%20041922.png?itok=95wJoNCH'
         ],
         'FC Barcelona': [
-          'https://media.gettyimages.com/id/1917992001/photo/wigan-england-bruno-fernandes-of-manchester-united-is-congratulated-by-teammates-after.jpg?s=612x612&w=gi&k=20&c=CfFgd-Xv8QID8icBDESPJx7MbPhsoIbwZvv6S7RA04A=',
-          'https://via.placeholder.com/200?text=Barca+2',
-          'https://via.placeholder.com/200?text=Barca+3',
-          'https://via.placeholder.com/200?text=Barca+4'
+          'https://rukminim2.flixcart.com/image/850/1000/l0e6kcw0/poster/a/m/a/medium-fc-barcelona-logo-on-fine-art-paper-hd-quality-wallpaper-original-imagc6xxqrgzmxv3.jpeg?q=20&crop=false',
+          'https://www.fcbarcelona.com/fcbarcelona/photo/2019/03/12/304ae4e8-6c40-4e91-a01f-b9c85767bf10/uAnwfqJX.jpg',
+          'https://imgresizer.eurosport.com/unsafe/1200x0/filters:format(jpeg)/origin-imgresizer.eurosport.com/2021/11/02/3247572-66468708-2560-1440.jpg',
+          'https://www.aljazeera.com/wp-content/uploads/2023/06/2023-06-03T161801Z_431956431_UP1EJ63199ZLD_RTRMADP_3_SOCCER-CHAMPIONS-FCB-WOB-PREVIEW-1685809233.jpg?resize=1800%2C1800'
         ],
         'Real Madrid': [
           'https://via.placeholder.com/200?text=Real+1',
@@ -150,8 +150,7 @@
         { club: 'Manchester United', url: 'https://www.manutd.com' },
         { club: 'FC Barcelona', url: 'https://www.fcbarcelona.com' },
         { club: 'Real Madrid', url: 'https://www.realmadrid.com' },
-        { club: 'Bayern Munich', url: 'https://www.fcbayern.com' },
-        { club: 'Chelsea FC', url: 'https://www.chelseafc.com' }
+        { club: 'Bayern Munich', url: 'https://www.fcbayern.com' }
       ];
       // Clear existing rows
       this.tableBody.innerHTML = '';

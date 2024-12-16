@@ -15,7 +15,7 @@
         gap: 10px; /* Spacing between boxes */
         width: 100%;
         max-width: 600px;
-        margin-left: 2rem;
+        margin-left: 1rem;
       }
 
       .box {
@@ -25,7 +25,7 @@
         align-items: center;
         overflow: hidden;
         border-radius: 8px;
-        margin: 2rem
+
       }
 
       .box img {

@@ -16,7 +16,7 @@
         gap: 10px; /* Spacing between boxes */
         width: 100%;
         max-width: 600px;
-        margin-left: 1rem;
+        margin: 1rem 0;
         
       }
 
@@ -45,6 +45,7 @@
         width: 100%;
         border-collapse: collapse;
         margin: 1rem 0;
+        margin-right: 1rem;
       }
 
       th, td {

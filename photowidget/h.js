@@ -6,6 +6,7 @@
      :host {
       display: block;
       margin-left: 1rem; /* Margin applied to the widget itself */
+      margin-top:1 rem;
     }
       /* General styling for the widget */
       .container {
@@ -16,7 +17,7 @@
         width: 100%;
         max-width: 600px;
         margin-left: 1rem;
-        margin-top:1 rem;
+        
       }
 
       .box {

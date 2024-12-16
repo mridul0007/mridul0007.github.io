@@ -3,6 +3,10 @@
   let tmpl = document.createElement('template');
   tmpl.innerHTML = `
     <style>
+     :host {
+      display: block;
+      margin-left: 2rem; /* Margin applied to the widget itself */
+    }
       /* General styling for the widget */
       .container {
         display: grid;

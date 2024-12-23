@@ -13,7 +13,7 @@
   .layout {
     display: flex;
     align-items: flex-start; /* Align the top edges */
-    gap: 1rem; /* Space between the photo grid and table */
+    gap: 1rem; /* Space between the table and photo grid */
   }
 
   .container {
@@ -48,6 +48,7 @@
   table {
     width: 100%;
     border-collapse: collapse;
+    max-width: 200px;
   }
 
   th, td {
@@ -75,12 +76,6 @@
   }
 </style>
 <div class="layout">
-  <div class="container">
-    <div class="box"><img id="img1" src="" alt="Box 1"></div>
-    <div class="box"><img id="img2" src="" alt="Box 2"></div>
-    <div class="box"><img id="img3" src="" alt="Box 3"></div>
-    <div class="box"><img id="img4" src="" alt="Box 4"></div>
-  </div>
   <table>
     <thead>
       <tr>
@@ -92,8 +87,15 @@
       <!-- Rows will be dynamically added here -->
     </tbody>
   </table>
+  <div class="container">
+    <div class="box"><img id="img1" src="" alt="Box 1"></div>
+    <div class="box"><img id="img2" src="" alt="Box 2"></div>
+    <div class="box"><img id="img3" src="" alt="Box 3"></div>
+    <div class="box"><img id="img4" src="" alt="Box 4"></div>
+  </div>
 </div>
 `;
+
 
 
   class Photowidget extends HTMLElement {

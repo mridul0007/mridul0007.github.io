@@ -2,94 +2,99 @@
   // Define the HTML template for your custom element
   let tmpl = document.createElement('template');
   tmpl.innerHTML = `
-    <style>
-     :host {
-      display: block;
-      margin-left: 0.5rem; /* Margin applied to the widget itself */
-      margin-top: 0.5rem;
-    }
-      /* General styling for the widget */
-      .container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Two columns */
-        grid-template-rows: repeat(2, 200px); /* Two rows */
-        gap: 10px; /* Spacing between boxes */
-        width: 100%;
-        max-width: 600px;
-        margin: 1rem 0;
-        
-      }
+<style>
+  :host {
+    display: block;
+    margin-left: 0.5rem; /* Margin applied to the widget itself */
+    margin-top: 0.5rem;
+  }
 
-      .box {
-        background-color: #ddd;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        border-radius: 8px;
+  /* General styling for the widget */
+  .layout {
+    display: flex;
+    align-items: flex-start; /* Align the top edges */
+    gap: 1rem; /* Space between the photo grid and table */
+  }
 
-      }
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-template-rows: repeat(2, 200px); /* Two rows */
+    gap: 10px; /* Spacing between boxes */
+    width: 100%;
+    max-width: 600px;
+  }
 
-      .box img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Ensures images are cropped properly */
-        transition: transform 0.3s ease;
-      }
+  .box {
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 8px;
+  }
 
-      .box img:hover {
-        transform: scale(1.1); /* Zoom on hover */
-      }
-      
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 1rem 0;
-        margin-right: 1rem;
-      }
+  .box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures images are cropped properly */
+    transition: transform 0.3s ease;
+  }
 
-      th, td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-      }
+  .box img:hover {
+    transform: scale(1.1); /* Zoom on hover */
+  }
 
-      th {
-        background-color: #f4f4f4;
-        font-weight: bold;
-      }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
 
-      tr:nth-child(even) {
-        background-color: #f9f9f9;
-      }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
 
-      a {
-        color: blue;
-        text-decoration: none;
-      }
+  th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
 
-      a:hover {
-        text-decoration: underline;
-      }
-    </style>
-    <div class="container">
-      <div class="box"><img id="img1" src="" alt="Box 1"></div>
-      <div class="box"><img id="img2" src="" alt="Box 2"></div>
-      <div class="box"><img id="img3" src="" alt="Box 3"></div>
-      <div class="box"><img id="img4" src="" alt="Box 4"></div>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>CLUB</th>
-          <th>URL</th>
-        </tr>
-      </thead>
-      <tbody id="table-body">
-        <!-- Rows will be dynamically added here -->
-      </tbody>
-    </table>
-  `;
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  a {
+    color: blue;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+<div class="layout">
+  <div class="container">
+    <div class="box"><img id="img1" src="" alt="Box 1"></div>
+    <div class="box"><img id="img2" src="" alt="Box 2"></div>
+    <div class="box"><img id="img3" src="" alt="Box 3"></div>
+    <div class="box"><img id="img4" src="" alt="Box 4"></div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>CLUB</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+      <!-- Rows will be dynamically added here -->
+    </tbody>
+  </table>
+</div>
+`;
+
 
   class Photowidget extends HTMLElement {
     constructor() {

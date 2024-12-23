@@ -2,178 +2,99 @@
   // Define the HTML template for your custom element
   let tmpl = document.createElement('template');
   tmpl.innerHTML = `
-  <style>
-    :host {
-      display: block;
-      margin-left: 0.5rem;
-      margin-top: 0.5rem;
-    }
-  
-    .layout {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-  
-    .photo-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      max-width: 600px;
-      width: 100%;
-    }
-  
-    .container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 200px);
-      gap: 10px;
-      width: 100%;
-    }
-  
-    .box {
-      background-color: #ddd;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      border-radius: 8px;
-    }
-  
-    .box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-  
-    .box img:hover {
-      transform: scale(1.1);
-    }
-  
-    .nav-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 20px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
-    }
-  
-    .nav-button:hover {
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-  
-    .nav-left {
-      left: -20px;
-    }
-  
-    .nav-right {
-      right: -20px;
-    }
-  
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      max-width: 200px;
-    }
-  
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: left;
-    }
-  
-    th {
-      background-color: #f4f4f4;
-      font-weight: bold;
-    }
-  
-    tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-  
-    a {
-      color: blue;
-      text-decoration: none;
-    }
-  
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
-  <div class="layout">
-    <div class="photo-container">
-      <button class="nav-button nav-left" id="prev-btn">&#9664;</button>
-      <div class="container">
-        <div class="box"><img id="img1" src="" alt="Box 1"></div>
-        <div class="box"><img id="img2" src="" alt="Box 2"></div>
-        <div class="box"><img id="img3" src="" alt="Box 3"></div>
-        <div class="box"><img id="img4" src="" alt="Box 4"></div>
-      </div>
-      <button class="nav-button nav-right" id="next-btn">&#9654;</button>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>CLUB</th>
-          <th>URL</th>
-        </tr>
-      </thead>
-      <tbody id="table-body">
-        <!-- Rows will be dynamically added here -->
-      </tbody>
-    </table>
+<style>
+  :host {
+    display: block;
+    margin-left: 0.5rem; /* Margin applied to the widget itself */
+    margin-top: 0.5rem;
+  }
+
+  /* General styling for the widget */
+  .layout {
+    display: flex;
+    align-items: flex-start; /* Align the top edges */
+    gap: 1rem; /* Space between the photo grid and table */
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-template-rows: repeat(2, 200px); /* Two rows */
+    gap: 10px; /* Spacing between boxes */
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .box {
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures images are cropped properly */
+    transition: transform 0.3s ease;
+  }
+
+  .box img:hover {
+    transform: scale(1.1); /* Zoom on hover */
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    max-width: 200px;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  a {
+    color: blue;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+<div class="layout">
+  <div class="container">
+    <div class="box"><img id="img1" src="" alt="Box 1"></div>
+    <div class="box"><img id="img2" src="" alt="Box 2"></div>
+    <div class="box"><img id="img3" src="" alt="Box 3"></div>
+    <div class="box"><img id="img4" src="" alt="Box 4"></div>
   </div>
-  
-  <script>
-    // JavaScript to handle navigation
-    const images = [
-      'image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg',
-      'image5.jpg', 'image6.jpg', 'image7.jpg', 'image8.jpg',
-      'image9.jpg', 'image10.jpg', 'image11.jpg', 'image12.jpg',
-    ];
-  
-    let currentIndex = 0;
-  
-    function updateImages() {
-      for (let i = 0; i < 4; i++) {
-        const imgElement = document.getElementById(`img${i + 1}`);
-        const imageIndex = currentIndex + i;
-        imgElement.src = images[imageIndex] || ''; // Fallback if no image available
-        imgElement.alt = `Image ${imageIndex + 1}`;
-      }
-    }
-  
-    document.getElementById('prev-btn').addEventListener('click', () => {
-      if (currentIndex > 0) {
-        currentIndex -= 4;
-        updateImages();
-      }
-    });
-  
-    document.getElementById('next-btn').addEventListener('click', () => {
-      if (currentIndex + 4 < images.length) {
-        currentIndex += 4;
-        updateImages();
-      }
-    });
-  
-    // Initialize the first set of images
-    updateImages();
-  </script>
-  `;
-  
+  <table>
+    <thead>
+      <tr>
+        <th>CLUB</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+      <!-- Rows will be dynamically added here -->
+    </tbody>
+  </table>
+</div>
+`;
 
 
 

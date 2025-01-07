@@ -31,6 +31,8 @@
     align-items: center;
     overflow: hidden;
     border-radius: 8px;
+    width: 200px; /* Fixed width */
+    height: 200px; /* Fixed height to maintain square aspect ratio */
   }
 
   .box img {

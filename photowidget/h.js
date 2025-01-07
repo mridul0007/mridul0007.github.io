@@ -154,10 +154,6 @@
         ],
         'FC Barcelona': [
           'https://rukminim2.flixcart.com/image/850/1000/l0e6kcw0/poster/a/m/a/medium-fc-barcelona-logo-on-fine-art-paper-hd-quality-wallpaper-original-imagc6xxqrgzmxv3.jpeg?q=20&crop=false',
-          'https://www.fcbarcelona.com/fcbarcelona/photo/2019/03/12/304ae4e8-6c40-4e91-a01f-b9c85767bf10/uAnwfqJX.jpg',
-          'https://imgresizer.eurosport.com/unsafe/1200x0/filters:format(jpeg)/origin-imgresizer.eurosport.com/2021/11/02/3247572-66468708-2560-1440.jpg',
-          'https://www.aljazeera.com/wp-content/uploads/2023/06/2023-06-03T161801Z_431956431_UP1EJ63199ZLD_RTRMADP_3_SOCCER-CHAMPIONS-FCB-WOB-PREVIEW-1685809233.jpg?resize=1800%2C1800',
-          'https://imgresizer.eurosport.com/unsafe/1200x0/filters:format(jpeg)/origin-imgresizer.eurosport.com/2021/11/02/3247572-66468708-2560-1440.jpg',
           'https://www.aljazeera.com/wp-content/uploads/2023/06/2023-06-03T161801Z_431956431_UP1EJ63199ZLD_RTRMADP_3_SOCCER-CHAMPIONS-FCB-WOB-PREVIEW-1685809233.jpg?resize=1800%2C1800'
         ],
         'Real Madrid': [
@@ -170,7 +166,11 @@
           'https://i.scdn.co/image/ab67616d0000b2732ac525d334b13a4be87f40f6',
           'https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_2:1,c_fill,g_custom,w_1280/v1/cms/public/images/fcbayern-com/homepage/club/erfolge/champions-league/2020_header.jpg',
           'https://imgresizer.eurosport.com/unsafe/1200x0/filters:format(jpeg)/origin-imgresizer.eurosport.com/2021/11/02/3247575-66468768-2560-1440.jpg',
-          'https://www.getfootballnewsgermany.com/assets/arsenal-fc-v-fc-bayern-munchen-quarter-final-first-leg-uefa-champions-league-2023-24-scaled.jpg'
+          'https://www.getfootballnewsgermany.com/assets/arsenal-fc-v-fc-bayern-munchen-quarter-final-first-leg-uefa-champions-league-2023-24-scaled.jpg',
+          'https://cdn.vox-cdn.com/thumbor/C2mY94e0G7y2MtOxWkK8AFnMwM8=/0x0:5184x3456/1200x0/filters:focal(0x0:5184x3456):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/18970434/1161755492.jpg.jpg',
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Bayern_hattrick_champions_league_trophies.jpg/440px-Bayern_hattrick_champions_league_trophies.jpg',
+          'https://th.bing.com/th/id/R.95a5443830e420083030546b21242395?rik=4A0VWHgfJWXqyw&pid=ImgRaw&r=0'
+
         ]
       };
       this.currentClub = null;

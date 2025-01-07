@@ -139,6 +139,8 @@
         this.shadowRoot.getElementById('img3'),
         this.shadowRoot.getElementById('img4')
       ];
+      this.prevButton = this.shadowRoot.getElementById('prev-btn');
+      this.nextButton = this.shadowRoot.getElementById('next-btn');
 
       // Map club names to images
       this.clubImageMap = {
@@ -167,7 +169,11 @@
           'https://www.getfootballnewsgermany.com/assets/arsenal-fc-v-fc-bayern-munchen-quarter-final-first-leg-uefa-champions-league-2023-24-scaled.jpg'
         ]
       };
+      this.currentClub = null;
+      this.currentIndex = 0;
       this.populateTable();
+      this.addEventListeners();
+
       
     }
 
@@ -221,19 +227,45 @@
         this.tableBody.appendChild(row);
       });
     }
-    updateImages(clubName) {
-      const images = this.clubImageMap[clubName];
+    addEventListeners() {
+      this.prevButton.addEventListener('click', () => {
+        if (this.currentClub) {
+          this.currentIndex = Math.max(this.currentIndex - 4, 0);
+          this.renderImages();
+        }
+      });
+
+      this.nextButton.addEventListener('click', () => {
+        if (this.currentClub) {
+          const images = this.clubImageMap[this.currentClub];
+          this.currentIndex = Math.min(this.currentIndex + 4, images.length - 4);
+          this.renderImages();
+        }
+      });
+    }
+
+     updateImages(clubName) {
+      this.currentClub = clubName;
+      this.currentIndex = 0;
+      this.renderImages();
+    }
+
+    renderImages() {
+      const images = this.clubImageMap[this.currentClub];
       if (images) {
         this.images.forEach((imgElement, index) => {
-          imgElement.src = images[index] || '';
-          imgElement.alt = `${clubName} Image ${index + 1}`;
+          const imgIndex = this.currentIndex + index;
+          imgElement.src = images[imgIndex] || '';
+          imgElement.alt = `${this.currentClub} Image ${imgIndex + 1}`;
         });
-      } else {
-        console.warn('No images found for club:', clubName);
+
+        // Enable/disable navigation buttons
+        this.prevButton.disabled = this.currentIndex === 0;
+        this.nextButton.disabled = this.currentIndex + 4 >= images.length;
       }
     }
   }
-  
+
   
 
   // Define your custom element

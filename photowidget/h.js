@@ -50,6 +50,7 @@
     display: flex;
     justify-content: center;
     margin-top: 10px;
+    gap: 8px;
   }
 
   .nav-button {

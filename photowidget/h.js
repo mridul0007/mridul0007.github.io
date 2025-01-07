@@ -310,7 +310,14 @@ a:hover {
         this.images.forEach((imgElement, index) => {
           const imgIndex = this.currentIndex + index;
           imgElement.src = images[imgIndex] || '';
-          imgElement.alt = `${this.currentClub} Image ${imgIndex + 1}`;
+          if ( imgElement.src = '' )
+          {
+            imgElement.alt = 'No picture to display';
+          }
+          else{
+            imgElement.alt = `${this.currentClub} Image ${imgIndex + 1}`;
+          }
+       
         });
 
         // Enable/disable navigation buttons

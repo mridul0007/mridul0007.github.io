@@ -67,41 +67,47 @@
     background-color: #ccc;
     cursor: not-allowed;
   }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    max-width: 200px;
-  }
-
-  th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-  }
-
-  th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-  }
-
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-
-  a {
-    color: blue;
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
   
   .scrollable-table {
     max-height: 8cm; /* Set the height you prefer */
     overflow-y: auto;
     border: 1px solid #ccc; /* Optional: Add a border around the scrollable container */
+}
+
+
+.scrollable-table table {
+    width: 100%; /* Ensure the table takes up the full width */
+    border-collapse: collapse;
+}
+
+.scrollable-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Ensure the header stays above the scrolling rows */
+    background-color: #f4f4f4; /* Match the header's background color */
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 </style>
 <div class="layout">

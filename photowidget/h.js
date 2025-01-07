@@ -69,15 +69,10 @@
   }
   
   .scrollable-table {
-    max-height: 20cm; /* Set the height you prefer */
+    max-height: 10cm; /* Set the height you prefer */
     overflow-y: auto;
     border: 1px solid #ccc; /* Optional: Add a border around the scrollable container */
-    border-radius: 8px; /* Add rounded corners for a polished look */
-    padding: 10px; /* Add padding inside the container */
-    background-color: #ffffff; /* Set a background color for the container */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
-  }
-
+}
 
 
 .scrollable-table table {

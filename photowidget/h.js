@@ -97,6 +97,12 @@
   a:hover {
     text-decoration: underline;
   }
+  
+  .scrollable-table {
+    max-height: 8cm; /* Set the height you prefer */
+    overflow-y: auto;
+    border: 1px solid #ccc; /* Optional: Add a border around the scrollable container */
+}
 </style>
 <div class="layout">
   <div class="photo-section">
@@ -111,17 +117,19 @@
       <button class="nav-button" id="next-btn" disabled>></button>
     </div>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <th>CLUB</th>
-        <th>URL</th>
-      </tr>
-    </thead>
-    <tbody id="table-body">
-      <!-- Rows will be dynamically added here -->
-    </tbody>
-  </table>
+  <div class="scrollable-table">
+    <table>
+      <thead>
+        <tr>
+          <th>CLUB</th>
+          <th>URL</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <!-- Rows will be dynamically added here -->
+      </tbody>
+    </table>
+  </div>
 </div>
 `;
 

@@ -5,22 +5,21 @@
 <style>
   :host {
     display: block;
-    margin-left: 0.5rem; /* Margin applied to the widget itself */
+    margin-left: 0.5rem;
     margin-top: 0.5rem;
   }
 
-  /* General styling for the widget */
   .layout {
     display: flex;
-    align-items: flex-start; /* Align the top edges */
-    gap: 1rem; /* Space between the photo grid and table */
+    align-items: flex-start;
+    gap: 1rem;
   }
 
   .container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-    grid-template-rows: repeat(2, 200px); /* Two rows */
-    gap: 10px; /* Spacing between boxes */
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 200px);
+    gap: 10px;
     width: 100%;
     max-width: 600px;
   }
@@ -37,12 +36,33 @@
   .box img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures images are cropped properly */
+    object-fit: cover;
     transition: transform 0.3s ease;
   }
 
   .box img:hover {
-    transform: scale(1.1); /* Zoom on hover */
+    transform: scale(1.1);
+  }
+
+  .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .nav-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .nav-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
   }
 
   table {
@@ -76,11 +96,17 @@
   }
 </style>
 <div class="layout">
-  <div class="container">
-    <div class="box"><img id="img1" src="" alt="Box 1"></div>
-    <div class="box"><img id="img2" src="" alt="Box 2"></div>
-    <div class="box"><img id="img3" src="" alt="Box 3"></div>
-    <div class="box"><img id="img4" src="" alt="Box 4"></div>
+  <div class="photo-section">
+    <div class="container">
+      <div class="box"><img id="img1" src="" alt="Box 1"></div>
+      <div class="box"><img id="img2" src="" alt="Box 2"></div>
+      <div class="box"><img id="img3" src="" alt="Box 3"></div>
+      <div class="box"><img id="img4" src="" alt="Box 4"></div>
+    </div>
+    <div class="navigation-buttons">
+      <button class="nav-button" id="prev-btn" disabled>Previous</button>
+      <button class="nav-button" id="next-btn" disabled>Next</button>
+    </div>
   </div>
   <table>
     <thead>
@@ -95,7 +121,6 @@
   </table>
 </div>
 `;
-
 
 
 

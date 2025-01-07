@@ -69,7 +69,7 @@
   }
   
   .scrollable-table {
-    max-height: 8cm; /* Set the height you prefer */
+    max-height: 20cm; /* Set the height you prefer */
     overflow-y: auto;
     border: 1px solid #ccc; /* Optional: Add a border around the scrollable container */
 }

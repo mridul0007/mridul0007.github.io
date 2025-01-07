@@ -88,7 +88,7 @@
 }
 
 th, td {
-    border: 0px solid #ccc;
+    border: 0px solid #000000;
     padding: 8px;
     text-align: left;
 }

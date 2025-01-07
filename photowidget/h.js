@@ -48,13 +48,13 @@
 
   .navigation-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 10px;
   }
 
   .nav-button {
     padding: 8px 16px;
-    font-size: 14px;
+    font-size: 18px;
     background-color: #007BFF;
     color: white;
     border: none;
@@ -106,8 +106,8 @@
       <div class="box"><img id="img4" src="" alt="Box 4"></div>
     </div>
     <div class="navigation-buttons">
-      <button class="nav-button" id="prev-btn" disabled>Previous</button>
-      <button class="nav-button" id="next-btn" disabled>Next</button>
+      <button class="nav-button" id="prev-btn" disabled><</button>
+      <button class="nav-button" id="next-btn" disabled>></button>
     </div>
   </div>
   <table>

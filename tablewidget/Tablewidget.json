@@ -4,7 +4,7 @@
 	"description": "TableWidget SAC",
 	"newInstancePrefix": "TableWidget",
 	"eula": "",
-	"vendor": "",
+	"vendor": "Mridul Koshy",
 	"license": "",
 	"id": "TableWidget",
 	"version": "1.0.1",

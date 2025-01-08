@@ -48,8 +48,8 @@
     border: 4px solid #003366; /* Dark blue border */
     border-radius: 10px; /* Optional: Rounded corners */
     padding: 0px; /* Padding inside the container */
-    color: white; /* White text color for the title */
-    text-align: center; /* Center-align the title */
+    color: black; /* White text color for the title */
+    text-align: left; /* Center-align the title */
     margin: 20px auto; /* Center the container on the page */
     max-width: 95%; /* Optional: Adjust the width of the container */
   }
@@ -57,7 +57,7 @@
   .table-title {
     background-color: #003366;
     font-weight: bold;
-    font-size: 1.5em; /* Adjust the font size for the title */
+    font-size: 1em; /* Adjust the font size for the title */
     margin-bottom: 1px; /* Space between the title and the table */
   }
       

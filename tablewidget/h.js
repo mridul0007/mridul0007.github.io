@@ -76,34 +76,33 @@
 
     .modal-content {
       position: relative;
-      margin: 5% auto;
-      padding: 1px;
-      max-width: 90%;
-      max-height: 900%;
-      background-color: white;
-      border-radius: 2px;
-      text-align: center;
+      margin: 0; /* Remove any margin for the modal */
+      padding: 0; /* Remove padding for the modal */
+      width: auto;
+      height: auto;
+      background-color: transparent; /* No background color */
+      text-align: center; /* Center-align the content */
     }
 
     .modal-content img {
-      max-width: 100%;
-      max-height: 100%;
+      max-width: 90%; /* Adjust max width to fit within the screen */
+      max-height: 90%; /* Adjust max height to fit within the screen */
       object-fit: contain;
-      border-radius: 8px;
+      border: none; /* Remove any border around the image */
     }
 
     .close-btn {
       position: absolute;
       top: 10px;
-      right: 20px;
-      color: #333;
+      right: 10px;
+      color: white;
       font-size: 24px;
       font-weight: bold;
       cursor: pointer;
     }
 
     .close-btn:hover {
-      color: #666;
+      color: lightgray;
     }
       
   </style>

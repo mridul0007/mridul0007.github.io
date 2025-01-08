@@ -7,8 +7,7 @@
       max-height: 10cm; /* Set the height you prefer */
       overflow-y: auto;
       border: 1px solid #ccc; /* Optional: Add a border around the scrollable container */
-  }
-
+    }
 
     .scrollable-table table {
       width: 100%; /* Ensure the table takes up the full width */
@@ -24,10 +23,10 @@
     }
     
     .scrollable-table thead {
-    position: sticky;
-    top: 0;
-    z-index: 1; /* Ensure the header stays above the scrolling rows */
-    background-color: #f4f4f4; /* Match the header's background color */
+      position: sticky;
+      top: 0;
+      z-index: 1; /* Ensure the header stays above the scrolling rows */
+      background-color: #f4f4f4; /* Match the header's background color */
     }
     img {
       max-width: 100px;
@@ -36,44 +35,44 @@
     }
   </style>
 
-   <div class="scrollable-table">
-      <table>
-            <thead>
-              <tr>
-                <th>Framenumber</th>
-                <th>Facenumber</th>
-                <th>Bild</th>
-                <th>Bild-Link</th>
-                <th>Workflow</th>
-                <th>Status</th>
-                <th>Priorität</th>
-                <th>Digital</th>
-                <th>Region</th>
-                <th>Niederlassung</th>
-                <th>KNZ</th>
-                <th>Ort</th>
-              </tr>
-            </thead>
-            <tbody>
-             <tbody id="table-body">
-                 <!-- Rows will be dynamically added here -->
-            </tbody>
-      </table>
-    </div>
+  <div class="scrollable-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Framenumber</th>
+          <th>Facenumber</th>
+          <th>Bild</th>
+          <th>Bild-Link</th>
+          <th>Workflow</th>
+          <th>Status</th>
+          <th>Priorität</th>
+          <th>Digital</th>
+          <th>Region</th>
+          <th>Niederlassung</th>
+          <th>KNZ</th>
+          <th>Ort</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <!-- Rows will be dynamically added here -->
+      </tbody>
+    </table>
+  </div>
+  `;
 
-
-
-`;
-
-
-
-  class tablewidget extends HTMLElement {
+  class TableWidget extends HTMLElement {
     constructor() {
       super();
-     
+      // Attach shadow DOM
+      const shadow = this.attachShadow({ mode: 'open' });
+      shadow.appendChild(tmpl.content.cloneNode(true));
     }
 
-    // Custom initialization method (optional)
+    connectedCallback() {
+      console.log('Table Widget Initialized');
+      this.init();
+    }
+
     init() {
       // Example: Dynamically add rows to the table
       const tableBody = this.shadowRoot.querySelector('#table-body');
@@ -108,17 +107,8 @@
         </tr>
       `;
     }
-
-    // Example event handler
-    fireChanged() {
-      console.log('OnClick Triggered  lll');
-    }
-
-    
   }
 
-  
-
   // Define your custom element
-  customElements.define('custom-button', tablewidget);
+  customElements.define('custom-button', TableWidget);
 })();

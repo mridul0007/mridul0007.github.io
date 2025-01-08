@@ -68,8 +68,8 @@
       z-index: 1000; /* Above other content */
       left: 0;
       top: 0;
-      width: 100%;
-      height: 100%;
+      width: 700px;
+      height: 700px;
       overflow: auto; /* Enable scroll if needed */
       background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
     }
@@ -78,8 +78,8 @@
       position: relative;
       margin: 0; /* Remove any margin for the modal */
       padding: 0; /* Remove padding for the modal */
-      width: auto;
-      height: auto;
+      width: 600px;
+      height: 600px;
       background-color: transparent; /* No background color */
       text-align: center; /* Center-align the content */
     }

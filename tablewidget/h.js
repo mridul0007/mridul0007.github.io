@@ -59,6 +59,7 @@
     font-weight: bold;
     font-size: 1em; /* Adjust the font size for the title */
     margin-bottom: 1px; /* Space between the title and the table */
+    color: white;
   }
       
   </style>

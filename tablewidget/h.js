@@ -61,6 +61,50 @@
     margin-bottom: 1px; /* Space between the title and the table */
     color: white;
   }
+     /* Modal Styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 1000; /* Above other content */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    }
+
+    .modal-content {
+      position: relative;
+      margin: 5% auto;
+      padding: 20px;
+      max-width: 80%;
+      max-height: 80%;
+      background-color: white;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      color: #333;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #666;
+    }
       
   </style>
 <div class="table-container">
@@ -141,8 +185,37 @@
           <td>Dresden</td>
         </tr>
       `;
+        // Add modal functionality
+        this.addModalFunctionality();
+      }
+  
+      addModalFunctionality() {
+        const shadow = this.shadowRoot;
+        const modal = shadow.getElementById('imageModal');
+        const modalImage = shadow.getElementById('modalImage');
+        const closeModal = shadow.getElementById('closeModal');
+  
+        // Add event listener for image clicks
+        shadow.querySelectorAll('td.bild-cell img').forEach((img) => {
+          img.addEventListener('click', () => {
+            modal.style.display = 'block';
+            modalImage.src = img.src;
+          });
+        });
+  
+        // Close the modal
+        closeModal.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
+  
+        // Close modal if clicked outside of content
+        window.addEventListener('click', (event) => {
+          if (event.target === modal) {
+            modal.style.display = 'none';
+          }
+        });
+      }
     }
-  }
 
   // Define your custom element
   customElements.define('custom-button', TableWidget);

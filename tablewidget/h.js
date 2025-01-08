@@ -47,7 +47,7 @@
   .table-container {
     border: 4px solid #003366; /* Dark blue border */
     border-radius: 10px; /* Optional: Rounded corners */
-    padding: 12px; /* Padding inside the container */
+    padding: 0px; /* Padding inside the container */
     color: white; /* White text color for the title */
     text-align: center; /* Center-align the title */
     margin: 20px auto; /* Center the container on the page */

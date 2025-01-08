@@ -4,7 +4,7 @@
 	"description": "Photowidget SAC",
 	"newInstancePrefix": "photowidget",
 	"eula": "",
-	"vendor": "",
+	"vendor": "Mridul Koshy",
 	"license": "",
 	"id": "photowidget",
 	"version": "1.0.1",

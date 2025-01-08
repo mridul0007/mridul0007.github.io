@@ -28,11 +28,22 @@
       z-index: 1; /* Ensure the header stays above the scrolling rows */
       background-color: #f4f4f4; /* Match the header's background color */
     }
-    img {
-      max-width: 100px;
-      max-height: 100px;
-      object-fit: cover;
+
+    td img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
     }
+
+  /* Set fixed dimensions for the Bild cell */
+  td.bild-cell {
+    width: 120px; /* Adjust to your preference */
+    height: 120px; /* Adjust to your preference */
+    text-align: center; /* Center-align content */
+    padding: 0; /* Remove padding for image alignment */
+    }
+      
   </style>
 
   <div class="scrollable-table">
@@ -80,7 +91,9 @@
         <tr>
           <td>154776</td>
           <td>181748</td>
-          <td><img src="https://i.scdn.co/image/ab67616d0000b2732ac525d334b13a4be87f40f6" alt="Bild"></td>
+          <td class="bild-cell">
+            <img src="https://i.scdn.co/image/ab67616d0000b2732ac525d334b13a4be87f40f6" alt="Bild">
+          </td>
           <td><a href="https://example.com">https://example.com</a></td>
           <td>0 Bauteam</td>
           <td>Genug Standorte vor Aufbaufreigabe</td>
@@ -94,7 +107,9 @@
         <tr>
           <td>128446</td>
           <td>142352</td>
-          <td><img src="https://th.bing.com/th/id/R.95a5443830e420083030546b21242395?rik=4A0VWHgfJWXqyw&pid=ImgRaw&r=0" alt="Bild"></td>
+          <td class="bild-cell">
+            <img src="https://th.bing.com/th/id/R.95a5443830e420083030546b21242395?rik=4A0VWHgfJWXqyw&pid=ImgRaw&r=0" alt="Bild">
+          </td>
           <td><a href="https://example.com">https://example.com</a></td>
           <td>Bauteam</td>
           <td>Genug Standorte vor Aufbaufreigabe</td>

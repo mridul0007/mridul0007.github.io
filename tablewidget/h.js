@@ -47,8 +47,7 @@
   .table-container {
     border: 4px solid #003366; /* Dark blue border */
     border-radius: 10px; /* Optional: Rounded corners */
-    padding: 10px; /* Padding inside the container */
-    background-color: #003366; /* Dark blue background for the title area */
+    padding: 12px; /* Padding inside the container */
     color: white; /* White text color for the title */
     text-align: center; /* Center-align the title */
     margin: 20px auto; /* Center the container on the page */
@@ -56,9 +55,10 @@
   }
 
   .table-title {
+    background-color: #003366;
     font-weight: bold;
     font-size: 1.5em; /* Adjust the font size for the title */
-    margin-bottom: 10px; /* Space between the title and the table */
+    margin-bottom: 1px; /* Space between the title and the table */
   }
       
   </style>

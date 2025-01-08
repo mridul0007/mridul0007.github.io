@@ -133,6 +133,13 @@
     </table>
   </div>
   </div>
+    <!-- Modal -->
+  <div class="modal" id="imageModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <img id="modalImage" src="" alt="Enlarged Bild">
+    </div>
+  </div>
   `;
 
   class TableWidget extends HTMLElement {

@@ -80,7 +80,7 @@
         <tr>
           <td>154776</td>
           <td>181748</td>
-          <td><img src="https://via.placeholder.com/100" alt="Bild"></td>
+          <td><img src="https://i.scdn.co/image/ab67616d0000b2732ac525d334b13a4be87f40f6" alt="Bild"></td>
           <td><a href="https://example.com">https://example.com</a></td>
           <td>0 Bauteam</td>
           <td>Genug Standorte vor Aufbaufreigabe</td>
@@ -94,7 +94,7 @@
         <tr>
           <td>128446</td>
           <td>142352</td>
-          <td><img src="https://via.placeholder.com/100" alt="Bild"></td>
+          <td><img src="https://th.bing.com/th/id/R.95a5443830e420083030546b21242395?rik=4A0VWHgfJWXqyw&pid=ImgRaw&r=0" alt="Bild"></td>
           <td><a href="https://example.com">https://example.com</a></td>
           <td>Bauteam</td>
           <td>Genug Standorte vor Aufbaufreigabe</td>

@@ -1,12 +1,12 @@
 {
-	"name": "photowidget",
+	"name": "TableWidget",
 	"imports": ["planning-model"],
-	"description": "Photowidget SAC",
-	"newInstancePrefix": "photowidget",
+	"description": "TableWidget SAC",
+	"newInstancePrefix": "TableWidget",
 	"eula": "",
 	"vendor": "",
 	"license": "",
-	"id": "photowidget",
+	"id": "TableWidget",
 	"version": "1.0.1",
 	"icon": "",
 	"webcomponents": [

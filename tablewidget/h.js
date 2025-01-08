@@ -77,11 +77,11 @@
     .modal-content {
       position: relative;
       margin: 5% auto;
-      padding: 20px;
-      max-width: 80%;
-      max-height: 80%;
+      padding: 1px;
+      max-width: 90%;
+      max-height: 900%;
       background-color: white;
-      border-radius: 8px;
+      border-radius: 2px;
       text-align: center;
     }
 

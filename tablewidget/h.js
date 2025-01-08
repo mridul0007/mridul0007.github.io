@@ -191,6 +191,8 @@
   
       addModalFunctionality() {
         const shadow = this.shadowRoot;
+      
+        // Ensure modal elements are correctly selected
         const modal = shadow.querySelector('#imageModal');
         const modalImage = shadow.querySelector('#modalImage');
         const closeModal = shadow.querySelector('#closeModal');

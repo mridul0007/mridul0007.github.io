@@ -68,8 +68,8 @@
       z-index: 1000; /* Above other content */
       left: 0;
       top: 0;
-      width: 700px;
-      height: 700px;
+      width: 600px;
+      height: 600px;
       overflow: auto; /* Enable scroll if needed */
       background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
     }

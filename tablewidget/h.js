@@ -191,10 +191,16 @@
   
       addModalFunctionality() {
         const shadow = this.shadowRoot;
-        const modal = shadow.getElementById('imageModal');
-        const modalImage = shadow.getElementById('modalImage');
-        const closeModal = shadow.getElementById('closeModal');
-  
+        const modal = shadow.querySelector('#imageModal');
+        const modalImage = shadow.querySelector('#modalImage');
+        const closeModal = shadow.querySelector('#closeModal');
+      
+        // Check if elements exist
+        if (!modal || !modalImage || !closeModal) {
+          console.error('Modal elements not found in the DOM.');
+          return;
+        }
+      
         // Add event listener for image clicks
         shadow.querySelectorAll('td.bild-cell img').forEach((img) => {
           img.addEventListener('click', () => {
@@ -202,14 +208,14 @@
             modalImage.src = img.src;
           });
         });
-  
-        // Close the modal
+      
+        // Close the modal on clicking the close button
         closeModal.addEventListener('click', () => {
           modal.style.display = 'none';
         });
-  
-        // Close modal if clicked outside of content
-        window.addEventListener('click', (event) => {
+      
+        // Close modal if clicked outside the modal content
+        shadow.addEventListener('click', (event) => {
           if (event.target === modal) {
             modal.style.display = 'none';
           }

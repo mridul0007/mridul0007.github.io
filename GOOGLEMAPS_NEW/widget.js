@@ -72,7 +72,7 @@
                 if (lat_m && lng_m) {
                     let marker = new google.maps.marker.AdvancedMarkerElement({
                         map,
-                        position: { lat: 37.434, lng: -122.082 },
+                        position: { lat: lat_m, lng: lng_m },
                         content: beachFlagImg,
                         title: "A marker using a custom PNG Image",
                       });

@@ -19,7 +19,7 @@
 
         init() {
             this.attachShadow({ mode: 'open' });
-            this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
+            this.shadowRoot.appendChild(template.content.cloneNode(true));
         }
 
 

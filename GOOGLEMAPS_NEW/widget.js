@@ -32,7 +32,7 @@
         async loadGoogleMapsAPI() {
             return new Promise((resolve, reject) => {
                 const script = document.createElement('script');
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${this._apiKey}&callback=initGoogleMaps`;
+                script.src = "https://maps.googleapis.com/maps/api/js?key=${this._apiKey}&callback=initGoogleMaps&loading=async";
                 console.log("reached LoadGoogleMapsAPI");
                 script.defer = true;
                 script.async = true;
@@ -43,7 +43,7 @@
                 };
 
                 script.onerror = () => {
-                    reject(new Error('Failed to load Google Maps API.'));
+                    reject(new Error('Failed to load Google Maps API XXXXX.'));
                 };
 
                 document.head.appendChild(script);

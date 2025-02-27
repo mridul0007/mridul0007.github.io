@@ -6,8 +6,8 @@ module.exports = {
         filename: 'widget.js',
         path: path.resolve(__dirname, './'),
     },
-    mode: 'production', // Use 'development' for debugging
+    mode: 'development', // Use 'development' for debugging
     optimization: {
-        minimize: true, // Enable minification
+        minimize: false, // Enable minification
     },
 };

@@ -67,8 +67,8 @@
 
              // Add markers using AdvancedMarkerElement
             this.plm_data.forEach(dataPoint => {
-                var lat_m = dataPoint.properties["lat"];
-                var lng_m = dataPoint.properties["long"];
+            var lat_m = parseFloat(dataPoint.properties["lat"]); 
+            var lng_m = parseFloat(dataPoint.properties["long"]);
                 if (lat_m && lng_m) {
                     let marker = new google.maps.marker.AdvancedMarkerElement({
                         map,

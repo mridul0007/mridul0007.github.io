@@ -27,7 +27,7 @@
         async set_api_key(api_key) {
             // Load the Google Maps JavaScript API with the provided key
             var script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${api_key}&callback=initMap&loading=async`;
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${api_key}&callback=initMap&loading=async&v=weekly&libraries=marker`;
             console.log("reached Set API KEY");
             script.async = true;
             script.defer = true;
@@ -49,21 +49,45 @@
 
         renderMap() {
             console.log("Reached rendermap")
+            var markers = [];
             const startTime = new Date();
+            const beachFlagImg = document.createElement("img");
+            beachFlagImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+
             // Get the map container element
             var mapContainer = this.shadowRoot.querySelector('#map-container');
 
             // Create a new map centered at a specific location
             var map = new
             google.maps.Map(mapContainer, {
-              center: {lat: -34.397, lng: 150.644},
+              center: {lat: 52.520, lng: 13.405},
               zoom: 8,
               mapId: 'DEMO_MAP_ID'
             });
-            console.log("Reached rendermap end")
 
+             // Add markers using AdvancedMarkerElement
+            this.plm_data.forEach(dataPoint => {
+                var lat_m = dataPoint.properties["lat"];
+                var lng_m = dataPoint.properties["long"];
+                var iconUrl = iconUrls[i % iconUrls.length];
+                var image_Url = dataPoint.properties["image"];
+                if (lat_m && lng_m) {
+                    let marker = new new AdvancedMarkerElement({
+                        map,
+                        position: { lat: 37.434, lng: -122.082 },
+                        content: beachFlagImg,
+                        title: "A marker using a custom PNG Image",
+                      });
+                      markers.push(marker);    
+                }
+            }
+        
+        );
 
-
+        
+      
+            console.log("Reached rendermap end");
+            console.log("Number of markers:", markers.length);
         }
     }
 

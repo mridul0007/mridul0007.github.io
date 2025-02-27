@@ -85,7 +85,7 @@
         
       
             console.log("Reached rendermap end");
-            console.log("Number of markers::", markers.length);
+            console.log("Number of markers:=:", markers.length);
         }
     }
 

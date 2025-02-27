@@ -69,8 +69,6 @@
             this.plm_data.forEach(dataPoint => {
                 var lat_m = dataPoint.properties["lat"];
                 var lng_m = dataPoint.properties["long"];
-                var iconUrl = iconUrls[i % iconUrls.length];
-                var image_Url = dataPoint.properties["image"];
                 if (lat_m && lng_m) {
                     let marker = new new AdvancedMarkerElement({
                         map,

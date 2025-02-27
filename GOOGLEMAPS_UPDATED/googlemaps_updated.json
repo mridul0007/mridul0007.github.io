@@ -1,13 +1,13 @@
 {
-	"name": "GoogleMaps",
+	"name": "GoogleMaps_UPDATED",
 	"imports": ["planning-model"],
-	"description": "GoogleMaps",
-	"newInstancePrefix": "GoogleMaps",
+	"description": "GoogleMaps_UPDATED",
+	"newInstancePrefix": "GoogleMaps_UPDATED",
 	"eula": "",
 	"vendor": "Mridul Koshy",
 	"license": "",
-	"id": "GoogleMaps",
-	"version": "1.0.3",
+	"id": "GoogleMaps_UPDATED",
+	"version": "1.0.1",
 	"icon": "",
 	"webcomponents": [
 		{

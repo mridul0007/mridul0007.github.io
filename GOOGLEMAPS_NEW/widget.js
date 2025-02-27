@@ -48,17 +48,17 @@
         }
 
         async initMap() {
-            await this._map = new google.maps.Map(this._mapDiv, {
+             this._map = new google.maps.Map(this._mapDiv, {
                 center: { lat: 0, lng: 0 },
                 zoom: 2,
             });
         }
 
-        async set api_key(value) {
-            await this._apiKey = value;
+        async set_api_key(value) {
+            this._apiKey = value;
         }
 
-        async set plm_data(value) {
+        set_data(value) {
             this._plmData = value;
             this.updateMap();
         }

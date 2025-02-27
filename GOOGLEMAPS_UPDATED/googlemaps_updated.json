@@ -1,0 +1,57 @@
+{
+	"name": "GoogleMaps",
+	"imports": ["planning-model"],
+	"description": "GoogleMaps",
+	"newInstancePrefix": "GoogleMaps",
+	"eula": "",
+	"vendor": "Mridul Koshy",
+	"license": "",
+	"id": "GoogleMaps",
+	"version": "1.0.3",
+	"icon": "",
+	"webcomponents": [
+		{
+			"kind": "main",
+			"tag": "custom-button",
+			"url": "https://mridul0007.github.io/GOOGLEMAPS_UPDATED/GoogleMaps/dist/111.bundle.js",
+			"integrity": ""	,
+			"ignoreIntegrity": true
+			
+		}		
+	],
+	"properties": {
+		"api_key": {
+			"type": "string"
+		},
+		"plm_data": {
+			"type": "PlanningModelMember[]"
+		}
+		
+	},
+	"methods": {
+		"set_api_key": {
+			"description": "set api key",
+            "parameters": [
+				{
+					"name": "api_key",
+					"type": "string",
+					"description": "set API key"
+				}]
+			},
+		"set_data":{
+			"description": "send data to maps widget",
+			"parameters": [
+				{
+					"name": "plm_data",
+					"type": "PlanningModelMember[]",
+					"description": "send data to maps widget"
+				}
+			]
+		}
+	},
+	"events": {
+		"onPlmQueryExecution": {
+			"description": "query actions."
+		}
+	}
+}

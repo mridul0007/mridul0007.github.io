@@ -1,0 +1,19 @@
+{
+  "name": "googlemaps_updated",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+      "build": "webpack"
+  },
+  "keywords": [],
+  "author": "Mridul Koshy",
+  "license": "ISC",
+  "devDependencies": {
+       "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+      "@googlemaps/markerclusterer": "^2.5.0"
+  }
+}

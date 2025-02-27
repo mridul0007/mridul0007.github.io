@@ -51,7 +51,7 @@
             console.log("Reached rendermap")
             var markers = [];
             const startTime = new Date();
-            const beachFlagImg = document.createElement("img");
+            var beachFlagImg = document.createElement("img");
             beachFlagImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
 
             // Get the map container element
@@ -74,7 +74,7 @@
                         map,
                         position: { lat: lat_m, lng: lng_m },
                         content: beachFlagImg,
-                        title: "A marker using a custom PNG Image",
+                        title: "A marker using a custom PNG Image" + (index + 1),
                       });
                       markers.push(marker);    
                 }

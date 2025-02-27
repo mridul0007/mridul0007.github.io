@@ -24,6 +24,7 @@
         }
 
         async connectedCallback() {
+            console.log("reached connectedCallback");
             await this.loadGoogleMapsAPI();
             this.initMap();
         }
@@ -32,6 +33,7 @@
             return new Promise((resolve, reject) => {
                 const script = document.createElement('script');
                 script.src = `https://maps.googleapis.com/maps/api/js?key=${this._apiKey}&callback=initGoogleMaps`;
+                console.log("reached connectedCallback");
                 script.defer = true;
                 script.async = true;
 

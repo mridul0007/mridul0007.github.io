@@ -26,7 +26,7 @@
         async set_api_key(api_key) {
             // Load the Google Maps JavaScript API with the provided key
             var script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${this._apiKey}&callback=initGoogleMaps&loading=async`;
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${api_key}&callback=initGoogleMaps&loading=async`;
             console.log("reached Set API KEY");
             script.async = true;
             script.defer = true;
@@ -47,6 +47,7 @@
         }
 
         renderMap() {
+            console.log("Reached rendermap")
             const startTime = new Date();
             // Get the map container element
             var mapContainer = this.shadowRoot.querySelector('#map-container');
@@ -58,6 +59,7 @@
               zoom: 8,
               mapId: 'DEMO_MAP_ID'
             });
+            console.log("Reached rendermap end")
 
 
 

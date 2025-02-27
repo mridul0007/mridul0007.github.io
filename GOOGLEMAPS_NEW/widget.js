@@ -53,7 +53,7 @@
 
             // Create a new map centered at a specific location
             var map = new
-            google.maps.Map(document.getElementById('map'), {
+            google.maps.Map(mapContainer, {
               center: {lat: -34.397, lng: 150.644},
               zoom: 8,
               mapId: 'DEMO_MAP_ID'

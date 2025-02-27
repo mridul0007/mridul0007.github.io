@@ -25,8 +25,8 @@
 
         async connectedCallback() {
             console.log("reached connectedCallback");
-            await this.loadGoogleMapsAPI();
-            this.initMap();
+            
+            
         }
 
         async loadGoogleMapsAPI() {
@@ -38,6 +38,7 @@
                 script.async = true;
 
                 window.initGoogleMaps = () => {
+                    this.initMap();
                     console.log("reached initgoogleMaps");
                     resolve();
                 };
@@ -59,10 +60,14 @@
 
         async set_api_key(value) {
             this._apiKey = value;
+            console.log("reached set_api_key");
+            await this.loadGoogleMapsAPI();
+            
         }
 
         async set_data(value) {
             this._plmData = value;
+            this.initMap();
             this.updateMap();
         }
 

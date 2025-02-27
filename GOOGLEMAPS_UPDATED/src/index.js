@@ -1,47 +1,49 @@
+import { MarkerClusterer } from '@googlemaps/markerclusterer';
+
 (function () {
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
         <style>
-        #loading_overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            z-index: 9999;
-            allign-items: center;
-            justify-content: center;
-          }
-      
-          #loading_spinner {
-           
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 4px solid white;
-            border-top: 4px solid transparent;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 2s linear infinite;
-          }
-      
-          @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg);}
-            100% { transform: translate(-50%, -50%) rotate(360deg);}
-          }
+            #loading_overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: none;
+                z-index: 9999;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #loading_spinner {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border: 4px solid white;
+                border-top: 4px solid transparent;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                animation: spin 2s linear infinite;
+            }
+
+            @keyframes spin {
+                0% { transform: translate(-50%, -50%) rotate(0deg); }
+                100% { transform: translate(-50%, -50%) rotate(360deg); }
+            }
+
             #map-container {
-                height: 100%;/* Adjust the height as needed */
-                width: 100%; /* Adjust the width as needed */
+                height: 100%;
+                width: 100%;
             }
         </style>
-    
+
         <div id="map-container"></div>
         <div id="loading_overlay">
-        <div id="loading_spinner"></div>
+            <div id="loading_spinner"></div>
         </div>
     `;
 
@@ -55,13 +57,12 @@
         init() {
             this.attachShadow({ mode: 'open' });
             this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
-            var loadingOverlad = this.shadowRoot.getElementById('loading_overlay');
-            loadingOverlad.style.display = "block";
+            this.shadowRoot.getElementById('loading_overlay').style.display = "block";
         }
 
         async set_api_key(api_key) {
             // Load the Google Maps JavaScript API with the provided key
-            var script = document.createElement('script');
+            let script = document.createElement('script');
             script.src = `https://maps.googleapis.com/maps/api/js?key=${api_key}&callback=initMap&v=weekly&libraries=marker`;
             script.async = true;
             script.defer = true;
@@ -72,18 +73,21 @@
 
             // Define the callback function (initMap) that will be called when the API is loaded
             window.initMap = () => {
-                // this.renderMap();
+                this.renderMap(); // Call renderMap here, after the API is loaded.
             };
         }
+
         async set_data(plm_data) {
             this.plm_data = plm_data;
-            this.renderMap();
+            if (window.google && window.google.maps) {
+                this.renderMap();
+            }
         }
 
         renderMap() {
             const startTime = new Date();
-            var mapContainer = this.shadowRoot.querySelector('#map-container');
-        
+            let mapContainer = this.shadowRoot.querySelector('#map-container');
+
             const mapStyles = [
                 {
                     featureType: 'poi',
@@ -91,69 +95,60 @@
                     stylers: [{ visibility: 'off' }]
                 },
             ];
-        
+
             const map = new google.maps.Map(mapContainer, {
                 center: { lat: 0, lng: 0 },
                 zoom: 2,
                 disableDefaultUI: true,
                 styles: mapStyles,
             });
-        
+
             const markers = [];
-            const iconUrls = [
-                'https://mridul0007.github.io/GoogleMaps/dog.png',
-                'https://mridul0007.github.io/GoogleMaps/cat.png',
-                'https://mridul0007.github.io/GoogleMaps/car.png',
-            ];
-        
             const bounds = new google.maps.LatLngBounds();
-        
-            this.plm_data.forEach((data, i) => {
+
+            this.plm_data.forEach((data) => {
                 const lat_m = parseFloat(data.properties["lat"]);
                 const lng_m = parseFloat(data.properties["long"]);
                 const imageUrl = data.properties["image"];
-        
+
                 const marker = new google.maps.marker.AdvancedMarkerElement({
                     position: { lat: lat_m, lng: lng_m },
                     title: data.id,
                     map: map,
                     content: this.createMarkerContent(data, imageUrl, map)
                 });
-        
+
                 markers.push(marker);
                 bounds.extend({ lat: lat_m, lng: lng_m });
             });
-        
+
             map.fitBounds(bounds);
             map.panToBounds(bounds);
-        
-            // Load and use the new markerclusterer library:
-            import("@googlemaps/markerclusterer").then(({ MarkerClusterer }) => {
-              const markerCluster = new MarkerClusterer({ map, markers });
-            });
-        
+
+            // Use the MarkerClusterer:
+            const markerCluster = new MarkerClusterer({ map, markers });
+
             const endTime = new Date();
             const duration = endTime - startTime;
             console.log(duration);
-        
-            const loadingOverlay = this.shadowRoot.getElementById('loading_overlay');
-            loadingOverlay.style.display = "none";
+
+            this.shadowRoot.getElementById('loading_overlay').style.display = "none";
         }
-        
+
         createMarkerContent(data, imageUrl, map) {
             const markerContent = document.createElement('div');
             markerContent.style.cursor = 'pointer';
-        
+
             const icon = document.createElement('img');
             icon.src = imageUrl;
             icon.style.width = '30px';
             icon.style.height = '30px';
             markerContent.appendChild(icon);
-        
+
             markerContent.addEventListener('click', () => {
                 map.setZoom(15);
                 map.setCenter({ lat: parseFloat(data.properties["lat"]), lng: parseFloat(data.properties["long"]) });
-        
+
                 const infoWindow = new google.maps.InfoWindow();
                 infoWindow.setContent(this.createInfoWindowContent(data, imageUrl));
                 infoWindow.open(map, {
@@ -161,10 +156,10 @@
                     lng: parseFloat(data.properties["long"])
                 });
             });
-        
+
             return markerContent;
         }
-        
+
         createInfoWindowContent(data, imageUrl) {
             return `
                 <style type="text/css">
@@ -214,16 +209,4 @@
                             <td class="tg-0lax">8</td>
                         </tr>
                         <tr>
-                            <td class="tg-0lax">Tagespreis:</td>
-                            <td class="tg-0lax">6</td>
-                            <td class="tg-0lax">7</td>
-                            <td class="tg-73oq">8</td>
-                        </tr>
-                    </tbody>
-                </table>
-            `;
-        }
-    }
-
-    customElements.define('custom-button', GoogleMaps);
-})();
+                            <td class="tg-0lax">Tages

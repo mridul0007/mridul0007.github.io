@@ -7,13 +7,13 @@
 	"vendor": "Mridul Koshy",
 	"license": "",
 	"id": "GoogleMaps_UPDATED",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"icon": "",
 	"webcomponents": [
 		{
 			"kind": "main",
 			"tag": "custom-button",
-			"url": "https://mridul0007.github.io/GOOGLEMAPS_UPDATED/GoogleMaps/dist/111.bundle.js",
+			"url": "https://mridul0007.github.io/GOOGLEMAPS_UPDATED/GoogleMaps/dist/bundle.js",
 			"integrity": ""	,
 			"ignoreIntegrity": true
 			

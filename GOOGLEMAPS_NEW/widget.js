@@ -74,7 +74,7 @@
                         map,
                         position: { lat: lat_m, lng: lng_m },
                         content: beachFlagImg,
-                        title: "A marker using a custom PNG Image" + (index + 1),
+                        title: dataPoint.id,
                       });
                       markers.push(marker);    
                 }

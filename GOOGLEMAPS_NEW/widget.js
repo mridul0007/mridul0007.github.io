@@ -26,7 +26,7 @@
         async set_api_key(api_key) {
             // Load the Google Maps JavaScript API with the provided key
             var script = document.createElement('script');
-            script.src = "https://maps.googleapis.com/maps/api/js?key=${this._apiKey}&callback=initGoogleMaps&loading=async";
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${this._apiKey}&callback=initGoogleMaps&loading=async`;
             console.log("reached Set API KEY");
             script.async = true;
             script.defer = true;

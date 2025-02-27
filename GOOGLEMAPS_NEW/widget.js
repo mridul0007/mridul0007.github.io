@@ -1,113 +1,73 @@
 (function () {
     let template = document.createElement('template');
     template.innerHTML = `
-        <style>
-            #map {
-                height: 400px;
-                width: 100%;
+        #map-container {
+                height: 100%;/* Adjust the height as needed */
+                width: 100%; /* Adjust the width as needed */
             }
         </style>
-        <div id="map"></div>
+    
+        <div id="map-container"></div>
     `;
 
     class GoogleMapsWidget extends HTMLElement {
         constructor() {
             super();
-            this._shadowRoot = this.attachShadow({ mode: 'open' });
-            this._shadowRoot.appendChild(template.content.cloneNode(true));
-            this._mapDiv = this._shadowRoot.getElementById('map');
-            this._map = null;
-            this._apiKey = null;
-            this._plmData = [];
-            this._markers = []; // Store markers for clearing
-            this._markerCluster = null;
+            this.init();
+            this.plm_data = {};
         }
 
-        async connectedCallback() {
-            console.log("reached connectedCallback");
-            
-            
+        init() {
+            this.attachShadow({ mode: 'open' });
+            this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
         }
 
-        async loadGoogleMapsAPI() {
-            return new Promise((resolve, reject) => {
-                const script = document.createElement('script');
-                script.src = "https://maps.googleapis.com/maps/api/js?key=${this._apiKey}&callback=initGoogleMaps&loading=async";
-                console.log("reached LoadGoogleMapsAPI");
-                script.defer = true;
-                script.async = true;
 
-                window.initGoogleMaps = () => {
-                    this.initMap();
-                    console.log("reached initgoogleMaps");
-                    resolve();
-                };
+        async set_api_key(api_key) {
+            // Load the Google Maps JavaScript API with the provided key
+            var script = document.createElement('script');
+            script.src = "https://maps.googleapis.com/maps/api/js?key=${this._apiKey}&callback=initGoogleMaps&loading=async";
+            console.log("reached Set API KEY");
+            script.async = true;
+            script.defer = true;
+            script.onerror = () => console.error('Error loading Google Maps API');
 
-                script.onerror = () => {
-                    reject(new Error('Failed to load Google Maps API XXXXX.'));
-                };
+            // Attach the script to the document
+            document.head.appendChild(script);
 
-                document.head.appendChild(script);
-            });
+            // Define the callback function (initMap) that will be called when the API is loaded
+            window.initMap = () => {
+                // this.renderMap();
+            };
         }
 
-        async initMap() {
-             this._map = new google.maps.Map(this._mapDiv, {
-                center: { lat: 0, lng: 0 },
-                zoom: 2,
-            });
+        async set_data(plm_data) {
+            this.plm_data = plm_data;
+            this.renderMap();
         }
 
-        async set_api_key(value) {
-            this._apiKey = value;
-            console.log("reached set_api_key");
-            await this.loadGoogleMapsAPI();
-            
-        }
+        renderMap() {
+            const startTime = new Date();
+            // Get the map container element
+            var mapContainer = this.shadowRoot.querySelector('#map-container');
 
-        async set_data(value) {
-            this._plmData = value;
-            this.initMap();
-            this.updateMap();
-        }
-
-        updateMap() {
-            if (!this._map || !this._plmData || this._plmData.length === 0) return;
-
-            // Clear existing markers and cluster
-            this._markers.forEach(marker => marker.setMap(null));
-            this._markers = [];
-            if (this._markerCluster) {
-                this._markerCluster.setMap(null);
-            }
-
-            // Create markers
-            this._plmData.forEach(dataPoint => {
-                if (dataPoint.properties && dataPoint.properties.lat && dataPoint.properties.long) {
-                    const lat = parseFloat(dataPoint.properties.lat);
-                    const lng = parseFloat(dataPoint.properties.long);
-
-                    if (!isNaN(lat) && !isNaN(lng)) {
-                        const marker = new google.maps.Marker({
-                            position: { lat: lat, lng: lng },
-                            map: this._map,
-                        });
-                        this._markers.push(marker);
-                    }
-                }
+            // Create a new map centered at a specific location
+            var map = new
+            google.maps.Map(document.getElementById('map'), {
+              center: {lat: -34.397, lng: 150.644},
+              zoom: 8,
+              mapId: 'DEMO_MAP_ID'
             });
 
-            // Create marker clusterer
-            if (this._markers.length > 0) {
-                import("@googlemaps/markerclusterer").then(({ MarkerClusterer }) => {
-                    this._markerCluster = new MarkerClusterer({
-                        map: this._map,
-                        markers: this._markers,
-                    });
-                });
-            }
+
+
         }
     }
+
+
+
+        
+
 
     customElements.define('com-example-googlemaps', GoogleMapsWidget);
 })();

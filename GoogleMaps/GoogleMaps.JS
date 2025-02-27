@@ -217,15 +217,13 @@
 
             // Import the MarkerClusterer library
             var script = document.createElement('script');
-             script.src = 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js';
+             script.src = 'https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js';
             document.head.appendChild(script);
 
             // Wait for the MarkerClusterer library to load before creating the cluster
             script.onload = () => {
                 
-                var markerCluster = new MarkerClusterer(map, markers, {
-                    imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
-                });
+                var markerCluster = new MarkerClusterer({ markers,map});
                 
             };
             const endTime = new Date();

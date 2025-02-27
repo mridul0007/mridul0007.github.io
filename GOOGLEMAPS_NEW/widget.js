@@ -1,6 +1,6 @@
 (function () {
-    let template = document.createElement('template');
-    template.innerHTML = `
+    let tmpl = document.createElement('template');
+    tmpl.innerHTML = `
         #map-container {
                 height: 100%;/* Adjust the height as needed */
                 width: 100%; /* Adjust the width as needed */
@@ -19,7 +19,7 @@
 
         init() {
             this.attachShadow({ mode: 'open' });
-            this.shadowRoot.appendChild(template.content.cloneNode(true));
+            this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
         }
 
 

@@ -58,7 +58,7 @@
             this._apiKey = value;
         }
 
-        set_data(value) {
+        async set_data(value) {
             this._plmData = value;
             this.updateMap();
         }

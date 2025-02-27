@@ -7,13 +7,13 @@
 	"vendor": "Mridul Koshy",
 	"license": "",
 	"id": "GOOGLEMAPS_NEW",
-	"version": "1.0.2",
+	"version": "1.0.5",
 	"icon": "",
 	"webcomponents": [
 		{
 			"kind": "main",
 			"tag": "com-example-googlemaps",
-			"url": "https://mridul0007.github.io/GOOGLEMAPS_NEW/widget.js",
+			"url": "https://mridul0007.github.io/GOOGLEMAPS_NEW/Gwidget.js",
 			"integrity": ""	,
 			"ignoreIntegrity": true
 			

@@ -70,7 +70,7 @@
                 var lat_m = dataPoint.properties["lat"];
                 var lng_m = dataPoint.properties["long"];
                 if (lat_m && lng_m) {
-                    let marker = new new AdvancedMarkerElement({
+                    let marker = new AdvancedMarkerElement({
                         map,
                         position: { lat: 37.434, lng: -122.082 },
                         content: beachFlagImg,

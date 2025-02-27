@@ -33,11 +33,12 @@
             return new Promise((resolve, reject) => {
                 const script = document.createElement('script');
                 script.src = `https://maps.googleapis.com/maps/api/js?key=${this._apiKey}&callback=initGoogleMaps`;
-                console.log("reached connectedCallback");
+                console.log("reached LoadGoogleMapsAPI");
                 script.defer = true;
                 script.async = true;
 
                 window.initGoogleMaps = () => {
+                    console.log("reached initgoogleMaps");
                     resolve();
                 };
 

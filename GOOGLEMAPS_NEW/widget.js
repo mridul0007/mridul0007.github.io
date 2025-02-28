@@ -63,6 +63,7 @@
                     }
                     if (this.dataSource === 'sac') {
                         dataSourceOverlay.style.display = 'none';
+                        this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
                     }
                 }
             });
@@ -225,7 +226,7 @@
                                             <td class="tg-0lax">8</td>
                                         </tr>
                                         <tr>
-                                            <td class="tg-0lax"PPS:</td>
+                                            <td class="tg-0lax">PPS:</td>
                                             <td class="tg-0lax">6</td>
                                             <td class="tg-0lax">7</td>
                                             <td class="tg-0lax">8</td>

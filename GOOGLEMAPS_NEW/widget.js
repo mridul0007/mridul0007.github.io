@@ -17,6 +17,7 @@
             this.init();
             this.plm_data = {};
             this.markers = [];
+            this.demoIMG = '';
         }
 
         init() {
@@ -58,7 +59,7 @@
             // Create a new map centered at a specific location
             var map = new
             google.maps.Map(mapContainer, {
-              center: {lat: 52.520, lng: 13.405},
+              //center: {lat: 52.520, lng: 13.405},
               zoom: 8,
               mapId: 'DEMO_MAP_ID'
             });
@@ -67,6 +68,7 @@
             this.plm_data.forEach(dataPoint => {
             const markerImg = document.createElement("img");
             markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+            this.demoIMG = markerImg;
             var lat_m = parseFloat(dataPoint.properties["lat"]); 
             var lng_m = parseFloat(dataPoint.properties["long"]);
                 if (lat_m && lng_m) {
@@ -113,7 +115,7 @@
                                                 <td class="tg-amwm" colspan="4">VIKTORIAALLEE 44</td>
                                             </tr>
                                             <tr>
-                                            <td class="tg-baqh" colspan="4"><img src="${markerImg}" alt="Image"></td>
+                                            <td class="tg-baqh" colspan="4"><img src="${this.demoIMG}" alt="Image"></td>
                                             </tr>
                                             <tr>
                                                 <td class="tg-0lax">Anbietergruppe:</td>

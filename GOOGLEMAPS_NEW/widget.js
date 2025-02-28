@@ -64,6 +64,8 @@
               mapId: 'DEMO_MAP_ID'
             });
 
+            google.maps.event.trigger(map, 'resize');
+
              // Add markers using AdvancedMarkerElement
             this.plm_data.forEach(dataPoint => {
             const markerImg = document.createElement("img");
@@ -83,7 +85,7 @@
                       });
 
                     this.markers.push(marker); 
-                    map.fitBounds(bounds);
+                    
                     marker.addListener('click', function () {
                         // Zoom in to street level when marker is clicked
                         map.setZoom(15); 
@@ -161,6 +163,10 @@
             }
         
         );
+
+        if (this.markers.length > 0) {
+            map.fitBounds(bounds);
+        }
 
         
         if (this.markers.length > 20) {

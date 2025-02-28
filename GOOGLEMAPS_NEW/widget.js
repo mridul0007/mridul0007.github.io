@@ -100,7 +100,8 @@
             const confirmButton = this.shadowRoot.querySelector('#confirmSource');
             const csvUploadInput = this.shadowRoot.querySelector('#csvUpload');
             const dataSourceOverlay = this.shadowRoot.querySelector('#data-source-overlay');
-            this.loadingOverlay = this.shadowRoot.querySelector('#loading-overlay');
+            const loadingOverlay = this.shadowRoot.querySelector('#loading-overlay');
+            this.loadingOverlay = loadingOverlay;
 
             confirmButton.addEventListener('click', () => {
                 const selectedSource = this.shadowRoot.querySelector('input[name="dataSource"]:checked');

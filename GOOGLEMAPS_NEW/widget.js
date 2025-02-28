@@ -67,16 +67,19 @@
 
              // Add markers using AdvancedMarkerElement
             this.plm_data.forEach(dataPoint => {
+            const markerImg = document.createElement("img");
+            markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
             var lat_m = parseFloat(dataPoint.properties["lat"]); 
             var lng_m = parseFloat(dataPoint.properties["long"]);
                 if (lat_m && lng_m) {
                     let marker = new google.maps.marker.AdvancedMarkerElement({
                         map,
                         position: { lat: lat_m, lng: lng_m },
-                        content: beachFlagImg,
+                        content: markerImg,
                         title: dataPoint.id,
                       });
-                      markers.push(marker);    
+                      markers.push(marker);   
+                    marker = null; 
                 }
             }
         

@@ -16,6 +16,7 @@
             super();
             this.init();
             this.plm_data = {};
+            this.markers = [];
         }
 
         init() {
@@ -49,7 +50,7 @@
 
         renderMap() {
             console.log("Reached rendermap")
-            var markers = [];
+            
             const bounds = new google.maps.LatLngBounds();
             // Get the map container element
             var mapContainer = this.shadowRoot.querySelector('#map-container');
@@ -69,6 +70,8 @@
             var lat_m = parseFloat(dataPoint.properties["lat"]); 
             var lng_m = parseFloat(dataPoint.properties["long"]);
                 if (lat_m && lng_m) {
+                    const position = { lat: lat_m, lng: lng_m };
+                    bounds.extend(position);
                     let marker = new google.maps.marker.AdvancedMarkerElement({
                         map,
                         position: { lat: lat_m, lng: lng_m },
@@ -76,7 +79,7 @@
                         title: dataPoint.id,
                       });
 
-                    markers.push(marker); 
+                    this.markers.push(marker); 
                     marker.addListener('click', function () {
                         // Zoom in to street level when marker is clicked
                         map.setZoom(15); 
@@ -161,42 +164,23 @@
             // Fit the map to the bounds of all markers
             map.fitBounds(bounds);
             
-            // Create a marker clusterer
-            this.markerCluster = new markerClusterer.MarkerClusterer({
-                map,
-                markers: this.markers,
-                renderer: {
-                    render: ({ count, position }) => {
-                        // Create custom cluster marker
-                        const clusterDiv = document.createElement("div");
-                        clusterDiv.innerHTML = String(count);
-                        clusterDiv.style.color = "white";
-                        clusterDiv.style.backgroundColor = "#1978c8";
-                        clusterDiv.style.borderRadius = "50%";
-                        clusterDiv.style.padding = "10px";
-                        clusterDiv.style.width = "30px";
-                        clusterDiv.style.height = "30px";
-                        clusterDiv.style.textAlign = "center";
-                        clusterDiv.style.lineHeight = "30px";
-                        clusterDiv.style.fontWeight = "bold";
-                        
-                        return new google.maps.marker.AdvancedMarkerElement({
-                            map,
-                            position,
-                            content: clusterDiv,
-                            zIndex: 1000,
-                        });
-                    }
-                },
-                // Customize clustering algorithm if needed
-                algorithm: {
-                    maxZoom: 15, // Maximum zoom level for clustering
-                    radius: 60,  // Cluster radius in pixels
-                }
-            });
-            
-            console.log("Created marker cluster with", this.markers.length, "markers");
-        } else {
+            // Import the MarkerClusterer library
+            var script = document.createElement('script');
+            script.src = `https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js`;
+            document.head.appendChild(script);
+
+            // Wait for the MarkerClusterer library to load before creating the cluster
+            script.onload = () => {
+                
+                var markerCluster = new markerClusterer.MarkerClusterer({
+                    markers: this.markers, 
+                    map: map
+                });
+                
+            };
+        }
+        
+        else {
             console.log("No valid markers to display");
         }
     }

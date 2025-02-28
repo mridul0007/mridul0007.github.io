@@ -162,10 +162,18 @@
 
             this.plm_data.forEach(dataPoint => {
                 const markerImg = document.createElement("img");
+                if ( dataPoint.properties.icon = null )
+                {
+                    markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"  ;
+                }
+                else{
+                    markerImg.src = dataPoint.properties.icon; 
+                }
                 markerImg.src = dataPoint.properties.icon;
                 var lat_m = parseFloat(dataPoint.properties.lat);
                 var lng_m = parseFloat(dataPoint.properties.long);
                 var image_Url = dataPoint.properties.image;
+
 
                 if (lat_m && lng_m) {
                     const position = { lat: lat_m, lng: lng_m };

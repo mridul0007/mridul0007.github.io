@@ -17,7 +17,7 @@
             this.init();
             this.plm_data = {};
             this.markers = [];
-            this.demoIMG = '';
+            
         }
 
         init() {
@@ -79,7 +79,6 @@
             this.plm_data.forEach(dataPoint => {
             const markerImg = document.createElement("img");
             markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
-            this.demoIMG = markerImg;
             var lat_m = parseFloat(dataPoint.properties["lat"]); 
             var lng_m = parseFloat(dataPoint.properties["long"]);
             var image_Url = dataPoint.properties["image"];
@@ -143,7 +142,7 @@
                                                 <td class="tg-0lax">8</td>
                                             </tr>
                                             <tr>
-                                                <td class="tg-0lax"PPS:</td>
+                                                <td class="tg-0lax">PPS:</td>
                                                 <td class="tg-0lax">6</td>
                                                 <td class="tg-0lax">7</td>
                                                 <td class="tg-0lax">8</td>

@@ -140,7 +140,7 @@
         renderMap() {
             if (this.dataSource === null) return; // Wait for data source selection
 
-            console.log("Reached rendermap");
+            //console.log("Reached rendermap");
 
             if (this.markerCluster) {
                 this.markerCluster.clearMarkers();
@@ -253,7 +253,7 @@
                         infoWindow.open(map, marker);
                     });
 
-                    console.log("Marker no:", dataPoint.id);
+                   // console.log("Marker no:", dataPoint.id);
                 }
             });
 

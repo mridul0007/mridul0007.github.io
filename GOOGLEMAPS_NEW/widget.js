@@ -82,6 +82,7 @@
                       });
 
                     this.markers.push(marker); 
+                    map.fitBounds(bounds);
                     marker.addListener('click', function () {
                         // Zoom in to street level when marker is clicked
                         map.setZoom(15); 

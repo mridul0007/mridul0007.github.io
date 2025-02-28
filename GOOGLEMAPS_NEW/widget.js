@@ -31,13 +31,17 @@
                 font-size: 12px;
                 color: white;
             }
+            
+            #data-source-overlay > p { 
+                font-size: 20px; /* Adjust the size as needed */
+    }
         </style>
 
         <div id="map-container">
             <div id="data-source-overlay">
                 <p>Select Data Source:</p>
-                <label><input type="radio" name="dataSource" value="sac"> SAC Input</label>
-                <label><input type="radio" name="dataSource" value="csv"> CSV Upload</label>
+                <label><input type="radio" name="dataSource" value="sac"> SAC </label>
+                <label><input type="radio" name="dataSource" value="csv"> CSV </label>
                 <input type="file" id="csvUpload" accept=".csv">
                 <button id="confirmSource">Confirm</button>
             </div>

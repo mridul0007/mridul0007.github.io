@@ -13,14 +13,23 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(255, 255, 255, 0.8);
+                background: linear-gradient(to bottom, #00B0B2, #A4D6D4); /* Gradient background */
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                color: white; /* Text color */
             }
             #csvUpload {
                 display: none;
+            }
+            /* Style for the footnote */
+            #footnote {
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                font-size: 12px;
+                color: white;
             }
         </style>
 
@@ -32,7 +41,7 @@
                 <input type="file" id="csvUpload" accept=".csv">
                 <button id="confirmSource">Confirm</button>
             </div>
-        </div>
+            <div id="footnote">Contigo custom Google Maps widget</div> </div>
     `;
 
     class GoogleMapsWidget extends HTMLElement {

@@ -114,7 +114,7 @@
                     }
                     if (this.dataSource === 'sac') {
                         dataSourceOverlay.style.display = 'none';
-                        this.loadingOverlay.style.display = 'flex';
+                        loadingOverlay.style.display = 'flex';
                         this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
                     }
                 }

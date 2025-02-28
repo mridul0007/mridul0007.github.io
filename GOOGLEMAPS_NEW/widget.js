@@ -152,15 +152,14 @@
                         // Open the InfoWindow on the clicked marker
                         infoWindow.open(map, marker);
                     });
-                    console.log("Marker clicked:", dataPoint.id); 
-                    marker = null; 
+                    console.log("Marker no:", dataPoint.id); 
                 }
             }
         
         );
 
         
-        if (this.markers.length > 0) {
+        if (this.markers.length > 20) {
             // Fit the map to the bounds of all markers
             map.fitBounds(bounds);
             

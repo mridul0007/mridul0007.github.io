@@ -168,7 +168,7 @@
                     // Use default marker image
                     markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
                 }
-                markerImg.src = dataPoint.properties.icon;
+                
                 var lat_m = parseFloat(dataPoint.properties.lat);
                 var lng_m = parseFloat(dataPoint.properties.long);
                 var image_Url = dataPoint.properties.image;

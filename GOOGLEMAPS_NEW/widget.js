@@ -51,6 +51,15 @@
 
         renderMap() {
             console.log("Reached rendermap")
+
+            if (this.markerCluster) {
+                this.markerCluster.clearMarkers();
+                this.markerCluster = null; //reset the markerCluster variable.
+            }
+            if (this.markers && this.markers.length > 0) {
+                this.markers.forEach(marker => marker.setMap(null));
+                this.markers = [];
+            }
             
             const bounds = new google.maps.LatLngBounds();
             // Get the map container element

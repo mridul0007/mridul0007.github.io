@@ -3,7 +3,7 @@
     tmpl.innerHTML = `
         <style>
             #map-container {
-                height: 400px; /* Adjust the height as needed */
+                height: 100%; /* Adjust the height as needed */
                 width: 100%; /* Adjust the width as needed */
             }
         </style>

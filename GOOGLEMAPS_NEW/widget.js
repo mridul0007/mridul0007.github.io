@@ -101,7 +101,7 @@
             const csvUploadInput = this.shadowRoot.querySelector('#csvUpload');
             const dataSourceOverlay = this.shadowRoot.querySelector('#data-source-overlay');
             const loadingOverlay = this.shadowRoot.querySelector('#loading-overlay');
-            this.loadingOverlay = loadingOverlay;
+
 
             confirmButton.addEventListener('click', () => {
                 const selectedSource = this.shadowRoot.querySelector('input[name="dataSource"]:checked');
@@ -152,8 +152,9 @@
 
             reader.onload = (event) => {
                 const csvData = event.target.result;
+                const loadingOverlay = this.shadowRoot.querySelector('#loading-overlay');
+                loadingOverlay.style.display = 'flex';
                 this.plm_data = this.parseCsv(csvData);
-                this.loadingOverlay.style.display = 'flex';
                 this.renderMap();
             };
 
@@ -193,6 +194,7 @@
 
         renderMap() {
             if (this.dataSource === null) return; // Wait for data source selection
+             const loadingOverlay = this.shadowRoot.querySelector('#loading-overlay');
 
             //console.log("Reached rendermap");
 
@@ -331,7 +333,7 @@
             else {
                 console.log("No valid markers to display");
             }
-            this.loadingOverlay.style.display = 'none';
+           loadingOverlay.style.display = 'none';
         }
     }
 

@@ -34,7 +34,37 @@
             
             #data-source-overlay > p { 
                 font-size: 20px; /* Adjust the size as needed */
-    }
+            }
+            
+            #confirmSource {
+                margin-top: 5px; /* Add 5px margin to the top */
+            }
+            #loading-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                display: none; /* Initially hidden */
+            }
+            #loading-animation {
+                border: 8px solid rgba(255, 255, 255, 0.3);
+                border-top: 8px solid white;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
         </style>
 
         <div id="map-container">
@@ -45,7 +75,12 @@
                 <input type="file" id="csvUpload" accept=".csv">
                 <button id="confirmSource">Confirm</button>
             </div>
-            <div id="footnote">Contigo custom Google Maps widget</div> </div>
+            <div id="loading-overlay">
+                <div id="loading-animation"></div>
+                <p>Loading data...</p>
+            </div>
+            <div id="footnote">Contigo custom Google Maps widget</div>
+        </div>
     `;
 
     class GoogleMapsWidget extends HTMLElement {
@@ -55,6 +90,7 @@
             this.plm_data = {};
             this.markers = [];
             this.dataSource = null;
+            this.loadingOverlay = null;
         }
 
         init() {
@@ -64,6 +100,7 @@
             const confirmButton = this.shadowRoot.querySelector('#confirmSource');
             const csvUploadInput = this.shadowRoot.querySelector('#csvUpload');
             const dataSourceOverlay = this.shadowRoot.querySelector('#data-source-overlay');
+            this.loadingOverlay = this.shadowRoot.querySelector('#loading-overlay');
 
             confirmButton.addEventListener('click', () => {
                 const selectedSource = this.shadowRoot.querySelector('input[name="dataSource"]:checked');
@@ -76,6 +113,7 @@
                     }
                     if (this.dataSource === 'sac') {
                         dataSourceOverlay.style.display = 'none';
+                        this.loadingOverlay.style.display = 'flex';
                         this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
                     }
                 }
@@ -84,6 +122,7 @@
             csvUploadInput.addEventListener('change', (event) => {
                 this.handleCsvUpload(event.target.files[0]);
                 dataSourceOverlay.style.display = 'none';
+
             });
         }
 
@@ -113,6 +152,7 @@
             reader.onload = (event) => {
                 const csvData = event.target.result;
                 this.plm_data = this.parseCsv(csvData);
+                this.loadingOverlay.style.display = 'flex';
                 this.renderMap();
             };
 
@@ -286,9 +326,11 @@
                         map: map,
                     });
                 };
-            } else {
+            } 
+            else {
                 console.log("No valid markers to display");
             }
+            this.loadingOverlay.style.display = 'none';
         }
     }
 

@@ -71,6 +71,7 @@
             this.demoIMG = markerImg;
             var lat_m = parseFloat(dataPoint.properties["lat"]); 
             var lng_m = parseFloat(dataPoint.properties["long"]);
+            var image_Url = dataPoint.properties["image"];
                 if (lat_m && lng_m) {
                     const position = { lat: lat_m, lng: lng_m };
                     bounds.extend(position);
@@ -116,7 +117,7 @@
                                                 <td class="tg-amwm" colspan="4">VIKTORIAALLEE 44</td>
                                             </tr>
                                             <tr>
-                                            <td class="tg-baqh" colspan="4"><img src="${this.demoIMG}" alt="Image"></td>
+                                            <td class="tg-baqh" colspan="4"><img src="${image_Url}" alt="Image"></td>
                                             </tr>
                                             <tr>
                                                 <td class="tg-0lax">Anbietergruppe:</td>

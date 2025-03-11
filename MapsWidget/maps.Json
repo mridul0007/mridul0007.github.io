@@ -12,7 +12,7 @@
 	"webcomponents": [
 		{
 			"kind": "main",
-			"tag": "com-example-combinedMaps",
+			"tag": "com-example-combinedmaps",
 			"url": "https://mridul0007.github.io/MapsWidget/maps.js", 
 			"integrity": ""	,
 			"ignoreIntegrity": true

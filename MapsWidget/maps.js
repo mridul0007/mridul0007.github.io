@@ -111,6 +111,7 @@
             this.loadingOverlay = null;
             this.mapType = 'google';
             this.google_mapsjs_api_key='';
+            this.fe_gm_map = null;
             this.init();
         }
 
@@ -252,13 +253,13 @@
             }
 
             const bounds = new google.maps.LatLngBounds();
-            var mapContainer = this.shadowRoot.querySelector('#d-map-container');
-            var map = new google.maps.Map(mapContainer, {
+            var mapContainer = this.shadowRoot.querySelector('#d-google-map');
+            this.fe_gm_map = new google.maps.Map(mapContainer, {
                 zoom: 8,
                 mapId: 'DEMO_MAP_ID'
             });
 
-            google.maps.event.trigger(map, 'resize');
+            google.maps.event.trigger(this.fe_gm_map, 'resize');
 
             this.DB_COORDINATE_DATA.forEach(dataPoint => {
                 const markerImg = document.createElement("img");
@@ -278,7 +279,7 @@
                     const position = { lat: lat_m, lng: lng_m };
                     bounds.extend(position);
                     let marker = new google.maps.marker.AdvancedMarkerElement({
-                        map,
+                        this.fe_gm_map,
                         position,
                         content: markerImg,
                         title: dataPoint.id,
@@ -287,8 +288,8 @@
                     this.FE_GM_MARKERS.push(marker);
 
                     marker.addListener('click', function () {
-                        map.setZoom(15);
-                        map.setCenter(position);
+                        this.fe_gm_map.setZoom(15);
+                        this.fe_gm_map.setCenter(position);
                         var infoWindow = new google.maps.InfoWindow();
 
                         var tableContent = `
@@ -350,7 +351,7 @@
                         
 
                         infoWindow.setContent(tableContent);
-                        infoWindow.open(map, marker);
+                        infoWindow.open(this.fe_gm_map, marker);
                     });
 
                    // console.log("Marker no:", dataPoint.id);
@@ -358,7 +359,7 @@
             });
 
             if (this.FE_GM_MARKERS.length > 0) {
-                map.fitBounds(bounds);
+                this.fe_gm_map.fitBounds(bounds);
             }
 
             if (this.FE_GM_MARKERS.length > 20) {
@@ -370,7 +371,7 @@
                 script.onload = () => {
                     this.markerCluster = new markerClusterer.MarkerClusterer({
                         markers: this.FE_GM_MARKERS,
-                        map: map,
+                        map: this.fe_gm_map,
                     });
                 };
             } 
@@ -382,6 +383,11 @@
 
 
         async fe_osm_init(){
+
+            this.loadLeafletCSS();
+            this.loadLeafletJS();
+            this.loadMarkerClusterCSS();
+            this.loadMarkerClusterJS();
 
 
         }

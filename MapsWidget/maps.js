@@ -150,6 +150,8 @@
             reader.onload = (event) => {
                 const csvData = event.target.result;
                 const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
+                const dataSourceOverlay = this.shadowRoot.querySelector('#d-data-source-overlay');
+                dataSourceOverlay.style.display = 'none';
                 loadingOverlay.style.display = 'flex';
                 this.plm_data = this.parseCsv(csvData);
                 // this.renderMap();
@@ -190,7 +192,6 @@
         }
 
     }
-
 
     customElements.define('com-example-maps', CombinedMap);
 })();

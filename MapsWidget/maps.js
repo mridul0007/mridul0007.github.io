@@ -240,6 +240,8 @@
         }
 
         async fe_render_gMaps(){
+            const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
+
             if (this.markerCluster) {
                 this.markerCluster.clearMarkers();
                 this.markerCluster = null;

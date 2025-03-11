@@ -125,6 +125,9 @@
                     this.dataSource = selectedSource.value;
                     if (this.dataSource === 'csv') {
                         csvUploadInput.style.display = 'block';
+                        if (csvUploadInput.files.length > 0) {
+                            csvUploadInput.dispatchEvent(new Event('change'));
+                        }
                     } else {
                         csvUploadInput.style.display = 'none';
                         dataSourceOverlay.style.display = 'none';

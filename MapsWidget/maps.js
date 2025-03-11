@@ -368,7 +368,7 @@
                 document.head.appendChild(script);
 
                 script.onload = () => {
-                    var markerCluster = new markerClusterer.MarkerClusterer({
+                    this.markerCluster = new markerClusterer.MarkerClusterer({
                         markers: this.FE_GM_MARKERS,
                         map: map,
                     });

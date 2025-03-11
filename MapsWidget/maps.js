@@ -88,6 +88,10 @@
             super();
             this.attachShadow({ mode: 'open' });
             this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
+            this.plm_data = {};
+            this.markers = [];
+            this.dataSource = null;
+            this.loadingOverlay = null;
             this.mapType = 'google';
         }
     }

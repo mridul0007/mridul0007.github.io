@@ -7,12 +7,12 @@
 	"vendor": "Contigo Consulting AG - MKoshy, JBuergmayr",
 	"license": "",
 	"id": "SAC_Maps_Widget_Combined",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"icon": "",
 	"webcomponents": [
 		{
 			"kind": "main",
-			"tag": "com-example-combinedmaps",
+			"tag": "sac-maps-combined",
 			"url": "https://mridul0007.github.io/MapsWidget/maps.js", 
 			"integrity": ""	,
 			"ignoreIntegrity": true

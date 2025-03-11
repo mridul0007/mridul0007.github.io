@@ -279,7 +279,7 @@
                     const position = { lat: lat_m, lng: lng_m };
                     bounds.extend(position);
                     let marker = new google.maps.marker.AdvancedMarkerElement({
-                        this.fe_gm_map,
+                        map : this.fe_gm_map,
                         position,
                         content: markerImg,
                         title: dataPoint.id,

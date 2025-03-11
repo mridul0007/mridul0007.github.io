@@ -95,7 +95,7 @@
                 <div id="d-footnote">Contigo custom Maps widget</div>
             </div>
             <div id="d-loading-overlay">
-                <p>Loading...</p>
+                <p>Loading... <span id="loading-progress">0</span> rows processed</p>
             </div>
         </div>
     `;
@@ -153,14 +153,18 @@
                 const dataSourceOverlay = this.shadowRoot.querySelector('#d-data-source-overlay');
                 dataSourceOverlay.style.display = 'none';
                 loadingOverlay.style.display = 'flex';
-                this.plm_data = this.parseCsv(csvData);
-                // this.renderMap();
+                let progress = 0;
+                this.plm_data = this.parseCsv(csvData, (count) => {
+                    progress = count;
+                    loadingProgress.textContent = progress;
+                });
+                loadingProgress.textContent = progress;
+                loadingOverlay.style.display = 'none';
             };
-
             reader.readAsText(file);
         }
 
-        parseCsv(csvData) {
+        parseCsv(csvData, progressCallback) {
             const lines = csvData.split('\n');
             const headers = lines[0].split(',');
             const result = [];
@@ -187,6 +191,10 @@
                     },
                     id: obj.TITLE
                 });
+
+                if (progressCallback) {
+                    progressCallback(i);
+                }
             }
             return result;
         }

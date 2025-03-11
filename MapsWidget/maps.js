@@ -149,17 +149,10 @@
 
             reader.onload = (event) => {
                 const csvData = event.target.result;
-                const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
+                const loadingOverlay = this.shadowRoot.querySelector('#loading-overlay');
                 loadingOverlay.style.display = 'flex';
-                try {
-                    this.plm_data = this.parseCsv(csvData);
-                    console.log(this.plm_data);
-                } catch (error) {
-                    console.error("CSV parsing error:", error);
-                    alert("Error parsing CSV file.");
-                } finally {
-                    loadingOverlay.style.display = 'none';
-                }
+                this.plm_data = this.parseCsv(csvData);
+                // this.renderMap();
             };
 
             reader.readAsText(file);

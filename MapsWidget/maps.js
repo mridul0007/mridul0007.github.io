@@ -2,8 +2,13 @@
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
     <style>
-        #map-container {
+        #widget-container {
             height: 100%;
+            width: 100%;
+            position: relative;
+        }
+        #map-container{
+            height: 90%;
             width: 100%;
             position: relative;
         }
@@ -34,7 +39,7 @@
             bottom: 10px;
             left: 10px;
             z-index: 1000;
-            background: white;
+            background: linear-gradient(to bottom, #00B0B2, #A4D6D4); /* Gradient background */
             padding: 5px;
             border-radius: 4px;
         }
@@ -52,21 +57,25 @@
         }
     </style>
 
-    <div id="map-container">
-        <div id="data-source-overlay">
-                <p>Select Data Source:</p>
-                <label><input type="radio" name="dataSource" value="sac"> SAC </label>
-                <label><input type="radio" name="dataSource" value="csv"> CSV </label>
-                <input type="file" id="csvUpload" accept=".csv">
-                <button id="confirmSource">Confirm</button>
+    <div id="widget-container">
+        <div id="map-container">
+            <div id="data-source-overlay">
+                    <p>Select Data Source:</p>
+                    <label><input type="radio" name="dataSource" value="sac"> SAC </label>
+                    <label><input type="radio" name="dataSource" value="csv"> CSV </label>
+                    <input type="file" id="csvUpload" accept=".csv">
+                    <button id="confirmSource">Confirm</button>
+                </div>
+            <div id="google-map"></div>
+            <div id="leaflet-map"></div>
         </div>
-        <div id="google-map"></div>
-        <div id="leaflet-map"></div>
+        <div style="width: 100%; height: 1px; background-color: #064635;"></div>
         <div id="map-toggle">
             <label><input type="radio" name="mapType" value="google" checked> Google Maps</label>
             <label><input type="radio" name="mapType" value="leaflet"> Leaflet</label>
         </div>
         <div id="footnote">Contigo custom Maps widget</div>
+        </div>
     </div>
 `;
 

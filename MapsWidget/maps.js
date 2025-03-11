@@ -61,7 +61,7 @@
                 font-size: 10px;
                 color: white;
                 z-index: 1000;
-                margin-left: -2px;
+                margin-right: 10px;
             }
             #d-loading-overlay {
                 position: absolute;

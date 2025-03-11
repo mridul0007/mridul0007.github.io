@@ -210,5 +210,5 @@ class CombinedMap extends HTMLElement {
     }
 }
 
-customElements.define('sac-maps-combined', CombinedMap);
+customElements.define('com-example-maps', CombinedMap);
 })();

@@ -1,18 +1,18 @@
 {
-	"name": "SAC Maps Widget Combined",
+	"name": "SAC Maps Combined",
 	"imports": ["planning-model"],
-	"description": "SAC Maps Widget Combined",
-	"newInstancePrefix": "SAC_Maps_Widget_Combined",
+	"description": "SAC Maps Combined",
+	"newInstancePrefix": "sac_maps_combined",
 	"eula": "",
 	"vendor": "Contigo Consulting AG - MKoshy, JBuergmayr",
 	"license": "",
-	"id": "SAC_Maps_Widget_Combined",
+	"id": "sac_maps_combined",
 	"version": "1.0.2",
 	"icon": "",
 	"webcomponents": [
 		{
 			"kind": "main",
-			"tag": "sac-maps-combined",
+			"tag": "com-example-maps",
 			"url": "https://mridul0007.github.io/MapsWidget/maps.js", 
 			"integrity": ""	,
 			"ignoreIntegrity": true

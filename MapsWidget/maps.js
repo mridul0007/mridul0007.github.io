@@ -105,8 +105,8 @@
             super();
             this.attachShadow({ mode: 'open' });
             this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
-            this.plm_data = {};
-            this.markers = [];
+            this.DB_COORDINATE_DATA = {};
+            this.FE_GM_MARKERS = [];
             this.dataSource = null;
             this.loadingOverlay = null;
             this.mapType = 'google';
@@ -132,7 +132,7 @@
                         csvUploadInput.style.display = 'none';
                         dataSourceOverlay.style.display = 'none';
                         loadingOverlay.style.display = 'flex';
-                        // this.dispatchEvent(new CustomEvent("onPlmQueryExecution"));
+                        this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
                     }
                 }
             });
@@ -155,7 +155,7 @@
                 dataSourceOverlay.style.display = 'none';
                 loadingOverlay.style.display = 'flex';
                 let progress = 0;
-                this.plm_data = this.parseCsv(csvData, (count) => {
+                this.DB_COORDINATE_DATA = this.parseCsv(csvData, (count) => {
                     progress = count;
                     loadingProgress.textContent = progress;
                 });
@@ -198,6 +198,33 @@
                 }
             }
             return result;
+        }
+
+        async set_data(DB_COORDINATE_DATA) {
+            this.DB_COORDINATE_DATA = DB_COORDINATE_DATA;
+            if (this.dataSource === 'sac') {
+                this.renderMap();
+            }
+        }
+
+        async renderMap(){
+
+            if( this.mapType = 'google') {
+                
+            }
+            else( this.mapType = 'osm')
+            {
+
+            }
+        }
+
+        async fe_gm_init(){
+
+        }
+
+        async fe_osm_init(){
+
+            
         }
 
     }

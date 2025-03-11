@@ -25,8 +25,10 @@
 		},
 		"coordinate_master_data": {
 			"type": "PlanningModelMember[]"
+		},
+        "default_map": {
+			"type": "string"
 		}
-		
 	},
 	"methods": {
 		"set_google_mapsjs_api_key": {
@@ -38,6 +40,15 @@
 					"description": "google maps js api key"
 				}]
 			},
+        "set_default_map": {
+			"description": "set default map",
+            "parameters": [
+				{
+					"name": "default_map",
+					"type": "string",
+					"description": "set default map"
+				}]
+			},    
 		"set_coordinate_master_data":{
 			"description": "set coordinate master data",
 			"parameters": [
@@ -50,8 +61,8 @@
 		}
 	},
 	"events": {
-		"event_read_finished_coordinate_master_data": {
-			"description": "read finished coordinate master data"
+		"EVENTW2S_DB_FILL_COORDINATE_DATA": {
+			"description": "read coordinate master data"
 		}
 	}
 }

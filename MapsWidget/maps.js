@@ -151,6 +151,7 @@
                 const csvData = event.target.result;
                 const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
                 const dataSourceOverlay = this.shadowRoot.querySelector('#d-data-source-overlay');
+                const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
                 dataSourceOverlay.style.display = 'none';
                 loadingOverlay.style.display = 'flex';
                 let progress = 0;

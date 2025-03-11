@@ -123,7 +123,7 @@
             const dataSourceOverlay = this.shadowRoot.querySelector('#d-data-source-overlay');
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
             const mapTypeRadios = this.shadowRoot.querySelectorAll('input[name="mapType"]');
-            
+
             confirmButton.addEventListener('click', () => {
                 const selectedSource = this.shadowRoot.querySelector('input[name="dataSource"]:checked');
                 if (selectedSource) {
@@ -226,6 +226,7 @@
 
 
         async renderMap() {
+            this.clear_views();
             if (this.mapType === 'google') {
                 await this.fe_gm_init();
                 this.fe_render_gMaps();

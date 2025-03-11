@@ -76,7 +76,7 @@
             <div id="bottom-bar">
                 <div id="map-toggle">
                     <label><input type="radio" name="mapType" value="google" checked> Google Maps</label>
-                    <label><input type="radio" name="mapType" value="leaflet"> Leaflet</label>
+                    <label><input type="radio" name="mapType" value="osm"> OpenStreet Maps</label>
                 </div>
                 <div id="footnote">Contigo custom Maps widget</div>
             </div>

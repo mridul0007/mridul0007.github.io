@@ -27,6 +27,12 @@
                 align-items: center;
                 color: white;
             }
+            #d-confirmSource {
+                margin-top: 5px; /* Add 5px margin to the top */
+            }
+            #d-csvUpload {
+                display: none;
+            }    
             #d-google-map {
                 height: 100%;
                 width: 100%;
@@ -108,8 +114,8 @@
         }
 
         init() {
-            const confirmButton = this.shadowRoot.querySelector('#confirmSource');
-            const csvUploadInput = this.shadowRoot.querySelector('#csvUpload');
+            const confirmButton = this.shadowRoot.querySelector('#d-confirmSource');
+            const csvUploadInput = this.shadowRoot.querySelector('#d-csvUpload');
             const dataSourceOverlay = this.shadowRoot.querySelector('#d-data-source-overlay');
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
 
@@ -119,7 +125,6 @@
                     this.dataSource = selectedSource.value;
                     if (this.dataSource === 'csv') {
                         csvUploadInput.style.display = 'block';
-                        dataSourceOverlay.style.display = 'none';
                     } else {
                         csvUploadInput.style.display = 'none';
                         dataSourceOverlay.style.display = 'none';

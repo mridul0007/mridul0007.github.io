@@ -209,12 +209,10 @@
 
         async renderMap(){
 
-            if( this.mapType = 'google') {
-                
-            }
-            else( this.mapType = 'osm')
-            {
-
+            if (this.mapType === 'google') {
+                // ...
+            } else if (this.mapType === 'osm') {
+                // ...
             }
         }
 
@@ -224,7 +222,7 @@
 
         async fe_osm_init(){
 
-            
+
         }
 
     }

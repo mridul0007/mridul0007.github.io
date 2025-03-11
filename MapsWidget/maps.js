@@ -149,7 +149,7 @@
 
             reader.onload = (event) => {
                 const csvData = event.target.result;
-                const loadingOverlay = this.shadowRoot.querySelector('#loading-overlay');
+                const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
                 loadingOverlay.style.display = 'flex';
                 this.plm_data = this.parseCsv(csvData);
                 // this.renderMap();

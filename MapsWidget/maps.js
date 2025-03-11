@@ -10,7 +10,7 @@
                 flex-direction: column;
             }
             #d-map-container {
-                height: 95%;
+                height: 98%;
                 width: 100%;
                 position: relative;
             }
@@ -36,8 +36,9 @@
             #d-google-map {
                 height: 100%;
                 width: 100%;
+                display:none;
             }
-            #d-leaflet-map {
+            #d-os-map {
                 height: 100%;
                 width: 100%;
                 display: none;
@@ -84,7 +85,7 @@
                     <button id="confirmSource">Confirm</button>
                 </div>
                 <div id="d-google-map"></div>
-                <div id="d-leaflet-map"></div>
+                <div id="d-os-map"></div>
             </div>
             <div style="width: 100%; height: 1px; background-color: #064635;"></div>
             <div id="d-bottom-bar">
@@ -112,6 +113,7 @@
             this.mapType = 'google';
             this.google_mapsjs_api_key='';
             this.fe_gm_map = null;
+            this.fe_os_map
             this.init();
         }
 
@@ -120,7 +122,8 @@
             const csvUploadInput = this.shadowRoot.querySelector('#csvUpload');
             const dataSourceOverlay = this.shadowRoot.querySelector('#d-data-source-overlay');
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
-
+            const mapTypeRadios = this.shadowRoot.querySelectorAll('input[name="mapType"]');
+            
             confirmButton.addEventListener('click', () => {
                 const selectedSource = this.shadowRoot.querySelector('input[name="dataSource"]:checked');
                 if (selectedSource) {
@@ -142,6 +145,13 @@
             csvUploadInput.addEventListener('change', (event) => {
                 this.handleCsvUpload(event.target.files[0]);
             });
+            
+            mapTypeRadios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    this.mapType = radio.value;
+                    this.renderMap();
+        });
+    });
         }
 
         async handleCsvUpload(file) {
@@ -163,6 +173,7 @@
                 });
                 loadingProgress.textContent = progress;
                 loadingOverlay.style.display = 'none';
+                this.renderMap();
             };
             reader.readAsText(file);
         }
@@ -219,7 +230,8 @@
                 await this.fe_gm_init();
                 this.fe_render_gMaps();
             } else if (this.mapType === 'osm') {
-                // ...
+                await this.fe_osm_init();
+                this.fe_render_osMaps();
             }
         }
         
@@ -241,6 +253,9 @@
         }
 
         async fe_render_gMaps(){
+
+            this.clear_views();
+
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
 
             if (this.markerCluster) {
@@ -254,6 +269,7 @@
 
             const bounds = new google.maps.LatLngBounds();
             var mapContainer = this.shadowRoot.querySelector('#d-google-map');
+            mapContainer.style.display ='flex';
             this.fe_gm_map = new google.maps.Map(mapContainer, {
                 zoom: 8,
                 mapId: 'DEMO_MAP_ID'
@@ -389,6 +405,18 @@
             this.loadMarkerClusterCSS();
             this.loadMarkerClusterJS();
 
+
+        }
+
+        async fe_render_osMaps(){
+            this.clear_views();
+        }
+
+
+        async clear_views(){
+
+            this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
+            this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
 
         }
 

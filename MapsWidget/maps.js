@@ -115,7 +115,7 @@
 
         init() {
             const confirmButton = this.shadowRoot.querySelector('#confirmSource');
-            const csvUploadInput = this.shadowRoot.querySelector('#d-csvUpload');
+            const csvUploadInput = this.shadowRoot.querySelector('#csvUpload');
             const dataSourceOverlay = this.shadowRoot.querySelector('#d-data-source-overlay');
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
 

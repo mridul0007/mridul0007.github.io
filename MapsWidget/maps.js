@@ -200,7 +200,7 @@
             return result;
         }
 
-        async set_data(DB_COORDINATE_DATA) {
+        async set_coordinate_master_data(DB_COORDINATE_DATA) {
             this.DB_COORDINATE_DATA = DB_COORDINATE_DATA;
             if (this.dataSource === 'sac') {
                 this.renderMap();

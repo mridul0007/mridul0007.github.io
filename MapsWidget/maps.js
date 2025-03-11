@@ -48,7 +48,8 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 10px;
+                padding: 0px;
+                
             }
             #d-map-toggle {
                 z-index: 1000;
@@ -60,6 +61,7 @@
                 font-size: 10px;
                 color: white;
                 z-index: 1000;
+                margin-left: -2px;
             }
             #d-loading-overlay {
                 position: absolute;

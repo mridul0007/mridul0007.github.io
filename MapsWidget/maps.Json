@@ -1,0 +1,57 @@
+{
+	"name": "SAC Maps Widget Combined",
+	"imports": ["planning-model"],
+	"description": "SAC Maps Widget Combined",
+	"newInstancePrefix": "SAC Maps Widget Combined",
+	"eula": "",
+	"vendor": "Contigo Consulting AG - MKoshy, JBuergmayr",
+	"license": "",
+	"id": "SAC Maps Widget Combined",
+	"version": "1.0.0",
+	"icon": "",
+	"webcomponents": [
+		{
+			"kind": "main",
+			"tag": "com_contigo-consulting_combinedMaps",
+			"url": "/maps.js",
+			"integrity": ""	,
+			"ignoreIntegrity": true
+			
+		}		
+	],
+	"properties": {
+		"google_mapsjs_api_key": {
+			"type": "string"
+		},
+		"coordinate_master_data": {
+			"type": "PlanningModelMember[]"
+		}
+		
+	},
+	"methods": {
+		"set_google_mapsjs_api_key": {
+			"description": "set google maps js api key",
+            "parameters": [
+				{
+					"name": "google_mapsjs_api_key",
+					"type": "string",
+					"description": "google maps js api key"
+				}]
+			},
+		"set_coordinate_master_data":{
+			"description": "set coordinate master data",
+			"parameters": [
+				{
+					"name": "coordinate_master_data",
+					"type": "PlanningModelMember[]",
+					"description": "coordinate master data"
+				}
+			]
+		}
+	},
+	"events": {
+		"event_read_finished_coordinate_master_data": {
+			"description": "read finished coordinate master data"
+		}
+	}
+}

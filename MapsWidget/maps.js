@@ -110,6 +110,7 @@
             this.dataSource = null;
             this.loadingOverlay = null;
             this.mapType = 'google';
+            this.google_mapsjs_api_key='';
             this.init();
         }
 
@@ -207,18 +208,176 @@
             }
         }
 
-        async renderMap(){
+        async set_google_mapsjs_api_key(api_key) {
+            this.google_mapsjs_api_key = api_key;
+        }
 
+
+        async renderMap() {
             if (this.mapType === 'google') {
-                // ...
+                await this.fe_gm_init();
+                this.fe_render_gMaps();
             } else if (this.mapType === 'osm') {
                 // ...
             }
         }
-
-        async fe_gm_init(){
-
+        
+        async fe_gm_init() {
+            return new Promise((resolve, reject) => {
+                var script = document.createElement('script');
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${this.google_mapsjs_api_key}&callback=initMap&loading=async&v=weekly&libraries=marker`;
+                script.defer = true;
+                script.onerror = () => {
+                    console.error('Error loading Google Maps API');
+                    reject(new Error('Error loading Google Maps API'));
+                };
+                document.head.appendChild(script);
+        
+                window.initMap = () => {
+                    resolve();
+                };
+            });
         }
+
+        async fe_render_gMaps(){
+            if (this.markerCluster) {
+                this.markerCluster.clearMarkers();
+                this.markerCluster = null;
+            }
+            if (this.FE_GM_MARKERS && this.FE_GM_MARKERS.length > 0) {
+                this.FE_GM_MARKERS.forEach(marker => marker.setMap(null));
+                this.FE_GM_MARKERS = [];
+            }
+
+            const bounds = new google.maps.LatLngBounds();
+            var mapContainer = this.shadowRoot.querySelector('#d-map-container');
+            var map = new google.maps.Map(mapContainer, {
+                zoom: 8,
+                mapId: 'DEMO_MAP_ID'
+            });
+
+            google.maps.event.trigger(map, 'resize');
+
+            this.DB_COORDINATE_DATA.forEach(dataPoint => {
+                const markerImg = document.createElement("img");
+                if (dataPoint.properties.icon && dataPoint.properties.icon.trim() !== "") {
+                    markerImg.src = dataPoint.properties.icon;
+                } else {
+                    // Use default marker image
+                    markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+                }
+                
+                var lat_m = parseFloat(dataPoint.properties.lat);
+                var lng_m = parseFloat(dataPoint.properties.long);
+                var image_Url = dataPoint.properties.image;
+
+
+                if (lat_m && lng_m) {
+                    const position = { lat: lat_m, lng: lng_m };
+                    bounds.extend(position);
+                    let marker = new google.maps.marker.AdvancedMarkerElement({
+                        map,
+                        position,
+                        content: markerImg,
+                        title: dataPoint.id,
+                    });
+
+                    this.FE_GM_MARKERS.push(marker);
+
+                    marker.addListener('click', function () {
+                        map.setZoom(15);
+                        map.setCenter(position);
+                        var infoWindow = new google.maps.InfoWindow();
+
+                        var tableContent = `
+                                        <style type="text/css">
+                                        .tg  {border-collapse:collapse;border-spacing:0;}
+                                        .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                                        overflow:hidden;padding:0px 2px;word-break:normal;}
+                                        .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                                        font-weight:normal;overflow:hidden;padding:0px 2px;word-break:normal;}
+                                        .tg .tg-baqh{text-align:center;vertical-align:top}
+                                        .tg .tg-jdb5{border-color:#000000;font-weight:bold;text-align:center;vertical-align:bottom}
+                                        .tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+                                        .tg .tg-0lax{text-align:left;vertical-align:top}
+                                        .tg .tg-73oq{border-color:#000000;text-align:left;vertical-align:top}
+                                        </style>
+                                        <table class="tg">
+                                        <thead>
+                                        <tr>
+                                            <th class="tg-jdb5" colspan="4">QID: 36520</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="tg-amwm" colspan="4">WTN: Nicht vorhanden</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-amwm" colspan="4">VIKTORIAALLEE 44</td>
+                                        </tr>
+                                        <tr>
+                                        <td class="tg-baqh" colspan="4"><img src="${image_Url}" alt="Image"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">Anbietergruppe:</td>
+                                            <td class="tg-0lax">6</td>
+                                            <td class="tg-0lax">7</td>
+                                            <td class="tg-0lax">8</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">WT-Gruppe:</td>
+                                            <td class="tg-0lax">6</td>
+                                            <td class="tg-0lax">7</td>
+                                            <td class="tg-0lax">8</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">PPS:</td>
+                                            <td class="tg-0lax">6</td>
+                                            <td class="tg-0lax">7</td>
+                                            <td class="tg-0lax">8</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">Tagespreis:</td>
+                                            <td class="tg-0lax">6</td>
+                                            <td class="tg-0lax">7</td>
+                                            <td class="tg-73oq">8</td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
+                                    `;
+                        
+
+                        infoWindow.setContent(tableContent);
+                        infoWindow.open(map, marker);
+                    });
+
+                   // console.log("Marker no:", dataPoint.id);
+                }
+            });
+
+            if (this.FE_GM_MARKERS.length > 0) {
+                map.fitBounds(bounds);
+            }
+
+            if (this.FE_GM_MARKERS.length > 20) {
+                var script = document.createElement('script');
+                script.src = `https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js`;
+                script.onerror = () => console.error('Error loading MarkerClusterer library.');
+                document.head.appendChild(script);
+
+                script.onload = () => {
+                    var markerCluster = new markerClusterer.MarkerClusterer({
+                        markers: this.FE_GM_MARKERS,
+                        map: map,
+                    });
+                };
+            } 
+            else {
+                console.log("No valid markers to display");
+            }
+           loadingOverlay.style.display = 'none';
+        }
+
 
         async fe_osm_init(){
 

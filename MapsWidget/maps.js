@@ -34,6 +34,11 @@
             width: 100%;
             display: none; /* Initially hidden */
         }
+        #bottom-bar{
+
+         background: linear-gradient(to bottom, #00B0B2, #A4D6D4); /* Gradient background */
+        
+        }    
         #map-toggle {
             position: absolute;
             bottom: 10px;
@@ -70,11 +75,12 @@
             <div id="leaflet-map"></div>
         </div>
         <div style="width: 100%; height: 1px; background-color: #064635;"></div>
-        <div id="map-toggle">
-            <label><input type="radio" name="mapType" value="google" checked> Google Maps</label>
-            <label><input type="radio" name="mapType" value="leaflet"> Leaflet</label>
-        </div>
-        <div id="footnote">Contigo custom Maps widget</div>
+        <div id="bottom-bar">
+            <div id="map-toggle">
+                <label><input type="radio" name="mapType" value="google" checked> Google Maps</label>
+                <label><input type="radio" name="mapType" value="leaflet"> Leaflet</label>
+            </div>
+            <div id="footnote">Contigo custom Maps widget</div>
         </div>
     </div>
 `;

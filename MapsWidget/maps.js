@@ -398,8 +398,14 @@
             return new Promise((resolve, reject) => {
                 const script = document.createElement('script');
                 script.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js';
-                script.onload = resolve;
-                script.onerror = reject;
+                script.onload = () => {
+                    console.log("MarkerClusterer script loaded successfully");
+                    resolve();
+                };
+                script.onerror = () => {
+                    console.error("Error loading MarkerClusterer script");
+                    reject();
+                };
                 this.shadowRoot.appendChild(script);
             });
         }

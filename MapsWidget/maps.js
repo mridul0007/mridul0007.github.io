@@ -10,7 +10,7 @@
                 flex-direction: column;
             }
             #d-map-container {
-                height: 98%;
+                height: 95%;
                 width: 100%;
                 position: relative;
                 display: flex;

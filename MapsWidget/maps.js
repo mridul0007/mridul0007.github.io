@@ -36,12 +36,18 @@
             #d-google-map {
                 height: 100%;
                 width: 100%;
-                display:none;
+                visibility: hidden;
+                position: absolute;
+                top: 0;
+                left: 0;
             }
             #d-os-map {
                 height: 100%;
                 width: 100%;
-                display: none;
+                visibility: hidden;
+                position: absolute;
+                top: 0;
+                left: 0;
             }
             #d-bottom-bar {
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
@@ -275,7 +281,7 @@
 
             const bounds = new google.maps.LatLngBounds();
             var mapContainer = this.shadowRoot.querySelector('#d-google-map');
-            mapContainer.style.display ='flex';
+            mapContainer.style.visibility = 'visible';
             this.fe_gm_map = new google.maps.Map(mapContainer, {
                 zoom: 8,
                 mapId: 'DEMO_MAP_ID'
@@ -441,7 +447,7 @@
             
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
             const osMapContainer = this.shadowRoot.getElementById('d-os-map');
-            osMapContainer.style.display = 'flex';
+            osMapContainer.style.visibility = 'visible';
 
             // Check if leaflet is available
             if (!window.L) {
@@ -532,7 +538,7 @@
             // }
             
             loadingOverlay.style.display = 'none';
-            osMapContainer.style.display = 'flex';
+            osMapContainer.style.visibility = 'visible';
             this.fe_os_map.invalidateSize();
         }
 

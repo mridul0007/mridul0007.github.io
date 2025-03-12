@@ -77,7 +77,11 @@
                 align-items: center;
                 color: white;
             }
-                .leaflet-popup-content-wrapper {
+            #d-os-map .leaflet-pane.leaflet-map-pane,
+            #d-os-map .leaflet-control-container {
+                overflow: hidden;
+            }
+            #d-os-map    .leaflet-popup-content-wrapper {
                 max-height: 400px; /* Adjust this value as needed */
                 overflow-y: auto;
               }

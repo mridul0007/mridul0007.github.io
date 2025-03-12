@@ -349,10 +349,11 @@
         async fe_osm_init() {
             try {
                 await Promise.all([
-                    this.loadLeafletCSS(),
+                    this.loadMarkerClusterJS(),
                     this.loadLeafletJS(),
+                    this.loadLeafletCSS(),
                     this.loadMarkerClusterCSS(),
-                    this.loadMarkerClusterJS()
+                    
                 ]);
                 this.fe_render_osMaps();
             } catch (error) {

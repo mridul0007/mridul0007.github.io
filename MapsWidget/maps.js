@@ -351,13 +351,13 @@
 
         async fe_osm_init() {
             try {
-                // First load Leaflet CSS
+                
                 await this.loadLeafletCSS();
                 
-                // Then load Leaflet JS and wait for it to complete
+                
                 await this.loadLeafletJS();
                 
-                // Only after Leaflet is loaded, load the cluster dependencies
+               
                 await this.loadMarkerClusterCSS();
                 await this.loadMarkerClusterJS();
                 
@@ -459,6 +459,7 @@
             }
 
             // Create new map
+            console.log("reached here")
             this.fe_os_map = L.map(osMapContainer).setView([51.1657, 10.4515], 13); // Centered on Germany
             
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

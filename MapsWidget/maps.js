@@ -116,7 +116,7 @@
             this.FE_GM_MARKERS = [];
             this.dataSource = null;
             this.loadingOverlay = null;
-            this.mapType = 'google';
+            this.mapType = 'osm';
             this.google_mapsjs_api_key='';
             this.fe_gm_map = null;
             this.fe_os_map = null;
@@ -517,7 +517,7 @@
                         keepInView: true 
                     });
                     
-                    markerCluster.addLayer(marker);
+                   // markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);
                 }
                 

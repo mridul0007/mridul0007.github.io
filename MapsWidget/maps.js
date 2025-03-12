@@ -446,7 +446,7 @@
                 }
             });
     
-            var markerCluster = L.markerClusterGroup();
+            var markerCluster = new window.L.markerClusterGroup();
             const mapInstance = this.fe_os_map;
 
             for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {

@@ -521,9 +521,9 @@
                     bounds.extend([lat_m, lng_m]);
                 }
                 
-               // this.fe_os_map.addLayer(markerCluster);
+                this.fe_os_map.addLayer(markerCluster);
                 
-                if (!bounds.length > 0) {
+                if (!bounds.isValid()) {
                     this.fe_os_map.fitBounds(bounds);
                 }
                 

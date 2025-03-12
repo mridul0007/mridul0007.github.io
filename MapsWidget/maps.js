@@ -408,7 +408,15 @@
         async fe_render_osMaps(){
             this.clear_views();
 
-            this.fe_os_map = L.map(this.shadowRoot.getElementById('d-os-map')).setView([51.1657, 10.4515], 6); // Centered on Germany
+            const osMapContainer = this.shadowRoot.getElementById('d-os-map');
+
+            if (this.fe_os_map) {
+                this.fe_os_map.remove();
+                this.fe_os_map = null;
+            }
+        
+
+            this.fe_os_map = L.map(osMapContainer).setView([51.1657, 10.4515], 6); // Centered on Germany
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.fe_os_map);

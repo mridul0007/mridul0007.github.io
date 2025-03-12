@@ -280,6 +280,7 @@
             this.clear_views();
 
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
+            
 
             if (this.markerCluster) {
                 this.markerCluster.clearMarkers();
@@ -455,9 +456,11 @@
 
         async fe_render_osMaps() {
             this.clear_views();
+
             await new Promise(resolve => setTimeout(resolve, 3000));
             
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
+            loadingOverlay.style.display = 'none';
             const osMapContainer = this.shadowRoot.getElementById('d-os-map');
             osMapContainer.style.display = 'flex';
 

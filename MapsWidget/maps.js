@@ -440,6 +440,7 @@
 
         async fe_render_osMaps() {
             this.clear_views();
+            await new Promise(resolve => setTimeout(resolve, 3000));
             
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
             const osMapContainer = this.shadowRoot.getElementById('d-os-map');
@@ -536,7 +537,7 @@
             
             loadingOverlay.style.display = 'none';
             osMapContainer.style.display = 'flex';
-            this.fe_os_map.invalidateSize();
+            //this.fe_os_map.invalidateSize();
         }
 
         generateTableContent(image_Url) {

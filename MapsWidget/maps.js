@@ -6,14 +6,12 @@
                 height: 100%;
                 width: 100%;
                 position: relative;
-                display: flex;
                 flex-direction: column;
             }
             #d-map-container {
                 height: 95%;
                 width: 100%;
-                position: relative;
-                display: flex;
+                position: relative;     
             }
             #d-data-source-overlay {
                 position: absolute;

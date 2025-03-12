@@ -463,73 +463,73 @@
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.fe_os_map);
 
-            // Check if marker cluster plugin is available
-            if (!L.markerClusterGroup) {
-                console.error("MarkerClusterGroup not available. Make sure the plugin is properly loaded.");
-                loadingOverlay.style.display = 'none';
-                return;
-            }
+            // // Check if marker cluster plugin is available
+            // if (!L.markerClusterGroup) {
+            //     console.error("MarkerClusterGroup not available. Make sure the plugin is properly loaded.");
+            //     loadingOverlay.style.display = 'none';
+            //     return;
+            // }
 
-            var iconUrls = [
-                'https://mridul0007.github.io/GoogleMaps/dog.png',
-                'https://mridul0007.github.io/GoogleMaps/cat.png',
-                'https://mridul0007.github.io/GoogleMaps/car.png',
-            ];
+            // var iconUrls = [
+            //     'https://mridul0007.github.io/GoogleMaps/dog.png',
+            //     'https://mridul0007.github.io/GoogleMaps/cat.png',
+            //     'https://mridul0007.github.io/GoogleMaps/car.png',
+            // ];
 
-            var bounds = L.latLngBounds();
-            var mapIcon = L.Icon.extend({
-                options: {
-                    shadowUrl: '',
-                    iconSize: [30, 30],
-                    shadowSize: [50, 64],
-                    iconAnchor: [20, 20],
-                    shadowAnchor: [4, 62],
-                    popupAnchor: [0, -10]
-                }
-            });
+            // var bounds = L.latLngBounds();
+            // var mapIcon = L.Icon.extend({
+            //     options: {
+            //         shadowUrl: '',
+            //         iconSize: [30, 30],
+            //         shadowSize: [50, 64],
+            //         iconAnchor: [20, 20],
+            //         shadowAnchor: [4, 62],
+            //         popupAnchor: [0, -10]
+            //     }
+            // });
 
-            try {
-                var markerCluster = L.markerClusterGroup();
+            // try {
+            //     var markerCluster = L.markerClusterGroup();
                 
-                for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {
-                    var lat_m = parseFloat(this.DB_COORDINATE_DATA[i].properties.lat);
-                    var lng_m = parseFloat(this.DB_COORDINATE_DATA[i].properties.long);
+            //     for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {
+            //         var lat_m = parseFloat(this.DB_COORDINATE_DATA[i].properties.lat);
+            //         var lng_m = parseFloat(this.DB_COORDINATE_DATA[i].properties.long);
                     
-                    if (isNaN(lat_m) || isNaN(lng_m)) {
-                        console.warn("Invalid coordinates for marker", i);
-                        continue;
-                    }
+            //         if (isNaN(lat_m) || isNaN(lng_m)) {
+            //             console.warn("Invalid coordinates for marker", i);
+            //             continue;
+            //         }
                     
-                    var iconUrl = iconUrls[i % iconUrls.length];
-                    var image_Url = this.DB_COORDINATE_DATA[i].properties.image;
-                    var tableContent = this.generateTableContent(image_Url);
-                    var setIcon = new mapIcon({ iconUrl: iconUrl });
+            //         var iconUrl = iconUrls[i % iconUrls.length];
+            //         var image_Url = this.DB_COORDINATE_DATA[i].properties.image;
+            //         var tableContent = this.generateTableContent(image_Url);
+            //         var setIcon = new mapIcon({ iconUrl: iconUrl });
                     
-                    var marker = L.marker([lat_m, lng_m], { icon: setIcon });
+            //         var marker = L.marker([lat_m, lng_m], { icon: setIcon });
                     
-                    marker.on('click', (e) => {
-                        this.fe_os_map.setView(e.latlng, 15);
-                    });
+            //         marker.on('click', (e) => {
+            //             this.fe_os_map.setView(e.latlng, 15);
+            //         });
                     
-                    marker.bindPopup(tableContent, { 
-                        autoPan: true, 
-                        anchor: [0.5, -0.5], 
-                        keepInView: true 
-                    });
+            //         marker.bindPopup(tableContent, { 
+            //             autoPan: true, 
+            //             anchor: [0.5, -0.5], 
+            //             keepInView: true 
+            //         });
                     
-                    markerCluster.addLayer(marker);
-                    bounds.extend([lat_m, lng_m]);
-                }
+            //         markerCluster.addLayer(marker);
+            //         bounds.extend([lat_m, lng_m]);
+            //     }
                 
-                this.fe_os_map.addLayer(markerCluster);
+            //     this.fe_os_map.addLayer(markerCluster);
                 
-                if (!bounds.isValid()) {
-                    this.fe_os_map.fitBounds(bounds);
-                }
+            //     if (!bounds.isValid()) {
+            //         this.fe_os_map.fitBounds(bounds);
+            //     }
                 
-            } catch (error) {
-                console.error("Error creating marker cluster:", error);
-            }
+            // } catch (error) {
+            //     console.error("Error creating marker cluster:", error);
+            // }
             
             loadingOverlay.style.display = 'none';
             osMapContainer.style.display = 'flex';

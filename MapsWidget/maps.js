@@ -519,7 +519,7 @@
                 
                 this.fe_os_map.addLayer(markerCluster);
                 
-                if (!bounds.isEmpty()) {
+                if (!bounds.length > 0) {
                     this.fe_os_map.fitBounds(bounds);
                 }
                 

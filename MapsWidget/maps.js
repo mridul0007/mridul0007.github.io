@@ -383,7 +383,7 @@
                     if (!window.L.markerClusterGroup) {
                         await new Promise((resolveMarkerCluster, rejectMarkerCluster) => {
                             const markerClusterScript = document.createElement('script');
-                            markerClusterScript.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js';
+                            markerClusterScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js';
                             markerClusterScript.onload = resolveMarkerCluster;
                             markerClusterScript.onerror = rejectMarkerCluster;
                             document.head.appendChild(markerClusterScript);

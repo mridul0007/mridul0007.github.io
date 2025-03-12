@@ -96,8 +96,8 @@
             <div style="width: 100%; height: 1px; background-color: #064635;"></div>
             <div id="d-bottom-bar">
                 <div id="d-map-toggle">
-                    <label><input type="radio" name="mapType" value="google" checked> Google Maps</label>
-                    <label><input type="radio" name="mapType" value="osm"> OpenStreet Maps</label>
+                    <label><input type="radio" name="mapType" value="google" > Google Maps</label>
+                    <label><input type="radio" name="mapType" value="osm" checked> OpenStreet Maps</label>
                 </div>
                 <div id="d-footnote">Contigo custom Maps widget</div>
             </div>
@@ -533,6 +533,7 @@
             
             loadingOverlay.style.display = 'none';
             osMapContainer.style.display = 'flex';
+            this.fe_os_map.invalidateSize();
         }
 
         generateTableContent(image_Url) {

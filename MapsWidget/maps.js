@@ -505,7 +505,7 @@
                     var tableContent = this.generateTableContent(image_Url);
                     var setIcon = new mapIcon({ iconUrl: iconUrl });
                     
-                    var marker = L.marker([lat_m, lng_m], { icon: setIcon }).addTo(this.fe_os_map);
+                    var marker = L.marker([lat_m, lng_m], { icon: setIcon });
                     
                     marker.on('click', (e) => {
                         this.fe_os_map.setView(e.latlng, 15);
@@ -517,11 +517,11 @@
                         keepInView: true 
                     });
                     
-                   // markerCluster.addLayer(marker);
+                    markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);
                 }
                 
-                this.fe_os_map.addLayer(markerCluster);
+               // this.fe_os_map.addLayer(markerCluster);
                 
                 if (!bounds.length > 0) {
                     this.fe_os_map.fitBounds(bounds);

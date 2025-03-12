@@ -605,8 +605,8 @@
 
         async clear_views() {
 
-            this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
-            this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
+            this.shadowRoot.querySelector('#d-google-map').style.visibility = 'hidden';
+            this.shadowRoot.querySelector('#d-os-map').style.visibility = 'hidden';
         }
     }
 

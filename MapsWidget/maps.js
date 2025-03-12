@@ -457,6 +457,7 @@
 
         this.fe_os_map.addLayer(markerCluster);
         this.fe_os_map.fitBounds(bounds);
+        this.shadowRoot.querySelector('#d-os-map').style.display = 'flex';
     
         }
 

@@ -6,12 +6,13 @@
                 height: 100%;
                 width: 100%;
                 position: relative;
+                display: flex;
                 flex-direction: column;
             }
             #d-map-container {
-                height: 95%;
+                height: 98%;
                 width: 100%;
-                position: relative;     
+                position: relative;
             }
             #d-data-source-overlay {
                 position: absolute;
@@ -35,18 +36,12 @@
             #d-google-map {
                 height: 100%;
                 width: 100%;
-                visibility: hidden;
-                position: absolute;
-                top: 0;
-                left: 0;
+                display:none;
             }
             #d-os-map {
                 height: 100%;
                 width: 100%;
-                visibility: hidden;
-                position: absolute;
-                top: 0;
-                left: 0;
+                display: none;
             }
             #d-bottom-bar {
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
@@ -97,10 +92,6 @@
                 </div>
                 <div id="d-google-map"></div>
                 <div id="d-os-map"></div>
-                <div id="d-loading-overlay">
-                    <p>Loading... <span id="loading-progress">0</span> rows processed</p> 
-                </div>
-            </div>
             </div>
             <div style="width: 100%; height: 1px; background-color: #064635;"></div>
             <div id="d-bottom-bar">
@@ -109,7 +100,10 @@
                     <label><input type="radio" name="mapType" value="osm" checked> OpenStreet Maps</label>
                 </div>
                 <div id="d-footnote">Contigo custom Maps widget</div>
-            </div>    
+            </div>
+            <div id="d-loading-overlay">
+                <p>Loading... <span id="loading-progress">0</span> rows processed</p>
+            </div>
         </div>
     `;
 
@@ -281,7 +275,7 @@
 
             const bounds = new google.maps.LatLngBounds();
             var mapContainer = this.shadowRoot.querySelector('#d-google-map');
-            mapContainer.style.visibility = 'visible';
+            mapContainer.style.display ='flex';
             this.fe_gm_map = new google.maps.Map(mapContainer, {
                 zoom: 8,
                 mapId: 'DEMO_MAP_ID'
@@ -447,7 +441,7 @@
             
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
             const osMapContainer = this.shadowRoot.getElementById('d-os-map');
-            osMapContainer.style.visibility = 'visible';
+            osMapContainer.style.display = 'flex';
 
             // Check if leaflet is available
             if (!window.L) {
@@ -538,7 +532,7 @@
             // }
             
             loadingOverlay.style.display = 'none';
-            osMapContainer.style.visibility = 'visible';
+            osMapContainer.style.display = 'flex';
             this.fe_os_map.invalidateSize();
         }
 
@@ -603,8 +597,8 @@
 
         async clear_views() {
 
-            this.shadowRoot.querySelector('#d-google-map').style.visibility = 'hidden';
-            this.shadowRoot.querySelector('#d-os-map').style.visibility = 'hidden';
+            this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
+            this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         }
     }
 

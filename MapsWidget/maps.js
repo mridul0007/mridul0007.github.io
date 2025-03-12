@@ -501,7 +501,7 @@
                     var tableContent = this.generateTableContent(image_Url);
                     var setIcon = new mapIcon({ iconUrl: iconUrl });
                     
-                    var marker = L.marker([lat_m, lng_m], { icon: setIcon });
+                    var marker = L.marker([lat_m, lng_m], { icon: setIcon }).addTo(this.fe_os_map);
                     
                     marker.on('click', (e) => {
                         this.fe_os_map.setView(e.latlng, 15);
@@ -591,7 +591,7 @@
         }
 
         async clear_views() {
-            
+
             this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
             this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         }

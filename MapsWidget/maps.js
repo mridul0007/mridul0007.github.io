@@ -345,12 +345,16 @@
 
         async fe_osm_init() {
             try {
-                await Promise.all([
-                    this.loadLeafletJS(),
-                    this.loadLeafletCSS(),
-                    this.loadMarkerClusterCSS(),
-                    this.loadMarkerClusterJS()
-                ]);
+                // First load Leaflet CSS
+                await this.loadLeafletCSS();
+                
+                // Then load Leaflet JS and wait for it to complete
+                await this.loadLeafletJS();
+                
+                // Only after Leaflet is loaded, load the cluster dependencies
+                await this.loadMarkerClusterCSS();
+                await this.loadMarkerClusterJS();
+                
                 console.log("All OSM dependencies loaded successfully");
                 return true;
             } catch (error) {
@@ -367,7 +371,7 @@
                 link.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
                 link.crossOrigin = '';
                 link.onload = resolve;
-                this.shadowRoot.appendChild(link);
+                document.head.appendChild(link);
             });
         }
         
@@ -378,11 +382,16 @@
                 script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
                 script.crossOrigin = '';
                 script.onload = () => {
-                    console.log("Leaflet script loaded successfully");
-                    resolve();
+                    // Check if Leaflet was properly loaded
+                    if (typeof L !== 'undefined') {
+                        console.log("Leaflet script loaded successfully");
+                        resolve();
+                    } else {
+                        reject(new Error("Leaflet object not available after script load"));
+                    }
                 };
                 script.onerror = reject;
-                this.shadowRoot.appendChild(script);
+                document.head.appendChild(script);
             });
         }
         
@@ -392,23 +401,33 @@
                 link.rel = 'stylesheet';
                 link.href = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css';
                 link.onload = resolve;
-                this.shadowRoot.appendChild(link);
+                document.head.appendChild(link);
             });
         }
         
         async loadMarkerClusterJS() {
             return new Promise((resolve, reject) => {
+                // Check if Leaflet is available first
+                if (typeof L === 'undefined') {
+                    reject(new Error("Leaflet must be loaded before MarkerCluster"));
+                    return;
+                }
+                
                 const script = document.createElement('script');
                 script.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js';
                 script.onload = () => {
-                    console.log("MarkerClusterer script loaded successfully");
-                    resolve();
+                    if (L.markerClusterGroup) {
+                        console.log("MarkerClusterer script loaded successfully");
+                        resolve();
+                    } else {
+                        reject(new Error("MarkerClusterGroup not available after script load"));
+                    }
                 };
                 script.onerror = (e) => {
                     console.error("Error loading MarkerClusterer script:", e);
                     reject(new Error("Failed to load MarkerClusterer"));
                 };
-                this.shadowRoot.appendChild(script);
+                document.head.appendChild(script);
             });
         }
     

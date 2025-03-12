@@ -42,8 +42,8 @@
                 left: 0;
             }
             #d-os-map {
-                height: 662px;
-                width: 443.05px;
+                height: 443.05px;
+                width: 662px;
                 visibility: hidden;
                 position: absolute;
                 top: 0;

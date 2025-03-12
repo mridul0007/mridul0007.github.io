@@ -403,8 +403,10 @@
                     resolve();
                 };
                 script.onerror = () => {
-                    console.error("Error loading MarkerClusterer script");
-                    reject();
+                    console.error("Error loading MarkerClusterer script, retrying in 1 second");
+                    setTimeout(() => {
+                        this.loadMarkerClusterJS().then(resolve).catch(reject);
+                    }, 1000); // Retry after 1 second
                 };
                 this.shadowRoot.appendChild(script);
             });
@@ -446,32 +448,40 @@
                 }
             });
     
-            var markerCluster = new window.L.markerClusterGroup();
-            const mapInstance = this.fe_os_map;
-
-            for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {
-                var lat_m = this.DB_COORDINATE_DATA[i].properties["lat"];
-                var lng_m = this.DB_COORDINATE_DATA[i].properties["long"];
-                var iconUrl = iconUrls[i % iconUrls.length];
-                var image_Url = this.DB_COORDINATE_DATA[i].properties["image"];
-                var tableContent = this.generateTableContent(image_Url);
-                var setIcon = new mapIcon({ iconUrl: iconUrl });
-            var marker = L.marker([lat_m, lng_m], { icon: setIcon });
-
-           
-            marker.on('click', function(e) {
-                var lat = e.latlng.lat;
-                var lng = e.latlng.lng;
-                mapInstance.setView(e.latlng, 15);
-            }.bind(this)); 
-            marker.bindPopup(tableContent,{ autoPan: true, anchor: [0.5, -0.5], keepInView: true });
-            markerCluster.addLayer(marker);
-            bounds.extend([lat_m, lng_m]);
-        }
-
-        this.fe_os_map.addLayer(markerCluster);
-        this.fe_os_map.fitBounds(bounds);
-        this.shadowRoot.querySelector('#d-os-map').style.display = 'flex';
+            const attemptClusterCreation = () => {
+                if (window.L && window.L.markerClusterGroup) {
+                    var markerCluster = new window.L.markerClusterGroup();
+                    const mapInstance = this.fe_os_map;
+        
+                    for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {
+                        var lat_m = this.DB_COORDINATE_DATA[i].properties["lat"];
+                        var lng_m = this.DB_COORDINATE_DATA[i].properties["long"];
+                        var iconUrl = iconUrls[i % iconUrls.length];
+                        var image_Url = this.DB_COORDINATE_DATA[i].properties["image"];
+                        var tableContent = this.generateTableContent(image_Url);
+                        var setIcon = new mapIcon({ iconUrl: iconUrl });
+                        var marker = L.marker([lat_m, lng_m], { icon: setIcon });
+        
+                        marker.on('click', function(e) {
+                            var lat = e.latlng.lat;
+                            var lng = e.latlng.lng;
+                            mapInstance.setView(e.latlng, 15);
+                        }.bind(this));
+                        marker.bindPopup(tableContent, { autoPan: true, anchor: [0.5, -0.5], keepInView: true });
+                        markerCluster.addLayer(marker);
+                        bounds.extend([lat_m, lng_m]);
+                    }
+        
+                    this.fe_os_map.addLayer(markerCluster);
+                    this.fe_os_map.fitBounds(bounds);
+                    this.shadowRoot.querySelector('#d-os-map').style.display = 'flex';
+                } else {
+                    console.warn("MarkerClusterGroup not yet available, retrying...");
+                    setTimeout(attemptClusterCreation, 100); // Retry after 100ms
+                }
+            };
+        
+            attemptClusterCreation();
     
         }
 

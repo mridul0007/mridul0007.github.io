@@ -13,6 +13,7 @@
                 height: 98%;
                 width: 100%;
                 position: relative;
+                overflow: hidden;
             }
             #d-data-source-overlay {
                 position: absolute;

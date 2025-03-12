@@ -437,7 +437,7 @@
             
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
             const osMapContainer = this.shadowRoot.getElementById('d-os-map');
-            osMapContainer.style.display = 'flex';
+            
 
             // Check if leaflet is available
             if (!window.L) {
@@ -528,6 +528,7 @@
             }
             
             loadingOverlay.style.display = 'none';
+            osMapContainer.style.display = 'flex';
         }
 
         generateTableContent(image_Url) {

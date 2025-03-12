@@ -229,10 +229,10 @@
 
         async renderMap() {
             this.clear_views();
-            if (this.mapType === 'google') {
+            if (this.mapType === 'google' && this.DB_COORDINATE_DATA.length > 0) {
                 await this.fe_gm_init();
                 this.fe_render_gMaps();
-            } else if (this.mapType === 'osm') {
+            } else if (this.mapType === 'osm' && this.DB_COORDINATE_DATA.length > 0) {
                 await this.fe_osm_init();
                 this.fe_render_osMaps();
             }

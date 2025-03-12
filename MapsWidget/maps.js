@@ -152,8 +152,8 @@
                 radio.addEventListener('change', () => {
                     this.mapType = radio.value;
                     this.renderMap();
-        });
-    });
+                });
+            });
         }
 
         async handleCsvUpload(file) {
@@ -256,7 +256,6 @@
         }
 
         async fe_render_gMaps(){
-
             this.clear_views();
 
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
@@ -317,8 +316,6 @@
                         infoWindow.setContent(tableContent);
                         infoWindow.open(this.fe_gm_map, marker);
                     });
-
-                   // console.log("Marker no:", dataPoint.id);
                 }
             });
 
@@ -342,148 +339,178 @@
             else {
                 console.log("No valid markers to display");
             }
-           loadingOverlay.style.display = 'none';
+            loadingOverlay.style.display = 'none';
         }
-
 
         async fe_osm_init() {
-            try {
-                await Promise.all([
-                    this.loadMarkerClusterJS(),
-                    this.loadLeafletJS(),
-                    this.loadLeafletCSS(),
-                    this.loadMarkerClusterCSS(),
-                    
-                ]);
-                this.fe_render_osMaps();
-            } catch (error) {
-                console.error("Error loading OSM dependencies:", error);
-            }
-        }
-        
-        async loadLeafletCSS() {
-            return new Promise((resolve) => {
-                const link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-                link.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
-                link.crossOrigin = '';
-                link.onload = resolve;
-                this.shadowRoot.appendChild(link);
-            });
-        }
-        
-        async loadLeafletJS() {
-            return new Promise((resolve, reject) => {
-                const script = document.createElement('script');
-                script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-                script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
-                script.crossOrigin = '';
-                script.onload = resolve;
-                script.onerror = reject;
-                this.shadowRoot.appendChild(script);
-            });
-        }
-        
-        async loadMarkerClusterCSS() {
-            return new Promise((resolve) => {
-                const link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css';
-                link.onload = resolve;
-                this.shadowRoot.appendChild(link);
-            });
-        }
-        
-        async loadMarkerClusterJS() {
-            return new Promise((resolve, reject) => {
-                const script = document.createElement('script');
-                script.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js';
-                script.onload = () => {
-                    console.log("MarkerClusterer script loaded successfully");
-                    resolve();
-                };
-                script.onerror = () => {
-                    console.error("Error loading MarkerClusterer script, retrying in 1 second");
-                    setTimeout(() => {
-                        this.loadMarkerClusterJS().then(resolve).catch(reject);
-                    }, 1000); // Retry after 1 second
-                };
-                this.shadowRoot.appendChild(script);
-            });
-        }
-    
-
-        async fe_render_osMaps(){
-            this.clear_views();
-
-            const osMapContainer = this.shadowRoot.getElementById('d-os-map');
-
-            if (this.fe_os_map) {
-                this.fe_os_map.remove();
-                this.fe_os_map = null;
-            }
-        
-
-            this.fe_os_map = L.map(osMapContainer).setView([51.1657, 10.4515], 6); // Centered on Germany
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(this.fe_os_map);
-
-
-            var iconUrls = [
-                'https://mridul0007.github.io/GoogleMaps/dog.png',
-                'https://mridul0007.github.io/GoogleMaps/cat.png',
-                'https://mridul0007.github.io/GoogleMaps/car.png',
-            ];
-
-            var bounds = new L.LatLngBounds();    
-            var mapIcon = L.Icon.extend({
-                options: {
-                    shadowUrl: '',
-                    iconSize:     [30, 30],
-                    shadowSize:   [50, 64],
-                    iconAnchor:   [20, 20],
-                    shadowAnchor: [4, 62],
-                    popupAnchor:  [0, -10]
-                }
-            });
-    
-            const attemptClusterCreation = () => {
-                if (window.L && window.L.markerClusterGroup) {
-                    var markerCluster = new window.L.markerClusterGroup();
-                    const mapInstance = this.fe_os_map;
-        
-                    for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {
-                        var lat_m = this.DB_COORDINATE_DATA[i].properties["lat"];
-                        var lng_m = this.DB_COORDINATE_DATA[i].properties["long"];
-                        var iconUrl = iconUrls[i % iconUrls.length];
-                        var image_Url = this.DB_COORDINATE_DATA[i].properties["image"];
-                        var tableContent = this.generateTableContent(image_Url);
-                        var setIcon = new mapIcon({ iconUrl: iconUrl });
-                        var marker = L.marker([lat_m, lng_m], { icon: setIcon });
-        
-                        marker.on('click', function(e) {
-                            var lat = e.latlng.lat;
-                            var lng = e.latlng.lng;
-                            mapInstance.setView(e.latlng, 15);
-                        }.bind(this));
-                        marker.bindPopup(tableContent, { autoPan: true, anchor: [0.5, -0.5], keepInView: true });
-                        markerCluster.addLayer(marker);
-                        bounds.extend([lat_m, lng_m]);
+            return new Promise(async (resolve, reject) => {
+                try {
+                    // Create a dedicated container for Leaflet resources
+                    if (!this.leafletContainer) {
+                        this.leafletContainer = document.createElement('div');
+                        this.leafletContainer.id = 'leaflet-resources';
+                        document.body.appendChild(this.leafletContainer);
                     }
-        
-                    this.fe_os_map.addLayer(markerCluster);
-                    this.fe_os_map.fitBounds(bounds);
-                    this.shadowRoot.querySelector('#d-os-map').style.display = 'flex';
-                } else {
-                    console.warn("MarkerClusterGroup not yet available, retrying...");
-                    setTimeout(attemptClusterCreation, 100); // Retry after 100ms
+                    
+                    // Load Leaflet CSS
+                    if (!document.querySelector('link[href*="leaflet.css"]')) {
+                        const leafletCSS = document.createElement('link');
+                        leafletCSS.rel = 'stylesheet';
+                        leafletCSS.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+                        document.head.appendChild(leafletCSS);
+                    }
+                    
+                    // Load MarkerCluster CSS
+                    if (!document.querySelector('link[href*="MarkerCluster.Default.css"]')) {
+                        const markerClusterCSS = document.createElement('link');
+                        markerClusterCSS.rel = 'stylesheet';
+                        markerClusterCSS.href = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css';
+                        document.head.appendChild(markerClusterCSS);
+                    }
+                    
+                    // Load Leaflet JS (main library)
+                    if (!window.L) {
+                        await new Promise((resolveLeaflet, rejectLeaflet) => {
+                            const leafletScript = document.createElement('script');
+                            leafletScript.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+                            leafletScript.onload = resolveLeaflet;
+                            leafletScript.onerror = rejectLeaflet;
+                            document.head.appendChild(leafletScript);
+                        });
+                    }
+                    
+                    // Once Leaflet is loaded, load MarkerCluster JS
+                    if (!window.L.markerClusterGroup) {
+                        await new Promise((resolveMarkerCluster, rejectMarkerCluster) => {
+                            const markerClusterScript = document.createElement('script');
+                            markerClusterScript.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js';
+                            markerClusterScript.onload = resolveMarkerCluster;
+                            markerClusterScript.onerror = rejectMarkerCluster;
+                            document.head.appendChild(markerClusterScript);
+                        });
+                    }
+                    
+                    // Small delay to ensure everything is initialized properly
+                    setTimeout(() => {
+                        resolve();
+                    }, 200);
+                } catch (error) {
+                    console.error("Error initializing OSM dependencies:", error);
+                    reject(error);
                 }
-            };
-        
-            attemptClusterCreation();
-    
+            });
+        }
+
+        async fe_render_osMaps() {
+            this.clear_views();
+            const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
+            loadingOverlay.style.display = 'flex';
+            
+            try {
+                const osMapContainer = this.shadowRoot.getElementById('d-os-map');
+                osMapContainer.style.display = 'flex';
+                
+                // Check if the map already exists and remove it
+                if (this.fe_os_map) {
+                    this.fe_os_map.remove();
+                    this.fe_os_map = null;
+                }
+                
+                // Check if Leaflet is available
+                if (!window.L) {
+                    console.error("Leaflet library is not available");
+                    loadingOverlay.style.display = 'none';
+                    return;
+                }
+                
+                // Initialize map
+                this.fe_os_map = L.map(osMapContainer).setView([51.1657, 10.4515], 6); // Centered on Germany
+                
+                // Add the tile layer
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(this.fe_os_map);
+                
+                // Check if MarkerCluster is available
+                if (!L.markerClusterGroup) {
+                    console.error("MarkerCluster is not available");
+                    loadingOverlay.style.display = 'none';
+                    return;
+                }
+                
+                // Create marker cluster group
+                const markerCluster = L.markerClusterGroup();
+                
+                // Create marker icon
+                const mapIcon = L.Icon.extend({
+                    options: {
+                        shadowUrl: '',
+                        iconSize: [30, 30],
+                        shadowSize: [50, 64],
+                        iconAnchor: [20, 20],
+                        shadowAnchor: [4, 62],
+                        popupAnchor: [0, -10]
+                    }
+                });
+                
+                // Icon URLs for markers
+                const iconUrls = [
+                    'https://mridul0007.github.io/GoogleMaps/dog.png',
+                    'https://mridul0007.github.io/GoogleMaps/cat.png',
+                    'https://mridul0007.github.io/GoogleMaps/car.png',
+                ];
+                
+                const bounds = L.latLngBounds();
+                
+                // Add markers to the cluster
+                this.DB_COORDINATE_DATA.forEach((point, index) => {
+                    const lat = parseFloat(point.properties.lat);
+                    const lng = parseFloat(point.properties.long);
+                    
+                    if (isNaN(lat) || isNaN(lng)) {
+                        console.warn("Invalid coordinates:", point);
+                        return;
+                    }
+                    
+                    const iconUrl = iconUrls[index % iconUrls.length];
+                    const imageUrl = point.properties.image;
+                    const tableContent = this.generateTableContent(imageUrl);
+                    const setIcon = new mapIcon({ iconUrl: iconUrl });
+                    
+                    const marker = L.marker([lat, lng], { icon: setIcon });
+                    
+                    marker.on('click', (e) => {
+                        this.fe_os_map.setView(e.latlng, 15);
+                    });
+                    
+                    marker.bindPopup(tableContent, { 
+                        autoPan: true, 
+                        anchor: [0.5, -0.5], 
+                        keepInView: true 
+                    });
+                    
+                    markerCluster.addLayer(marker);
+                    bounds.extend([lat, lng]);
+                });
+                
+                // Add the marker cluster to the map
+                this.fe_os_map.addLayer(markerCluster);
+                
+                // Fit map to bounds if there are any
+                if (bounds.isValid()) {
+                    this.fe_os_map.fitBounds(bounds);
+                }
+                
+                // Give the map a moment to render properly
+                setTimeout(() => {
+                    this.fe_os_map.invalidateSize();
+                }, 100);
+                
+            } catch (error) {
+                console.error("Error rendering OSM map:", error);
+            } finally {
+                loadingOverlay.style.display = 'none';
+            }
         }
 
         generateTableContent(image_Url){
@@ -544,19 +571,11 @@
             </table>
         `;
         }
-    
-        
-
-
-
 
         async clear_views(){
-
             this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
             this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
-
         }
-
     }
 
     customElements.define('com-example-maps', CombinedMap);

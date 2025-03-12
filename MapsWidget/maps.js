@@ -13,6 +13,7 @@
                 height: 98%;
                 width: 100%;
                 position: relative;
+                display: flex;
             }
             #d-data-source-overlay {
                 position: absolute;
@@ -98,6 +99,9 @@
                 </div>
                 <div id="d-google-map"></div>
                 <div id="d-os-map"></div>
+                <div id="d-loading-overlay">
+                <p>Loading... <span id="loading-progress">0</span> rows processed</p>
+            </div>
             </div>
             <div style="width: 100%; height: 1px; background-color: #064635;"></div>
             <div id="d-bottom-bar">
@@ -106,10 +110,7 @@
                     <label><input type="radio" name="mapType" value="osm" checked> OpenStreet Maps</label>
                 </div>
                 <div id="d-footnote">Contigo custom Maps widget</div>
-            </div>
-            <div id="d-loading-overlay">
-                <p>Loading... <span id="loading-progress">0</span> rows processed</p>
-            </div>
+            </div>    
         </div>
     `;
 

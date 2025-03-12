@@ -75,6 +75,10 @@
                 align-items: center;
                 color: white;
             }
+                .leaflet-popup-content-wrapper {
+                max-height: 400px; /* Adjust this value as needed */
+                overflow-y: auto;
+              }
         </style>
 
         <div id="d-widget-container">

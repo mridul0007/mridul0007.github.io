@@ -3,8 +3,8 @@
     tmpl.innerHTML = `
         <style>
             #d-widget-container {
-                height: 100%;
-                width: 100%;
+                height: 622px;
+                width: 755px;
                 position: relative;
                 display: flex;
                 flex-direction: column;
@@ -477,6 +477,7 @@
             // Create new map
             console.log("reached here")
             this.fe_os_map = L.map(osMapContainer).setView([51.1657, 10.4515], 13); // Centered on Germany
+            this.fe_os_map.invalidateSize();
             
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: 'ghgh LeafletMaps MK'

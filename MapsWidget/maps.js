@@ -42,6 +42,7 @@
                 height: 100%;
                 width: 100%;
                 display: none;
+                overflow: hidden;
             }
             #d-bottom-bar {
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
@@ -457,10 +458,10 @@
             }
 
             // Create new map
-            this.fe_os_map = L.map(osMapContainer).setView([51.1657, 10.4515], 6); // Centered on Germany
+            this.fe_os_map = L.map(osMapContainer).setView([51.1657, 10.4515], 13); // Centered on Germany
             
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution: 'ghgh'
             }).addTo(this.fe_os_map);
 
             // // Check if marker cluster plugin is available

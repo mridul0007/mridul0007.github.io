@@ -418,7 +418,7 @@
                 }
                 
                 const script = document.createElement('script');
-                script.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js';
+                script.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js';
                 script.onload = () => {
                     if (L.markerClusterGroup) {
                         console.log("MarkerClusterer script loaded successfully");

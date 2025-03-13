@@ -9,7 +9,7 @@
             }
 
             #d-map-container {
-                height: 1280px;
+                height: 580px;
                 width: 755px;
             }
 
@@ -72,7 +72,7 @@
                 width: 100%;
                 height: 100%;
                 background: rgba(0, 0, 0, 0.5);
-                display: none; 
+                display: none; /* Hidden by default */
                 text-align: center;
                 color: white;
                 padding-top: 280px; /* Center content manually */
@@ -141,7 +141,7 @@
                     } else {
                         csvUploadInput.style.display = 'none';
                         dataSourceOverlay.style.display = 'none';
-                        loadingOverlay.style.display = 'none';
+                        //loadingOverlay.style.display = 'block';
                         this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
                     }
                 }
@@ -170,7 +170,7 @@
                 const dataSourceOverlay = this.shadowRoot.querySelector('#d-data-source-overlay');
                 const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
                 dataSourceOverlay.style.display = 'none';
-                loadingOverlay.style.display = 'none';
+                //loadingOverlay.style.display = 'block';
                 let progress = 0;
                 this.DB_COORDINATE_DATA = this.parseCsv(csvData, (count) => {
                     progress = count;
@@ -430,7 +430,7 @@
         init_bind_OSMap() {
             
             const osMapContainer = this.shadowRoot.querySelector('#d-os-map');
-           
+            osMapContainer.style.display = 'block';
 
             this.fe_os_map = L.map( osMapContainer ).setView([51.1657, 10.4515], 6); // Centered on Germany
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

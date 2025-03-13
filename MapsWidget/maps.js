@@ -49,7 +49,7 @@
                 width: 755px;
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
                 display: block;
-                padding: 5px;
+                position: relative;
             }
 
             #d-map-toggle {
@@ -57,7 +57,6 @@
                 top: 5px;
                 left: 5px;
                 background: transparent;
-                padding: 5px;
                 border-radius: 4px;
             }
 

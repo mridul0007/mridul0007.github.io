@@ -459,6 +459,8 @@
                     this.fe_os_map.remove();
                     this.fe_os_map = null;
                 }
+
+                this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
         
         }
 

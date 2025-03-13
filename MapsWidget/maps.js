@@ -98,10 +98,8 @@
             .leaflet-grab {
                 cursor: grab;
             }
-            .leaflet-pane.leaflet-map-pane{
-            overflow: auto;
-            height: 580px;
-
+            .leaflet-pane{
+                 max-height: 580px; /*In case some pane goes outside*/
             }
         </style>
 

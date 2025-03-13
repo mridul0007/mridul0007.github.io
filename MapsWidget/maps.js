@@ -35,12 +35,10 @@
             }
 
             #d-google-map, #d-os-map {
-                height: 100%;
+                height: 580px;
                 width: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
                 display: none; /* Both are hidden initially */
+                position: static
             }
 
             #d-bottom-bar {

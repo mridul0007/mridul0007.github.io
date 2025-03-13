@@ -5,17 +5,15 @@
             #d-widget-container {
                 height: 622px;
                 width: 755px;
-                position: relative;
                 display: block;
-                flex-direction: column;
             }
+
             #d-map-container {
-                height: 98%;
-                width: 100%;
-                display: block
-                position: relative;
+                height: 580px;
+                width: 755px;
                 overflow: hidden;
             }
+
             #d-data-source-overlay {
                 position: absolute;
                 top: 0;
@@ -23,50 +21,54 @@
                 width: 100%;
                 height: 100%;
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
+                display: block; /* Default to visible */
+                text-align: center;
                 color: white;
+                padding-top: 250px; /* Center content manually */
             }
+
             #d-confirmSource {
-                margin-top: 5px; /* Add 5px margin to the top */
+                margin-top: 5px;
             }
+
             #d-csvUpload {
                 display: none;
-            }    
-            #d-google-map {
-                height: 100%;
-                width: 100%;
-                display:none;
             }
-            #d-os-map {
-                height: 100%;
-                width: 100%;
-                display: none;
-                overflow: hidden;
+
+            #d-google-map, #d-os-map {
+                height: 580px;
+                width: 755px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: none; /* Both are hidden initially */
             }
+
             #d-bottom-bar {
+                height: 42px;
+                width: 755px;
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
                 display: block;
-                justify-content: space-between;
-                align-items: center;
-                padding: 0px;
-                height:42px;
-                
+                padding: 5px;
             }
+
             #d-map-toggle {
-                z-index: 1000;
+                position: absolute;
+                top: 5px;
+                left: 5px;
                 background: transparent;
                 padding: 5px;
                 border-radius: 4px;
             }
+
             #d-footnote {
                 font-size: 10px;
                 color: white;
-                z-index: 1000;
-                margin-right: 10px;
+                position: absolute;
+                right: 10px;
+                bottom: 5px;
             }
+
             #d-loading-overlay {
                 position: absolute;
                 top: 0;
@@ -74,20 +76,22 @@
                 width: 100%;
                 height: 100%;
                 background: rgba(0, 0, 0, 0.5);
-                display: none;
-                justify-content: center;
-                align-items: center;
+                display: none; /* Hidden by default */
+                text-align: center;
                 color: white;
+                padding-top: 280px; /* Center content manually */
             }
+
             .leaflet-container {
-             height: 100%;
-             width: 100%;
+                height: 100%;
+                width: 100%;
             }
+
             .leaflet-layer {
                 position: absolute;
                 left: 0;
                 top: 0;
-                }
+            }
         </style>
 
         <div id="d-widget-container">

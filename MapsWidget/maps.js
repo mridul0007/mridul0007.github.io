@@ -35,7 +35,7 @@
             }
 
             #d-google-map, #d-os-map {
-                height: 570px;
+                height: 100%;
                 width: 100%;
                 display: none; 
                 position: static

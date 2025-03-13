@@ -170,7 +170,7 @@
                 const dataSourceOverlay = this.shadowRoot.querySelector('#d-data-source-overlay');
                 const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
                 dataSourceOverlay.style.display = 'none';
-                loadingOverlay.style.display = 'blcck';
+                loadingOverlay.style.display = 'block';
                 let progress = 0;
                 this.DB_COORDINATE_DATA = this.parseCsv(csvData, (count) => {
                     progress = count;
@@ -524,6 +524,7 @@
         async clear_views() {
 
             this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
+            this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
             this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         }
     }

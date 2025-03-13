@@ -432,35 +432,17 @@
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.fe_os_map);
+
+            L.marker([51.5, -0.09]).addTo(map)
+                .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+                .openPopup();
         }
     
     
 
         async fe_render_osMaps() {
             
-                this.clear_views();
-                await new Promise(resolve => setTimeout(resolve, 3000));
-            
-                const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
-                loadingOverlay.style.display = 'none';
-            
-                const osMapContainer = this.shadowRoot.getElementById('d-os-map');
-                osMapContainer.style.display = 'block';
-                osMapContainer.style.height = '100%';
-            
-                // Ensure Leaflet is loaded
-                if (!window.L) {
-                    console.error("Leaflet not loaded properly");
-                    return;
-                }
-            
-                // Remove previous map
-                if (this.fe_os_map) {
-                    this.fe_os_map.remove();
-                    this.fe_os_map = null;
-                }
-
-                this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+         console.log("reached render Os Maps")       
         
         }
 

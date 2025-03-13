@@ -119,7 +119,9 @@
             this.google_mapsjs_api_key='';
             this.fe_gm_map = null;
             this.fe_os_map = null;
+            this.fe_osm_init();
             this.init();
+
         }
 
         init() {
@@ -236,7 +238,7 @@
                 await this.fe_gm_init();
                 this.fe_render_gMaps();
             } else if (this.mapType === 'osm' && this.DB_COORDINATE_DATA.length > 0) {
-                await this.fe_osm_init();
+               // await this.fe_osm_init();
                 this.fe_render_osMaps();
             }
         }
@@ -529,7 +531,7 @@
 
             this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
             this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
-            this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
+           
         }
     }
 

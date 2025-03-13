@@ -450,8 +450,7 @@
             resizeObserver.observe(osMapContainer);
 
 
-            
-                this.fe_os_map.style.display = 'block';
+           // osMapContainer.style.display = 'block';
             console.log("finished binding")
         }
     

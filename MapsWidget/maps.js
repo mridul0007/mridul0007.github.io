@@ -492,11 +492,6 @@
                     this.fe_os_map = null;
                 }
         
-                // Delay invalidateSize() to fix rendering issue
-                setTimeout(() => {
-                    this.fe_os_map.invalidateSize();
-                }, 500);
-            
         }
 
         generateTableContent(image_Url) {

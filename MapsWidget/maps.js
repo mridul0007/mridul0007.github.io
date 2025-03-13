@@ -77,25 +77,6 @@
                 align-items: center;
                 color: white;
             }
-            #d-os-map.leaflet-pane.leaflet-map-pane,
-            #d-os-map .leaflet-control-container {
-                overflow: hidden;
-            }
-            #d-os-map.leaflet-popup-content-wrapper {
-                max-height: 400px; /* Adjust this value as needed */
-                overflow-y: auto;
-              }
-            #d-os-map.leaflet-tile-pane{
-                overflow: hidden;
-
-            }
-            #d-os-map .leaflet-control-container {
-                overflow: hidden; /* Keep this */
-                position: absolute; /* Add this */
-                /* Add any other positioning properties Leaflet uses */
-                top: 0; /* Or bottom, depending on where controls should go */
-                right: 0; /* Or left */
-            }
         </style>
 
         <div id="d-widget-container">
@@ -478,6 +459,7 @@
             }
 
             // Create new map
+            this.fe_os_map = null;
             console.log("reached here")
             this.fe_os_map = L.map(osMapContainer, {
                 trackResize: true 

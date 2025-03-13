@@ -411,7 +411,7 @@
                 script.onload = () => {
                     // Check if Leaflet was properly loaded
                     if (typeof L !== 'undefined') {
-                        this.init_bind_OSMa.bind(this);
+                        this.init_bind_OSMap.bind(this);
                         console.log("Leaflet script loaded successfully");
                         resolve();
                     } else {

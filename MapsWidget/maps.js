@@ -6,12 +6,13 @@
                 height: 622px;
                 width: 755px;
                 position: relative;
-                display: flex;
+                display: block;
                 flex-direction: column;
             }
             #d-map-container {
                 height: 98%;
                 width: 100%;
+                display: block
                 position: relative;
                 overflow: hidden;
             }
@@ -22,7 +23,7 @@
                 width: 100%;
                 height: 100%;
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
-                display: flex;
+                display: block;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
@@ -47,7 +48,7 @@
             }
             #d-bottom-bar {
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
-                display: flex;
+                display: block;
                 justify-content: space-between;
                 align-items: center;
                 padding: 0px;
@@ -149,7 +150,7 @@
                     } else {
                         csvUploadInput.style.display = 'none';
                         dataSourceOverlay.style.display = 'none';
-                        loadingOverlay.style.display = 'flex';
+                        loadingOverlay.style.display = 'block';
                         this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
                     }
                 }
@@ -178,7 +179,7 @@
                 const dataSourceOverlay = this.shadowRoot.querySelector('#d-data-source-overlay');
                 const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
                 dataSourceOverlay.style.display = 'none';
-                loadingOverlay.style.display = 'flex';
+                loadingOverlay.style.display = 'blcck';
                 let progress = 0;
                 this.DB_COORDINATE_DATA = this.parseCsv(csvData, (count) => {
                     progress = count;
@@ -283,7 +284,7 @@
 
             const bounds = new google.maps.LatLngBounds();
             var mapContainer = this.shadowRoot.querySelector('#d-google-map');
-            mapContainer.style.display ='flex';
+            mapContainer.style.display ='block';
             this.fe_gm_map = new google.maps.Map(mapContainer, {
                 zoom: 8,
                 mapId: 'DEMO_MAP_ID'

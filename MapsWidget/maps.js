@@ -77,30 +77,6 @@
                 color: white;
                 padding-top: 280px; /* Center content manually */
             }
-
-            .leaflet-container {
-                height: 100%;
-                width: 100%;
-                overflow: hidden;
-            }
-            .leaflet-container {
-                font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-                font-size: 0.75rem;
-                line-height: 1.5;
-            }
-            .leaflet-container {
-                background: #ddd;
-                outline-offset: 1px;
-            }
-            .leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
-                touch-action: none;
-            }
-            .leaflet-grab {
-                cursor: grab;
-            }
-            .leaflet-pane{
-                 max-height: 580px; /*In case some pane goes outside*/
-            }
         </style>
 
         <div id="d-widget-container">

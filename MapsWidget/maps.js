@@ -408,16 +408,7 @@
                 script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
                 script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
                 script.crossOrigin = '';
-                script.onload = () => {
-                    // Check if Leaflet was properly loaded
-                    if (typeof L !== 'undefined') {
-                        this.init_bind_OSMap.bind(this);
-                        console.log("Leaflet script loaded successfully");
-                        resolve();
-                    } else {
-                        reject(new Error("Leaflet object not available after script load"));
-                    }
-                };
+                script.onload = this.init_bind_OSMap.bind(this);
                 script.onerror = reject;
                 document.head.appendChild(script);
             });

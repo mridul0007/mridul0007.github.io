@@ -443,7 +443,7 @@
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
             loadingOverlay.style.display = 'none';
             const osMapContainer = this.shadowRoot.getElementById('d-os-map');
-            osMapContainer.style.display = 'flex';
+            osMapContainer.style.display = 'block';
 
             // Check if leaflet is available
             if (!window.L) {

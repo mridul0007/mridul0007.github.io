@@ -11,7 +11,6 @@
             #d-map-container {
                 height: 580px;
                 width: 755px;
-                overflow: hidden;
             }
 
             #d-data-source-overlay {
@@ -36,8 +35,8 @@
             }
 
             #d-google-map, #d-os-map {
-                height: 580px;
-                width: 755px;
+                height: 100%;
+                width: 100%;
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -84,12 +83,6 @@
             .leaflet-container {
                 height: 100%;
                 width: 100%;
-            }
-
-            .leaflet-layer {
-                position: absolute;
-                left: 0;
-                top: 0;
             }
         </style>
 

@@ -23,7 +23,7 @@
                 width: 100%;
                 height: 100%;
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
-                display: block;
+                display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
@@ -52,6 +52,7 @@
                 justify-content: space-between;
                 align-items: center;
                 padding: 0px;
+                height:42px;
                 
             }
             #d-map-toggle {

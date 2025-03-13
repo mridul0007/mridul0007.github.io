@@ -428,6 +428,9 @@
         }
 
         init_bind_OSMap() {
+
+            this.fe_os_map.style.display = 'block';
+
             this.fe_os_map = L.map( this.shadowRoot.querySelector('#d-os-map')).setView([51.1657, 10.4515], 6); // Centered on Germany
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -436,7 +439,15 @@
             L.marker([51.5, -0.09]).addTo(this.fe_os_map)
                 .bindPopup('A pretty CSS popup.<br> Easily customizable.')
                 .openPopup();
-            this.fe_os_map.style.display = 'block';
+
+            const resizeObserver = new ResizeObserver(() => {
+                map.invalidateSize();
+                });
+                
+                resizeObserver.observe(this.shadowRoot.querySelector('#d-os-map'));
+
+
+            
             
             console.log("finished binding")
         }

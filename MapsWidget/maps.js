@@ -81,7 +81,7 @@
             .leaflet-container {
                 height: 100%;
                 width: 100%;
-                overflow: hidden
+                overflow: hidden;
             }
             .leaflet-container {
                 font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -97,6 +97,11 @@
             }
             .leaflet-grab {
                 cursor: grab;
+            }
+            .leaflet-pane.leaflet-map-pane{
+            overflow: auto;
+            height: 580px;
+
             }
         </style>
 

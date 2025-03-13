@@ -428,10 +428,11 @@
         }
 
         init_bind_OSMap() {
+            
+            const osMapContainer = this.shadowRoot.querySelector('#d-os-map');
+           
 
-            this.fe_os_map.style.display = 'block';
-
-            this.fe_os_map = L.map( this.shadowRoot.querySelector('#d-os-map')).setView([51.1657, 10.4515], 6); // Centered on Germany
+            this.fe_os_map = L.map( osMapContainer ).setView([51.1657, 10.4515], 6); // Centered on Germany
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.fe_os_map);
@@ -441,14 +442,16 @@
                 .openPopup();
 
             const resizeObserver = new ResizeObserver(() => {
-                map.invalidateSize();
-                });
+                if (this.fe_os_map) {
+                    this.fe_os_map.invalidateSize();
+                }
+            });
                 
-                resizeObserver.observe(this.shadowRoot.querySelector('#d-os-map'));
+            resizeObserver.observe(osMapContainer);
 
 
             
-            
+                this.fe_os_map.style.display = 'block';
             console.log("finished binding")
         }
     

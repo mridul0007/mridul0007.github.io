@@ -40,8 +40,8 @@
                 display:none;
             }
             #d-os-map {
-                height: 500px;
-                width: 400px;
+                height: 100%;
+                width: 100%;
                 display: none;
                 overflow: hidden;
             }

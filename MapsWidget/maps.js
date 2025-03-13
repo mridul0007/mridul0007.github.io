@@ -436,6 +436,9 @@
             L.marker([51.5, -0.09]).addTo(this.fe_os_map)
                 .bindPopup('A pretty CSS popup.<br> Easily customizable.')
                 .openPopup();
+            this.fe_os_map.style.display = 'block';
+            
+            console.log("finished binding")
         }
     
     

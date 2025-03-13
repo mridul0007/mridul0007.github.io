@@ -77,6 +77,10 @@
                 align-items: center;
                 color: white;
             }
+            .leaflet-container {
+             height: 100%;
+             width: 100%;
+            }
             .leaflet-layer {
                 position: absolute;
                 left: 0;

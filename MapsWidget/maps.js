@@ -109,7 +109,6 @@ class CombinedMap extends HTMLElement {
         this.DB_COORDINATE_DATA = {};
         this.FE_GM_MARKERS = [];
         this.dataSource = "";
-        this.fe_init_osMaps();
         //this.fe_init_gMaps();
         this.init();
     }

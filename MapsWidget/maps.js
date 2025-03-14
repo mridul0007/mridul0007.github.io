@@ -107,8 +107,9 @@ class CombinedMap extends HTMLElement {
         this.fe_osm_map = null;
         this.fe_gm_map = null;
         this.DB_COORDINATE_DATA = {};
+        this.FE_GM_MARKERS = [];
         this.dataSource = "";
-        this.fe_init_osMaps();
+        this.initMapsAndShowOverlay();
         //this.fe_init_gMaps();
         this.init();
     }
@@ -116,6 +117,24 @@ class CombinedMap extends HTMLElement {
 
 
     init() {
+
+        confirmButton.addEventListener('click', () => {
+            const selectedSource = this.shadowRoot.querySelector('input[name="dataSource"]:checked');
+            if (selectedSource) {
+                this.dataSource = selectedSource.value;
+                if (this.dataSource === 'csv') {
+                    csvUploadInput.style.display = 'block';
+                    if (csvUploadInput.files.length > 0) {
+                        csvUploadInput.dispatchEvent(new Event('change'));
+                    }
+                } else {
+                    csvUploadInput.style.display = 'none';
+                    dataSourceOverlay.style.display = 'none';
+                    //loadingOverlay.style.display = 'block';
+                    this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
+                }
+            }
+        });
 
         const mapTypeRadios = this.shadowRoot.querySelectorAll('input[name="mapType"]');
         mapTypeRadios.forEach(radio => {
@@ -125,6 +144,22 @@ class CombinedMap extends HTMLElement {
             });
         });
 
+    }
+
+    async initMapsAndShowOverlay() {
+        try {
+            // Wait for both map initializations to complete
+            await Promise.all([this.fe_init_osMaps(), this.fe_init_gMaps()]);
+    
+            // After both maps are initialized, show the overlay
+            this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'block';
+    
+            // Optionally, you can also hide the maps at this point if needed
+            this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
+            this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
+        } catch (error) {
+            console.error("Error initializing maps or showing overlay:", error);
+        }
     }
 
     async renderMap(){
@@ -191,6 +226,89 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
         this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
+            
+
+            if (this.markerCluster) {
+                this.markerCluster.clearMarkers();
+                this.markerCluster = null;
+            }
+            if (this.FE_GM_MARKERS && this.FE_GM_MARKERS.length > 0) {
+                this.FE_GM_MARKERS.forEach(marker => marker.setMap(null));
+                this.FE_GM_MARKERS = [];
+            }
+
+            const bounds = new google.maps.LatLngBounds();
+            var mapContainer = this.shadowRoot.querySelector('#d-google-map');
+            mapContainer.style.display ='block';
+            this.fe_gm_map = new google.maps.Map(mapContainer, {
+                zoom: 8,
+                mapId: 'DEMO_MAP_ID'
+            });
+
+            google.maps.event.trigger(this.fe_gm_map, 'resize');
+
+            this.DB_COORDINATE_DATA.forEach(dataPoint => {
+                const markerImg = document.createElement("img");
+                if (dataPoint.properties.icon && dataPoint.properties.icon.trim() !== "") {
+                    markerImg.src = dataPoint.properties.icon;
+                } else {
+                    // Use default marker image
+                    markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+                }
+                
+                var lat_m = parseFloat(dataPoint.properties.lat);
+                var lng_m = parseFloat(dataPoint.properties.long);
+                var image_Url = dataPoint.properties.image;
+
+
+                if (lat_m && lng_m) {
+                    const position = { lat: lat_m, lng: lng_m };
+                    bounds.extend(position);
+                    let marker = new google.maps.marker.AdvancedMarkerElement({
+                        map : this.fe_gm_map,
+                        position,
+                        content: markerImg,
+                        title: dataPoint.id,
+                    });
+
+                    this.FE_GM_MARKERS.push(marker);
+
+                    marker.addListener('click', (event) => {
+                        this.fe_gm_map.setZoom(15);
+                        this.fe_gm_map.setCenter(position);
+                        var infoWindow = new google.maps.InfoWindow();
+
+                        var tableContent = this.generateTableContent(image_Url);
+                        
+
+                        infoWindow.setContent(tableContent);
+                        infoWindow.open(this.fe_gm_map, marker);
+                    });
+                }
+            });
+
+            if (this.FE_GM_MARKERS.length > 0) {
+                this.fe_gm_map.fitBounds(bounds);
+            }
+
+            if (this.FE_GM_MARKERS.length > 20) {
+                var script = document.createElement('script');
+                script.src = `https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js`;
+                script.onerror = () => console.error('Error loading MarkerClusterer library.');
+                document.head.appendChild(script);
+
+                script.onload = () => {
+                    this.markerCluster = new markerClusterer.MarkerClusterer({
+                        markers: this.FE_GM_MARKERS,
+                        map: this.fe_gm_map,
+                    });
+                };
+            } 
+            else {
+                console.log("No valid markers to display");
+            }
+           loadingOverlay.style.display = 'none';
+        }
         
     }
 

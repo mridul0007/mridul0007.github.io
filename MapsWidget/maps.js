@@ -485,6 +485,7 @@ class CombinedMap extends HTMLElement {
     
 }
 // console
+// everything is working now
 
 customElements.define('com-example-maps', CombinedMap);
 })();

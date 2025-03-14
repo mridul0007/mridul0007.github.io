@@ -273,6 +273,15 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
         this.shadowRoot.querySelector('#d-os-map').style.display = 'block';
+        const osMapContainer = this.shadowRoot.querySelector('#d-os-map');
+        const resizeObserver = new ResizeObserver(() => {
+            if (this.fe_os_map) {
+                this.fe_os_map.invalidateSize();
+            }
+        });
+
+        resizeObserver.observe(osMapContainer);
+
 
     }
 

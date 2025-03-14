@@ -295,7 +295,7 @@ class CombinedMap extends HTMLElement {
         });
 
         var markerCluster = L.markerClusterGroup();
-        const mapInstance = this.map;
+        const mapInstance = this.fe_osm_map;
 
         for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {
             var lat_m = this.DB_COORDINATE_DATA[i].properties["lat"];
@@ -318,8 +318,8 @@ class CombinedMap extends HTMLElement {
             bounds.extend([lat_m, lng_m]);
         }
 
-        this.map.addLayer(markerCluster);
-        this.map.fitBounds(bounds);
+        this.fe_osm_map.addLayer(markerCluster);
+        this.fe_osm_map.fitBounds(bounds);
     }
 
 

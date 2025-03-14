@@ -163,6 +163,7 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
         var mapContainer = this.shadowRoot.getElementById('d-google-map');
                 this.fe_gm_map = new google.maps.Map(mapContainer, {
+                    center: { lat: -34.397, lng: 150.644 },
                     zoom: 8,
                     mapId: 'DEMO_MAP_ID'
                 });

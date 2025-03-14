@@ -109,7 +109,7 @@ class CombinedMap extends HTMLElement {
         this.DB_COORDINATE_DATA = {};
         this.FE_GM_MARKERS = [];
         this.dataSource = "";
-        this.initMapsAndShowOverlay();
+        this.fe_init_osMaps();
         //this.fe_init_gMaps();
         this.init();
     }
@@ -144,22 +144,6 @@ class CombinedMap extends HTMLElement {
             });
         });
 
-    }
-
-    async initMapsAndShowOverlay() {
-        try {
-            // Wait for both map initializations to complete
-            await Promise.all([this.fe_init_osMaps(), this.fe_init_gMaps()]);
-    
-            // After both maps are initialized, show the overlay
-            this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'block';
-    
-            // Optionally, you can also hide the maps at this point if needed
-            this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
-            this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
-        } catch (error) {
-            console.error("Error initializing maps or showing overlay:", error);
-        }
     }
 
     async renderMap(){
@@ -199,6 +183,7 @@ class CombinedMap extends HTMLElement {
 
     async fe_init_gMaps() {
         return new Promise((resolve, reject) => {
+            this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
             var script = document.createElement('script');
             script.src = `https://maps.googleapis.com/maps/api/js?key=${this.google_mapsjs_api_key}&callback=initgMap&loading=async&v=weekly&libraries=marker`;
             script.defer = true;
@@ -311,7 +296,6 @@ class CombinedMap extends HTMLElement {
         }
         
     
-    
 
     fe_render_osMaps(){
 
@@ -378,7 +362,6 @@ class CombinedMap extends HTMLElement {
 
     async set_data(plm_data) {
         this.plm_data = plm_data;
-        this.renderMap();
     }
 
     

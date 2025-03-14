@@ -84,6 +84,9 @@ class CombinedMap extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
         this.fe_osm_map = null;
+        this.fe_gm_map = null;
+        this.DB_COORDINATE_DATA = {};
+        this.dataSource = "";
         this.fe_init_osMaps();
         this.init();
     }
@@ -135,6 +138,32 @@ class CombinedMap extends HTMLElement {
 
     }
 
+    async fe_gm_init() {
+        return new Promise((resolve, reject) => {
+            var script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${this.google_mapsjs_api_key}&callback=initMap&loading=async&v=weekly&libraries=marker`;
+            script.defer = true;
+            script.onerror = () => {
+                console.error('Error loading Google Maps API');
+                reject(new Error('Error loading Google Maps API'));
+            };
+            document.head.appendChild(script);
+    
+            window.initMap = () => {
+                var mapContainer = this.shadowRoot.querySelector('#d-google-map');
+                //mapContainer.style.display ='block';
+                this.fe_gm_map = new google.maps.Map(mapContainer, {
+                    zoom: 8,
+                    mapId: 'DEMO_MAP_ID'
+                });
+
+
+                resolve();
+            };
+        });
+    }
+
+
     fe_render_gMaps(){
 
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
@@ -146,6 +175,19 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-os-map').style.display = 'block';
     }
+
+
+    async set_coordinate_master_data(DB_COORDINATE_DATA) {
+        this.DB_COORDINATE_DATA = DB_COORDINATE_DATA;
+        if (this.dataSource === 'sac') {
+            this.renderMap();
+        }
+    }
+
+    async set_google_mapsjs_api_key(api_key) {
+        this.google_mapsjs_api_key = api_key;
+    }
+
 
     
 

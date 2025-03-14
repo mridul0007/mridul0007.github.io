@@ -37,14 +37,15 @@
                 height: 42px;
                 width: 755px;
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
-                display: block;
-                position: relative;
+                display: flex;  
+                justify-content: space-between;
+                align-items: center; 
+                padding: 0 10px; 
+                position: relative; 
             }
 
             #d-map-toggle {
-                position: absolute;
-                top: 5px;
-                left: 5px;
+                
                 background: transparent;
                 border-radius: 4px;
             }
@@ -52,9 +53,7 @@
             #d-footnote {
                 font-size: 10px;
                 color: white;
-                position: absolute;
-                right: 10px;
-                bottom: 5px;
+                position: relative;
             }
         </style>
        <div id="d-widget-container">

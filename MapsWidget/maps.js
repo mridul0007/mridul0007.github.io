@@ -294,10 +294,10 @@ class CombinedMap extends HTMLElement {
             }
         });
 
-        if (!L.markerClusterGroup) {
-            console.error("MarkerClusterGroup not available. Make sure the plugin is properly loaded.");
-            return;
-        }
+        // if (!L.markerClusterGroup) {
+        //     console.error("MarkerClusterGroup not available. Make sure the plugin is properly loaded.");
+        //     return;
+        // }
 
         var markerCluster = new L.markerClusterGroup();
         const mapInstance = this.fe_osm_map;

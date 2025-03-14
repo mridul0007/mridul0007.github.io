@@ -168,7 +168,6 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-os-map').style.display = 'block';
         var mapContainer = this.shadowRoot.getElementById('d-google-map');
-                //mapContainer.style.display ='block';
                 this.fe_gm_map = new google.maps.Map(mapContainer, {
                     zoom: 8,
                     mapId: 'DEMO_MAP_ID'

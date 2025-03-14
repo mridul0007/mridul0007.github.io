@@ -13,10 +13,22 @@
                 display: block;
             }
 
+            #d-data-source-overlay {
+                position: static;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
+                display: block; /* Default to visible */
+                text-align: center;
+                color: white;
+                padding-top: 250px; 
+            }
+
+
             #d-os-map {
                 height: 100%;
                 width: 100%;
-                display: block; 
+                display: none; 
                 position: static
             }
             
@@ -59,6 +71,13 @@
         </style>
        <div id="d-widget-container">
             <div id="d-map-container">
+                <div id="d-data-source-overlay">
+                    <p>Select Data Source:</p>
+                    <label><input type="radio" name="dataSource" value="sac"> SAC </label>
+                    <label><input type="radio" name="dataSource" value="csv"> CSV </label>
+                    <input type="file" id="csvUpload" accept=".csv" style="display: none;">
+                    <button id="confirmSource">Confirm</button>
+                </div>
                 <div id="d-os-map"></div>
                 <div id="d-google-map"></div>
             </div>

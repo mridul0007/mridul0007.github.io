@@ -163,7 +163,7 @@ class CombinedMap extends HTMLElement {
     async fe_init_gMaps() {
         return new Promise((resolve, reject) => {
             var script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${this.google_mapsjs_api_key}&callback=initMap&loading=async&v=weekly&libraries=marker`;
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${this.google_mapsjs_api_key}&callback=initgMap&loading=async&v=weekly&libraries=marker`;
             script.defer = true;
             script.onerror = () => {
                 console.error('Error loading Google Maps API');
@@ -171,7 +171,7 @@ class CombinedMap extends HTMLElement {
             };
             document.head.appendChild(script);
     
-            window.initMap = () => {
+            window.initgMap = () => {
                 var mapContainer = this.shadowRoot.getElementById('d-google-map');
                 this.fe_gm_map = new google.maps.Map(mapContainer, {
                     center: { lat: -34.397, lng: 150.644 },
@@ -230,7 +230,7 @@ class CombinedMap extends HTMLElement {
         script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
         script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
         script.crossOrigin = '';
-        script.onload = this.initMap.bind(this);
+        script.onload = this.initosMap.bind(this);
         this.shadowRoot.appendChild(script);
     }
 
@@ -248,7 +248,7 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.appendChild(script);
     }
 
-    initMap() {
+    initosMap() {
         this.fe_osm_map = L.map(this.shadowRoot.getElementById('d-os-map')).setView([51.1657, 10.4515], 6); // Centered on Germany
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

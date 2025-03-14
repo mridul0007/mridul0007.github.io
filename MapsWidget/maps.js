@@ -46,13 +46,12 @@
               }
 
             #d-bottom-bar {
-                height: 42px;
-                width: 755px;
+                height: 8%;
+                width: 100%;
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
                 display: flex;  
                 justify-content: space-between;
                 align-items: center; 
-                padding: 0 10px; 
                 position: relative; 
             }
 

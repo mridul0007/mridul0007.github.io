@@ -2,16 +2,35 @@
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
         <style>
-            #map {
+            #d-widget-container {
                 height: 100%;
                 width: 100%;
+                display: block;
             }
+            #d-map-container {
+                height: 100%;
+                width: 100%;
+                display: block;
+            }
+
+            #d-os-map {
+                height: 100%;
+                width: 100%;
+                display: block; 
+                position: static
+            }
+
             .leaflet-popup-content-wrapper {
                 max-height: 400px; /* Adjust this value as needed */
                 overflow-y: auto;
               }
         </style>
-        <div id="map"></div>
+       <div id="d-widget-container">
+            <div id="d-map-container">
+                <div id="d-os-map"></div>
+            </div>
+        </div>
+
     `;
 
 class CombinedMap extends HTMLElement {
@@ -60,7 +79,7 @@ class CombinedMap extends HTMLElement {
     }
 
     initMap() {
-        this.map = L.map(this.shadowRoot.getElementById('map')).setView([51.1657, 10.4515], 6); // Centered on Germany
+        this.map = L.map(this.shadowRoot.getElementById('d-map-container')).setView([51.1657, 10.4515], 6); // Centered on Germany
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(this.map);

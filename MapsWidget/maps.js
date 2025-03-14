@@ -298,7 +298,7 @@ class CombinedMap extends HTMLElement {
             console.log("Inside setTimeout");
         }, 1000); // 1-second delay
         
-        var markerCluster = new L.markerClusterGroup();
+        var markerCluster = L.markerClusterGroup();
         const mapInstance = this.fe_osm_map;
 
         for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {

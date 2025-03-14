@@ -10,18 +10,19 @@
             #d-map-container {
                 height: 92%;
                 width: 100%;
-                display: block;
+                display: none;
             }
 
             #d-data-source-overlay {
                 position: static;
-                width: 100%;
+                width: 92%;
                 height: 100%;
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
                 display: none; /* Default to visible */
                 text-align: center;
                 color: white;
                 padding-top: 250px; 
+                display: block
             }
 
 

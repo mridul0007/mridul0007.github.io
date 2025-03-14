@@ -38,51 +38,121 @@ class CombinedMap extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
-        this.loadLeafletCSS();
-        this.loadLeafletJS();
-        this.loadMarkerClusterCSS();
-        this.loadMarkerClusterJS();
+        this.fe_os_map = null;
+        this.fe_osm_init();
     }
 
     map = null;
 
-    loadLeafletCSS() {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-        link.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
-        link.crossOrigin = '';
-        this.shadowRoot.appendChild(link);
+    async fe_osm_init() {
+        try {
+            
+            await this.loadLeafletCSS();
+            
+            
+            await this.loadLeafletJS();
+            
+           
+            await this.loadMarkerClusterCSS();
+            await this.loadMarkerClusterJS();
+            
+            console.log("All OSM dependencies loaded successfully");
+            return true;
+        } catch (error) {
+            console.error("Error loading OSM dependencies:", error);
+            return false;
+        }
+    }
+    
+    async loadLeafletCSS() {
+        return new Promise((resolve) => {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+            link.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
+            link.crossOrigin = '';
+            link.onload = resolve;
+            document.head.appendChild(link);
+        });
+    }
+    
+    async loadLeafletJS() {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+            script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+            script.crossOrigin = '';
+            script.onload = this.init_bind_OSMap.bind(this);
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    }
+    
+    async loadMarkerClusterCSS() {
+        return new Promise((resolve) => {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css';
+            link.onload = resolve;
+            document.head.appendChild(link);
+        });
+    }
+    
+    async loadMarkerClusterJS() {
+        return new Promise((resolve, reject) => {
+            // Check if Leaflet is available first
+            if (typeof L === 'undefined') {
+                reject(new Error("Leaflet must be loaded before MarkerCluster"));
+                return;
+            }
+            
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js';
+            script.onload = () => {
+                if (L.markerClusterGroup) {
+                    console.log("MarkerClusterer script loaded successfully");
+                    resolve();
+                } else {
+                    reject(new Error("MarkerClusterGroup not available after script load"));
+                }
+            };
+            script.onerror = (e) => {
+                console.error("Error loading MarkerClusterer script:", e);
+                reject(new Error("Failed to load MarkerClusterer"));
+            };
+            document.head.appendChild(script);
+        });
     }
 
-    loadLeafletJS() {
-        const script = document.createElement('script');
-        script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-        script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
-        script.crossOrigin = '';
-        script.onload = this.initMap.bind(this);
-        this.shadowRoot.appendChild(script);
-    }
+    init_bind_OSMap() {
+            
+        const osMapContainer = this.shadowRoot.querySelector('#d-os-map');
+        osMapContainer.style.display = 'block';
 
-    loadMarkerClusterCSS() {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css';
-        this.shadowRoot.appendChild(link);
-    }
+        const resizeObserver = new ResizeObserver(() => {
+            if (this.fe_os_map) {
+                this.fe_os_map.invalidateSize();
+            }
+        });
 
-    loadMarkerClusterJS() {
-        const script = document.createElement('script');
-        script.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js';
-        script.onload = this.renderMap.bind(this);
-        this.shadowRoot.appendChild(script);
-    }
+        resizeObserver.observe(osMapContainer);
 
-    initMap() {
-        this.map = L.map(this.shadowRoot.getElementById('d-map-container')).setView([51.1657, 10.4515], 6); // Centered on Germany
+        this.fe_os_map = L.map( osMapContainer ).setView([51.1657, 10.4515], 6); // Centered on Germany
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(this.map);
+        }).addTo(this.fe_os_map);
+
+        L.marker([51.5, -0.09]).addTo(this.fe_os_map)
+            .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+            .openPopup();
+
+        
+            
+        
+
+
+       // osMapContainer.style.display = 'block';
+        console.log("finished binding")
     }
 
     async set_data(plm_data) {

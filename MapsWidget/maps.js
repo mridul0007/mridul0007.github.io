@@ -8,7 +8,7 @@
                 display: block;
             }
             #d-map-container {
-                height: 100%;
+                height: 95%;
                 width: 100%;
                 display: block;
             }
@@ -24,12 +24,48 @@
                 max-height: 400px; /* Adjust this value as needed */
                 overflow-y: auto;
               }
+
+            #d-bottom-bar {
+                height: 42px;
+                width: 755px;
+                background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
+                display: block;
+                position: relative;
+            }
+
+            #d-map-toggle {
+                position: absolute;
+                top: 5px;
+                left: 5px;
+                background: transparent;
+                border-radius: 4px;
+            }
+
+            #d-footnote {
+                font-size: 10px;
+                color: white;
+                position: absolute;
+                right: 10px;
+                bottom: 5px;
+            }
         </style>
        <div id="d-widget-container">
             <div id="d-map-container">
                 <div id="d-os-map"></div>
             </div>
+            <div id="d-bottom-bar">
+                <div id="d-map-toggle">
+                    <label><input type="radio" name="mapType" value="google" > Google Maps</label>
+                    <label><input type="radio" name="mapType" value="osm" checked> OpenStreet Maps</label>
+                </div>
+                <div id="d-footnote">Contigo custom Maps widget</div>
+            </div>
+
+
+
         </div>
+        
+
 
     `;
 

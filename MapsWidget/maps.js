@@ -17,8 +17,16 @@
                 height: 100%;
                 width: 100%;
                 display: block; 
-                position: static
+                position: absolute
             }
+            
+            #d-google-map {
+                height: 100%;
+                width: 100%;
+                display: none; 
+                position: absolute
+            }
+
 
             .leaflet-popup-content-wrapper {
                 max-height: 400px; /* Adjust this value as needed */
@@ -52,6 +60,7 @@
        <div id="d-widget-container">
             <div id="d-map-container">
                 <div id="d-os-map"></div>
+                <div id="d-google-map"></div>
             </div>
             <div id="d-bottom-bar">
                 <div id="d-map-toggle">
@@ -129,10 +138,12 @@ class CombinedMap extends HTMLElement {
     fe_render_gMaps(){
 
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
+        this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
     }
 
     fe_render_osMaps(){
 
+        this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-os-map').style.display = 'block';
     }
 

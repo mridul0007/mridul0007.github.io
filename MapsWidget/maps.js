@@ -362,10 +362,18 @@ class CombinedMap extends HTMLElement {
     }
 
     async loadMarkerClusterCSS() {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css';
-        this.shadowRoot.appendChild(link);
+
+        const stylesheets = [
+            'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css',
+            'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css'
+        ];
+    
+        stylesheets.forEach(href => {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = href;
+            this.shadowRoot.appendChild(link);
+        });
     }
 
     async loadMarkerClusterJS() {

@@ -8,7 +8,7 @@
                 display: block;
             }
             #d-map-container {
-                height: 95%;
+                height: 92%;
                 width: 100%;
                 display: block;
             }
@@ -54,6 +54,7 @@
                 font-size: 10px;
                 color: white;
                 position: relative;
+                margin-right: 30px;
             }
         </style>
        <div id="d-widget-container">

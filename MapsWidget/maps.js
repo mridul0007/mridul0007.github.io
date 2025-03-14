@@ -124,6 +124,7 @@ class CombinedMap extends HTMLElement {
                 this.renderMap();
             });
         });
+
     }
 
     async renderMap(){
@@ -149,8 +150,11 @@ class CombinedMap extends HTMLElement {
            
             await this.loadMarkerClusterCSS();
             await this.loadMarkerClusterJS();
+
             
             console.log("All OSM dependencies loaded successfully");
+            this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
+            this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'block';
             return true;
         } catch (error) {
             console.error("Error loading OSM dependencies:", error);

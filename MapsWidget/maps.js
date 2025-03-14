@@ -17,14 +17,14 @@
                 height: 100%;
                 width: 100%;
                 display: block; 
-                position: absolute
+                position: static
             }
             
             #d-google-map {
                 height: 100%;
                 width: 100%;
                 display: none; 
-                position: absolute
+                position: static
             }
 
 

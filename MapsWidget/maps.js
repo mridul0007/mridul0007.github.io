@@ -28,7 +28,7 @@
             #d-os-map {
                 height: 100%;
                 width: 100%;
-                display: block; 
+                display: none; 
                 position: static
             }
             

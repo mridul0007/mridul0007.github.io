@@ -120,6 +120,7 @@ class CombinedMap extends HTMLElement {
         try{
             
             await this.fe_init_osMaps();
+            console.log("finished init Osmap")
 
         } catch (error) {
             console.error("Error loading OSM dependencies:", error);
@@ -151,7 +152,7 @@ class CombinedMap extends HTMLElement {
 
     async set_dataSource_overlay()
     {
-
+        console.log("set data overlay")
         
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';

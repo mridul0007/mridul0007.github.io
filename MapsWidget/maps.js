@@ -18,7 +18,7 @@
                 width: 100%;
                 height: 100%;
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
-                display: block; /* Default to visible */
+                display: none; /* Default to visible */
                 text-align: center;
                 color: white;
                 padding-top: 250px; 
@@ -28,7 +28,7 @@
             #d-os-map {
                 height: 100%;
                 width: 100%;
-                display: none; 
+                display: block; 
                 position: static
             }
             
@@ -53,6 +53,8 @@
                 justify-content: space-between;
                 align-items: center; 
                 position: relative; 
+                margin-right: 30px;
+                margin-left: 5px;
             }
 
             #d-map-toggle {
@@ -65,7 +67,7 @@
                 font-size: 10px;
                 color: white;
                 position: relative;
-                margin-right: 30px;
+                
             }
         </style>
        <div id="d-widget-container">

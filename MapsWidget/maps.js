@@ -38,6 +38,7 @@ class CombinedMap extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
+        this.fe_osm_map = null;
         this.fe_init_osMaps();
     }
 
@@ -88,10 +89,10 @@ class CombinedMap extends HTMLElement {
     }
 
     initMap() {
-        this.map = L.map(this.shadowRoot.getElementById('d-map-container')).setView([51.1657, 10.4515], 6); // Centered on Germany
+        this.fe_osm_map = L.map(this.shadowRoot.getElementById('d-map-container')).setView([51.1657, 10.4515], 6); // Centered on Germany
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(this.map);
+        }).addTo(this.fe_osm_map);
     }
 
     async set_data(plm_data) {

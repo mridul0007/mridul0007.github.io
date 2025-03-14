@@ -116,7 +116,19 @@ class CombinedMap extends HTMLElement {
 
 
 
-    init() {
+    async init() {
+
+        try{
+            
+            await this.fe_init_osMaps();
+
+        } catch (error) {
+            console.error("Error loading OSM dependencies:", error);
+            return false;
+        }
+        this.set_dataSource_overlay();
+
+        
 
         const mapTypeRadios = this.shadowRoot.querySelectorAll('input[name="mapType"]');
         mapTypeRadios.forEach(radio => {
@@ -136,6 +148,15 @@ class CombinedMap extends HTMLElement {
             this.fe_render_osMaps();
         }
 
+    }
+
+    async set_dataSource_overlay()
+    {
+
+        
+        this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
+        this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
+        this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'block';
     }
 
 

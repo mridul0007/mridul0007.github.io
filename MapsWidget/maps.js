@@ -151,6 +151,12 @@ class CombinedMap extends HTMLElement {
             document.head.appendChild(script);
     
             window.initMap = () => {
+                var mapContainer = this.shadowRoot.getElementById('d-google-map');
+                this.fe_gm_map = new google.maps.Map(mapContainer, {
+                    center: { lat: -34.397, lng: 150.644 },
+                    zoom: 8,
+                    mapId: 'DEMO_MAP_ID'
+                });
                 resolve();
             };
         });
@@ -161,12 +167,7 @@ class CombinedMap extends HTMLElement {
 
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
-        var mapContainer = this.shadowRoot.getElementById('d-google-map');
-                this.fe_gm_map = new google.maps.Map(mapContainer, {
-                    center: { lat: -34.397, lng: 150.644 },
-                    zoom: 8,
-                    mapId: 'DEMO_MAP_ID'
-                });
+        
     }
 
     fe_render_osMaps(){

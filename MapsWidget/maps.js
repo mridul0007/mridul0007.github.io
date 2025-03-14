@@ -88,6 +88,7 @@ class CombinedMap extends HTMLElement {
         this.DB_COORDINATE_DATA = {};
         this.dataSource = "";
         this.fe_init_osMaps();
+        this.fe_init_gMaps();
         this.init();
     }
 
@@ -138,7 +139,7 @@ class CombinedMap extends HTMLElement {
 
     }
 
-    async fe_gm_init() {
+    async fe_init_gMaps() {
         return new Promise((resolve, reject) => {
             var script = document.createElement('script');
             script.src = `https://maps.googleapis.com/maps/api/js?key=${this.google_mapsjs_api_key}&callback=initMap&loading=async&v=weekly&libraries=marker`;

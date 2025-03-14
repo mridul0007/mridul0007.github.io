@@ -374,12 +374,17 @@ class CombinedMap extends HTMLElement {
     }
 
     async loadLeafletJS() {
-        const script = document.createElement('script');
-        script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-        script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
-        script.crossOrigin = '';
-        script.onload = this.initosMap.bind(this);
-        this.shadowRoot.appendChild(script);
+        return new Promise((resolve) => { // Wrap in a Promise for async/await
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+            script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+            script.crossOrigin = '';
+            script.onload = () => {
+                this.initosMap();
+                resolve(); // Resolve the promise when Leaflet is loaded
+            };
+            this.shadowRoot.appendChild(script);
+        });
     }
 
     async loadMarkerClusterCSS() {
@@ -398,10 +403,14 @@ class CombinedMap extends HTMLElement {
     }
 
     async loadMarkerClusterJS() {
-        const script = document.createElement('script');
-        script.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js';
-        script.onload = this.renderMap.bind(this);
-        this.shadowRoot.appendChild(script);
+        return new Promise((resolve) => {
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js';
+            script.onload = () => {
+                resolve();
+            };
+            this.shadowRoot.appendChild(script);
+        });
     }
 
     initosMap() {

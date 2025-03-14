@@ -45,18 +45,32 @@ class CombinedMap extends HTMLElement {
     map = null;
 
 
-    fe_init_osMaps(){
+    async fe_init_osMaps(){
 
-        this.loadLeafletCSS();
-        this.loadLeafletJS();
-        this.loadMarkerClusterCSS();
-        this.loadMarkerClusterJS();
+        try {
+                
+            await this.loadLeafletCSS();
+            
+            
+            await this.loadLeafletJS();
+            
+           
+            await this.loadMarkerClusterCSS();
+            await this.loadMarkerClusterJS();
+            
+            console.log("All OSM dependencies loaded successfully");
+            return true;
+        } catch (error) {
+            console.error("Error loading OSM dependencies:", error);
+            return false;
+        }
+
 
     }
 
     
 
-    loadLeafletCSS() {
+    async loadLeafletCSS() {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
@@ -65,7 +79,7 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.appendChild(link);
     }
 
-    loadLeafletJS() {
+    async loadLeafletJS() {
         const script = document.createElement('script');
         script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
         script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
@@ -74,14 +88,14 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.appendChild(script);
     }
 
-    loadMarkerClusterCSS() {
+    async loadMarkerClusterCSS() {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css';
         this.shadowRoot.appendChild(link);
     }
 
-    loadMarkerClusterJS() {
+    async loadMarkerClusterJS() {
         const script = document.createElement('script');
         script.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js';
         script.onload = this.renderMap.bind(this);

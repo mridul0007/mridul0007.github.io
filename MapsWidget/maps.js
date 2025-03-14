@@ -274,16 +274,54 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
         this.shadowRoot.querySelector('#d-os-map').style.display = 'block';
         const osMapContainer = this.shadowRoot.querySelector('#d-os-map');
-        const resizeObserver = new ResizeObserver(() => {
-            if (this.fe_os_map) {
-                this.fe_os_map.invalidateSize();
+
+        var bounds = new L.LatLngBounds();
+
+        var iconUrls = [
+            'https://mridul0007.github.io/GoogleMaps/dog.png',
+            'https://mridul0007.github.io/GoogleMaps/cat.png',
+            'https://mridul0007.github.io/GoogleMaps/car.png',
+        ];
+
+        var mapIcon = L.Icon.extend({
+            options: {
+                shadowUrl: '',
+                iconSize:     [30, 30],
+                shadowSize:   [50, 64],
+                iconAnchor:   [20, 20],
+                shadowAnchor: [4, 62],
+                popupAnchor:  [0, -10]
             }
         });
 
-        resizeObserver.observe(osMapContainer);
+        var markerCluster = L.markerClusterGroup();
+        const mapInstance = this.map;
 
+        for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {
+            var lat_m = this.DB_COORDINATE_DATA[i].properties["lat"];
+            var lng_m = this.DB_COORDINATE_DATA[i].properties["long"];
+            var iconUrl = iconUrls[i % iconUrls.length];
+            var image_Url = this.DB_COORDINATE_DATA[i].properties["image"];
+            var tableContent = this.textContent;
 
+            var setIcon = new mapIcon({ iconUrl: iconUrl });
+            var marker = L.marker([lat_m, lng_m], { icon: setIcon });
+
+           
+            marker.on('click', function(e) {
+                var lat = e.latlng.lat;
+                var lng = e.latlng.lng;
+                mapInstance.setView(e.latlng, 15);
+            }.bind(this)); 
+            marker.bindPopup(tableContent,{ autoPan: true, anchor: [0.5, -0.5], keepInView: true });
+            markerCluster.addLayer(marker);
+            bounds.extend([lat_m, lng_m]);
+        }
+
+        this.map.addLayer(markerCluster);
+        this.map.fitBounds(bounds);
     }
+
 
 
     async set_coordinate_master_data(DB_COORDINATE_DATA) {

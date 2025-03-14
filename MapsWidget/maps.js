@@ -296,7 +296,6 @@ class CombinedMap extends HTMLElement {
 
         if (!L.markerClusterGroup) {
             console.error("MarkerClusterGroup not available. Make sure the plugin is properly loaded.");
-            loadingOverlay.style.display = 'none';
             return;
         }
 
@@ -311,7 +310,7 @@ class CombinedMap extends HTMLElement {
             var tableContent = this.textContent;
 
             var setIcon = new mapIcon({ iconUrl: iconUrl });
-            var marker = L.marker([lat_m, lng_m], { icon: setIcon });
+            var marker =  L.marker([lat_m, lng_m], { icon: setIcon });
 
            
             marker.on('click', function(e) {

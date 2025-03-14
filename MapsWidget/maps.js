@@ -310,7 +310,8 @@ class CombinedMap extends HTMLElement {
            loadingOverlay.style.display = 'none';
         }
         
-    }
+    
+    
 
     fe_render_osMaps(){
 

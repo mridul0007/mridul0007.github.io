@@ -185,6 +185,7 @@ class CombinedMap extends HTMLElement {
     fe_render_gMaps(){
 
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
+        this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
         this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
         
     }
@@ -192,6 +193,7 @@ class CombinedMap extends HTMLElement {
     fe_render_osMaps(){
 
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
+        this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
         this.shadowRoot.querySelector('#d-os-map').style.display = 'block';
 
     }

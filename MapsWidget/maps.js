@@ -10,19 +10,18 @@
             #d-map-container {
                 height: 92%;
                 width: 100%;
-                display: none;
+                display: block;
             }
 
             #d-data-source-overlay {
                 position: static;
-                width: 92%;
+                width: 100%;
                 height: 100%;
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
                 display: none; /* Default to visible */
                 text-align: center;
                 color: white;
                 padding-top: 250px; 
-                display: block
             }
 
 
@@ -113,6 +112,8 @@ class CombinedMap extends HTMLElement {
         //this.fe_init_gMaps();
         this.init();
     }
+
+
 
     init() {
 

@@ -109,6 +109,7 @@ class CombinedMap extends HTMLElement {
         this.DB_COORDINATE_DATA = {};
         this.FE_GM_MARKERS = [];
         this.dataSource = "";
+        //this.fe_init_osMaps();
         //this.fe_init_gMaps();
         this.init();
     }
@@ -120,13 +121,12 @@ class CombinedMap extends HTMLElement {
         try{
             
             await this.fe_init_osMaps();
-            console.log("finished init Osmap")
 
         } catch (error) {
             console.error("Error loading OSM dependencies:", error);
             return false;
         }
-        this.set_dataSource_overlay();
+        
 
         
 
@@ -152,7 +152,7 @@ class CombinedMap extends HTMLElement {
 
     async set_dataSource_overlay()
     {
-        console.log("set data overlay")
+
         
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
@@ -409,6 +409,8 @@ class CombinedMap extends HTMLElement {
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(this.fe_osm_map);
+
+        this.set_dataSource_overlay();
     }
 
     generateTableContent(image_Url) {

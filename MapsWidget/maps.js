@@ -53,8 +53,8 @@
                 justify-content: space-between;
                 align-items: center; 
                 position: relative; 
-                margin-right: 30px;
-                margin-left: 5px;
+                
+                
             }
 
             #d-map-toggle {
@@ -67,6 +67,7 @@
                 font-size: 10px;
                 color: white;
                 position: relative;
+                margin-right: 30px;
                 
             }
         </style>

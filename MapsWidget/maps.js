@@ -14,7 +14,7 @@
         <div id="map"></div>
     `;
 
-class LeafletMap extends HTMLElement {
+class CombinedMap extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -176,5 +176,5 @@ class LeafletMap extends HTMLElement {
 }
 // console
 
-customElements.define('custom-button1', LeafletMap);
+customElements.define('com-example-maps', CombinedMap);
 })();

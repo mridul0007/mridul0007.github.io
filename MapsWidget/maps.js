@@ -300,7 +300,7 @@ class CombinedMap extends HTMLElement {
             return;
         }
 
-        var markerCluster = L.markerClusterGroup();
+        var markerCluster = new L.markerClusterGroup();
         const mapInstance = this.fe_osm_map;
 
         for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {

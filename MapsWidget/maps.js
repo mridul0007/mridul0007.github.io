@@ -159,6 +159,7 @@ class CombinedMap extends HTMLElement {
         try{
             
             await this.fe_init_osMaps();
+            
 
         } catch (error) {
             console.error("Error loading OSM dependencies:", error);
@@ -298,7 +299,17 @@ class CombinedMap extends HTMLElement {
                     zoom: 8,
                     mapId: 'DEMO_MAP_ID'
                 });
+
+                const clustererScript = document.createElement('script');
+                clustererScript.src = `https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js`;
+                clustererScript.onerror = () => console.error('Error loading MarkerClusterer library.');
+                document.head.appendChild(clustererScript);
+
+            
+                clustererScript.onload = () => {
+                     this.markerClustererLoaded =  true;
                 resolve();
+                };
             };
         });
     }
@@ -322,78 +333,69 @@ class CombinedMap extends HTMLElement {
         const bounds = new google.maps.LatLngBounds();
         google.maps.event.trigger(this.fe_gm_map, 'resize');
 
-            this.DB_COORDINATE_DATA.forEach(dataPoint => {
-                const markerImg = document.createElement("img");
-                if (dataPoint.properties.icon && dataPoint.properties.icon.trim() !== "") {
-                    markerImg.src = dataPoint.properties.icon;
-                } else {
-                    // Use default marker image
-                    markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
-                }
-                
-                var lat_m = parseFloat(dataPoint.properties.lat);
-                var lng_m = parseFloat(dataPoint.properties.long);
-                var image_Url = dataPoint.properties.image;
+        this.DB_COORDINATE_DATA.forEach(dataPoint => {
+            const markerImg = document.createElement("img");
+            if (dataPoint.properties.icon && dataPoint.properties.icon.trim() !== "") {
+                markerImg.src = dataPoint.properties.icon;
+            } else {
+                // Use default marker image
+                markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+            }
+            
+            var lat_m = parseFloat(dataPoint.properties.lat);
+            var lng_m = parseFloat(dataPoint.properties.long);
+            var image_Url = dataPoint.properties.image;
 
 
-                if (lat_m && lng_m) {
-                    const position = { lat: lat_m, lng: lng_m };
-                    bounds.extend(position);
-                    let marker = new google.maps.marker.AdvancedMarkerElement({
-                        map : this.fe_gm_map,
-                        position,
-                        content: markerImg,
-                        title: dataPoint.id,
-                    });
+            if (lat_m && lng_m) {
+                const position = { lat: lat_m, lng: lng_m };
+                bounds.extend(position);
+                let marker = new google.maps.marker.AdvancedMarkerElement({
+                    map : this.fe_gm_map,
+                    position,
+                    content: markerImg,
+                    title: dataPoint.id,
+                });
 
-                    this.FE_GM_MARKERS.push(marker);
+                this.FE_GM_MARKERS.push(marker);
 
-                    marker.addListener('gmp-click', (event) => {
-                        this.fe_gm_map.setZoom(15);
-                        this.fe_gm_map.setCenter(position);
-                        var infoWindow = new google.maps.InfoWindow();
+                marker.addListener('gmp-click', (event) => {
+                    this.fe_gm_map.setZoom(15);
+                    this.fe_gm_map.setCenter(position);
+                    var infoWindow = new google.maps.InfoWindow();
 
-                        var tableContent = this.generateTableContent(image_Url);
-                        
+                    var tableContent = this.generateTableContent(image_Url);
+                    
 
-                        infoWindow.setContent(tableContent);
-                        infoWindow.open(this.fe_gm_map, marker);
-                    });
-                }
-            });
+                    infoWindow.setContent(tableContent);
+                    infoWindow.open(this.fe_gm_map, marker);
+                });
+            }
+        });
 
-            if (this.FE_GM_MARKERS.length > 0) {
-                this.fe_gm_map.fitBounds(bounds);
+        if (this.FE_GM_MARKERS.length > 0) {
+            this.fe_gm_map.fitBounds(bounds);
+        }
+
+        if (this.FE_GM_MARKERS.length > 20 && this.markerClustererLoaded) {
+            
+                this.markerCluster = new markerClusterer.MarkerClusterer({
+                    markers: this.FE_GM_MARKERS,
+                    map: this.fe_gm_map,
+                });
+
+                google.maps.event.addListener(this.markerCluster, 'clusteringend', () => {
+                    console.log("Clustering finished");
+                    this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
+                    this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+                });
             }
 
-            if (this.FE_GM_MARKERS.length > 20) {
-                var script = document.createElement('script');
-                script.src = `https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js`;
-                script.onerror = () => console.error('Error loading MarkerClusterer library.');
-                document.head.appendChild(script);
-
-                script.onload = () => {
-                    this.markerCluster = new markerClusterer.MarkerClusterer({
-                        markers: this.FE_GM_MARKERS,
-                        map: this.fe_gm_map,
-                    });
-
-                    google.maps.event.addListener(this.markerCluster, 'clusteringend', () => {
-                        console.log("Clustering finished");
-                        this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
-                        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
-                    });
-                };
-            } 
-            else {
-                this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
-            this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
-            }
-            this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
-            this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
-            
-            
-        
+        else {
+        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+        this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
+        }
+               
     }
 
     fe_render_osMaps(){

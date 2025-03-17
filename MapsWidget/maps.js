@@ -379,11 +379,12 @@ class CombinedMap extends HTMLElement {
 
         if (this.FE_GM_MARKERS.length > 20 && this.markerClustererLoaded) {
             
-                this.markerCluster = new markerClusterer.MarkerClusterer({
-                    markers: this.FE_GM_MARKERS,
-                    map: this.fe_gm_map,
-                });
-
+                // this.markerCluster = new markerClusterer.MarkerClusterer({
+                //     markers: this.FE_GM_MARKERS,
+                //     map: this.fe_gm_map,
+                // });
+                this.markerCluster = new MarkerClusterer({   markers: this.FE_GM_MARKERS,
+                    map: this.fe_gm_map });
                 google.maps.event.addListener(this.markerCluster, 'clusteringend', () => {
                     console.log("Clustering finished");
                     this.shadowRoot.querySelector('#d-google-map').style.display = 'block';

@@ -125,7 +125,6 @@
             </div>
 
             <div id="d-loading-overlay">
-             <div id="loading-animation"></div>
                 <p>Loading data...</p>       
             </div>
 

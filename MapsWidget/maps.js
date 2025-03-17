@@ -10,7 +10,7 @@
             #d-map-container {
                 height: 94%;
                 width: 100%;
-                display: block;
+                display: flex;
             }
 
             #d-data-source-overlay {
@@ -79,7 +79,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-color: linear-gradient(to bottom, #00B0B2, #A4D6D4);
+                background-color:  #A4D6D4;
                 display: none; /* Hidden by default */
                 text-align: center;
                 color: white;

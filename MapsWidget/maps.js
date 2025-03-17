@@ -386,8 +386,8 @@ class CombinedMap extends HTMLElement {
                 // });
                 this.markerCluster = new markerClusterer.MarkerClusterer({   markers: this.FE_GM_MARKERS,
                     map: this.fe_gm_map });
-                    
-                this.markerCluster.addListener(this.markerCluster, 'clusteringend', () => {
+
+                this.markerCluster.addListener('clusteringend', () => {
                     console.log("Clustering finished");
                     this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
                     this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';

@@ -131,6 +131,7 @@ class CombinedMap extends HTMLElement {
         
         const confirmButton = this.shadowRoot.querySelector('#confirmSource');
         const mapTypeRadios = this.shadowRoot.querySelectorAll('input[name="mapType"]');
+        const csvUploadInput = this.shadowRoot.querySelector('#csvUpload');
 
         confirmButton.addEventListener('click', () => {
             const selectedSource = this.shadowRoot.querySelector('input[name="dataSource"]:checked');

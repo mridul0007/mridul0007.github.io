@@ -21,7 +21,6 @@
                 display: none; /* Default to visible */
                 text-align: center;
                 color: white;
-                padding-top: 250px; 
                 flex-direction: column; /* Stack elements vertically */
                 align-items: center; /* Center horizontally */
                 justify-content: center; /* Center vertically */
@@ -343,17 +342,18 @@ class CombinedMap extends HTMLElement {
         }, 1000); // 1-second delay
         
         var markerCluster = L.markerClusterGroup();
+        var iconUrl = '';
         const mapInstance = this.fe_osm_map;
 
         for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {
             var lat_m = this.DB_COORDINATE_DATA[i].properties["lat"];
             var lng_m = this.DB_COORDINATE_DATA[i].properties["long"];
-            const markerImg = document.createElement("img");
+            
                 if (this.DB_COORDINATE_DATA[i].icon && this.DB_COORDINATE_DATA[i].icon.trim() !== "") {
-                    markerImg.src = this.DB_COORDINATE_DATA[i].icon;
+                    iconUrl = this.DB_COORDINATE_DATA[i].icon;
                 } else {
                     // Use default marker image
-                    markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+                    iconUrl =  "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
                 }
             var image_Url = this.DB_COORDINATE_DATA[i].properties["image"];
             var tableContent = this.generateTableContent(image_Url);

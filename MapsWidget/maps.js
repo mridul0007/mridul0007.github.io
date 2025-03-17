@@ -307,7 +307,7 @@ class CombinedMap extends HTMLElement {
 
                     this.FE_GM_MARKERS.push(marker);
 
-                    marker.addListener('click', (event) => {
+                    marker.addListener('gmp-click', (event) => {
                         this.fe_gm_map.setZoom(15);
                         this.fe_gm_map.setCenter(position);
                         var infoWindow = new google.maps.InfoWindow();

@@ -8,7 +8,7 @@
                 display: block;
             }
             #d-map-container {
-                height: 92%;
+                height: 94%;
                 width: 100%;
                 display: block;
             }
@@ -49,7 +49,7 @@
               }
 
             #d-bottom-bar {
-                height: 8%;
+                height: 6%;
                 width: 100%;
                 background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
                 display: flex;  

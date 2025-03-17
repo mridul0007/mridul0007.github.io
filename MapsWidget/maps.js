@@ -91,7 +91,7 @@
             }
 
             #loading-animation {
-                border: 8px solid rgba(255, 255, 255, 0.3);
+                border: 8px solid rgba(255, 255, 255, 1);
                 border-top: 8px solid white;
                 border-radius: 50%;
                 width: 50px;

@@ -395,10 +395,10 @@ class CombinedMap extends HTMLElement {
                     this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
                 });
 
-                setTimeout(() => {
-                    console.log("timeout");
-                    google.maps.event.trigger(this.markerCluster, "clusteringend", this.markerCluster);
-                }, 3000);
+                // setTimeout(() => {
+                //     console.log("timeout");
+                //     google.maps.event.trigger(this.markerCluster, "clusteringend", this.markerCluster);
+                // }, 3000);
             }
 
         else {

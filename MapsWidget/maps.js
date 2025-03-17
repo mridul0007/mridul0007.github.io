@@ -79,7 +79,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(0, 0, 0, 0.5);
+                background:  #A4D6D4
                 display: none; /* Hidden by default */
                 text-align: center;
                 color: white;
@@ -395,11 +395,6 @@ class CombinedMap extends HTMLElement {
                     this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
                     this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
                 });
-
-                // setTimeout(() => {
-                //     console.log("timeout");
-                //     google.maps.event.trigger(this.markerCluster, "clusteringend", this.markerCluster);
-                // }, 3000);
             }
 
         else {

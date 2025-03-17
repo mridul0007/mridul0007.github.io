@@ -320,6 +320,7 @@ class CombinedMap extends HTMLElement {
 
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
+        this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
         
 
         if (this.markerCluster) {

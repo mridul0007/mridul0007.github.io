@@ -308,8 +308,9 @@ class CombinedMap extends HTMLElement {
                      this.markerClustererLoaded =  true;
                 resolve();
                 };
+                document.head.appendChild(clustererScript);
             };
-            document.head.appendChild(clustererScript);
+            
         });
     }
 

@@ -548,9 +548,9 @@ class CombinedMap extends HTMLElement {
             let progress = 0;
             this.DB_COORDINATE_DATA = this.parseCsv(csvData, (count) => {
                 progress = count;
-                 loadingProgress.textContent = progress;
+                //  loadingProgress.textContent = progress;
             });
-            loadingProgress.textContent = progress;
+            // loadingProgress.textContent = progress;
 
             this.renderMap();
         };

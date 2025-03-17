@@ -86,6 +86,19 @@
                 padding-top: 280px; /* Center content manually */
             }
 
+            #loading-animation {
+                border: 8px solid rgba(255, 255, 255, 0.3);
+                border-top: 8px solid white;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
         </style>
        <div id="d-widget-container">
             <div id="d-map-container">
@@ -108,7 +121,8 @@
             </div>
 
             <div id="d-loading-overlay">
-                <p>Loading... <span id="loading-progress">0</span> rows processed</p>
+             <div id="loading-animation"></div>
+                <p>Loading data...</p>       
             </div>
 
         </div>
@@ -493,7 +507,7 @@ class CombinedMap extends HTMLElement {
         reader.onload = (event) => {
             const csvData = event.target.result;
             const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
-            const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
+            // const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
             
  
             let progress = 0;
@@ -544,7 +558,7 @@ class CombinedMap extends HTMLElement {
     }
 
     async set_data_count(progress_count){
-        const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
+        // const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
         loadingProgress.textContent = progress_count;
     }
 

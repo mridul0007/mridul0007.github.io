@@ -144,7 +144,7 @@ class CombinedMap extends HTMLElement {
                     }
                 } else {
                     csvUploadInput.style.display = 'none';
-                    dataSourceOverlay.style.display = 'none';
+                    // dataSourceOverlay.style.display = 'none';
         
                     this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
                 }

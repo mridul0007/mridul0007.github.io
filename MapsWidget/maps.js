@@ -43,7 +43,7 @@
 
 
             .leaflet-popup-content-wrapper {
-                max-height: 600px; /* Adjust this value as needed */
+                height: 600px; /* Adjust this value as needed */
                 overflow-y: auto;
                 width:420px;
               }

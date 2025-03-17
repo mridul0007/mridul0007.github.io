@@ -378,7 +378,7 @@ class CombinedMap extends HTMLElement {
                         map: this.fe_gm_map,
                     });
 
-                    google.maps.event.addListenerOnce(this.markerCluster, 'clusteringend', () => {
+                    google.maps.event.addListener(this.markerCluster, 'clusteringend', () => {
                         console.log("Clustering finished");
                         this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
                         this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';

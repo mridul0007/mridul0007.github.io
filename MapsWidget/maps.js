@@ -308,7 +308,7 @@ class CombinedMap extends HTMLElement {
 
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
-        this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
+        
 
         if (this.markerCluster) {
             this.markerCluster.clearMarkers();
@@ -377,13 +377,20 @@ class CombinedMap extends HTMLElement {
                         markers: this.FE_GM_MARKERS,
                         map: this.fe_gm_map,
                     });
+
+                    google.maps.event.addListenerOnce(this.markerCluster, 'clusteringend', () => {
+                        this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
+                        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+                    });
                 };
             } 
             else {
-                console.log("No valid markers to display");
+                this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+            this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
             }
 
-            this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+            
+            
         
     }
 

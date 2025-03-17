@@ -211,7 +211,7 @@ class CombinedMap extends HTMLElement {
             this.set_loadingScreen_overlay();
             if(this.FE_GM_MARKERS.length === 0)
             {
-                this.fe_render_gMaps();
+                await this.fe_render_gMaps();
             }
             else
             {
@@ -468,7 +468,7 @@ class CombinedMap extends HTMLElement {
     async set_coordinate_master_data(DB_COORDINATE_DATA) {
         this.DB_COORDINATE_DATA = DB_COORDINATE_DATA;
         if (this.dataSource === 'sac') {
-            this.renderMap();
+            await this.renderMap();
         }
     }
 

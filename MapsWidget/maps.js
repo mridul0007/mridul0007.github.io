@@ -304,14 +304,12 @@ class CombinedMap extends HTMLElement {
                 const clustererScript = document.createElement('script');
                 clustererScript.src = `https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js`;
                 clustererScript.onerror = () => console.error('Error loading MarkerClusterer library.');
-                document.head.appendChild(clustererScript);
-
-            
                 clustererScript.onload = () => {
                      this.markerClustererLoaded =  true;
                 resolve();
                 };
             };
+            document.head.appendChild(clustererScript);
         });
     }
 

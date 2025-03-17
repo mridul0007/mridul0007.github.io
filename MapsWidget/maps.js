@@ -184,8 +184,7 @@ class CombinedMap extends HTMLElement {
                     }
                 } else {
                     csvUploadInput.style.display = 'none';
-                    // dataSourceOverlay.style.display = 'none';
-                    this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'block';
+                    this.set_loadingScreen_overlay();
                     this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
                 }
             }
@@ -411,6 +410,7 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
         this.shadowRoot.querySelector('#d-os-map').style.display = 'block';
+        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'block';
         const osMapContainer = this.shadowRoot.querySelector('#d-os-map');
 
         var bounds = new L.LatLngBounds();

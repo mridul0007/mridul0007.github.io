@@ -358,7 +358,7 @@ class CombinedMap extends HTMLElement {
             var image_Url = this.DB_COORDINATE_DATA[i].properties["image"];
             var tableContent = this.generateTableContent(image_Url);
 
-            var setIcon = new mapIcon({ iconUrl: markerImg });
+            var setIcon = new mapIcon({ iconUrl: iconUrl });
             var marker =  L.marker([lat_m, lng_m], { icon: setIcon });
 
            

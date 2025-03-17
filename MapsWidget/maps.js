@@ -86,6 +86,8 @@
                 padding-top: 280px; /* Center content manually */
                 align-items: center; /* Center horizontally */
                 justify-content: center; /* Center vertically */
+                flex-direction: column; /* Stack elements vertically */
+}
             }
 
             #loading-animation {
@@ -180,7 +182,7 @@ class CombinedMap extends HTMLElement {
                 } else {
                     csvUploadInput.style.display = 'none';
                     // dataSourceOverlay.style.display = 'none';
-        
+                    this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'block';
                     this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
                 }
             }

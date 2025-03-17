@@ -238,7 +238,6 @@
                 await this.fe_gm_init();
                 this.fe_render_gMaps();
             } else if (this.mapType === 'osm' && this.DB_COORDINATE_DATA.length > 0) {
-               // await this.fe_osm_init();
                 this.fe_render_osMaps();
             }
         }

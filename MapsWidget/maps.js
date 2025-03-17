@@ -129,8 +129,27 @@ class CombinedMap extends HTMLElement {
         
 
         
-
+        const confirmButton = this.shadowRoot.querySelector('#confirmSource');
         const mapTypeRadios = this.shadowRoot.querySelectorAll('input[name="mapType"]');
+
+        confirmButton.addEventListener('click', () => {
+            const selectedSource = this.shadowRoot.querySelector('input[name="dataSource"]:checked');
+            if (selectedSource) {
+                this.dataSource = selectedSource.value;
+                if (this.dataSource === 'csv') {
+                    csvUploadInput.style.display = 'block';
+                    if (csvUploadInput.files.length > 0) {
+                        csvUploadInput.dispatchEvent(new Event('change'));
+                    }
+                } else {
+                    csvUploadInput.style.display = 'none';
+                    dataSourceOverlay.style.display = 'none';
+        
+                    this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
+                }
+            }
+        });
+
         mapTypeRadios.forEach(radio => {
             radio.addEventListener('change', () => {
                 this.mapType = radio.value;
@@ -142,13 +161,14 @@ class CombinedMap extends HTMLElement {
 
     async renderMap(){
 
-        if (this.mapType === 'google') {
+        if (this.mapType === 'google' && this.DB_COORDINATE_DATA.length > 0) {
             this.fe_render_gMaps();
-        } else if (this.mapType === 'osm' ) {
+        } else if (this.mapType === 'osm' && this.DB_COORDINATE_DATA.length > 0) {
             this.fe_render_osMaps();
         }
 
     }
+
 
     async set_dataSource_overlay()
     {
@@ -420,6 +440,66 @@ class CombinedMap extends HTMLElement {
         }).addTo(this.fe_osm_map);
 
         this.set_dataSource_overlay();
+    }
+
+
+    async handleCsvUpload(file) {
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+            const csvData = event.target.result;
+            //const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
+            const dataSourceOverlay = this.shadowRoot.querySelector('#d-data-source-overlay');
+            const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
+            dataSourceOverlay.style.display = 'none';
+            //loadingOverlay.style.display = 'block';
+            let progress = 0;
+            this.DB_COORDINATE_DATA = this.parseCsv(csvData, (count) => {
+                progress = count;
+                loadingProgress.textContent = progress;
+            });
+            //loadingProgress.textContent = progress;
+            //loadingOverlay.style.display = 'none';
+            this.renderMap();
+        };
+        reader.readAsText(file);
+    }
+
+    parseCsv(csvData, progressCallback) {
+        const lines = csvData.split('\n');
+        const headers = lines[0].split(',');
+        const result = [];
+
+        for (let i = 1; i < lines.length; i++) {
+            const obj = {};
+            const currentLine = lines[i].split(',');
+
+            if (currentLine.length === 1 && currentLine[0] === "") {
+                continue;
+            }
+
+            for (let j = 0; j < headers.length; j++) {
+                obj[headers[j].trim()] = currentLine[j].trim();
+            }
+
+            result.push({
+                properties: {
+                    title: obj.TITLE,
+                    lat: obj.LAT,
+                    long: obj.LNG,
+                    icon: obj.IconUrl,
+                    image: obj.ImageUrl
+                },
+                id: obj.TITLE
+            });
+
+            if (progressCallback) {
+                //progressCallback(i);
+            }
+        }
+        return result;
     }
 
     generateTableContent(image_Url) {

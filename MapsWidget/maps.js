@@ -144,6 +144,7 @@ class CombinedMap extends HTMLElement {
         this.fe_gm_map = null;
         this.DB_COORDINATE_DATA = {};
         this.FE_GM_MARKERS = [];
+        this.FE_OS_MARKER = [];
         this.dataSource = "";
         this.mapType = 'osm';
         //this.fe_init_osMaps();
@@ -206,10 +207,29 @@ class CombinedMap extends HTMLElement {
         
         if (this.mapType === 'google' && this.DB_COORDINATE_DATA.length > 0) {
             this.set_loadingScreen_overlay();
-            this.fe_render_gMaps();
+            if(this.FE_GM_MARKERS.length === 0)
+            {
+                this.fe_render_gMaps();
+            }
+            else
+            {
+                this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
+                this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
+            }
+            
         } else if (this.mapType === 'osm' && this.DB_COORDINATE_DATA.length > 0) {
             this.set_loadingScreen_overlay();
-            this.fe_render_osMaps();
+            if(this.FE_GM_MARKERS.length === 0)
+                {
+                    this.fe_render_osMaps();
+                }
+                else
+                {
+                    
+                    this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
+                    this.shadowRoot.querySelector('#d-os-map').style.display = 'block';
+                }
+            
         }
 
     }
@@ -422,6 +442,7 @@ class CombinedMap extends HTMLElement {
             marker.bindPopup(tableContent,{ autoPan: true, anchor: [0.5, -0.5], keepInView: true });
             markerCluster.addLayer(marker);
             bounds.extend([lat_m, lng_m]);
+            this.FE_OS_MARKER.push(marker);
         }
 
         this.fe_osm_map.addLayer(markerCluster);

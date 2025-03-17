@@ -369,7 +369,10 @@ class CombinedMap extends HTMLElement {
                 mapInstance.setView(e.latlng, 15);
             }.bind(this)); 
             marker.bindPopup(tableContent,{ autoPan: true, anchor: [0.5, -0.5], keepInView: true });
-            markerCluster.addLayer(marker);
+            if( this.DB_COORDINATE_DATA.length > 20){
+                markerCluster.addLayer(marker);
+            }
+            
             bounds.extend([lat_m, lng_m]);
         }
 

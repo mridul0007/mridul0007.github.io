@@ -151,6 +151,10 @@ class CombinedMap extends HTMLElement {
             }
         });
 
+        csvUploadInput.addEventListener('change', (event) => {
+            this.handleCsvUpload(event.target.files[0]);
+        });
+
         mapTypeRadios.forEach(radio => {
             radio.addEventListener('change', () => {
                 this.mapType = radio.value;
@@ -453,13 +457,13 @@ class CombinedMap extends HTMLElement {
             const csvData = event.target.result;
             //const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
             const dataSourceOverlay = this.shadowRoot.querySelector('#d-data-source-overlay');
-            const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
+            // const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
             dataSourceOverlay.style.display = 'none';
             //loadingOverlay.style.display = 'block';
             let progress = 0;
             this.DB_COORDINATE_DATA = this.parseCsv(csvData, (count) => {
                 progress = count;
-                loadingProgress.textContent = progress;
+                // loadingProgress.textContent = progress;
             });
             //loadingProgress.textContent = progress;
             //loadingOverlay.style.display = 'none';

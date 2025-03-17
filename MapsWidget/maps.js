@@ -220,7 +220,7 @@ class CombinedMap extends HTMLElement {
             
         } else if (this.mapType === 'osm' && this.DB_COORDINATE_DATA.length > 0) {
             this.set_loadingScreen_overlay();
-            if(this.FE_GM_MARKERS.length === 0)
+            if(this.FE_OS_MARKER.length === 0)
                 {
                     this.fe_render_osMaps();
                 }

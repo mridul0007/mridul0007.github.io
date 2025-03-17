@@ -79,7 +79,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: linear-gradient(to bottom, #00B0B2, #A4D6D4);
+                background-color: linear-gradient(to bottom, #00B0B2, #A4D6D4);
                 display: none; /* Hidden by default */
                 text-align: center;
                 color: white;

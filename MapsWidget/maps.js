@@ -369,7 +369,7 @@ class CombinedMap extends HTMLElement {
 
         
         var markerCluster = L.markerClusterGroup();
-        
+
         if(markerCluster){
             markerCluster.clearLayers();
         }
@@ -381,7 +381,7 @@ class CombinedMap extends HTMLElement {
             var lat_m = this.DB_COORDINATE_DATA[i].properties["lat"];
             var lng_m = this.DB_COORDINATE_DATA[i].properties["long"];
             
-                if (this.DB_COORDINATE_DATA[i].icon && this.DB_COORDINATE_DATA[i].icon.trim() !== "") {
+                if (this.DB_COORDINATE_DATA[i].properties.icon && this.DB_COORDINATE_DATA[i].properties.icon.trim() !== "") {
                     iconUrl = this.DB_COORDINATE_DATA[i].icon;
                 } else {
                     // Use default marker image

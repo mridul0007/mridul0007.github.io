@@ -305,6 +305,7 @@ class CombinedMap extends HTMLElement {
                 clustererScript.src = `https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js`;
                 clustererScript.onerror = () => console.error('Error loading MarkerClusterer library.');
                 clustererScript.onload = () => {
+                    console.log("onload markercluster true");
                      this.markerClustererLoaded =  true;
                 resolve();
                 };

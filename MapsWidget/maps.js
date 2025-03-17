@@ -84,6 +84,8 @@
                 text-align: center;
                 color: white;
                 padding-top: 280px; /* Center content manually */
+                align-items: center; /* Center horizontally */
+                justify-content: center; /* Center vertically */
             }
 
             #loading-animation {
@@ -199,10 +201,12 @@ class CombinedMap extends HTMLElement {
 
     async renderMap(){
 
-        this.set_loadingScreen_overlay();
+        
         if (this.mapType === 'google' && this.DB_COORDINATE_DATA.length > 0) {
+            this.set_loadingScreen_overlay();
             this.fe_render_gMaps();
         } else if (this.mapType === 'osm' && this.DB_COORDINATE_DATA.length > 0) {
+            this.set_loadingScreen_overlay();
             this.fe_render_osMaps();
         }
 

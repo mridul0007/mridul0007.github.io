@@ -384,7 +384,7 @@ class CombinedMap extends HTMLElement {
                 //     markers: this.FE_GM_MARKERS,
                 //     map: this.fe_gm_map,
                 // });
-                this.markerCluster = new MarkerClusterer({   markers: this.FE_GM_MARKERS,
+                this.markerCluster = new markerClusterer.MarkerClusterer({   markers: this.FE_GM_MARKERS,
                     map: this.fe_gm_map });
                 google.maps.event.addListener(this.markerCluster, 'clusteringend', () => {
                     console.log("Clustering finished");

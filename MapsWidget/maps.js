@@ -45,7 +45,7 @@
             .leaflet-popup-content-wrapper {
                 max-height: 400px; /* Adjust this value as needed */
                 overflow-y: auto;
-                min-width:300px;
+                width:420px;
               }
 
             #d-bottom-bar {

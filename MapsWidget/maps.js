@@ -366,15 +366,14 @@ class CombinedMap extends HTMLElement {
             }
         });
 
-        setTimeout(function() {
-            console.log("Inside setTimeout");
-        }, 1000); // 1-second delay
 
-        if(this.markerCluster){
-            this.markerCluster.clearLayers();
-        }
         
         var markerCluster = L.markerClusterGroup();
+        
+        if(markerCluster){
+            markerCluster.clearLayers();
+        }
+        
         var iconUrl = '';
         const mapInstance = this.fe_osm_map;
 

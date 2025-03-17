@@ -379,6 +379,7 @@ class CombinedMap extends HTMLElement {
                     });
 
                     google.maps.event.addListenerOnce(this.markerCluster, 'clusteringend', () => {
+                        console.log("Clustering finished");
                         this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
                         this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
                     });

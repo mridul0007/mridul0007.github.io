@@ -147,6 +147,7 @@ class CombinedMap extends HTMLElement {
         this.FE_OS_MARKER = [];
         this.dataSource = "";
         this.mapType = 'osm';
+        this.markerCluster = null;
         //this.fe_init_osMaps();
         //this.fe_init_gMaps();
         this.init();

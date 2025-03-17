@@ -7,7 +7,7 @@
 	"vendor": "Contigo Consulting AG - MKoshy, JBuergmayr",
 	"license": "",
 	"id": "sac_maps_combined",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -28,6 +28,9 @@
 		},
         "default_map": {
 			"type": "string"
+		},
+		"data_count": {
+			"type": "integer"
 		}
 	},
 	"methods": {
@@ -38,6 +41,15 @@
 					"name": "google_mapsjs_api_key",
 					"type": "string",
 					"description": "google maps js api key"
+				}]
+			},
+		"set_data_count": {
+			"description": "send masterdata read count",
+            "parameters": [
+				{
+					"name": "data_count",
+					"type": "integer",
+					"description": "count Masterdata"
 				}]
 			},
         "set_default_map": {

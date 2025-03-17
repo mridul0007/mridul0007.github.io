@@ -369,6 +369,10 @@ class CombinedMap extends HTMLElement {
         setTimeout(function() {
             console.log("Inside setTimeout");
         }, 1000); // 1-second delay
+
+        if(this.markerCluster){
+            this.markerCluster.clearLayers();
+        }
         
         var markerCluster = L.markerClusterGroup();
         var iconUrl = '';
@@ -489,18 +493,17 @@ class CombinedMap extends HTMLElement {
 
         reader.onload = (event) => {
             const csvData = event.target.result;
-            //const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
-            const dataSourceOverlay = this.shadowRoot.querySelector('#d-data-source-overlay');
-            // const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
-            dataSourceOverlay.style.display = 'none';
-            //loadingOverlay.style.display = 'block';
+            const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
+            const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
+            
+ 
             let progress = 0;
             this.DB_COORDINATE_DATA = this.parseCsv(csvData, (count) => {
                 progress = count;
-                // loadingProgress.textContent = progress;
+                 loadingProgress.textContent = progress;
             });
-            //loadingProgress.textContent = progress;
-            //loadingOverlay.style.display = 'none';
+            loadingProgress.textContent = progress;
+
             this.renderMap();
         };
         reader.readAsText(file);
@@ -535,10 +538,15 @@ class CombinedMap extends HTMLElement {
             });
 
             if (progressCallback) {
-                //progressCallback(i);
+                progressCallback(i);
             }
         }
         return result;
+    }
+
+    async set_data_count(progress_count){
+        const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
+        loadingProgress.textContent = progress_count;
     }
 
     generateTableContent(image_Url) {

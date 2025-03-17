@@ -73,6 +73,19 @@
                 margin-right: 30px;
                 
             }
+            #d-loading-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: none; /* Hidden by default */
+                text-align: center;
+                color: white;
+                padding-top: 280px; /* Center content manually */
+            }
+
         </style>
        <div id="d-widget-container">
             <div id="d-map-container">
@@ -94,7 +107,9 @@
                 <div id="d-footnote">Contigo custom Maps widget</div>
             </div>
 
-
+            <div id="d-loading-overlay">
+                <p>Loading... <span id="loading-progress">0</span> rows processed</p>
+            </div>
 
         </div>
         
@@ -170,6 +185,7 @@ class CombinedMap extends HTMLElement {
 
     async renderMap(){
 
+        this.set_loadingScreen_overlay();
         if (this.mapType === 'google' && this.DB_COORDINATE_DATA.length > 0) {
             this.fe_render_gMaps();
         } else if (this.mapType === 'osm' && this.DB_COORDINATE_DATA.length > 0) {
@@ -186,6 +202,16 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'flex';
+    }
+
+    async set_loadingScreen_overlay()
+    {
+        this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
+        this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
+        this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
+        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'block';
+
+
     }
 
 
@@ -315,6 +341,8 @@ class CombinedMap extends HTMLElement {
             else {
                 console.log("No valid markers to display");
             }
+
+            this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
         
     }
 
@@ -375,6 +403,7 @@ class CombinedMap extends HTMLElement {
 
         this.fe_osm_map.addLayer(markerCluster);
         this.fe_osm_map.fitBounds(bounds);
+        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
     }
 
 

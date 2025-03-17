@@ -350,7 +350,7 @@ class CombinedMap extends HTMLElement {
             var lng_m = this.DB_COORDINATE_DATA[i].properties["long"];
             const markerImg = document.createElement("img");
                 if (this.DB_COORDINATE_DATA[i].icon && this.DB_COORDINATE_DATA[i].icon.trim() !== "") {
-                    markerImg.src = this.DB_COORDINATE_DATA[i]s.icon;
+                    markerImg.src = this.DB_COORDINATE_DATA[i].icon;
                 } else {
                     // Use default marker image
                     markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";

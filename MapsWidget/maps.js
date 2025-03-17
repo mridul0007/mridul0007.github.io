@@ -324,12 +324,6 @@ class CombinedMap extends HTMLElement {
 
         var bounds = new L.LatLngBounds();
 
-        var iconUrls = [
-            'https://mridul0007.github.io/GoogleMaps/dog.png',
-            'https://mridul0007.github.io/GoogleMaps/cat.png',
-            'https://mridul0007.github.io/GoogleMaps/car.png',
-        ];
-
         var mapIcon = L.Icon.extend({
             options: {
                 shadowUrl: '',
@@ -351,11 +345,17 @@ class CombinedMap extends HTMLElement {
         for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {
             var lat_m = this.DB_COORDINATE_DATA[i].properties["lat"];
             var lng_m = this.DB_COORDINATE_DATA[i].properties["long"];
-            var iconUrl = iconUrls[i % iconUrls.length];
+            const markerImg = document.createElement("img");
+                if (dataPoint.properties.icon && dataPoint.properties.icon.trim() !== "") {
+                    markerImg.src = dataPoint.properties.icon;
+                } else {
+                    // Use default marker image
+                    markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+                }
             var image_Url = this.DB_COORDINATE_DATA[i].properties["image"];
             var tableContent = this.generateTableContent;
 
-            var setIcon = new mapIcon({ iconUrl: iconUrl });
+            var setIcon = new mapIcon({ iconUrl: markerImg });
             var marker =  L.marker([lat_m, lng_m], { icon: setIcon });
 
            

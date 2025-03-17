@@ -396,6 +396,7 @@ class CombinedMap extends HTMLElement {
                 });
 
                 setTimeout(() => {
+                    console.log("timeout");
                     google.maps.event.trigger(this.markerCluster, "clusteringend", this.markerCluster);
                 }, 3000);
             }

@@ -22,6 +22,9 @@
                 text-align: center;
                 color: white;
                 padding-top: 250px; 
+                flex-direction: column; /* Stack elements vertically */
+                align-items: center; /* Center horizontally */
+                justify-content: center; /* Center vertically */
             }
 
 
@@ -182,7 +185,7 @@ class CombinedMap extends HTMLElement {
         
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
-        this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'block';
+        this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'flex';
     }
 
 
@@ -346,14 +349,14 @@ class CombinedMap extends HTMLElement {
             var lat_m = this.DB_COORDINATE_DATA[i].properties["lat"];
             var lng_m = this.DB_COORDINATE_DATA[i].properties["long"];
             const markerImg = document.createElement("img");
-                if (dataPoint.properties.icon && dataPoint.properties.icon.trim() !== "") {
-                    markerImg.src = dataPoint.properties.icon;
+                if (this.DB_COORDINATE_DATA[i].icon && this.DB_COORDINATE_DATA[i].icon.trim() !== "") {
+                    markerImg.src = this.DB_COORDINATE_DATA[i]s.icon;
                 } else {
                     // Use default marker image
                     markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
                 }
             var image_Url = this.DB_COORDINATE_DATA[i].properties["image"];
-            var tableContent = this.generateTableContent;
+            var tableContent = this.generateTableContent(image_Url);
 
             var setIcon = new mapIcon({ iconUrl: markerImg });
             var marker =  L.marker([lat_m, lng_m], { icon: setIcon });

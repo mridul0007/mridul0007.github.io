@@ -382,7 +382,7 @@ class CombinedMap extends HTMLElement {
             var lng_m = this.DB_COORDINATE_DATA[i].properties["long"];
             
                 if (this.DB_COORDINATE_DATA[i].properties.icon && this.DB_COORDINATE_DATA[i].properties.icon.trim() !== "") {
-                    iconUrl = this.DB_COORDINATE_DATA[i].icon;
+                    iconUrl = this.DB_COORDINATE_DATA[i].properties.icon;
                 } else {
                     // Use default marker image
                     iconUrl =  "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";

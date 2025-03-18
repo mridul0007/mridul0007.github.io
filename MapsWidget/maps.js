@@ -454,7 +454,7 @@ class CombinedMap extends HTMLElement {
     async set_default_map(mapType){
         this.mapType = mapType;
         this.dataSource = 'sac';
-        if(this.mapType === 'sac')
+        if(this.mapType === 'google')
         {
             this.shadowRoot.getElementById('b_google').checked = true;  
         }

@@ -265,7 +265,7 @@ class CombinedMap extends HTMLElement {
                 this.fe_map_gMap = new google.maps.Map(mapContainer, {
                     center: { lat: -34.397, lng: 150.644 },
                     zoom: 8,
-                    mapId: 'DEMO_MAP_ID'
+                    mapId: 'f61d67e24706f841'
                 });
 
                 const clustererScript = document.createElement('script');

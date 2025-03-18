@@ -566,10 +566,10 @@ class CombinedMap extends HTMLElement {
  
             let progress = 0;
             this.DB_COORDINATE_DATA = this.parseCsv(csvData, (count) => {
-                progress = count;
-                this.shadowRoot.querySelector("#loading-text").textContent = `Loaded ${count} datapoints from file...`;
+                parsedCount = count;
+                this.shadowRoot.querySelector("#loading-text").textContent = `Loaded ${parsedCount} datapoints from file...`;
             });
-            this.shadowRoot.querySelector("#loading-text").textContent = `Inserting ${count} datapoints into ${this.mapType} Maps...`;
+            this.shadowRoot.querySelector("#loading-text").textContent = `Inserting ${parsedCount} datapoints into ${this.mapType} Maps...`;
 
             this.renderMap();
         };
@@ -580,6 +580,7 @@ class CombinedMap extends HTMLElement {
         const lines = csvData.split('\n');
         const headers = lines[0].split(',');
         const result = [];
+        let validCount = 0;
 
         for (let i = 1; i < lines.length; i++) {
             const obj = {};
@@ -604,8 +605,10 @@ class CombinedMap extends HTMLElement {
                 id: obj.TITLE
             });
 
+            validCount++;
+
             if (progressCallback) {
-                progressCallback(i);
+                progressCallback(validCount);
             }
         }
         return result;

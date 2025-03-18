@@ -564,7 +564,7 @@ class CombinedMap extends HTMLElement {
             // const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
             
  
-            let progress = 0;
+            let parsedCount = 0;
             this.DB_COORDINATE_DATA = this.parseCsv(csvData, (count) => {
                 parsedCount = count;
                 this.shadowRoot.querySelector("#loading-text").textContent = `Loaded ${parsedCount} datapoints from file...`;

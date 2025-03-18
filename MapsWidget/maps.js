@@ -141,7 +141,7 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
         this.fe_osm_map = null;
         this.fe_gm_map = null;
-        this.DB_COORDINATE_DATA = {};
+        this.DB_COORDINATE_DATA = [];
         this.FE_GM_MARKERS = [];
         this.FE_OS_MARKER = [];
         this.dataSource = "";

@@ -479,8 +479,9 @@ class CombinedMap extends HTMLElement {
         } else {
             this.DB_COORDINATE_DATA = DB_COORDINATE_DATA;
         }
-        this.shadowRoot.querySelector("#loading-text").textContent = `Loaded ${this.DB_COORDINATE_DATA.length} data...`;
+        this.shadowRoot.querySelector("#loading-text").textContent = `Loaded ${this.DB_COORDINATE_DATA.length} datapoints from SAC...`;
         if (this.dataSource === 'sac' && flag === 'finish') {
+            this.shadowRoot.querySelector("#loading-text").textContent = `Inserting ${this.DB_COORDINATE_DATA.length} datapoints into ${this.mapType} Maps...`;
             await this.renderMap();
         }
     }

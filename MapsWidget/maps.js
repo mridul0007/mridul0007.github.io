@@ -567,9 +567,9 @@ class CombinedMap extends HTMLElement {
             let progress = 0;
             this.DB_COORDINATE_DATA = this.parseCsv(csvData, (count) => {
                 progress = count;
-                //  loadingProgress.textContent = progress;
+                this.shadowRoot.querySelector("#loading-text").textContent = `Loaded ${count} datapoints from file...`;
             });
-            // loadingProgress.textContent = progress;
+            this.shadowRoot.querySelector("#loading-text").textContent = `Inserting ${count} datapoints into ${this.mapType} Maps...`;
 
             this.renderMap();
         };

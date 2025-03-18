@@ -90,19 +90,6 @@
 }
             }
 
-            #loading-animation {
-                border: 8px solid rgba(255, 255, 255, 1);
-                border-top: 8px solid white;
-                border-radius: 50%;
-                width: 50px;
-                height: 50px;
-                animation: spin 1s linear infinite;
-            }
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-
         </style>
        <div id="d-widget-container">
             <div id="d-map-container">
@@ -139,34 +126,28 @@ class CombinedMap extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
-        this.fe_osm_map = null;
-        this.fe_gm_map = null;
+        this.fe_map_osMap = null;
+        this.fe_map_gMap = null;
         this.DB_COORDINATE_DATA = [];
         this.FE_GM_MARKERS = [];
         this.FE_OS_MARKER = [];
         this.dataSource = "";
         this.mapType = 'osm';
         this.markerCluster = null;
-        //this.fe_init_osMaps();
-        //this.fe_init_gMaps();
         this.init();
     }
 
-
-
     async init() {
 
-        try{
-            
-            await this.fe_init_osMaps();
-            
+        try{ 
+
+            await this.fe_init_osMap();
 
         } catch (error) {
+
             console.error("Error loading OSM dependencies:", error);
             return false;
         }
-        
-
         
         const confirmButton = this.shadowRoot.querySelector('#confirmSource');
         const mapTypeRadios = this.shadowRoot.querySelectorAll('input[name="mapType"]');
@@ -190,7 +171,7 @@ class CombinedMap extends HTMLElement {
         });
 
         csvUploadInput.addEventListener('change', (event) => {
-            this.handleCsvUpload(event.target.files[0]);
+            this.DB_handleCsvUpload(event.target.files[0]);
         });
 
         mapTypeRadios.forEach(radio => {
@@ -209,7 +190,7 @@ class CombinedMap extends HTMLElement {
             this.set_loadingScreen_overlay();
             if(this.FE_GM_MARKERS.length === 0)
             {
-                await this.fe_render_gMaps();
+                await this.fe_render_gMap();
             }
             else
             {
@@ -222,7 +203,7 @@ class CombinedMap extends HTMLElement {
             this.set_loadingScreen_overlay();
             if(this.FE_OS_MARKER.length === 0)
                 {
-                    this.fe_render_osMaps();
+                    this.fe_render_osMap();
                 }
                 else
                 {
@@ -237,9 +218,7 @@ class CombinedMap extends HTMLElement {
 
 
     async set_dataSource_overlay()
-    {
-
-        
+    { 
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'flex';
@@ -251,36 +230,26 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
         this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'block';
-
-
     }
 
 
-    async fe_init_osMaps(){
+    async fe_init_osMap(){
 
         try {
                 
-            await this.loadLeafletCSS();
-            
-            
+            await this.loadLeafletCSS();  
             await this.loadLeafletJS();
-            
-           
             await this.loadMarkerClusterCSS();
-            await this.loadMarkerClusterJS();
-            
-            
+            await this.loadMarkerClusterJS(); 
             console.log("All OSM dependencies loaded successfully");
             return true;
         } catch (error) {
             console.error("Error loading OSM dependencies:", error);
             return false;
         }
-
-
     }
 
-    async fe_init_gMaps() {
+    async fe_init_gMap() {
         return new Promise((resolve, reject) => {
             var script = document.createElement('script');
             script.src = `https://maps.googleapis.com/maps/api/js?key=${this.google_mapsjs_api_key}&callback=initgMap&loading=async&v=weekly&libraries=marker`;
@@ -293,7 +262,7 @@ class CombinedMap extends HTMLElement {
     
             window.initgMap = () => {
                 var mapContainer = this.shadowRoot.getElementById('d-google-map');
-                this.fe_gm_map = new google.maps.Map(mapContainer, {
+                this.fe_map_gMap = new google.maps.Map(mapContainer, {
                     center: { lat: -34.397, lng: 150.644 },
                     zoom: 8,
                     mapId: 'DEMO_MAP_ID'
@@ -314,7 +283,7 @@ class CombinedMap extends HTMLElement {
     }
 
 
-    fe_render_gMaps(){
+    fe_render_gMap(){
 
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
@@ -333,7 +302,7 @@ class CombinedMap extends HTMLElement {
         }
 
         const bounds = new google.maps.LatLngBounds();
-        google.maps.event.trigger(this.fe_gm_map, 'resize');
+        google.maps.event.trigger(this.fe_map_gMap, 'resize');
 
         this.DB_COORDINATE_DATA.forEach(dataPoint => {
             const markerImg = document.createElement("img");
@@ -353,7 +322,7 @@ class CombinedMap extends HTMLElement {
                 const position = { lat: lat_m, lng: lng_m };
                 bounds.extend(position);
                 let marker = new google.maps.marker.AdvancedMarkerElement({
-                    map : this.fe_gm_map,
+                    map : this.fe_map_gMap,
                     position,
                     content: markerImg,
                     title: dataPoint.id,
@@ -362,34 +331,28 @@ class CombinedMap extends HTMLElement {
                 this.FE_GM_MARKERS.push(marker);
 
                 marker.addListener('gmp-click', (event) => {
-                    this.fe_gm_map.setZoom(15);
-                    this.fe_gm_map.setCenter(position);
+                    this.fe_map_gMap.setZoom(15);
+                    this.fe_map_gMap.setCenter(position);
                     var infoWindow = new google.maps.InfoWindow();
 
-                    var tableContent = this.generateTableContent(image_Url);
+                    var tableContent = this.fe_generateTableContent(image_Url);
                     
 
                     infoWindow.setContent(tableContent);
-                    infoWindow.open(this.fe_gm_map, marker);
+                    infoWindow.open(this.fe_map_gMap, marker);
                 });
             }
         });
 
         if (this.FE_GM_MARKERS.length > 0) {
-            this.fe_gm_map.fitBounds(bounds);
+            this.fe_map_gMap.fitBounds(bounds);
         }
 
         if (this.FE_GM_MARKERS.length > 20 && this.markerClustererLoaded) {
             
-                // this.markerCluster = new markerClusterer.MarkerClusterer({
-                //     markers: this.FE_GM_MARKERS,
-                //     map: this.fe_gm_map,
-                // });
                 this.markerCluster = new markerClusterer.MarkerClusterer({   markers: this.FE_GM_MARKERS,
-                    map: this.fe_gm_map });
+                    map: this.fe_map_gMap });
                 
-                
-
                 this.markerCluster.addListener('clusteringend', () => {
                     console.log("Clustering finished");
                     this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
@@ -401,12 +364,9 @@ class CombinedMap extends HTMLElement {
         this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
         this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
         }
-        // this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
-        // this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
-               
     }
 
-    fe_render_osMaps(){
+    fe_render_osMap(){
 
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
@@ -436,7 +396,7 @@ class CombinedMap extends HTMLElement {
         }
         
         var iconUrl = '';
-        const mapInstance = this.fe_osm_map;
+        const mapInstance = this.fe_map_osMap;
 
         for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {
             var lat_m = this.DB_COORDINATE_DATA[i].properties["lat"];
@@ -449,7 +409,7 @@ class CombinedMap extends HTMLElement {
                     iconUrl =  "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
                 }
             var image_Url = this.DB_COORDINATE_DATA[i].properties["image"];
-            var tableContent = this.generateTableContent(image_Url);
+            var tableContent = this.fe_generateTableContent(image_Url);
 
             var setIcon = new mapIcon({ iconUrl: iconUrl });
             var marker =  L.marker([lat_m, lng_m], { icon: setIcon });
@@ -466,8 +426,8 @@ class CombinedMap extends HTMLElement {
             this.FE_OS_MARKER.push(marker);
         }
 
-        this.fe_osm_map.addLayer(markerCluster);
-        this.fe_osm_map.fitBounds(bounds);
+        this.fe_map_osMap.addLayer(markerCluster);
+        this.fe_map_osMap.fitBounds(bounds);
         this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
     }
 
@@ -488,7 +448,7 @@ class CombinedMap extends HTMLElement {
 
     async set_google_mapsjs_api_key(api_key) {
         this.google_mapsjs_api_key = api_key;
-        this.fe_init_gMaps();
+        this.fe_init_gMap();
     }
 
 
@@ -510,7 +470,7 @@ class CombinedMap extends HTMLElement {
             script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
             script.crossOrigin = '';
             script.onload = () => {
-                this.initosMap();
+                this.fe_init_onLoad_osMap();
                 resolve(); // Resolve the promise when Leaflet is loaded
             };
             this.shadowRoot.appendChild(script);
@@ -543,17 +503,17 @@ class CombinedMap extends HTMLElement {
         });
     }
 
-    initosMap() {
-        this.fe_osm_map = L.map(this.shadowRoot.getElementById('d-os-map')).setView([51.1657, 10.4515], 6); // Centered on Germany
+    fe_init_onLoad_osMap() {
+        this.fe_map_osMap = L.map(this.shadowRoot.getElementById('d-os-map')).setView([51.1657, 10.4515], 6); // Centered on Germany
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(this.fe_osm_map);
+        }).addTo(this.fe_map_osMap);
 
         this.set_dataSource_overlay();
     }
 
 
-    async handleCsvUpload(file) {
+    async DB_handleCsvUpload(file) {
         if (!file) return;
 
         const reader = new FileReader();
@@ -565,7 +525,7 @@ class CombinedMap extends HTMLElement {
             
  
             let parsedCount = 0;
-            this.DB_COORDINATE_DATA = this.parseCsv(csvData, (count) => {
+            this.DB_COORDINATE_DATA = this.DB_parseCsv(csvData, (count) => {
                 parsedCount = count;
                 this.shadowRoot.querySelector("#loading-text").textContent = `Loaded ${parsedCount} datapoints from file...`;
             });
@@ -576,7 +536,7 @@ class CombinedMap extends HTMLElement {
         reader.readAsText(file);
     }
 
-    parseCsv(csvData, progressCallback) {
+    DB_parseCsv(csvData, progressCallback) {
         const lines = csvData.split('\n');
         const headers = lines[0].split(',');
         const result = [];
@@ -614,7 +574,7 @@ class CombinedMap extends HTMLElement {
         return result;
     }
 
-    generateTableContent(image_Url) {
+    fe_generateTableContent(image_Url) {
         return `
         <style type="text/css">
         .tg  {border-collapse:collapse;border-spacing:0;}
@@ -676,8 +636,6 @@ class CombinedMap extends HTMLElement {
 
     
 }
-// console
-// everything is working now
 
 customElements.define('com-example-maps', CombinedMap);
 })();

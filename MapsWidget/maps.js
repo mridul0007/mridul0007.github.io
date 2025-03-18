@@ -451,8 +451,8 @@ class CombinedMap extends HTMLElement {
         this.fe_init_gMap();
     }
 
-    async set_default_map(){
-        this.mapType = 'google';
+    async set_default_map(mapType){
+        this.mapType = mapType;
         this.set_loadingScreen_overlay();
         this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
 

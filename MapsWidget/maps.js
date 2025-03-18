@@ -560,7 +560,7 @@ class CombinedMap extends HTMLElement {
 
         reader.onload = (event) => {
             const csvData = event.target.result;
-            const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
+            this.set_loadingScreen_overlay();
             // const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
             
  
@@ -569,7 +569,7 @@ class CombinedMap extends HTMLElement {
                 parsedCount = count;
                 this.shadowRoot.querySelector("#loading-text").textContent = `Loaded ${parsedCount} datapoints from file...`;
             });
-            this.shadowRoot.querySelector("#loading-text").textContent = `Inserting ${parsedCount} datapoints into ${this.mapType} Maps...`;
+            this.shadowRoot.querySelector("#loading-text").textContent = `Inserting ${this.DB_COORDINATE_DATA.length} datapoints into ${this.mapType} Maps...`;
 
             this.renderMap();
         };

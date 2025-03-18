@@ -453,7 +453,7 @@ class CombinedMap extends HTMLElement {
 
     async set_default_map(mapType){
         this.mapType = mapType;
-        this.this.dataSource = 'sac';
+        this.dataSource = 'sac';
         this.set_loadingScreen_overlay();
         this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
 

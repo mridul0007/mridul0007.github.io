@@ -105,8 +105,8 @@
             </div>
             <div id="d-bottom-bar">
                 <div id="d-map-toggle">
-                    <label><input type="radio" name="mapType" value="google" > Google Maps</label>
-                    <label><input type="radio" name="mapType" value="osm" checked> OpenStreet Maps</label>
+                    <label><input type="radio" id='b_google' name="mapType" value="google" > Google Maps</label>
+                    <label><input type="radio" id='b_osm'name="mapType" value="osm" checked> OpenStreet Maps</label>
                 </div>
                 <div id="d-footnote">Contigo custom Maps widget</div>
             </div>
@@ -454,6 +454,13 @@ class CombinedMap extends HTMLElement {
     async set_default_map(mapType){
         this.mapType = mapType;
         this.dataSource = 'sac';
+        if(this.mapType === 'sac')
+        {
+            this.shadowRoot.getElementById('b_google').checked = true;  
+        }
+        else{
+            this.shadowRoot.getElementById('b_osm').checked = true;
+        }
         this.set_loadingScreen_overlay();
         this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
 

@@ -125,7 +125,7 @@
             </div>
 
             <div id="d-loading-overlay">
-                <p>Loading data...</p>       
+                <p id="loading-text">Loaded 0 datapoints...</p>  
             </div>
 
         </div>
@@ -473,9 +473,10 @@ class CombinedMap extends HTMLElement {
 
 
 
-    async set_coordinate_master_data(DB_COORDINATE_DATA) {
-        this.DB_COORDINATE_DATA = DB_COORDINATE_DATA;
-        if (this.dataSource === 'sac') {
+    async set_coordinate_master_data(DB_COORDINATE_DATA,flag) {
+        this.DB_COORDINATE_DATA = this.DB_COORDINATE_DATA + DB_COORDINATE_DATA;
+        document.getElementById("loading-text").textContent = `Loaded ${this.DB_COORDINATE_DATA.length} data...`;
+        if (this.dataSource === 'sac' && flag === 'finish') {
             await this.renderMap();
         }
     }
@@ -603,11 +604,6 @@ class CombinedMap extends HTMLElement {
             }
         }
         return result;
-    }
-
-    async set_data_count(progress_count){
-        // const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
-        loadingProgress.textContent = progress_count;
     }
 
     generateTableContent(image_Url) {

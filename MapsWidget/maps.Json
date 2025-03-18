@@ -29,8 +29,8 @@
         "default_map": {
 			"type": "string"
 		},
-		"data_count": {
-			"type": "integer"
+		"read_finish": {
+			"type": "string"
 		}
 	},
 	"methods": {
@@ -41,15 +41,6 @@
 					"name": "google_mapsjs_api_key",
 					"type": "string",
 					"description": "google maps js api key"
-				}]
-			},
-		"set_data_count": {
-			"description": "send masterdata read count",
-            "parameters": [
-				{
-					"name": "data_count",
-					"type": "integer",
-					"description": "count Masterdata"
 				}]
 			},
         "set_default_map": {
@@ -68,6 +59,11 @@
 					"name": "coordinate_master_data",
 					"type": "PlanningModelMember[]",
 					"description": "coordinate master data"
+				},
+				{
+					"name": "read_finish",
+					"type": "string",
+					"description": "flag for read coordinate master data "
 				}
 			]
 		}

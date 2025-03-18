@@ -263,7 +263,7 @@ class CombinedMap extends HTMLElement {
             window.initgMap = () => {
                 var mapContainer = this.shadowRoot.getElementById('d-google-map');
                 this.fe_map_gMap = new google.maps.Map(mapContainer, {
-                    center: { lat: -34.397, lng: 150.644 },
+                    center: { lat: 50.94195189462832, lng: 6.934832969310373}, 
                     zoom: 8,
                     mapId: 'f61d67e24706f841'
                 });

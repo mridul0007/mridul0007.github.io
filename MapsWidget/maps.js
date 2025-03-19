@@ -224,13 +224,6 @@ class CombinedMap extends HTMLElement {
 
     async set_view_loadingScreen_overlay()
     {
-        
-    //     const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
-    //     if (loadingOverlay.style.display === 'block') {
-    //       loadingOverlay.style.display = 'none';
-    //     } else {
-    //       loadingOverlay.style.display = 'block';
-    //     }
     this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'block';
      }
 

@@ -132,7 +132,7 @@ class CombinedMap extends HTMLElement {
         this.FE_GM_MARKERS = [];
         this.FE_OS_MARKER = [];
         this.dataSource = "";
-        this.mapType = 'google';
+        this.mapType = '';
         this.markerCluster = null;
         this.init();
     }

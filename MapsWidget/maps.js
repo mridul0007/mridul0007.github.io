@@ -1,4 +1,9 @@
 (function () {
+
+    const osMap_loadLeafletCSS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+         
+
+
     let tmpl = document.createElement('template');
     tmpl.innerHTML = `
         <style>
@@ -272,10 +277,10 @@ class CombinedMap extends HTMLElement {
 
         try {
                 
-            await this.loadLeafletCSS();  
-            await this.loadLeafletJS();
-            await this.loadMarkerClusterCSS();
-            await this.loadMarkerClusterJS(); 
+            await this.osMap_loadLeafletCSS();  
+            await this.osMap_loadLeafletJS();
+            await this.osMap_loadMarkerClusterCSS();
+            await this.osMap_loadMarkerClusterJS(); 
             console.log("All OSM dependencies loaded successfully");
             return true;
         } catch (error) {
@@ -519,16 +524,16 @@ class CombinedMap extends HTMLElement {
 
     
 
-    async loadLeafletCSS() {
+    async osMap_loadLeafletCSS() {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+        link.href = osMap_loadLeafletCSS;
         link.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
         link.crossOrigin = '';
         this.shadowRoot.appendChild(link);
     }
 
-    async loadLeafletJS() {
+    async osMap_loadLeafletJS() {
         return new Promise((resolve) => { // Wrap in a Promise for async/await
             const script = document.createElement('script');
             script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
@@ -542,7 +547,7 @@ class CombinedMap extends HTMLElement {
         });
     }
 
-    async loadMarkerClusterCSS() {
+    async osMap_loadMarkerClusterCSS() {
 
         const stylesheets = [
             'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css',
@@ -557,7 +562,7 @@ class CombinedMap extends HTMLElement {
         });
     }
 
-    async loadMarkerClusterJS() {
+    async osMap_loadMarkerClusterJS() {
         return new Promise((resolve) => {
             const script = document.createElement('script');
             script.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js';

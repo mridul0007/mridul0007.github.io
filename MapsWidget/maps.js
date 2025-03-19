@@ -195,7 +195,7 @@ class CombinedMap extends HTMLElement {
             else
             {
                 this.set_view_gMap();
-                this.set_view_loadingScreen_overlay();
+
             }
             
         } else if (this.mapType === 'osm' && this.DB_COORDINATE_DATA.length > 0) {
@@ -207,7 +207,7 @@ class CombinedMap extends HTMLElement {
                 else
                 {
                     this.set_view_osMap();
-                    this.set_view_loadingScreen_overlay();
+
                 }
             
         }

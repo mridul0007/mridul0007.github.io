@@ -308,7 +308,7 @@ class CombinedMap extends HTMLElement {
     fe_render_gMap(){
 
         this.set_view_gMap();
-        // this.set_view_loadingScreen_overlay();
+        this.set_view_loadingScreen_overlay();
 
         
 
@@ -375,13 +375,12 @@ class CombinedMap extends HTMLElement {
                 
                 this.markerCluster.addListener('clusteringend', () => {
                     console.log("Clustering finished");
-                    // this.set_view_loadingScreen_overlay();
                     this.set_view_gMap();
                 });
             }
 
         else {
-        // this.set_view_loadingScreen_overlay();
+
         this.set_view_gMap();
         }
     }

@@ -132,7 +132,7 @@ class CombinedMap extends HTMLElement {
         this.FE_GM_MARKERS = [];
         this.FE_OS_MARKER = [];
         this.dataSource = "";
-        this.mapType = 'osm';
+        this.mapType = 'google';
         this.markerCluster = null;
         this.init();
     }
@@ -148,6 +148,9 @@ class CombinedMap extends HTMLElement {
             console.error("Error loading OSM dependencies:", error);
             return false;
         }
+
+
+        this.set_default_map(this.mapType);
         
         const confirmButton = this.shadowRoot.querySelector('#confirmSource');
         const mapTypeRadios = this.shadowRoot.querySelectorAll('input[name="mapType"]');

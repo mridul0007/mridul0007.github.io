@@ -479,7 +479,7 @@ class CombinedMap extends HTMLElement {
             this.shadowRoot.getElementById('b_osm').checked = true;
         }
         this.set_view_loadingScreen_overlay();
-        this.set_view_osMap();
+        // this.set_view_osMap();
         this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
 
     }

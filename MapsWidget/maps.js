@@ -1,7 +1,15 @@
 (function () {
 
-    const osMap_loadLeafletCSS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-         
+    const osMap_loadLeafletCSS_href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+    const osMap_loadLeafletCSS_integrity =   'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
+    const osMap_loadLeafletJS_src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    const osMap_loadLeafletJS_integrity =  'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+    const osMap_loadMarkerClusterCSS_href = [
+        'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css',
+        'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css'
+    ];
+    const osMap_loadMarkerClusterJS_src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js';
+    const gMap_cluster_src = `https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js`;
 
 
     let tmpl = document.createElement('template');
@@ -270,9 +278,6 @@ class CombinedMap extends HTMLElement {
 
     }
 
-
-
-
     async fe_init_osMap(){
 
         try {
@@ -313,7 +318,7 @@ class CombinedMap extends HTMLElement {
                 });
 
                 const clustererScript = document.createElement('script');
-                clustererScript.src = `https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js`;
+                clustererScript.src = gMap_cluster_src;
                 clustererScript.onerror = () => console.error('Error loading MarkerClusterer library.');
                 clustererScript.onload = () => {
                     console.log("onload gMap_markerCluster true");
@@ -331,8 +336,6 @@ class CombinedMap extends HTMLElement {
 
         this.set_view_gMap();
         this.set_view_loadingScreen_overlay();
-
-        
 
         if (this.gMap_markerCluster) {
             this.gMap_markerCluster.clearMarkers();
@@ -527,8 +530,8 @@ class CombinedMap extends HTMLElement {
     async osMap_loadLeafletCSS() {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = osMap_loadLeafletCSS;
-        link.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
+        link.href = osMap_loadLeafletCSS_href;
+        link.integrity =  osMap_loadLeafletCSS_integrity;
         link.crossOrigin = '';
         this.shadowRoot.appendChild(link);
     }
@@ -536,8 +539,8 @@ class CombinedMap extends HTMLElement {
     async osMap_loadLeafletJS() {
         return new Promise((resolve) => { // Wrap in a Promise for async/await
             const script = document.createElement('script');
-            script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-            script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+            script.src = osMap_loadLeafletJS_src;
+            script.integrity = osMap_loadLeafletJS_integrity;
             script.crossOrigin = '';
             script.onload = () => {
                 this.fe_init_onLoad_osMap();
@@ -549,12 +552,7 @@ class CombinedMap extends HTMLElement {
 
     async osMap_loadMarkerClusterCSS() {
 
-        const stylesheets = [
-            'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css',
-            'https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css'
-        ];
-    
-        stylesheets.forEach(href => {
+        osMap_loadMarkerClusterCSS_href.forEach(href => {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
             link.href = href;
@@ -565,7 +563,7 @@ class CombinedMap extends HTMLElement {
     async osMap_loadMarkerClusterJS() {
         return new Promise((resolve) => {
             const script = document.createElement('script');
-            script.src = 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js';
+            script.src = osMap_loadMarkerClusterJS_src;
             script.onload = () => {
                 resolve();
             };

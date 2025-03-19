@@ -497,7 +497,7 @@ class CombinedMap extends HTMLElement {
     }
 
     async set_default_map(map_default){
-        if(mapType != ''){
+        if(map_default != ''){
 
             this.mapType = map_default;
             this.dataSource = 'sac';

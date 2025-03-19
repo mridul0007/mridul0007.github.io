@@ -155,7 +155,7 @@ class CombinedMap extends HTMLElement {
         try{ 
 
             // if(this.google_mapsjs_api_key!= '' && this.fe_map_gMap === null)
-                if(this.google_mapsjs_api_key!= '' && this.fe_map_gMap === null)
+                if(this.fe_map_gMap === null)
             {
                 await this.fe_init_gMap();
             }
@@ -485,7 +485,7 @@ class CombinedMap extends HTMLElement {
     }
 
     async set_google_mapsjs_api_key(api_key) {
-        if(this.google_mapsjs_api_key === '')
+        if(this.google_mapsjs_api_key === '' && this.fe_map_gMap === null)
         {
             this.google_mapsjs_api_key = api_key;
             this.fe_init_gMap();

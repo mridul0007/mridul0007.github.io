@@ -164,7 +164,7 @@ class CombinedMap extends HTMLElement {
                     }
                 } else {
                     csvUploadInput.style.display = 'none';
-                    this.set_loadingScreen_overlay();
+                    this.set_view_loadingScreen_overlay();
                     this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
                 }
             }
@@ -187,29 +187,25 @@ class CombinedMap extends HTMLElement {
 
         
         if (this.mapType === 'google' && this.DB_COORDINATE_DATA.length > 0) {
-            this.set_loadingScreen_overlay();
+            this.set_view_loadingScreen_overlay();
             if(this.FE_GM_MARKERS.length === 0)
             {
                 await this.fe_render_gMap();
             }
             else
             {
-                this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
-                this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
-                this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
+                this.set_view_gMap();
             }
             
         } else if (this.mapType === 'osm' && this.DB_COORDINATE_DATA.length > 0) {
-            this.set_loadingScreen_overlay();
+            this.set_view_loadingScreen_overlay();
             if(this.FE_OS_MARKER.length === 0)
                 {
                     this.fe_render_osMap();
                 }
                 else
                 {
-                    this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
-                    this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
-                    this.shadowRoot.querySelector('#d-os-map').style.display = 'block';
+                    this.set_view_osMap();
                 }
             
         }
@@ -217,20 +213,41 @@ class CombinedMap extends HTMLElement {
     }
 
 
-    async set_dataSource_overlay()
+    async set_view_dataSource_overlay()
     { 
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'flex';
     }
 
-    async set_loadingScreen_overlay()
+    async set_view_loadingScreen_overlay()
     {
-        this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
-        this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
-        this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
-        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'block';
+        
+        const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
+        if (loadingOverlay.style.display === 'block') {
+          loadingOverlay.style.display = 'none';
+        } else {
+          loadingOverlay.style.display = 'block';
+        }
     }
+
+    async set_view_gMap()
+    {
+        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+        this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
+        this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
+        
+    }
+
+    async set_view_osMap()
+    {
+        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+        this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
+        this.shadowRoot.querySelector('#d-os-map').style.display = 'block';
+
+    }
+
+
 
 
     async fe_init_osMap(){
@@ -285,10 +302,8 @@ class CombinedMap extends HTMLElement {
 
     fe_render_gMap(){
 
-        this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
-        this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
-        this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
-        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'block';
+        this.set_view_gMap();
+        this.set_view_loadingScreen_overlay();
 
         
 
@@ -355,24 +370,23 @@ class CombinedMap extends HTMLElement {
                 
                 this.markerCluster.addListener('clusteringend', () => {
                     console.log("Clustering finished");
-                    this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
-                    this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+                    this.set_view_loadingScreen_overlay();
+                    this.set_view_gMap();
                 });
             }
 
         else {
-        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
-        this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
+        this.set_view_loadingScreen_overlay();
+        this.set_view_gMap();
         }
     }
 
     fe_render_osMap(){
 
-        this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
-        this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
-        this.shadowRoot.querySelector('#d-os-map').style.display = 'block';
-        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'block';
         const osMapContainer = this.shadowRoot.querySelector('#d-os-map');
+
+        this.set_view_osMap();
+        this.set_view_loadingScreen_overlay();
 
         var bounds = new L.LatLngBounds();
 
@@ -433,7 +447,7 @@ class CombinedMap extends HTMLElement {
         setTimeout(() => {
             this.fe_map_osMap.invalidateSize();
             this.fe_map_osMap.fitBounds(bounds);
-            this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+            this.set_view_loadingScreen_overlay();
         }, 100); 
     }
 
@@ -467,7 +481,7 @@ class CombinedMap extends HTMLElement {
         else{
             this.shadowRoot.getElementById('b_osm').checked = true;
         }
-        this.set_loadingScreen_overlay();
+        this.set_view_loadingScreen_overlay();
         this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
 
     }
@@ -530,7 +544,7 @@ class CombinedMap extends HTMLElement {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(this.fe_map_osMap);
 
-        this.set_dataSource_overlay();
+        this.set_view_dataSource_overlay();
     }
 
 
@@ -541,7 +555,7 @@ class CombinedMap extends HTMLElement {
 
         reader.onload = (event) => {
             const csvData = event.target.result;
-            this.set_loadingScreen_overlay();
+            this.set_view_loadingScreen_overlay();
             // const loadingProgress = this.shadowRoot.querySelector('#loading-progress');
             
  

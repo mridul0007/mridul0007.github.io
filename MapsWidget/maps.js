@@ -428,7 +428,12 @@ class CombinedMap extends HTMLElement {
 
         this.fe_map_osMap.addLayer(markerCluster);
         this.fe_map_osMap.fitBounds(bounds);
-        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+
+
+        setTimeout(() => {
+            this.fe_map_osMap.invalidateSize();
+            this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+        }, 100); 
     }
 
 

@@ -132,7 +132,8 @@ class CombinedMap extends HTMLElement {
         this.FE_GM_MARKERS = [];
         this.FE_OS_MARKER = [];
         this.dataSource = "";
-        this.mapType = '';
+        this.default_map = ""
+        this.mapType = 'google';
         this.markerCluster = null;
         this.init();
     }
@@ -150,7 +151,7 @@ class CombinedMap extends HTMLElement {
         }
 
 
-        this.set_default_map(this.mapType);
+        this.set_default_map(this.default_map);
         
         const confirmButton = this.shadowRoot.querySelector('#confirmSource');
         const mapTypeRadios = this.shadowRoot.querySelectorAll('input[name="mapType"]');

@@ -27,14 +27,14 @@
             }
 
 
-            #d-os-map {
+            #d-osMap {
                 height: 100%;
                 width: 100%;
                 display: block; 
                 position: static
             }
             
-            #d-google-map {
+            #d-gMap {
                 height: 100%;
                 width: 100%;
                 display: none; 
@@ -100,13 +100,13 @@
                     <input type="file" id="csvUpload" accept=".csv" style="display: none;">
                     <button id="confirmSource">Confirm</button>
                 </div>
-                <div id="d-os-map"></div>
-                <div id="d-google-map"></div>
+                <div id="d-osMap"></div>
+                <div id="d-gMap"></div>
             </div>
             <div id="d-bottom-bar">
                 <div id="d-map-toggle">
-                    <label><input type="radio" id='b_google' name="mapType" value="google" checked> Google Maps</label>
-                    <label><input type="radio" id='b_osm'name="mapType" value="osm" > OpenStreet Maps</label>
+                    <label><input type="radio" id='rb_gMap' name="rbg_mapType" value="google" checked> Google Maps</label>
+                    <label><input type="radio" id='b_osMap'name="rbg_mapType" value="osm" > OpenStreet Maps</label>
                 </div>
                 <div id="d-footnote">Contigo custom Maps widget</div>
             </div>
@@ -126,16 +126,16 @@ class CombinedMap extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
-        this.fe_map_osMap = null;
-        this.fe_map_gMap = null;
+        this.fe_osMap = null;
+        this.fe_gMap = null;
         this.DB_COORDINATE_DATA = [];
-        this.FE_GM_MARKERS = [];
-        this.FE_OS_MARKER = [];
+        this.fe_gMap_markers = [];
+        this.fe_osMap_markers = [];
         this.dataSource = "";
         this.default_map = ""
         this.mapType = 'google';
         this.google_mapsjs_api_key = '';
-        this.markerCluster = null;
+        this.gMap_markerCluster = null;
         this.init();
     }
 
@@ -154,7 +154,7 @@ class CombinedMap extends HTMLElement {
 
         try{ 
 
-            if(this.google_mapsjs_api_key!= '' && this.fe_map_gMap === null)
+            if(this.google_mapsjs_api_key!= '' && this.fe_gMap === null)
             {
                 await this.fe_init_gMap();
             }
@@ -170,7 +170,7 @@ class CombinedMap extends HTMLElement {
         this.set_default_map(this.default_map);
         
         const confirmButton = this.shadowRoot.querySelector('#confirmSource');
-        const mapTypeRadios = this.shadowRoot.querySelectorAll('input[name="mapType"]');
+        const mapTypeRadios = this.shadowRoot.querySelectorAll('input[name="rbg_mapType"]');
         const csvUploadInput = this.shadowRoot.querySelector('#csvUpload');
 
         confirmButton.addEventListener('click', () => {
@@ -208,7 +208,7 @@ class CombinedMap extends HTMLElement {
         
         if (this.mapType === 'google' && this.DB_COORDINATE_DATA.length > 0) {
             this.set_view_loadingScreen_overlay();
-            if(this.FE_GM_MARKERS.length === 0)
+            if(this.fe_gMap_markers.length === 0)
             {
                 await this.fe_render_gMap();
             }
@@ -220,7 +220,7 @@ class CombinedMap extends HTMLElement {
             
         } else if (this.mapType === 'osm' && this.DB_COORDINATE_DATA.length > 0) {
             this.set_view_loadingScreen_overlay();
-            if(this.FE_OS_MARKER.length === 0)
+            if(this.fe_osMap_markers.length === 0)
                 {
                     this.fe_render_osMap();
                 }
@@ -237,8 +237,8 @@ class CombinedMap extends HTMLElement {
 
     async set_view_dataSource_overlay()
     { 
-        this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
-        this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
+        this.shadowRoot.querySelector('#d-osMap').style.display = 'none';
+        this.shadowRoot.querySelector('#d-gMap').style.display = 'none';
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'flex';
     }
 
@@ -250,8 +250,8 @@ class CombinedMap extends HTMLElement {
     async set_view_gMap()
     {
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
-        this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
-        this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
+        this.shadowRoot.querySelector('#d-osMap').style.display = 'none';
+        this.shadowRoot.querySelector('#d-gMap').style.display = 'block';
         this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
         
     }
@@ -259,8 +259,8 @@ class CombinedMap extends HTMLElement {
     async set_view_osMap()
     {
         this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
-        this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
-        this.shadowRoot.querySelector('#d-os-map').style.display = 'block';
+        this.shadowRoot.querySelector('#d-gMap').style.display = 'none';
+        this.shadowRoot.querySelector('#d-osMap').style.display = 'block';
         this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
 
     }
@@ -296,12 +296,12 @@ class CombinedMap extends HTMLElement {
             document.head.appendChild(script);
     
             window.initgMap = () => {
-                var mapContainer = this.shadowRoot.getElementById('d-google-map');
+                var mapContainer = this.shadowRoot.getElementById('d-gMap');
                 if (mapContainer) {
-                    this.fe_map_gMap = null;
+                    this.fe_gMap = null;
                     mapContainer.innerHTML = '';
                 }
-                this.fe_map_gMap = new google.maps.Map(mapContainer, {
+                this.fe_gMap = new google.maps.Map(mapContainer, {
                     center: { lat: 50.94195189462832, lng: 6.934832969310373}, 
                     zoom: 8,
                     mapId: 'f61d67e24706f841'
@@ -311,7 +311,7 @@ class CombinedMap extends HTMLElement {
                 clustererScript.src = `https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js`;
                 clustererScript.onerror = () => console.error('Error loading MarkerClusterer library.');
                 clustererScript.onload = () => {
-                    console.log("onload markercluster true");
+                    console.log("onload gMap_markerCluster true");
                      this.markerClustererLoaded =  true;
                 resolve();
                 };
@@ -329,17 +329,17 @@ class CombinedMap extends HTMLElement {
 
         
 
-        if (this.markerCluster) {
-            this.markerCluster.clearMarkers();
-            this.markerCluster = null;
+        if (this.gMap_markerCluster) {
+            this.gMap_markerCluster.clearMarkers();
+            this.gMap_markerCluster = null;
         }
-        if (this.FE_GM_MARKERS && this.FE_GM_MARKERS.length > 0) {
-            this.FE_GM_MARKERS.forEach(marker => marker.setMap(null));
-            this.FE_GM_MARKERS = [];
+        if (this.fe_gMap_markers && this.fe_gMap_markers.length > 0) {
+            this.fe_gMap_markers.forEach(marker => marker.setMap(null));
+            this.fe_gMap_markers = [];
         }
 
         const bounds = new google.maps.LatLngBounds();
-        google.maps.event.trigger(this.fe_map_gMap, 'resize');
+        google.maps.event.trigger(this.fe_gMap, 'resize');
 
         this.DB_COORDINATE_DATA.forEach(dataPoint => {
             const markerImg = document.createElement("img");
@@ -359,38 +359,38 @@ class CombinedMap extends HTMLElement {
                 const position = { lat: lat_m, lng: lng_m };
                 bounds.extend(position);
                 let marker = new google.maps.marker.AdvancedMarkerElement({
-                    map : this.fe_map_gMap,
+                    map : this.fe_gMap,
                     position,
                     content: markerImg,
                     title: dataPoint.id,
                 });
 
-                this.FE_GM_MARKERS.push(marker);
+                this.fe_gMap_markers.push(marker);
 
                 marker.addListener('gmp-click', (event) => {
-                    this.fe_map_gMap.setZoom(15);
-                    this.fe_map_gMap.setCenter(position);
+                    this.fe_gMap.setZoom(15);
+                    this.fe_gMap.setCenter(position);
                     var infoWindow = new google.maps.InfoWindow();
 
                     var tableContent = this.fe_generateTableContent(image_Url);
                     
 
                     infoWindow.setContent(tableContent);
-                    infoWindow.open(this.fe_map_gMap, marker);
+                    infoWindow.open(this.fe_gMap, marker);
                 });
             }
         });
 
-        if (this.FE_GM_MARKERS.length > 0) {
-            this.fe_map_gMap.fitBounds(bounds);
+        if (this.fe_gMap_markers.length > 0) {
+            this.fe_gMap.fitBounds(bounds);
         }
 
-        if (this.FE_GM_MARKERS.length > 20 && this.markerClustererLoaded) {
+        if (this.fe_gMap_markers.length > 20 && this.markerClustererLoaded) {
             
-                this.markerCluster = new markerClusterer.MarkerClusterer({   markers: this.FE_GM_MARKERS,
-                    map: this.fe_map_gMap });
+                this.gMap_markerCluster = new markerClusterer.MarkerClusterer({   markers: this.fe_gMap_markers,
+                    map: this.fe_gMap });
                 
-                this.markerCluster.addListener('clusteringend', () => {
+                this.gMap_markerCluster.addListener('clusteringend', () => {
                     console.log("Clustering finished");
                     this.set_view_gMap();
                 });
@@ -404,7 +404,7 @@ class CombinedMap extends HTMLElement {
 
     fe_render_osMap(){
 
-        const osMapContainer = this.shadowRoot.querySelector('#d-os-map');
+        const osMapContainer = this.shadowRoot.querySelector('#d-osMap');
 
         this.set_view_osMap();
         this.set_view_loadingScreen_overlay();
@@ -431,7 +431,7 @@ class CombinedMap extends HTMLElement {
         }
         
         var iconUrl = '';
-        const mapInstance = this.fe_map_osMap;
+        const mapInstance = this.fe_osMap;
 
         for (var i = 0; i < this.DB_COORDINATE_DATA.length; i++) {
             var lat_m = this.DB_COORDINATE_DATA[i].properties["lat"];
@@ -458,16 +458,16 @@ class CombinedMap extends HTMLElement {
             marker.bindPopup(tableContent,{ autoPan: true, anchor: [0.5, -0.5], keepInView: true });
             markerCluster.addLayer(marker);
             bounds.extend([lat_m, lng_m]);
-            this.FE_OS_MARKER.push(marker);
+            this.fe_osMap_markers.push(marker);
         }
 
-        this.fe_map_osMap.addLayer(markerCluster);
-        this.fe_map_osMap.fitBounds(bounds);
+        this.fe_osMap.addLayer(markerCluster);
+        this.fe_osMap.fitBounds(bounds);
 
 
         setTimeout(() => {
-            this.fe_map_osMap.invalidateSize();
-            this.fe_map_osMap.fitBounds(bounds);
+            this.fe_osMap.invalidateSize();
+            this.fe_osMap.fitBounds(bounds);
             this.set_view_osMap();
         }, 100); 
     }
@@ -488,7 +488,7 @@ class CombinedMap extends HTMLElement {
     }
 
     async set_google_mapsjs_api_key(api_key) {
-        if(this.google_mapsjs_api_key === '' && this.fe_map_gMap === null)
+        if(this.google_mapsjs_api_key === '' && this.fe_gMap === null)
         {
             this.google_mapsjs_api_key = api_key;
             this.fe_init_gMap();
@@ -503,10 +503,10 @@ class CombinedMap extends HTMLElement {
             this.dataSource = 'sac';
             if(this.mapType === 'google')
             {
-                this.shadowRoot.getElementById('b_google').checked = true;  
+                this.shadowRoot.getElementById('rb_gMap').checked = true;  
             }
             else{
-                this.shadowRoot.getElementById('b_osm').checked = true;
+                this.shadowRoot.getElementById('b_osMap').checked = true;
             }
             this.set_view_loadingScreen_overlay();
             this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
@@ -569,10 +569,10 @@ class CombinedMap extends HTMLElement {
     }
 
     fe_init_onLoad_osMap() {
-        this.fe_map_osMap = L.map(this.shadowRoot.getElementById('d-os-map')).setView([51.1657, 10.4515], 6); // Centered on Germany
+        this.fe_osMap = L.map(this.shadowRoot.getElementById('d-osMap')).setView([51.1657, 10.4515], 6); // Centered on Germany
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(this.fe_map_osMap);
+        }).addTo(this.fe_osMap);
 
         this.set_view_dataSource_overlay();
     }

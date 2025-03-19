@@ -134,6 +134,7 @@ class CombinedMap extends HTMLElement {
         this.dataSource = "";
         this.default_map = ""
         this.mapType = 'google';
+        this.google_mapsjs_api_key = '';
         this.markerCluster = null;
         this.init();
     }
@@ -147,6 +148,17 @@ class CombinedMap extends HTMLElement {
         } catch (error) {
 
             console.error("Error loading OSM dependencies:", error);
+            return false;
+        }
+
+
+        try{ 
+
+            await this.fe_init_gMap();
+
+        } catch (error) {
+
+            console.error("Error loading google dependencies:", error);
             return false;
         }
 

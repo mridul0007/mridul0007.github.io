@@ -225,13 +225,14 @@ class CombinedMap extends HTMLElement {
     async set_view_loadingScreen_overlay()
     {
         
-        const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
-        if (loadingOverlay.style.display === 'block') {
-          loadingOverlay.style.display = 'none';
-        } else {
-          loadingOverlay.style.display = 'block';
-        }
-    }
+    //     const loadingOverlay = this.shadowRoot.querySelector('#d-loading-overlay');
+    //     if (loadingOverlay.style.display === 'block') {
+    //       loadingOverlay.style.display = 'none';
+    //     } else {
+    //       loadingOverlay.style.display = 'block';
+    //     }
+    this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'block';
+     }
 
     async set_view_gMap()
     {
@@ -374,13 +375,13 @@ class CombinedMap extends HTMLElement {
                 
                 this.markerCluster.addListener('clusteringend', () => {
                     console.log("Clustering finished");
-                    this.set_view_loadingScreen_overlay();
+                    // this.set_view_loadingScreen_overlay();
                     this.set_view_gMap();
                 });
             }
 
         else {
-        this.set_view_loadingScreen_overlay();
+        // this.set_view_loadingScreen_overlay();
         this.set_view_gMap();
         }
     }
@@ -390,7 +391,7 @@ class CombinedMap extends HTMLElement {
         const osMapContainer = this.shadowRoot.querySelector('#d-os-map');
 
         this.set_view_osMap();
-        // this.set_view_loadingScreen_overlay();
+        this.set_view_loadingScreen_overlay();
 
         var bounds = new L.LatLngBounds();
 
@@ -451,7 +452,7 @@ class CombinedMap extends HTMLElement {
         setTimeout(() => {
             this.fe_map_osMap.invalidateSize();
             this.fe_map_osMap.fitBounds(bounds);
-            this.set_view_loadingScreen_overlay();
+            this.set_view_osMap();
         }, 100); 
     }
 

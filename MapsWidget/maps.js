@@ -474,11 +474,11 @@ class CombinedMap extends HTMLElement {
 
 
 
-    async set_coordinate_master_data(DB_COORDINATE_DATA,flag) {
+    async set_coordinate_master_data(SAC_COORDINATE_DATA,flag) {
         if (this.DB_COORDINATE_DATA) { 
-            this.DB_COORDINATE_DATA = [...this.DB_COORDINATE_DATA, ...DB_COORDINATE_DATA];
+            this.DB_COORDINATE_DATA = [...this.DB_COORDINATE_DATA, ...SAC_COORDINATE_DATA];
         } else {
-            this.DB_COORDINATE_DATA = DB_COORDINATE_DATA;
+            this.DB_COORDINATE_DATA = SAC_COORDINATE_DATA;
         }
         this.shadowRoot.querySelector("#loading-text").textContent = `Loaded ${this.DB_COORDINATE_DATA.length} datapoints from SAC...`;
         if (this.dataSource === 'sac' && flag === 'finish') {

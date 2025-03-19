@@ -233,7 +233,7 @@ class CombinedMap extends HTMLElement {
 
     async set_view_gMap()
     {
-        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+        this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
         this.shadowRoot.querySelector('#d-os-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-google-map').style.display = 'block';
         
@@ -241,7 +241,7 @@ class CombinedMap extends HTMLElement {
 
     async set_view_osMap()
     {
-        this.shadowRoot.querySelector('#d-loading-overlay').style.display = 'none';
+        this.shadowRoot.querySelector('#d-data-source-overlay').style.display = 'none';
         this.shadowRoot.querySelector('#d-google-map').style.display = 'none';
         this.shadowRoot.querySelector('#d-os-map').style.display = 'block';
 

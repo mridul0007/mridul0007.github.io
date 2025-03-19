@@ -298,6 +298,10 @@ class CombinedMap extends HTMLElement {
     
             window.initgMap = () => {
                 var mapContainer = this.shadowRoot.getElementById('d-google-map');
+                if (mapContainer) {
+                    this.fe_map_gMap = null;
+                    mapContainer.innerHTML = '';
+                }
                 this.fe_map_gMap = new google.maps.Map(mapContainer, {
                     center: { lat: 50.94195189462832, lng: 6.934832969310373}, 
                     zoom: 8,

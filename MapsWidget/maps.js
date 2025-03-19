@@ -496,10 +496,10 @@ class CombinedMap extends HTMLElement {
         
     }
 
-    async set_default_map(mapType){
+    async set_default_map(map_default){
         if(mapType != ''){
 
-            this.mapType = mapType;
+            this.mapType = map_default;
             this.dataSource = 'sac';
             if(this.mapType === 'google')
             {

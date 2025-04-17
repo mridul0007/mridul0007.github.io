@@ -5,7 +5,7 @@
     <style>
 
     </style>
-    <div> <h1>Loaded Octokit</h1>
+    <div> <h1>test</h1>
       <div id="github-data"></div>
       <script src="https://cdn.jsdelivr.net/npm/@octokit/core@latest/dist/octokit-core.umd.min.js"></script>
     </div>

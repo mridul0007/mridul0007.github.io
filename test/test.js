@@ -24,14 +24,14 @@
           const script = document.createElement('script');
           script.src = "https://cdn.jsdelivr.net/npm/@octokit/core@6.1.5/dist-src/index.min.js";
           script.onload = () => {
-              this.conneconnectedCallback();
+              this.initCB();
               console.log("octo loaded");
               resolve(); 
           };
           this.shadowRoot.appendChild(script);
       });
   }
- async connectedCallback() {
+ async initCB() {
       setTimeout(async () => {
         if (window.Octokit) {
           const octokit = new window.Octokit({

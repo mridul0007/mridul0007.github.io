@@ -5,7 +5,6 @@
     <style>
 
     </style>
-    <script type="module">import { Octokit, App } from "https://esm.sh/octokit";</script>
     <div> <h1>test</h1>
       <div id="github-data"></div>
     </div>
@@ -23,8 +22,9 @@
     async octo() {
       return new Promise((resolve) => { 
           const script = document.createElement('script');
-          script.src = "https://cdn.jsdelivr.net/npm/@octokit/core@6.1.5/+esm";
+          script.src = "https://cdn.jsdelivr.net/npm/@octokit/core@6.1.5/dist-src/index.min.js";
           script.onload = () => {
+              this.conneconnectedCallback();
               console.log("octo loaded");
               resolve(); 
           };

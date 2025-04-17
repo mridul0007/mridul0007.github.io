@@ -1,0 +1,37 @@
+{
+	"name": "test",
+	"imports": ["planning-model"],
+	"description": "test SAC",
+	"newInstancePrefix": "test",
+	"eula": "",
+	"vendor": "Mridul Koshy",
+	"license": "",
+	"id": "test",
+	"version": "1.0.1",
+	"icon": "",
+	"webcomponents": [
+		{
+			"kind": "main",
+			"tag": "custom-test-pg",
+			"url": "https://mridul0007.github.io/test/test.js",
+			"integrity": "",
+			"ignoreIntegrity": true
+		}
+	],
+	"properties": {
+		"p_plm_obj":{
+			"type" : "string"
+		}
+	},
+	"methods": {
+		"clear": {
+			"description": "Clear plm"
+		}
+	},
+	"events": {
+		"onPlmQueryExecution": {
+			"description": "Called when widget has a PLM query to execute."
+		}
+	}
+	
+}

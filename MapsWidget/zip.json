@@ -1,19 +1,19 @@
 {
-	"name": "SAC Maps Combined",
-	"imports": ["planning-model","datasource"],
-	"description": "SAC Maps Combined",
-	"newInstancePrefix": "sac_maps_combined",
+	"name": "SAC Maps Combined try",
+	"imports": ["planning-model"],
+	"description": "SAC Maps Combined try",
+	"newInstancePrefix": "sac_maps",
 	"eula": "",
 	"vendor": "Contigo Consulting AG - MKoshy, JBuergmayr",
 	"license": "",
-	"id": "sac_maps_combined",
-	"version": "1.0.6",
+	"id": "sac_maps",
+	"version": "1.0.3",
 	"icon": "",
 	"webcomponents": [
 		{
 			"kind": "main",
-			"tag": "com-example-maps",
-			"url": "https://mridul0007.github.io/MapsWidget/maps.js", 
+			"tag": "com-example-mapszip",
+			"url": "/zip.js", 
 			"integrity": ""	,
 			"ignoreIntegrity": true
 			
@@ -26,14 +26,11 @@
 		"coordinate_master_data": {
 			"type": "PlanningModelMember[]"
 		},
-		"coordinate_master_data_sel": {
-			"type": "ResultSet[]"
-		},
         "default_map": {
 			"type": "string"
 		},
 		"read_finish": {
-			"type": "string"
+			"type": "boolean"
 		}
 	},
 	"methods": {
@@ -65,29 +62,8 @@
 				},
 				{
 					"name": "read_finish",
-					"type": "string",
-					"description": "flag for read coordinate master data "
-				}
-			]
-		},
-		"set_coordinate_master_data2"{
-			"description": "set coordinate master data",
-			"parameters": [
-				{
-					"name": "coordinate_master_data_sel",
-					"type": "ResultSet[]",
-					"description": "coordinate master data selection"
-				},
-				{
-					"name": "read_finish",
-					"type": "string",
-					"description": "flag for read coordinate master data "
-				},
-				{
-					"name": "read_new",
 					"type": "boolean",
 					"description": "flag for read coordinate master data "
-
 				}
 			]
 		}

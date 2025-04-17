@@ -17,7 +17,20 @@
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
       this.githubDataContainer = this.shadowRoot.querySelector('#github-data');
+      this.octo();
     }
+
+    async octo() {
+      return new Promise((resolve) => { 
+          const script = document.createElement('script');
+          script.src = "https://cdn.jsdelivr.net/npm/@octokit/core@latest/dist/octokit-core.umd.min.js">;
+          script.onload = () => {
+              console.log("octo loaded");
+              resolve(); 
+          };
+          this.shadowRoot.appendChild(script);
+      });
+  }
  async connectedCallback() {
       setTimeout(async () => {
         if (window.Octokit) {

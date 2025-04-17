@@ -12,7 +12,7 @@
 	"webcomponents": [
 		{
 			"kind": "main",
-			"tag": "custom-test-pg",
+			"tag": "custom-test-octo",
 			"url": "https://mridul0007.github.io/test/test.js",
 			"integrity": "",
 			"ignoreIntegrity": true

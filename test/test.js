@@ -5,6 +5,7 @@
     <style>
 
     </style>
+    <script type="module">import { Octokit, App } from "https://esm.sh/octokit";</script>
     <div> <h1>test</h1>
       <div id="github-data"></div>
     </div>

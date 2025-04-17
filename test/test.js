@@ -51,6 +51,3 @@
   // Define your custom element
   customElements.define('custom-test-octo', OctoWidget);
 })();
-  // Define your custom element
-  customElements.define('custom-test-octo', OctoWidget);
-})();

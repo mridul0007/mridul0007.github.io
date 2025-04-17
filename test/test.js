@@ -23,7 +23,7 @@
     async octo() {
       return new Promise((resolve) => { 
           const script = document.createElement('script');
-          script.src = "https://cdn.jsdelivr.net/npm/@octokit/core@latest/dist/octokit-core.umd.min.js">;
+          script.src = "https://cdn.jsdelivr.net/npm/@octokit/core@latest/dist/octokit-core.umd.min.js";
           script.onload = () => {
               console.log("octo loaded");
               resolve(); 

@@ -20,6 +20,7 @@ import { Octokit } from '@octokit/core';
       this.githubDataContainer = this.shadowRoot.querySelector('#github-data');
     }
 
+    //test
     async connectedCallback() {
       // **SECURITY WARNING:** Use a backend for your actual token!
       const octokit = new Octokit({

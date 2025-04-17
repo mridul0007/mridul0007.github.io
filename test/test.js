@@ -23,5 +23,5 @@
     
   
     // Define your custom element
-    customElements.define('custom-test-pg', testt);
+    customElements.define('custom-test-pg', test);
   })();

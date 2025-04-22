@@ -7,13 +7,13 @@
 	"vendor": "Mridul Koshy",
 	"license": "",
 	"id": "test",
-	"version": "1.0.1",
+	"version": "1.0.3",
 	"icon": "",
 	"webcomponents": [
 		{
 			"kind": "main",
 			"tag": "custom-test-octo",
-			"url": "https://mridul0007.github.io/test/test.js",
+			"url": "https://mridul0007.github.io/test/test.js", 
 			"integrity": "",
 			"ignoreIntegrity": true
 		}

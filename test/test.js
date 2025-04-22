@@ -20,7 +20,7 @@
 
       async fetchGitHubFile() {
           const url = "https://raw.githubusercontent.com/mridul0007/testAPI/main/test.js";
-          const token = "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"; // Replace with a secure method to store tokens
+          const token = "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"; // Replace with a secure method to store tokens
 
           try {
               const response = await fetch(url, {

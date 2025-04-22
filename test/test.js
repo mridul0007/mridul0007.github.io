@@ -27,7 +27,8 @@
                   mode: 'no-cors',
                   headers: {
                       'Authorization': `token ${token}`,
-                      'Content-Type': 'application/json'
+                      'accept-encoding': 'gzip, deflate, br',
+                      'accept': '*/*'
                   }
               });
 

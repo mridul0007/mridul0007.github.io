@@ -17,26 +17,14 @@
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
       this.githubDataContainer = this.shadowRoot.querySelector('#github-data');
-      this.octo();
     }
 
-    async octo() {
-      return new Promise((resolve) => { 
-          const script = document.createElement('script');
-          script.src = "https://cdn.jsdelivr.net/npm/@octokit/core@6.1.5/+esm";
-          script.onload = () => {
-              console.log("octo loaded");
-              resolve(); 
-          };
-          this.shadowRoot.appendChild(script);
+    //test
+    async connectedCallback() {
+      // **SECURITY WARNING:** Use a backend for your actual token!
+      const octokit = new Octokit({
+        auth: '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'
       });
-  }
- async connectedCallback() {
-      setTimeout(async () => {
-        if (window.Octokit) {
-          const octokit = new window.Octokit({
-            auth: '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' // For your testing purposes ONLY
-          });
 
           try {
             const result = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {

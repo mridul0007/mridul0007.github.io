@@ -24,6 +24,7 @@
           try {
               const response = await fetch(url, {
                   method: 'GET',
+                  mode: 'no-cors',
                   headers: {
                       'Authorization': `token ${token}`,
                       'Content-Type': 'application/json'

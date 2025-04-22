@@ -17,9 +17,9 @@
           shadowRoot.appendChild(tmpl.content.cloneNode(true));      
       }
 
-      async fetchGitHubFile(token) {
+      async fetchGitHubFile(token1) {
           const url = "https://raw.githubusercontent.com/mridul0007/testAPI/main/test.js";
-          const token = token; // Replace with a secure method to store tokens
+          var token = token1; // Replace with a secure method to store tokens
 
           try {
               const response = await fetch(url, {

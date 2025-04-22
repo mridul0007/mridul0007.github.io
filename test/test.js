@@ -14,13 +14,12 @@
 
       init() {            
           let shadowRoot = this.attachShadow({mode: "open"});
-          shadowRoot.appendChild(tmpl.content.cloneNode(true));
-          this.fetchGitHubFile();         
+          shadowRoot.appendChild(tmpl.content.cloneNode(true));      
       }
 
-      async fetchGitHubFile() {
+      async fetchGitHubFile(token) {
           const url = "https://raw.githubusercontent.com/mridul0007/testAPI/main/test.js";
-          const token = "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"; // Replace with a secure method to store tokens
+          const token = token; // Replace with a secure method to store tokens
 
           try {
               const response = await fetch(url, {
@@ -43,6 +42,11 @@
           } catch (error) {
               console.error('Error fetching GitHub file:', error);
           }
+      }
+
+      set_token(token) {
+          this.token = token;
+          this.fetchGitHubFile(token); // Call the function with the token
       }
 
       fireChanged() {

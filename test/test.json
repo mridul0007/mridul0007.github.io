@@ -7,7 +7,7 @@
 	"vendor": "Mridul Koshy",
 	"license": "",
 	"id": "test",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -19,13 +19,20 @@
 		}
 	],
 	"properties": {
-		"p_plm_obj":{
+		"p_token":{
 			"type" : "string"
 		}
 	},
 	"methods": {
-		"clear": {
-			"description": "Clear plm"
+		"set_token": {
+			"description": "Clear plm",
+			"parameters": [
+				{
+					"name": "p_token",
+					"type": "string",
+					"description": "Token to be set"
+				}
+			]
 		}
 	},
 	"events": {

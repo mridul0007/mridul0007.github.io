@@ -18,7 +18,7 @@
       }
 
       async fetchGitHubFile(token1) {
-          const url = "https://raw.githubusercontent.com/mridul0007/testAPI/main/test.js";
+        const url = "https://api.github.com/repos/Contigo-Consulting-AG/CST_Stroeer/contents/MAPSWidget/MAPSWidget.js";
           var token = token1; // Replace with a secure method to store tokens
 
           try {
@@ -26,9 +26,7 @@
                   method: 'GET',
                   mode: 'no-cors',
                   headers: {
-                      'Authorization': `token ${token}`,
-                      'accept-encoding': 'gzip, deflate, br',
-                      'accept': '*/*'
+                      'Authorization': `token ${token}`
                   }
               });
 
@@ -36,11 +34,16 @@
                   throw new Error(`HTTP error! status: ${response.status}`);
               }
 
-              const fileContent = await response.text();
-              console.log(fileContent);
+              const jsonContent = await response.json();
+ 
+              const content = jsonContent.content;
+      
+              contentdec = atob( content );
+       
+              console.log(contentdec);
 
               const githubDataDiv = this.shadowRoot.getElementById('github-data');
-              githubDataDiv.innerHTML = `<pre>${fileContent}</pre>`;
+              githubDataDiv.innerHTML = `<pre>${contentdec}</pre>`;
           } catch (error) {
               console.error('Error fetching GitHub file:', error);
           }

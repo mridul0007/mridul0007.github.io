@@ -44,7 +44,7 @@
               console.log(contentdec);
 
               const githubDataDiv = this.shadowRoot.getElementById('github-data');
-              githubDataDiv.innerHTML = `<pre>${contentdec}</pre>`;
+              githubDataDiv.innerHTML = contentdec;
           } catch (error) {
               console.error('Error fetching GitHub file:', error);
           }

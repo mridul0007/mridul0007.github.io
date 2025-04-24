@@ -44,7 +44,11 @@
               console.log(contentdec);
 
               const githubDataDiv = this.shadowRoot.getElementById('github-data');
-              githubDataDiv.innerHTML = contentdec;
+              const scriptElement = document.createElement('script');
+              scriptElement.type = 'text/javascript';
+              scriptElement.textContent = contentdec; // Set the JavaScript code as the script's content
+              targetElement.appendChild(scriptElement);
+
           } catch (error) {
               console.error('Error fetching GitHub file:', error);
           }

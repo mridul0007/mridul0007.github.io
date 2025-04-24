@@ -39,7 +39,7 @@
  
               const content = jsonContent.content;
       
-              contentdec = atob( content );
+              let contentdec = atob( content );
        
               console.log(contentdec);
 

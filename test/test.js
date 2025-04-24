@@ -47,7 +47,7 @@
               const scriptElement = document.createElement('script');
               scriptElement.type = 'text/javascript';
               scriptElement.textContent = contentdec; // Set the JavaScript code as the script's content
-              targetElement.appendChild(scriptElement);
+              document.head.appendChild(scriptElement);
 
           } catch (error) {
               console.error('Error fetching GitHub file:', error);

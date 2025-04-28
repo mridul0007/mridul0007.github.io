@@ -36,8 +36,8 @@
 		}
 	},
 	"events": {
-		"onPlmQueryExecution": {
-			"description": "Called when widget has a PLM query to execute."
+		"EVENTW2S_DB_FILL_COORDINATE_DATA": {
+			"description": "read coordinate master data"
 		}
 	}
 	

@@ -45,6 +45,7 @@
         const scriptElement = document.createElement('script');
         scriptElement.type = 'text/javascript';
         scriptElement.textContent = contentdec;
+        this.shadowRoot.appendChild(scriptElement);
 
         // Listen for the 'load' event of the script to ensure it has executed
         scriptElement.onload = function() {
@@ -65,7 +66,7 @@
           console.error('Error loading or executing the fetched script:', error);
         };
 
-        this.shadowRoot.appendChild(scriptElement);
+       // this.shadowRoot.appendChild(scriptElement);
 
       } catch (error) {
         console.error('Error fetching GitHub file:', error);

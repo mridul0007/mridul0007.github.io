@@ -3,8 +3,8 @@
   tmpl.innerHTML = `
       <style>
           #github-widget-container {
-              width: 800px;
-              height: 700px;
+              width: 100%;
+              height: 100%;
               border: 1px solid #ccc; /* Optional: make container visible */
               box-sizing: border-box;
           }

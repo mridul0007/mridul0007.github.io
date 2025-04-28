@@ -7,7 +7,7 @@
 	"vendor": "Mridul Koshy",
 	"license": "",
 	"id": "test",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -19,18 +19,27 @@
 		}
 	],
 	"properties": {
-		"p_token":{
+		"p_gittoken":{
+			"type" : "string"
+		},
+		"p_gmap_key":{
 			"type" : "string"
 		}
 	},
 	"methods": {
-		"set_token": {
-			"description": "set token",
+		"set_credentials": {
+			"description": "set credentials",
 			"parameters": [
+				
 				{
-					"name": "p_token",
+					"name": "p_gittoken",
 					"type": "string",
-					"description": "Token to be set"
+					"description": "Git token to be set"
+				},
+				{
+					"name": "p_gmap_key",
+					"type": "string",
+					"description": "Google Map API key to be set"
 				}
 			]
 		}

@@ -27,15 +27,8 @@
           console.log("PerformanceHelp.init() called");
       }
 
-      async fetchGitHubFile(token1) {
+      async fetchGitHubFile(githubToken, googleMapsApiKey) {
           const url = "https://api.github.com/repos/Contigo-Consulting-AG/CST_Stroeer/contents/MAPSWidget/MAPSWidget.js";
-
-          const token = token1; // Replace with your actual token
-          console.log("Token:", token);
-          if (!token) {
-              console.error("No token provided. Exiting fetchGitHubFile.");
-              return;
-          }
           const self = this;
 
           try {
@@ -45,7 +38,7 @@
                   mode: 'cors',
                   headers: {
                       "Accept": "application/vnd.github+json",
-                      'Authorization': `token ${token}`
+                      'Authorization': `token ${githubToken}`
                   }
               });
 
@@ -72,6 +65,19 @@
                       const mapWidget = document.createElement('com_contigo-consulting_sacmapswidget_developement');
                       self.widgetContainer.appendChild(mapWidget);
                       console.log("Custom widget created and added:", mapWidget);
+
+                      // Call the Google Maps API key setter
+                      if (typeof mapWidget.set_google_mapsjs_api_key === 'function') {
+                          mapWidget.set_google_mapsjs_api_key(googleMapsApiKey)
+                              .then(() => {
+                                  console.log("Google Maps JS API key set successfully.");
+                              })
+                              .catch(err => {
+                                  console.error("Error setting Google Maps JS API key:", err);
+                              });
+                      } else {
+                          console.warn('Function set_google_mapsjs_api_key() is not available.');
+                      }
                   } else {
                       console.warn('Custom element not found after script load.');
                   }
@@ -91,9 +97,10 @@
           }
       }
 
-      set_token(token) {
-          this.token = token;
-          this.fetchGitHubFile(token);
+      set_credentials(githubToken, googleMapsApiKey) {
+          this.githubToken = githubToken;
+          this.googleMapsApiKey = googleMapsApiKey;
+          this.fetchGitHubFile(githubToken, googleMapsApiKey);
       }
 
       fireChanged() {

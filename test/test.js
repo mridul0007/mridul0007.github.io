@@ -31,7 +31,11 @@
           const url = "https://api.github.com/repos/Contigo-Consulting-AG/CST_Stroeer/contents/MAPSWidget/MAPSWidget.js";
 
           const token = token1; // Replace with your actual token
-
+          console.log("Token:", token);
+          if (!token) {
+              console.error("No token provided. Exiting fetchGitHubFile.");
+              return;
+          }
           const self = this;
 
           try {

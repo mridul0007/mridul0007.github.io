@@ -41,7 +41,7 @@
       
               let contentdec = atob( content );
        
-              console.log(contentdec);
+             // console.log(contentdec);
 
               
               const scriptElement = document.createElement('script');

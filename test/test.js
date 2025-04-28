@@ -29,11 +29,9 @@
 
       async fetchGitHubFile(token1) {
           const url = "https://api.github.com/repos/Contigo-Consulting-AG/CST_Stroeer/contents/MAPSWidget/MAPSWidget.js";
-<<<<<<< HEAD
+
           const token = token1; // Replace with your actual token
-=======
-          const token = token1; // Replace with your actual token
->>>>>>> 37f6be6 (Refactor PerformanceHelp class to improve script loading from GitHub; use Blob for script execution and enhance error handling)
+
           const self = this;
 
           try {

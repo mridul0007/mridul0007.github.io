@@ -63,6 +63,9 @@
 
                   if (customElements.get('com_contigo-consulting_sacmapswidget_developement')) {
                       const mapWidget = document.createElement('com_contigo-consulting_sacmapswidget_developement');
+                      mapWidget.style.width = '100%';
+                      mapWidget.style.height = '100%';
+                      mapWidget.style.display = 'block';
                       self.widgetContainer.appendChild(mapWidget);
                       console.log("Custom widget created and added:", mapWidget);
 

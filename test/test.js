@@ -9,9 +9,7 @@
               box-sizing: border-box;
           }
       </style>
-      <div>
           <div id="github-widget-container"></div>
-      </div>
   `;
 
   class PerformanceHelp extends HTMLElement {

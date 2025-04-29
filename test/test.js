@@ -67,6 +67,7 @@
 
                       mapWidget.addEventListener('EVENTW2S_DB_FILL_COORDINATE_DATA', (event) => {
                         console.log("Received EVENTW2S_DB_FILL_COORDINATE_DATA:", event);
+                        this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
 
                       });
 
@@ -124,7 +125,7 @@
             console.error("Map widget not found in the container.");
         }
         }
-        
+
       set_credentials(githubToken, googleMapsApiKey) {
           this.githubToken = githubToken;
           this.googleMapsApiKey = googleMapsApiKey;

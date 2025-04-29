@@ -1,13 +1,13 @@
 {
 	"name": "test",
-	"imports": ["planning-model"],
+	"imports": ["datasource"],
 	"description": "test SAC",
 	"newInstancePrefix": "test",
 	"eula": "",
 	"vendor": "Mridul Koshy",
 	"license": "",
 	"id": "test",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"icon": "",
 	"webcomponents": [
 		{

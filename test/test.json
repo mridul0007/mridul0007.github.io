@@ -86,7 +86,7 @@
 		}
 	},
 	"events": {
-		"EVENTW2S_DB_FILL_COORDINATE_DATA": {
+		"EVENTW2S_DB_FILL_DATA": {
 			"description": "read coordinate master data"
 		}
 	}

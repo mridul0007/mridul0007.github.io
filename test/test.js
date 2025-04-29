@@ -67,7 +67,7 @@
 
                       mapWidget.addEventListener('EVENTW2S_DB_FILL_COORDINATE_DATA', (event) => {
                         console.log("Received EVENTW2S_DB_FILL_COORDINATE_DATA:", event);
-                        this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_COORDINATE_DATA"));
+                        this.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_DATA"));
 
                       });
 

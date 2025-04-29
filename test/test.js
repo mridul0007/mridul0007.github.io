@@ -67,6 +67,7 @@
 
                       mapWidget.addEventListener('EVENTW2S_DB_FILL_COORDINATE_DATA', (event) => {
                         console.log("Received EVENTW2S_DB_FILL_COORDINATE_DATA:", event);
+
                       });
 
                       self.widgetContainer.appendChild(mapWidget);
@@ -103,6 +104,27 @@
           }
       }
 
+       async set_coordinate_master_data(SAC_COORDINATE_DATA,read_finish_flag,reset_data_flag) {
+        let mapWidget = this.widgetContainer.querySelector('com_contigo-consulting_sacmapswidget_developement');
+        if (mapWidget) {
+            console.log("Setting coordinate master data:", SAC_COORDINATE_DATA, read_finish_flag, reset_data_flag);
+            mapWidget.set_coordinate_master_data(SAC_COORDINATE_DATA, read_finish_flag, reset_data_flag);
+        } else {
+            console.error("Map widget not found in the container.");
+        } 
+       }
+
+       async set_default_map(map_default){
+
+        let mapWidget = this.widgetContainer.querySelector('com_contigo-consulting_sacmapswidget_developement');
+        if (mapWidget) {
+            console.log("Setting default map:", map_default);
+            mapWidget.set_default_map(map_default);
+        } else {
+            console.error("Map widget not found in the container.");
+        }
+        }
+        
       set_credentials(githubToken, googleMapsApiKey) {
           this.githubToken = githubToken;
           this.googleMapsApiKey = googleMapsApiKey;

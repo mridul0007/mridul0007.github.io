@@ -24,7 +24,19 @@
 		},
 		"p_gmap_key":{
 			"type" : "string"
-		}
+		},
+		"coordinate_master_data": {
+			"type": "ResultSet[]"
+		},
+        "default_map": {
+			"type": "string"
+		},
+		"read_finish": {
+			"type": "boolean"
+		},
+		"reset_data": {
+			"type": "boolean"
+		}		
 	},
 	"methods": {
 		"set_credentials": {
@@ -40,6 +52,35 @@
 					"name": "p_gmap_key",
 					"type": "string",
 					"description": "Google Map API key to be set"
+				}
+			]
+		},
+		"set_default_map": {
+			"description": "set default map",
+            "parameters": [
+				{
+					"name": "default_map",
+					"type": "string",
+					"description": "set default map"
+				}]
+			},    
+		"set_coordinate_master_data":{
+			"description": "set coordinate master data",
+			"parameters": [
+				{
+					"name": "coordinate_master_data",
+					"type": "ResultSet[]",
+					"description": "coordinate master data"
+				},
+				{
+					"name": "read_finish",
+					"type": "boolean",
+					"description": "flag for read coordinate master data "
+				},
+				{
+					"name": "reset_data",
+					"type": "boolean",
+					"description": "flag for new coordinate master data read"
 				}
 			]
 		}

@@ -15,6 +15,7 @@
   class PerformanceHelp extends HTMLElement {
       constructor() {
           super();
+          this.map_default  = ''; // Initialize map_default to null
           this.init();
       }
 
@@ -61,14 +62,13 @@
 
                   if (customElements.get('com_contigo-consulting_sacmapswidget_developement')) {
                       const mapWidget = document.createElement('com_contigo-consulting_sacmapswidget_developement');
-                      // mapWidget.style.width = '100%';
-                      // mapWidget.style.height = '100%';
-                      // mapWidget.style.display = 'block';
-
+                      if(this.map_default != ''){ {
+                      mapWidget.set_default_map(self.map_default); // Set the default map if available
+                      }
                       mapWidget.addEventListener('EVENTW2S_DB_FILL_COORDINATE_DATA', (event) => {
                         console.log("Received EVENTW2S_DB_FILL_COORDINATE_DATA:", event);
                         self.dispatchEvent(new CustomEvent("EVENTW2S_DB_FILL_DATA", {
-                          detail: { message: "Coordinates data filled" }, // optional
+                          detail: { message: "Coordinates data filled" }, 
                           bubbles: true,
                           composed: true
                       }));
@@ -121,23 +121,14 @@
 
        async set_default_map(map_default){
 
-        let mapWidget = this.widgetContainer.querySelector('com_contigo-consulting_sacmapswidget_developement');
-        if (mapWidget) {
-            console.log("Setting default map:", map_default);
-            mapWidget.set_default_map(map_default);
-        } else {
-            console.error("Map widget not found in the container.");
-        }
+        this.map_default = map_default; // Store the default map in the class instance for later use
+        console.log("Setting default map:", map_default);
         }
 
       set_credentials(githubToken, googleMapsApiKey) {
           this.githubToken = githubToken;
           this.googleMapsApiKey = googleMapsApiKey;
           this.fetchGitHubFile(githubToken, googleMapsApiKey);
-      }
-
-      fireChanged() {
-          console.log("OnClick Triggered");
       }
   }
 

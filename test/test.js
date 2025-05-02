@@ -62,7 +62,7 @@
 
                   if (customElements.get('com_contigo-consulting_sacmapswidget_developement')) {
                       const mapWidget = document.createElement('com_contigo-consulting_sacmapswidget_developement');
-                      if(this.map_default != ''){ {
+                      if(self.map_default != ''){ 
                       mapWidget.set_default_map(self.map_default); // Set the default map if available
                       }
                       mapWidget.addEventListener('EVENTW2S_DB_FILL_COORDINATE_DATA', (event) => {

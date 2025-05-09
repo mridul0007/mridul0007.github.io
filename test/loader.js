@@ -58,11 +58,11 @@ class GitHubLoader extends HTMLElement {
             scriptElement.onload = function () {
                 console.log("Script loaded from Blob URL");
                 const textWidget = document.createElement('custom-textwidget');
-               // this.widgetContainer.appendChild(textWidget);
+                self.widgetContainer.appendChild(textWidget);
                 self.dispatchEvent(new CustomEvent("EVENT_LOOADER", {}));
             }
             this.widgetContainer.appendChild(scriptElement);  
-        } catch (error) {
+        } catch (error) 
             console.error("Error fetching GitHub file:", error);
         }    
         

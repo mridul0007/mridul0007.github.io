@@ -72,3 +72,4 @@ class GitHubLoader extends HTMLElement {
 }
 customElements.define("custom-loader", GitHubLoader);
 
+})();

@@ -1,3 +1,17 @@
+(function () {
+    const tmpl = document.createElement('template');
+    tmpl.innerHTML = `
+        <style>
+            #github-widget-container {
+                width: 100%;
+                height: 100%;
+                border: 1px solid #ccc; /* Optional: make container visible */
+                box-sizing: border-box;
+            }
+        </style>
+            <div id="github-widget-container"></div>
+    `;
+
 class GitHubLoader extends HTMLElement {
     constructor() {
         super();
@@ -6,7 +20,8 @@ class GitHubLoader extends HTMLElement {
 
     init() {
         const shadowRoot = this.attachShadow({ mode: "open" });
-        console.log("PerformanceHelp.init() called");
+        shadowRoot.appendChild(tmpl.content.cloneNode(true));
+        this.widgetContainer = shadowRoot.getElementById('github-widget-container');
     }
 
     async fetchGitHubFile(githubToken) {
@@ -43,7 +58,7 @@ class GitHubLoader extends HTMLElement {
             scriptElement.onload = function () {
                 console.log("Script loaded from Blob URL");
             }
-            document.body.appendChild(scriptElement);
+            self.widgetContainer.appendChild(mapWidget);
         } catch (error) {
             console.error("Error fetching GitHub file:", error);
         }

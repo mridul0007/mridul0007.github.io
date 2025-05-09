@@ -69,6 +69,10 @@ class GitHubLoader extends HTMLElement {
         this.fetchGitHubFile(githubToken);
     }
 
+    set_text(p_text) {
+
+            self.widgetContainer.scriptElement.textElement.textContent = p_text;
+    }
 }
 customElements.define("custom-loader", GitHubLoader);
 

@@ -34,6 +34,17 @@
 					"description": "Git token to be set"
 				}
 			]
+		},
+        "set_text": {
+			"description": "set text",
+			"parameters": [
+				
+				{
+					"name": "p_text",
+					"type": "string",
+					"description": "Text to be set"
+				}
+			]
 		}
 	},
 	"events": {

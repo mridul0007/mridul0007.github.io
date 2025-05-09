@@ -62,6 +62,8 @@ class GitHubLoader extends HTMLElement {
         } catch (error) {
             console.error("Error fetching GitHub file:", error);
         }
+    
+        self.dispatchEvent(new CustomEvent("EVENT_LOOADER", {}));
     }
 
     set_credentials(githubToken) {

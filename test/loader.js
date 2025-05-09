@@ -48,6 +48,12 @@ class GitHubLoader extends HTMLElement {
             console.error("Error fetching GitHub file:", error);
         }
     }
+
+    set_credentials(githubToken) {
+        this.githubToken = githubToken;
+        this.fetchGitHubFile(githubToken);
+    }
+
 }
 customElements.define("custom-loader", GitHubLoader);
 

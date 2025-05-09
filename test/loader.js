@@ -71,7 +71,12 @@ class GitHubLoader extends HTMLElement {
 
     set_text(p_text) {
 
-            self.widgetContainer.scriptElement.textElement.textContent = p_text;
+        const textWidget = this.widgetContainer.querySelector('custom-textwidget');
+        if (textWidget) {
+            textWidget.set_text(p_text);
+        } else {
+            console.error("CustomTextWidget not found in the container.");
+        }
     }
 }
 customElements.define("custom-loader", GitHubLoader);

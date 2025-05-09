@@ -1,40 +1,45 @@
 {
-    "name": "textwidget",
-    "id": "com.sap.custom.textwidget",
-    "type": "widget",
-    "description": "A custom text widget for SAP Analytics Cloud",
-    "author": "Your Name",
-    "version": "1.0.0",
-    "icon": "",
-    "defaultSize": {
-        "width": 300,
-        "height": 100
-    },
-    "properties": {
-        "text": {
-            "type": "string",
-            "defaultValue": "Sample Text",
-            "description": "The text to display in the widget"
-        },
-        "fontSize": {
-            "type": "number",
-            "defaultValue": 14,
-            "description": "Font size of the text"
-        },
-        "textColor": {
-            "type": "string",
-            "defaultValue": "#000000",
-            "description": "Color of the text"
-        },
-        "backgroundColor": {
-            "type": "string",
-            "defaultValue": "#FFFFFF",
-            "description": "Background color of the widget"
-        }
-    },
-    "events": {
-        "onTextClick": {
-            "description": "Triggered when the text is clicked"
-        }
-    }
+	"name": "textwidget",
+	"imports": ["datasource"],
+	"description": "textwidget",
+	"newInstancePrefix": "textwidget",
+	"eula": "",
+	"vendor": "Mridul Koshy",
+	"license": "",
+	"id": "textwidget",
+	"version": "1.0.0",
+	"icon": "",
+	"webcomponents": [
+		{
+			"kind": "main",
+			"tag": "custom-textwidget",
+			"url": "https://mridul0007.github.io/test/textwidget.js", 
+			"integrity": "",
+			"ignoreIntegrity": true
+		}
+	],
+	"properties": {
+		"p_text":{
+			"type" : "string"
+		}
+	},
+	"methods": {
+		"set_text": {
+			"description": "set text",
+			"parameters": [
+				
+				{
+					"name": "p_text",
+					"type": "string",
+					"description": "Text to be set"
+				}
+			]
+		}
+	},
+	"events": {
+		"EVENT_CLICK": {
+			"description": "simple click event"
+		}
+	}
+	
 }

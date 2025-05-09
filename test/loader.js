@@ -57,6 +57,8 @@ class GitHubLoader extends HTMLElement {
 
             scriptElement.onload = function () {
                 console.log("Script loaded from Blob URL");
+                const textWidget = document.createElement('custom-textwidget');
+                this.widgetContainer.appendChild(textWidget);
                 self.dispatchEvent(new CustomEvent("EVENT_LOOADER", {}));
             }
             this.widgetContainer.appendChild(scriptElement);  
@@ -73,8 +75,7 @@ class GitHubLoader extends HTMLElement {
 
     set_text(p_text) {
 
-        const textWidget = document.createElement('custom-textwidget');
-        this.widgetContainer.appendChild(textWidget);
+        const textWidget = this.widgetContainer.querySelector('custom-textwidget');
         textWidget.set_text(p_text);
     }
 }

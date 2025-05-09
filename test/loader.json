@@ -1,0 +1,45 @@
+{
+	"name": "loader",
+	"imports": ["datasource"],
+	"description": "loader Github",
+	"newInstancePrefix": "loader",
+	"eula": "",
+	"vendor": "Mridul Koshy",
+	"license": "",
+	"id": "loader",
+	"version": "1.0.8",
+	"icon": "",
+	"webcomponents": [
+		{
+			"kind": "main",
+			"tag": "custom-loader",
+			"url": "https://mridul0007.github.io/test/loader.js", 
+			"integrity": "",
+			"ignoreIntegrity": true
+		}
+	],
+	"properties": {
+		"p_gittoken":{
+			"type" : "string"
+		}
+	},
+	"methods": {
+		"set_credentials": {
+			"description": "set credentials",
+			"parameters": [
+				
+				{
+					"name": "p_gittoken",
+					"type": "string",
+					"description": "Git token to be set"
+				}
+			]
+		}
+	},
+	"events": {
+		"EVENT_LOOADER": {
+			"description": "loader event description"
+		}
+	}
+	
+}

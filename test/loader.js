@@ -69,7 +69,7 @@ class GitHubLoader extends HTMLElement {
                 for (const eventName of event_array) {
                     textWidget.addEventListener(eventName, (e) => {
                       console.log(`Received ${eventName}, re-dispatching...`);
-                      this.dispatchEvent(new CustomEvent(eventName, {}));
+                      self.dispatchEvent(new CustomEvent(eventName, {}));
                     });
                   }
                   self.dispatchEvent(new CustomEvent("EVENT_LOADER", {}));

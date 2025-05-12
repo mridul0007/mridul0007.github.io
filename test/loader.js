@@ -88,7 +88,7 @@ class GitHubLoader extends HTMLElement {
 
     set_text(p_text) {
 
-        //const textWidget = this.widgetContainer.querySelector('custom-textwidget');
+        const textWidget = this.widgetContainer.querySelector('custom-textwidget');
         textWidget.set_text(p_text);
     }
 }

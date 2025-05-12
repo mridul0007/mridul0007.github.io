@@ -7,7 +7,7 @@
 	"vendor": "Mridul Koshy",
 	"license": "",
 	"id": "loader",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"icon": "",
 	"webcomponents": [
 		{
@@ -48,9 +48,16 @@
 		}
 	},
 	"events": {
-		"EVENT_LOOADER": {
+		"EVENT_CLICK1": {
+			"description": "simple click1 event"
+		},
+		"EVENT_CLICK2": {
+			"description": "another click2 event"
+		},
+		"EVENT_LOADER": {
 			"description": "loader event description"
 		}
+        
 	}
 	
 }

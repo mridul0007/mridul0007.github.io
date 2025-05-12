@@ -1,4 +1,10 @@
 (function () {
+
+    const event_array = [
+        'EVENT_CLICK1',
+        'EVENT_CLICK2',
+        'EVENT_LOADER',
+      ];
     const tmpl = document.createElement('template');
     tmpl.innerHTML = `
         <style>
@@ -59,7 +65,14 @@ class GitHubLoader extends HTMLElement {
                 console.log("Script loaded from Blob URL");
                 const textWidget = document.createElement('custom-textwidget');
                 self.widgetContainer.appendChild(textWidget);
-                self.dispatchEvent(new CustomEvent("EVENT_LOOADER", {}));
+
+                for (const eventName of event_array) {
+                    textWidget.addEventListener(eventName, (e) => {
+                      console.log(`Received ${eventName}, re-dispatching...`);
+                      this.dispatchEvent(new CustomEvent(eventName, {}));
+                    });
+                  }
+                  self.dispatchEvent(new CustomEvent("EVENT_LOADER", {}));
             }
             this.widgetContainer.appendChild(scriptElement);  
         } catch (error) {
@@ -75,7 +88,7 @@ class GitHubLoader extends HTMLElement {
 
     set_text(p_text) {
 
-        const textWidget = this.widgetContainer.querySelector('custom-textwidget');
+        //const textWidget = this.widgetContainer.querySelector('custom-textwidget');
         textWidget.set_text(p_text);
     }
 }

@@ -37,8 +37,11 @@
 		}
 	},
 	"events": {
-		"EVENT_CLICK": {
-			"description": "simple click event"
+		"EVENT_CLICK1": {
+			"description": "simple click1 event"
+		},
+		"EVENT_CLICK2": {
+			"description": "another click2 event"
 		}
 	}
 	

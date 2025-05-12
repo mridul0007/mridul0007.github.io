@@ -4,22 +4,41 @@ class CustomTextWidget extends HTMLElement {
       super();
       this.attachShadow({ mode: "open" });
   
-      this.textElement = document.createElement("div");
-      this.textElement.style.padding = "10px";
-      this.textElement.style.border = "1px solid #ccc";
-      this.textElement.style.borderRadius = "5px";
-      this.textElement.style.cursor = "pointer";
-      this.textElement.style.background = "#f9f9f9";
+      // Container for text and buttons
+      const container = document.createElement("div");
+      container.style.padding = "10px";
+      container.style.border = "1px solid #ccc";
+      container.style.borderRadius = "5px";
+      container.style.background = "#f9f9f9";
   
-      this.textElement.addEventListener("click", () => {
-        this.dispatchEvent(new CustomEvent("onCustomWidgetEvent", {
-          detail: {
-            name: "EVENT_CLICK"
-          }
-        }));
+      // Main text element
+      this.textElement = document.createElement("div");
+      this.textElement.style.marginBottom = "10px";
+      container.appendChild(this.textElement);
+  
+      // Button 1
+      const button1 = document.createElement("button");
+      button1.textContent = "Button 1";
+      button1.style.marginRight = "5px";
+      button1.addEventListener("click", () => {
+        console.log("Dispatching EVENT_CLICK1 event");
+        this.dispatchEvent(new CustomEvent("EVENT_CLICK1", {}));
+    });
+  
+      // Button 2
+      const button2 = document.createElement("button");
+      button2.textContent = "Button 2";
+      button2.addEventListener("click", () => {
+        console.log("Dispatching EVENT_CLICK2 event");
+        this.dispatchEvent(new CustomEvent("EVENT_CLICK2", {}));
       });
   
-      this.shadowRoot.appendChild(this.textElement);
+      // Append buttons
+      container.appendChild(button1);
+      container.appendChild(button2);
+  
+      // Append everything to shadow DOM
+      this.shadowRoot.appendChild(container);
     }
   
     // Called when widget is created or properties change
@@ -36,4 +55,5 @@ class CustomTextWidget extends HTMLElement {
   }
   
   customElements.define("custom-textwidget", CustomTextWidget);
+  
   

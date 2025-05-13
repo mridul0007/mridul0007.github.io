@@ -5,7 +5,8 @@
       'EVENT_CLICK2',
       'EVENT_LOADER',
     ];
-  
+    const url = "https://api.github.com/repos/mridul0007/testAPI/contents/textwidget.js";
+    
     const tmpl = document.createElement('template');
     tmpl.innerHTML = `
       <style>
@@ -20,9 +21,13 @@
     `;
   
     class GitHubLoader extends HTMLElement {
+        set_text(p_text) {
+            this.Widget.set_text(p_text);
+        }
+
       constructor() {
         super();
-        this.textWidget = null;
+        this.Widget = null;
         this.init();
       }
   
@@ -33,8 +38,7 @@
       }
   
       async fetchGitHubFile(githubToken) {
-        const url = "https://api.github.com/repos/mridul0007/testAPI/contents/textwidget.js";
-  
+        
         try {
           console.log("fetchGitHubFile() called, URL:", url);
           const response = await fetch(url, {
@@ -63,11 +67,11 @@
   
           scriptElement.onload = () => {
             console.log("Script loaded from Blob URL");
-            this.textWidget = document.createElement('custom-textwidget');
-            this.widgetContainer.appendChild(this.textWidget);
+            this.Widget = document.createElement('custom-textwidget');
+            this.widgetContainer.appendChild(this.Widget);
   
             for (const eventName of event_array) {
-              this.textWidget.addEventListener(eventName, () => {
+              this.Widget.addEventListener(eventName, () => {
                 console.log(`Received ${eventName}, re-dispatching...`);
                 this.dispatchEvent(new CustomEvent(eventName, {}));
               });
@@ -86,9 +90,7 @@
         this.fetchGitHubFile(githubToken);
       }
   
-      set_text(p_text) {
-          this.textWidget.set_text(p_text);
-      }
+     
     }
   
     customElements.define("custom-loader", GitHubLoader);

@@ -41,13 +41,6 @@ class CustomTextWidget extends HTMLElement {
       this.shadowRoot.appendChild(container);
     }
   
-    // Called when widget is created or properties change
-    onCustomWidgetAfterUpdate(changedProps) {
-      if (changedProps.p_text !== undefined) {
-        this.textElement.textContent = changedProps.p_text;
-      }
-    }
-  
     // Method exposed to scripting API
     set_text(p_text) {
       this.textElement.textContent = p_text;

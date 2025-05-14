@@ -16,7 +16,7 @@ src: url('https://mridul0007.github.io/TratonFonts/TRATONTypeDisplay-Regular.ttf
 
 @font-face {
 font-family: 'Traton Type Display';
-font-style: italic;
+font-style: Italic;
 font-weight: 400;
 font-display: swap;
 src: url('https://mridul0007.github.io/TratonFonts/TRATONTypeDisplay-Italic.ttf') format('truetype');
@@ -24,7 +24,7 @@ src: url('https://mridul0007.github.io/TratonFonts/TRATONTypeDisplay-Italic.ttf'
 
 @font-face {
     font-family: 'Traton Type Display';
-    font-style: italic;
+    font-style: Italic;
     font-weight: 700;
     font-display: swap;
     src: url('https://mridul0007.github.io/TratonFonts/TRATONTypeDisplay-BoldItalic.ttf') format('truetype');

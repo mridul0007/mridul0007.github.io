@@ -1,8 +1,0 @@
-/* Traton Regular */
-@font-face {
-font-family: 'Traton';
-font-style: normal;
-font-weight: normal;
-font-display: swap;
-src: url(https://mridul00007.github.io/TratonFonts/TRATON-Type-Display-Regular.ttf) format('truetype');
-}

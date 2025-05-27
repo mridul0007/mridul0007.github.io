@@ -387,6 +387,7 @@ class CombinedMap extends HTMLElement {
                         var lng = e.latlng.lng;
                         var tableContent = this.fe_generateTableContent(image_Url);
                          marker.bindPopup(tableContent, { maxWidth: "auto", autoPan: true, keepInView: true });
+                         marker.openPopup();
                         mapInstance.setView(e.latlng, 15);
                     }.bind(this));
                    

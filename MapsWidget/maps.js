@@ -382,12 +382,13 @@ class CombinedMap extends HTMLElement {
                     var setIcon = new mapIcon({ iconUrl: iconUrl });
                     var marker = L.marker([lat_m, lng_m], { icon: setIcon });
     
-                    marker.on('click', function (e) {
-                        var lat = e.latlng.lat;
-                        var lng = e.latlng.lng;
-                        // mapInstance.setView(e.latlng, 15);
-                    }.bind(this));
-                    marker.bindPopup(tableContent, { maxWidth: "auto", autoPan: true, keepInView: true });
+                    marker.on(click', (e) =>  {
+                        var popup = L.popup()
+                        .setLatLng(e.latlng)
+                        .setContent('<p>Hello world!<br />This is a nice popup.</p>')
+                        .openOn(mapInstance);
+                    };
+                   // marker.bindPopup(tableContent, { maxWidth: "auto", autoPan: true, keepInView: true });
                     markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);
                     this.fe_osMap_markers.push(marker);

@@ -69,6 +69,10 @@
                 position: static
             }
 
+            .leaflet-popup-content {
+            width:auto;
+            }
+
 
             .leaflet-popup-content-wrapper {
                 overflow-y: auto;
@@ -386,7 +390,7 @@ class CombinedMap extends HTMLElement {
                         var lng = e.latlng.lng;
                         mapInstance.setView(e.latlng, 15);
                     }.bind(this));
-                    marker.bindPopup(tableContent, { autoPan: true, anchor: [0.5, -0.5], keepInView: true });
+                    marker.bindPopup(tableContent, { maxWidt:auto , autoPan: true, anchor: [0.5, -0.5], keepInView: true });
                     markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);
                     this.fe_osMap_markers.push(marker);

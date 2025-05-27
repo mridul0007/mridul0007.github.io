@@ -402,8 +402,7 @@ class CombinedMap extends HTMLElement {
                           var tagName = e.target.tagName,
                             popup = this.fe_osMap._popup;
                             popup.update();
-                          }
-                        }, true);
+                          }, true);
                     
                     markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);

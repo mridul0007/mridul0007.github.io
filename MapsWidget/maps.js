@@ -391,15 +391,12 @@ class CombinedMap extends HTMLElement {
                         
                         this.fe_osMap.setView(e.latlng, 15);
                         this.fe_osMap.on('popupopen', (e) =>  {
-                                const activePopup = e.popup;
-                                   const imgElement = activePopup.getElement().querySelector('#myPopupImage');
-                                    if(imgElement)
-                                        {
-                                            imgElement.addEventListener('load', () => {
-                                            popup.update(); 
-                                    });
-        
-                                }
+                                        setTimeout(() => {
+                                 popup.update(); 
+                                resolve(); 
+                            }, 100);
+                               
+
                                 });
                     });
   

@@ -352,12 +352,9 @@ class CombinedMap extends HTMLElement {
                 var bounds = new L.LatLngBounds();
                 var mapIcon = L.Icon.extend({
                     options: {
-                        shadowUrl: '',
                         iconSize: [30, 30],
-                        shadowSize: [50, 64],
-                        iconAnchor: [20, 20],
-                        shadowAnchor: [4, 62],
-                        popupAnchor: [0, -10]
+                        iconAnchor: [15, 30],
+                        popupAnchor: [0, -30]
                     }
                 });
     

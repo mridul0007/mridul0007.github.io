@@ -382,7 +382,7 @@ class CombinedMap extends HTMLElement {
                     var setIcon = new mapIcon({ iconUrl: iconUrl });
                     var marker = L.marker([lat_m, lng_m], { icon: setIcon });
                     marker.image_Url = image_Url;
-    
+                    
                     marker.on('click', (e) =>  {
                         var latlng;
                         this.fe_osMap.setView(e.latlng, 15);
@@ -390,9 +390,9 @@ class CombinedMap extends HTMLElement {
                         var tableContent = this.fe_generateTableContent(clickedMarker.image_Url);
                         const content = `<div style="max-width: none;">${tableContent}</div>`;
                         clickedMarker.bindPopup(content , { maxWidth: "auto", autoPan: true, keepInView: true, autoPanPadding: L.point(5,5) });
-                        var px = project(latlng);
+                        var px = this.fe_osMap.project(latlng);
                         px.y -= mypopup.height/5
-                        latlng = unproject(px);
+                        latlng = this.fe_osMap.unproject(px);
                         this.fe_osMap.panTo(latlng,{animate: true});
                        
                     });
@@ -503,11 +503,16 @@ class CombinedMap extends HTMLElement {
                         });
     
                         this.fe_gMap_markers.push(marker);
-    
+                        let infoWindow = null;
                         marker.addListener('gmp-click', (event) => {
+                             if (infoWindow) {
+                                infoWindow.close();
+                            }
+                            else{
+                                infoWindow = new google.maps.InfoWindow();
+                            }
                             this.fe_gMap.setZoom(15);
                             this.fe_gMap.setCenter(position);
-                            const infoWindow = new google.maps.InfoWindow();
                             const tableContent = this.fe_generateTableContent(image_Url);
                             infoWindow.setContent(tableContent);
                             infoWindow.open(this.fe_gMap, marker);

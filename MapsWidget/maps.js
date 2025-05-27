@@ -724,8 +724,8 @@ class CombinedMap extends HTMLElement {
             <td class="tg-amwm" colspan="4">VIKTORIAALLEE 44</td>
         </tr>
         <tr>
-        <!-- <td class="tg-baqh" colspan="4"><img src="${image_Url}" alt="Image"></td> -->
-        <td class="tg-baqh" colspan="4"><img src="http://platinpsst:85/ImageDBView/ViewImageOrg.aspx?3680010077251-02" alt="Image"></td> 
+        <td class="tg-baqh" colspan="4"><img src="${image_Url}" alt="Image"></td> 
+        <!-- <td class="tg-baqh" colspan="4"><img src="http://platinpsst:85/ImageDBView/ViewImageOrg.aspx?3680010077251-02" alt="Image"></td> -->
         </tr>
         <tr>
             <td class="tg-0lax">Anbietergruppe:</td>

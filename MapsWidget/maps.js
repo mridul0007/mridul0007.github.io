@@ -398,11 +398,11 @@ class CombinedMap extends HTMLElement {
                         });
                     */
 
-                   this.shadowRoot.querySelector(".leaflet-popup-pane").addEventListener("load", (e) =>  {
-                          var tagName = e.target.tagName,
+                   this.shadowRoot.getElementById('myPopupImage').addEventListener('load', (e) => { 
                             popup = this.fe_osMap._popup;
-                            popup.update();
-                          }, true);
+                           if (popup && popup.isOpen()) {
+                               popup.update();
+                          }}, true);
                     
                     markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);
@@ -746,7 +746,7 @@ class CombinedMap extends HTMLElement {
             <td class="tg-amwm" colspan="4">VIKTORIAALLEE 44</td>
         </tr>
         <tr>
-        <td class="tg-baqh" colspan="4"><img src="${image_Url}" alt="Image"></td> 
+        <td class="tg-baqh" colspan="4"><img id="myPopupImage" src="${image_Url}" alt="Image"></td> 
         <!-- <td class="tg-baqh" colspan="4"><img src="http://platinpsst:85/ImageDBView/ViewImageOrg.aspx?3680010077251-02" alt="Image"></td> -->
         </tr>
         <tr>

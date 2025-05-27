@@ -384,12 +384,11 @@ class CombinedMap extends HTMLElement {
                     marker.image_Url = image_Url;
                     
                     marker.on('click', (e) =>  {
-                        var latlng;
-                        this.fe_osMap.setView(e.latlng, 15);
                         const clickedMarker = e.target;
                         var tableContent = this.fe_generateTableContent(clickedMarker.image_Url);
                         const content = `<div style="max-width: none;">${tableContent}</div>`;
-                        clickedMarker.bindPopup(content , { maxWidth: "auto", keepInView: true, autoPanPadding: L.point(5,5) });                       
+                        clickedMarker.bindPopup(content , { maxWidth: "auto", keepInView: true, autoPanPadding: L.point(5,5) });      
+                        this.fe_osMap.setView(e.latlng, 15);
                     });
                     markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);

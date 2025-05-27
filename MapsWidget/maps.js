@@ -388,7 +388,6 @@ class CombinedMap extends HTMLElement {
                         var tableContent = this.fe_generateTableContent(clickedMarker.image_Url);
                         const content = `<div style="max-width: none;">${tableContent}</div>`;
                         clickedMarker.bindPopup(content , { maxWidth: "auto", autoPan: true, keepInView: true, autoPanPadding: L.point(5,5) });
-                        this.fe_osMap.invalidateSize();
                     });
                     markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);

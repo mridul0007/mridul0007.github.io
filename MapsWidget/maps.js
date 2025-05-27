@@ -387,7 +387,7 @@ class CombinedMap extends HTMLElement {
                         const clickedMarker = e.target;
                         var tableContent = this.fe_generateTableContent(clickedMarker.image_Url);
                         const content = `<div style="max-width: none;">${tableContent}</div>`;
-                        clickedMarker.bindPopup(tableContent, { maxWidth: "auto", autoPan: true, keepInView: true });
+                        clickedMarker.bindPopup(content , { maxWidth: "auto", autoPan: true, keepInView: true });
                        /** var popup = L.popup({
                                         autoPan: true,
                                         keepInView: true,

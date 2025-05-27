@@ -70,7 +70,7 @@
             }
 
             .leaflet-popup-content {
-            width:auto;
+            width: auto;
             }
 
 

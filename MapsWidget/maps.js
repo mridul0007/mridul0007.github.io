@@ -382,7 +382,7 @@ class CombinedMap extends HTMLElement {
                     var setIcon = new mapIcon({ iconUrl: iconUrl });
                     var marker = L.marker([lat_m, lng_m], { icon: setIcon });
     
-                    marker.on(click', (e) =>  {
+                    marker.on('click', (e) =>  {
                         var popup = L.popup()
                         .setLatLng(e.latlng)
                         .setContent('<p>Hello world!<br />This is a nice popup.</p>')

@@ -381,11 +381,13 @@ class CombinedMap extends HTMLElement {
     
                     var setIcon = new mapIcon({ iconUrl: iconUrl });
                     var marker = L.marker([lat_m, lng_m], { icon: setIcon });
+                    marker.image_Url = image_Url;
     
                     marker.on('click', (e) =>  {
+                        const clickedMarker = e.target;
                         var popup = L.popup()
                         .setLatLng(e.latlng)
-                        .setContent('<p>Hello world!<br />This is a nice popup.</p>')
+                        .setContent(this.fe_generateTableContent(clickedMarker.image_Url))
                         .openOn(mapInstance);
                     });
                    // marker.bindPopup(tableContent, { maxWidth: "auto", autoPan: true, keepInView: true });

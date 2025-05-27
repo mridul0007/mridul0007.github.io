@@ -387,8 +387,17 @@ class CombinedMap extends HTMLElement {
                         const clickedMarker = e.target;
                         var tableContent = this.fe_generateTableContent(clickedMarker.image_Url);
                         const content = `<div style="max-width: none;">${tableContent}</div>`;
-                        clickedMarker.bindPopup(content , { maxWidth: "auto", keepInView: true, autoPanPadding: L.point(5,5) }).openPopup();      
+                        const popup = clickedMarker.bindPopup(content , { maxWidth: "auto", keepInView: true, autoPanPadding: L.point(5,5) }).openPopup();      
+                        
                         this.fe_osMap.setView(e.latlng, 15);
+                        const imgElement = popup.getContainer().querySelector('#myPopupImage');
+                        if(imgElement)
+                        {
+                            imgElement.addEventListener('load', () => {
+                                popup.update(); 
+                            });
+
+                        }
                     });
                 /**    
                     this.fe_osMap.on('popupopen', (e) =>  {
@@ -397,12 +406,6 @@ class CombinedMap extends HTMLElement {
                             this.fe_osMap.panTo(this.fe_osMap.unproject(px),{animate: true}); // pan to new center
                         });
                     */
-
-                   this.shadowRoot.getElementById('myPopupImage').addEventListener('load', (e) => { 
-                            popup = this.fe_osMap._popup;
-                           if (popup && popup.isOpen()) {
-                               popup.update();
-                          }}, true);
                     
                     markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);

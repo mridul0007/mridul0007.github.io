@@ -385,7 +385,11 @@ class CombinedMap extends HTMLElement {
     
                     marker.on('click', (e) =>  {
                         const clickedMarker = e.target;
-                        var popup = L.popup()
+                        var popup = L.popup({
+                                        autoPan: true,
+                                        keepInView: true,
+                                        maxWidth: 10000  
+                                    })
                         .setLatLng(e.latlng)
                         .setContent(this.fe_generateTableContent(clickedMarker.image_Url))
                         .openOn(mapInstance);

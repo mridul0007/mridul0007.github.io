@@ -389,12 +389,12 @@ class CombinedMap extends HTMLElement {
                         const clickedMarker = e.target;
                         var tableContent = this.fe_generateTableContent(clickedMarker.image_Url);
                         const content = `<div style="max-width: none;">${tableContent}</div>`;
-                        clickedMarker.bindPopup(content , { maxWidth: "auto", autoPan: true, keepInView: true, autoPanPadding: L.point(5,5) });
-                        var px = this.fe_osMap.project(e.latlng);
-                        px.y -= mypopup.height/5
-                        latlng = this.fe_osMap.unproject(px);
-                        this.fe_osMap.panTo(latlng,{animate: true});
-                       
+                        clickedMarker.bindPopup(content , { maxWidth: "auto", autoPan: true, keepInView: true, autoPanPadding: L.point(5,5) });                       
+                    });
+                    this.fe_osMap.on('popupopen', function(e) {
+                        var px = map.project(e.target._popup._latlng); // find the pixel location on the map where the popup anchor is
+                        px.y -= e.target._popup._container.clientHeight/2; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+                        map.panTo(map.unproject(px),{animate: true}); // pan to new center
                     });
                     markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);

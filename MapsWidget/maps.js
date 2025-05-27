@@ -391,11 +391,6 @@ class CombinedMap extends HTMLElement {
                         const content = `<div style="max-width: none;">${tableContent}</div>`;
                         clickedMarker.bindPopup(content , { maxWidth: "auto", autoPan: true, keepInView: true, autoPanPadding: L.point(5,5) });                       
                     });
-                    this.fe_osMap.on('popupopen', function(e) {
-                        var px = this.fe_osMap.project(e.target._popup._latlng); // find the pixel location on the map where the popup anchor is
-                        px.y -= e.target._popup._container.clientHeight/2; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
-                        this.fe_osMap.panTo(this.fe_osMap.unproject(px),{animate: true}); // pan to new center
-                    });
                     markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);
                     this.fe_osMap_markers.push(marker);

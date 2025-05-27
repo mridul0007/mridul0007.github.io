@@ -377,7 +377,7 @@ class CombinedMap extends HTMLElement {
                         iconUrl = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
                     }
                     var image_Url = this.DB_COORDINATE_DATA[i].properties["image"];
-                    var tableContent = this.fe_generateTableContent(image_Url);
+                    
     
                     var setIcon = new mapIcon({ iconUrl: iconUrl });
                     var marker = L.marker([lat_m, lng_m], { icon: setIcon });
@@ -385,9 +385,11 @@ class CombinedMap extends HTMLElement {
                     marker.on('click', function (e) {
                         var lat = e.latlng.lat;
                         var lng = e.latlng.lng;
+                        var tableContent = this.fe_generateTableContent(image_Url);
+                         marker.bindPopup(tableContent, { maxWidth: "auto", autoPan: true, keepInView: true });
                         mapInstance.setView(e.latlng, 15);
                     }.bind(this));
-                    marker.bindPopup(tableContent, { maxWidth: "auto", autoPan: true, keepInView: true });
+                   
                     markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);
                     this.fe_osMap_markers.push(marker);

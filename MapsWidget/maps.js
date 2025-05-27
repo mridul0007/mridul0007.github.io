@@ -390,7 +390,7 @@ class CombinedMap extends HTMLElement {
                         const popup = clickedMarker.bindPopup(content , { maxWidth: "auto", keepInView: true, autoPanPadding: L.point(5,5) }).openPopup();      
                         
                         this.fe_osMap.setView(e.latlng, 15);
-                        const imgElement = popup.getContainer().querySelector('#myPopupImage');
+                        const imgElement = popup.getElement().querySelector('#myPopupImage');
                         if(imgElement)
                         {
                             imgElement.addEventListener('load', () => {

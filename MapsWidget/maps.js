@@ -387,7 +387,7 @@ class CombinedMap extends HTMLElement {
                         var lng = e.latlng.lng;
                         mapInstance.setView(e.latlng, 15);
                     }.bind(this));
-                    marker.bindPopup(tableContent, { maxWidth: "auto", autoPan: true, anchor: [0.5, -0.5], keepInView: true });
+                    marker.bindPopup(tableContent, { maxWidth: "auto", autoPan: true, keepInView: true });
                     markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);
                     this.fe_osMap_markers.push(marker);

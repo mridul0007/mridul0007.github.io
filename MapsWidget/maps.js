@@ -390,22 +390,22 @@ class CombinedMap extends HTMLElement {
                         const popup = clickedMarker.bindPopup(content , { maxWidth: "auto", keepInView: true, autoPanPadding: L.point(5,5) }).openPopup();      
                         
                         this.fe_osMap.setView(e.latlng, 15);
-                        const imgElement = popup.getElement().querySelector('#myPopupImage');
-                        if(imgElement)
-                        {
-                            imgElement.addEventListener('load', () => {
-                                popup.update(); 
-                            });
-
-                        }
+                        this.fe_osMap.on('popupopen', (e) =>  {
+                                const activePopup = e.popup;
+                                   const imgElement = activePopup.getElement().querySelector('#myPopupImage');
+                                    if(imgElement)
+                                        {
+                                            imgElement.addEventListener('load', () => {
+                                            popup.update(); 
+                                    });
+        
+                                }
+                                });
                     });
-                /**    
-                    this.fe_osMap.on('popupopen', (e) =>  {
-                            var px = this.fe_osMap.project(e.target._popup._latlng); // find the pixel location on the map where the popup anchor is
-                            px.y -= e.target._popup._container.clientHeight/2; // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
-                            this.fe_osMap.panTo(this.fe_osMap.unproject(px),{animate: true}); // pan to new center
-                        });
-                    */
+  
+                    
+
+
                     
                     markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);

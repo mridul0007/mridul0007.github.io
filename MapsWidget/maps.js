@@ -387,13 +387,16 @@ class CombinedMap extends HTMLElement {
                         const clickedMarker = e.target;
                         var tableContent = this.fe_generateTableContent(clickedMarker.image_Url);
                         const content = `<div style="max-width: none;">${tableContent}</div>`;
-                        clickedMarker.bindPopup(content , { maxWidth: "auto", autoPanPaddingBottomRight: L.point(30,30), autoPanPaddingTopLeft: L.point(30,30) }).openPopup();                              
+                        clickedMarker.bindPopup(content , { maxWidth: "auto", autoPanPaddingBottomRight: L.point(30,30), autoPanPaddingTopLeft: L.point(30,30) }).openPopup(); 
+                        mapInstance.setView(e.latlng, 15);
                     });
-  
-                    
 
-
-                    
+                    mapInstance.on('popupopen', function(e) {
+                            var px = mapInstance.project(e.target._popup._latlng);
+                            px.y -= 700 / 2;
+                            mapInstance.panTo(mapInstance.unproject(px), { animate: true });
+                        });
+                                            
                     markerCluster.addLayer(marker);
                     bounds.extend([lat_m, lng_m]);
                     this.fe_osMap_markers.push(marker);

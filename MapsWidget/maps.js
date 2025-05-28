@@ -390,7 +390,7 @@ class CombinedMap extends HTMLElement {
                         mapInstance.setView(e.latlng, 20);
                         var px = mapInstance.project(e.latlng);
                         console.log(px);
-                        px.y -= mapHeight / 3;
+                        px.y -= mapHeight / 2.5;
                         console.log(px);
                         var tableContent = this.fe_generateTableContent(clickedMarker.image_Url);
                         const content = `<div style="max-width: none;">${tableContent}</div>`;

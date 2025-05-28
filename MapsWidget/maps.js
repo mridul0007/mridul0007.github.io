@@ -385,10 +385,12 @@ class CombinedMap extends HTMLElement {
                     
                     marker.on('click', (e) =>  {
                         const clickedMarker = e.target;
+                        var px = mapInstance.project(e.target._popup._latlng);
+                        mapInstance.setView(e.latlng, 15);
                         var tableContent = this.fe_generateTableContent(clickedMarker.image_Url);
                         const content = `<div style="max-width: none;">${tableContent}</div>`;
                         clickedMarker.bindPopup(content , { maxWidth: "auto", autoPanPaddingBottomRight: L.point(30,30), autoPanPaddingTopLeft: L.point(30,30) }).openPopup(); 
-                        mapInstance.setView(e.latlng, 15);
+                        
                     });
 
                     mapInstance.on('popupopen', function(e) {

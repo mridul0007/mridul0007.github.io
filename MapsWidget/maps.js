@@ -384,10 +384,12 @@ class CombinedMap extends HTMLElement {
                     marker.image_Url = image_Url;
                     
                     marker.on('click', (e) =>  {
+                        const mapDiv = this.shadowRoot.getElementById('d-osMap');
+                        const mapHeight = mapDiv.clientHeight;
                         const clickedMarker = e.target;
                         mapInstance.setView(e.latlng, 20);
                         var px = mapInstance.project(e.latlng);
-                        px.y -= 700 / 2;
+                        px.y -= mapHeight / 2;
                         var tableContent = this.fe_generateTableContent(clickedMarker.image_Url);
                         const content = `<div style="max-width: none;">${tableContent}</div>`;
                         clickedMarker.bindPopup(content , { maxWidth: "auto", autoPanPaddingBottomRight: L.point(30,30), autoPanPaddingTopLeft: L.point(30,30) }).openPopup(); 

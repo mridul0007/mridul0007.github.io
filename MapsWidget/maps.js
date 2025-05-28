@@ -389,7 +389,9 @@ class CombinedMap extends HTMLElement {
                         const clickedMarker = e.target;
                         mapInstance.setView(e.latlng, 20);
                         var px = mapInstance.project(e.latlng);
+                        console.log(px);
                         px.y -= mapHeight / 2;
+                        console.log(px);
                         var tableContent = this.fe_generateTableContent(clickedMarker.image_Url);
                         const content = `<div style="max-width: none;">${tableContent}</div>`;
                         clickedMarker.bindPopup(content , { maxWidth: "auto", autoPanPaddingBottomRight: L.point(30,30), autoPanPaddingTopLeft: L.point(30,30) }).openPopup(); 

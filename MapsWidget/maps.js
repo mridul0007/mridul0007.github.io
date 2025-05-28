@@ -376,9 +376,7 @@ class CombinedMap extends HTMLElement {
                     } else {
                         iconUrl = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
                     }
-                    var image_Url = this.DB_COORDINATE_DATA[i].properties["image"];
-                    var tableContent = this.fe_generateTableContent(image_Url);
-    
+                    var image_Url = this.DB_COORDINATE_DATA[i].properties["image"];    
                     var setIcon = new mapIcon({ iconUrl: iconUrl });
                     var marker = L.marker([lat_m, lng_m], { icon: setIcon });
                     marker.image_Url = image_Url;

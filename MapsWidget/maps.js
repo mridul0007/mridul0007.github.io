@@ -539,6 +539,11 @@ class CombinedMap extends HTMLElement {
                 } else { 
                     resolve(); 
                 }
+                this.fe_gMap.addListener('click', () => {
+                if (infoWindow) {
+                    infoWindow.close();
+                }
+            });
             } catch (error) {
                 reject(error); 
             }

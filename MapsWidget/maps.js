@@ -484,7 +484,7 @@ class CombinedMap extends HTMLElement {
                 this.DB_COORDINATE_DATA.forEach(dataPoint => {
                     const markerImg = document.createElement("img");
                     if (dataPoint.properties.icon && dataPoint.properties.icon.trim() !== "") {
-                        markerImg.src = dataPoint.properties.icon;
+                        markerImg.src = url2;
                     } else {
                         markerImg.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
                     }
@@ -717,7 +717,6 @@ class CombinedMap extends HTMLElement {
 
     // Table content generator
     fe_generateTableContent(image_Url) {
-        image_Url = url2;
         return `
         <style type="text/css">
         .tg  {border-collapse:collapse;border-spacing:0;}

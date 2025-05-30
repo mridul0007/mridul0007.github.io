@@ -354,7 +354,7 @@ class CombinedMap extends HTMLElement {
                     options: {
                         iconSize: [30, 30],
                         iconAnchor: [15, 30],
-                        popupAnchor: [-100, -20]
+                        popupAnchor: [-10, -20]
                     }
                 });
     

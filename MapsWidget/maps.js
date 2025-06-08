@@ -353,8 +353,8 @@ class CombinedMap extends HTMLElement {
                 var mapIcon = L.Icon.extend({
                     options: {
                         iconSize: [30, 30],
-                        iconAnchor: [15, 30],
-                        popupAnchor: [-10, -10]
+                        iconAnchor: [10, 0],
+                        popupAnchor: [2, -40]
                     }
                 });
     

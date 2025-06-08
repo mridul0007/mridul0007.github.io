@@ -354,7 +354,7 @@ class CombinedMap extends HTMLElement {
                     options: {
                         iconSize: [20, 32], 
                         iconAnchor: [10, 32], // the point of the icon which will correspond to marker's location (tip of pin)
-                        popupAnchor: [0, -32], // point from which the popup should open relative to the iconAnchor
+                        popupAnchor: [0, -5], // point from which the popup should open relative to the iconAnchor
                         tooltipAnchor: [10, -10]  // center the tooltip above the tip of the marker
                     }
                 });

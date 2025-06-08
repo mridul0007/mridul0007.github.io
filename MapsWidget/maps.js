@@ -352,9 +352,10 @@ class CombinedMap extends HTMLElement {
                 var bounds = new L.LatLngBounds();
                 var mapIcon = L.Icon.extend({
                     options: {
-                        iconSize: [30, 30],
-                        iconAnchor: [10, 0],
-                        popupAnchor: [2, -40]
+                        iconSize: [20, 32], 
+                        iconAnchor: [10, 32], // the point of the icon which will correspond to marker's location (tip of pin)
+                        popupAnchor: [0, -32], // point from which the popup should open relative to the iconAnchor
+                        tooltipAnchor: [10, -10]  // center the tooltip above the tip of the marker
                     }
                 });
     

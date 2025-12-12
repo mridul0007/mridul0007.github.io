@@ -1,0 +1,31 @@
+@font-face {
+font-family: 'TEST';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url('https://contigo-consulting-ag.github.io/Traton/TratonFonts/TRATONTypeDisplay-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'TEST';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('https://contigo-consulting-ag.github.io/Traton/TratonFonts/TRATONTypeDisplay-Bold.ttf') format('truetype');
+    }
+
+@font-face {
+font-family: 'TEST';
+font-style: Italic;
+font-weight: 400;
+font-display: swap;
+src: url('https://contigo-consulting-ag.github.io/Traton/TratonFonts/TRATONTypeDisplay-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'TEST';
+    font-style: Italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url('https://contigo-consulting-ag.github.io/Traton/TratonFonts/TRATONTypeDisplay-BoldItalic.ttf') format('truetype');
+    }
